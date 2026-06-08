@@ -1,69 +1,161 @@
 import * as React from "react"
-import { OpenInV0Button } from "@/components/open-in-v0-button"
-import { HelloWorld } from "@/registry/new-york/blocks/hello-world/hello-world"
-import { ExampleForm } from "@/registry/new-york/blocks/example-form/example-form"
-import PokemonPage from "@/registry/new-york/blocks/complex-component/page"
-import { ExampleCard } from "@/registry/new-york/blocks/example-with-css/example-card"
-// This page displays items from the custom registry.
-// You are free to implement this with your own design as needed.
+import { Button } from "@/registry/default/ui/button"
+import { Input } from "@/registry/default/ui/input"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/registry/default/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/registry/default/ui/dialog"
+import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
+
+const components = [
+  {
+    name: "theme",
+    title: "Theme",
+    description: "ModernUI design tokens and CSS variables.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/theme",
+    preview: null,
+  },
+  {
+    name: "button",
+    title: "Button",
+    description: "Button with default, brand, and standard variants.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/button",
+    preview: (
+      <div className="flex flex-wrap gap-3">
+        <Button>Default</Button>
+        <Button variant="brand">Brand</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="destructive">Destructive</Button>
+        <Button variant="ghost">Ghost</Button>
+      </div>
+    ),
+  },
+  {
+    name: "input",
+    title: "Input",
+    description: "Text input with focus ring and validation states.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/input",
+    preview: (
+      <div className="flex w-full max-w-sm flex-col gap-3">
+        <Input placeholder="Email address" type="email" />
+        <Input placeholder="Disabled" disabled />
+      </div>
+    ),
+  },
+  {
+    name: "card",
+    title: "Card",
+    description: "Layout container with header, content, and footer slots.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/card",
+    preview: (
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Card title</CardTitle>
+          <CardDescription>Card description goes here.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm">Card content area for any child elements.</p>
+        </CardContent>
+      </Card>
+    ),
+  },
+  {
+    name: "dialog",
+    title: "Dialog",
+    description: "Modal overlay for confirmations and forms.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/dialog",
+    preview: (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Open dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Dialog title</DialogTitle>
+            <DialogDescription>
+              This dialog uses the ModernUI theme and button primitives.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    ),
+  },
+  {
+    name: "login-form",
+    title: "Login Form",
+    description: "Composite sign-in block with Zod validation.",
+    install: "npx shadcn@latest add your-org/ModernUIComponent/login-form",
+    preview: <LoginForm />,
+  },
+]
 
 export default function Home() {
   return (
-    <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
-      <header className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight">Custom Registry</h1>
-        <p className="text-muted-foreground">
-          A custom registry for distributing code using shadcn.
+    <div className="mx-auto flex min-h-svh max-w-4xl flex-col gap-8 px-4 py-8">
+      <header className="flex flex-col gap-2">
+        <p className="text-brand text-sm font-medium tracking-wide uppercase">
+          ModernUI
+        </p>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Component Registry
+        </h1>
+        <p className="text-muted-foreground max-w-2xl">
+          A shadcn-extended UI library distributed via the official shadcn CLI.
+          Install components into any React project — teams own the code.
         </p>
       </header>
-      <main className="flex flex-col flex-1 gap-8">
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A simple hello world component
-            </h2>
-            <OpenInV0Button name="hello-world" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <HelloWorld />
-          </div>
-        </div>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A contact form with Zod validation.
-            </h2>
-            <OpenInV0Button name="example-form" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[500px] relative">
-            <ExampleForm />
-          </div>
-        </div>
+      <section className="bg-muted/50 flex flex-col gap-3 rounded-lg border p-4">
+        <h2 className="text-sm font-medium">Quick start (consumer project)</h2>
+        <pre className="bg-background overflow-x-auto rounded-md border p-3 text-sm">
+          <code>{`npx shadcn@latest init
+npx shadcn@latest add your-org/ModernUIComponent/theme
+npx shadcn@latest add your-org/ModernUIComponent/utils
+npx shadcn@latest add your-org/ModernUIComponent/button`}</code>
+        </pre>
+        <p className="text-muted-foreground text-sm">
+          See{" "}
+          <a href="https://github.com/your-org/ModernUIComponent/blob/main/docs/CONSUMER.md" className="text-primary underline-offset-4 hover:underline">
+            docs/CONSUMER.md
+          </a>{" "}
+          for full setup instructions.
+        </p>
+      </section>
 
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A complex component showing hooks, libs and components.
-            </h2>
-            <OpenInV0Button name="complex-component" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <PokemonPage />
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
-              A login form with a CSS file.
-            </h2>
-            <OpenInV0Button name="example-with-css" className="w-fit" />
-          </div>
-          <div className="flex items-center justify-center min-h-[400px] relative">
-            <ExampleCard />
-          </div>
-        </div>
+      <main className="flex flex-col gap-6">
+        {components.map((component) => (
+          <article
+            key={component.name}
+            className="relative flex min-h-[200px] flex-col gap-4 rounded-lg border p-4"
+          >
+            <div className="flex flex-col gap-1">
+              <h2 className="text-lg font-semibold">{component.title}</h2>
+              <p className="text-muted-foreground text-sm">
+                {component.description}
+              </p>
+              <code className="text-muted-foreground mt-1 text-xs">
+                {component.install}
+              </code>
+            </div>
+            {component.preview && (
+              <div className="flex flex-1 items-center justify-center py-4">
+                {component.preview}
+              </div>
+            )}
+          </article>
+        ))}
       </main>
     </div>
   )

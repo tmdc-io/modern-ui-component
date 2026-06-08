@@ -1,13 +1,15 @@
 {
-  "name": "registry",
-  "version": "0.1.0",
+  "name": "modernui-registry",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "pnpm registry:build && next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "typecheck": "tsc --noEmit",
+    "registry:build": "npx shadcn@latest build",
+    "registry:validate": "node scripts/validate-registry.mjs"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
@@ -16,6 +18,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.487.0",
     "next": "15.5.9",
+    "radix-ui": "^1.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "shadcn": "^3.0.0",

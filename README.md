@@ -1,23 +1,64 @@
-# registry-template
+# ModernUI Component Registry
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+A shadcn-extended React UI component library distributed via the official [shadcn CLI](https://ui.shadcn.com/docs/cli). Teams install components as source files they own and can customize.
 
-> [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template-v3](https://github.com/shadcn-ui/registry-template-v3).
+## What's included
 
-## Getting Started
+| Item | Type | Description |
+|------|------|-------------|
+| `theme` | foundation | ModernUI design tokens and CSS variables |
+| `utils` | foundation | `cn()` classname utility |
+| `button` | primitive | Button with `brand` variant |
+| `input` | primitive | Text input |
+| `card` | primitive | Card layout |
+| `label` | primitive | Form label |
+| `dialog` | primitive | Modal dialog |
+| `login-form` | block | Sign-in form with Zod validation |
+| `project-setup` | meta | AGENTS.md and consumer docs |
 
-This is a template for creating a custom registry using Next.js.
+## Development
 
-- The template uses a `registry.json` file to define components and their files.
-- The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
+```bash
+pnpm install
+pnpm dev          # Docs site at http://localhost:3000
+pnpm registry:build   # Build public/r/*.json for hosted namespace
+pnpm registry:validate
+```
 
-## Documentation
+## Distribute to consumer projects
 
-Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+- [docs/CONSUMER.md](docs/CONSUMER.md) — consumer setup guide
+- [docs/GITHUB.md](docs/GITHUB.md) — publish to GitHub Registry
+- [docs/HOSTED.md](docs/HOSTED.md) — deploy hosted `@modernui` namespace
+
+### GitHub Registry
+
+```bash
+npx shadcn@latest add your-org/ModernUIComponent/theme
+npx shadcn@latest add your-org/ModernUIComponent/button
+npx shadcn@latest add your-org/ModernUIComponent/login-form
+```
+
+### Hosted namespace (@modernui)
+
+```bash
+npx shadcn@latest registry add @modernui=https://your-registry-url.com/r/{name}.json
+npx shadcn@latest add @modernui/button
+```
+
+## Project structure
+
+```txt
+registry/default/
+├── ui/                  # primitives (button, input, card, dialog, label)
+├── blocks/              # composite components (login-form)
+└── theme/               # globals.css design tokens
+lib/utils.ts             # cn() helper
+registry.json            # root catalog
+public/r/                # built registry JSON (generated)
+docs/                    # consumer, GitHub, and hosted setup guides
+```
+
+## Based on
+
+Built on the [shadcn registry template](https://github.com/shadcn-ui/registry-template) with Tailwind v4 and Next.js 15.

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm typecheck
+
+      - run: pnpm lint
+
+      - run: pnpm registry:build
+
+      - name: Verify registry artifacts
+        run: |
+          for item in theme utils button input card label dialog login-form project-setup; do
+            test -f "public/r/${item}.json" || (echo "Missing public/r/${item}.json" && exit 1)
+          done
+          test -f public/r/registry.json
+
+      - run: pnpm build
