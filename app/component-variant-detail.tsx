@@ -18,6 +18,10 @@ function isSidebarPage(componentName: string) {
   return componentName === "sidebar"
 }
 
+function isSidebarBlockVariant(variantId: string) {
+  return /^\d{2}$/.test(variantId)
+}
+
 type VariantCodeTarget = {
   title: string
   description: string
@@ -91,8 +95,18 @@ export function ComponentVariantDetail({ name }: { name: string }) {
             <VariantPreviewCanvas
               Preview={variant.Preview}
               fullWidth={isSidebarPage(page.name)}
-              tall={isSidebarPage(page.name)}
-              containSidebar={isSidebarPage(page.name)}
+              tall={
+                isSidebarPage(page.name) &&
+                !isSidebarBlockVariant(variant.id)
+              }
+              blockLayout={
+                isSidebarPage(page.name) &&
+                isSidebarBlockVariant(variant.id)
+              }
+              containSidebar={
+                isSidebarPage(page.name) &&
+                !isSidebarBlockVariant(variant.id)
+              }
             />
           </article>
         ))}

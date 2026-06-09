@@ -1,12 +1,9 @@
 "use client"
 
-import { BlockLayoutPlaceholder } from "@/app/variant-preview-canvas"
+import BlockExample from "@/app/component-examples/generated/sidebar/blocks/sidebar-04/page"
+
+import { BlockPreviewFrame } from "@/app/variant-preview-canvas"
 
 export function Sidebar04Preview() {
-  return (
-    <BlockLayoutPlaceholder
-      title="Example 04"
-      description="shadcn sidebar-04 full application layout."
-    />
-  )
+  return <BlockPreviewFrame Block={BlockExample} />
 }

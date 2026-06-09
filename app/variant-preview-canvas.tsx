@@ -18,7 +18,10 @@ function LazyVariantPreview({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setVisible(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
       },
       { rootMargin: "240px 0px" }
     )
@@ -38,11 +41,13 @@ export function VariantPreviewCanvas({
   Preview,
   fullWidth = false,
   tall = false,
+  blockLayout = false,
   containSidebar = false,
 }: {
   Preview: React.ComponentType
   fullWidth?: boolean
   tall?: boolean
+  blockLayout?: boolean
   containSidebar?: boolean
 }) {
   return (
@@ -51,16 +56,45 @@ export function VariantPreviewCanvas({
         className={cn(
           "relative isolate w-full overflow-hidden rounded-md bg-card shadow-sm ring-1 ring-border/40",
           "[transform:translateZ(0)]",
-          tall ? "h-[min(520px,70vh)]" : "min-h-48",
+          blockLayout
+            ? "h-[min(720px,80vh)]"
+            : tall
+              ? "h-[min(520px,70vh)]"
+              : "min-h-48",
           !fullWidth && "mx-auto max-w-lg",
           containSidebar &&
             "[&_[data-slot=sidebar-wrapper]]:!min-h-0 [&_[data-slot=sidebar-wrapper]]:h-full [&_[data-slot=sidebar-container]]:!absolute [&_[data-slot=sidebar-container]]:top-0 [&_[data-slot=sidebar-container]]:!h-full"
         )}
       >
-        <div className="size-full overflow-auto p-4">
+        <div
+          className={cn(
+            "size-full overflow-auto",
+            blockLayout ? "overflow-x-hidden" : "p-4"
+          )}
+        >
           <LazyVariantPreview Preview={Preview} />
         </div>
       </div>
+    </div>
+  )
+}
+
+export function BlockPreviewFrame({
+  Block,
+}: {
+  Block: React.ComponentType
+}) {
+  return (
+    <div
+      className={cn(
+        "relative w-full min-h-[min(720px,80vh)]",
+        "[&_[data-slot=sidebar-wrapper]]:flex [&_[data-slot=sidebar-wrapper]]:!min-h-[min(720px,80vh)]",
+        "[&_[data-slot=sidebar-container]]:!absolute [&_[data-slot=sidebar-container]]:inset-y-0 [&_[data-slot=sidebar-container]]:!h-full",
+        "[&_[data-slot=sidebar-inner]]:h-full",
+        "[&_[class*='min-h-\\[100vh\\]']]:!min-h-48"
+      )}
+    >
+      <Block />
     </div>
   )
 }

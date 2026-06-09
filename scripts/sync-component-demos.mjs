@@ -7,7 +7,6 @@ const GENERATED_DIR = path.join(ROOT, "app/component-examples/generated")
 const MANUAL_PAGES = new Set(["accordion"])
 const BLOCK_COMPONENTS = new Set(["sidebar", "calendar"])
 const INTERNAL_COMPONENTS = new Set(["sidebar"])
-const BLOCK_PREVIEW_PLACEHOLDER_COMPONENTS = new Set(["sidebar"])
 const CHART_EXAMPLES = new Set([
   "chart-bar-demo",
   "chart-bar-demo-grid",
@@ -17,6 +16,21 @@ const CHART_EXAMPLES = new Set([
   "chart-tooltip-demo",
 ])
 const EXCLUDE_ITEMS = new Set(["data-table-demo", "mode-toggle"])
+const MANUAL_VARIANTS = new Map([
+  [
+    "sidebar",
+    {
+      rsc: {
+        previewName: "SidebarModernUiRscPreview",
+        codeExportName: "sidebarModernUiRscCode",
+        importPath: "@/app/component-examples/sidebar-modernui-rsc",
+        title: "RSC",
+        description:
+          "Load ModernUI registry sections with Suspense and a skeleton fallback.",
+      },
+    },
+  ],
+])
 
 function toExportName(name) {
   return name
@@ -227,6 +241,17 @@ async function writeExampleVariant(componentName, itemMeta, kind) {
   if (!rawSource) return null
 
   const variantId = toVariantId(componentName, itemMeta.name, kind)
+  const manualVariant = MANUAL_VARIANTS.get(componentName)?.[variantId]
+  if (manualVariant) {
+    return {
+      id: variantId,
+      title: manualVariant.title,
+      description: manualVariant.description,
+      previewName: manualVariant.previewName,
+      codeExportName: manualVariant.codeExportName,
+      importPath: manualVariant.importPath,
+    }
+  }
   const previewName = toVariantPreviewName(componentName, variantId)
   const codeExportName = toVariantCodeExportName(componentName, variantId)
   const previewSource = transformPreviewSource(rawSource, previewName)
@@ -299,33 +324,14 @@ async function writeBlockVariant(componentName, itemMeta) {
     ? transformConsumerCode(blockEntrySource)
     : ""
 
-  const blockTitle = toVariantTitle(variantId, "block")
-  const usePlaceholder = BLOCK_PREVIEW_PLACEHOLDER_COMPONENTS.has(componentName)
-
-  const wrapperSource = usePlaceholder
-    ? `"use client"
-
-import { BlockLayoutPlaceholder } from "@/app/variant-preview-canvas"
-
-export function ${previewName}() {
-  return (
-    <BlockLayoutPlaceholder
-      title="${blockTitle}"
-      description="shadcn ${blockName} full application layout."
-    />
-  )
-}
-`
-    : `"use client"
+  const wrapperSource = `"use client"
 
 import BlockExample from "${entryImportPath}"
 
+import { BlockPreviewFrame } from "@/app/variant-preview-canvas"
+
 export function ${previewName}() {
-  return (
-    <div className="relative max-h-[520px] w-full overflow-auto rounded-lg border bg-background">
-      <BlockExample />
-    </div>
-  )
+  return <BlockPreviewFrame Block={BlockExample} />
 }
 `
 

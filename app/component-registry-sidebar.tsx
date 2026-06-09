@@ -13,6 +13,7 @@ const REGISTRY_SECTION_IDS = catalog.flatMap((category) =>
 )
 
 const SCROLL_SPY_OFFSET = 120
+const SIDEBAR_SCROLL_KEY = "registry:sidebar-scroll"
 
 type ComponentRegistrySidebarProps = {
   activeName?: string
@@ -80,7 +81,7 @@ export function ComponentRegistrySidebar({
   variantDetail = false,
 }: ComponentRegistrySidebarProps) {
   const { query } = useComponentSearch()
-  const linkRefs = React.useRef(new Map<string, HTMLElement>())
+  const asideRef = React.useRef<HTMLElement>(null)
 
   const filteredCatalog = React.useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -100,24 +101,27 @@ export function ComponentRegistrySidebar({
   }, [query])
 
   React.useEffect(() => {
-    if (!activeName) return
-    const link = linkRefs.current.get(activeName)
-    link?.scrollIntoView({ block: "nearest", behavior: "smooth" })
-  }, [activeName, filteredCatalog])
+    const aside = asideRef.current
+    if (!aside) return
 
-  const setLinkRef = React.useCallback(
-    (name: string) => (element: HTMLAnchorElement | null) => {
-      if (element) {
-        linkRefs.current.set(name, element)
-      } else {
-        linkRefs.current.delete(name)
-      }
-    },
-    []
-  )
+    const saved = sessionStorage.getItem(SIDEBAR_SCROLL_KEY)
+    if (saved) {
+      aside.scrollTop = Number(saved)
+    }
+
+    const onScroll = () => {
+      sessionStorage.setItem(SIDEBAR_SCROLL_KEY, String(aside.scrollTop))
+    }
+
+    aside.addEventListener("scroll", onScroll, { passive: true })
+    return () => aside.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <aside className="lg:sticky lg:top-24 lg:h-[calc(100svh-8rem)] lg:w-56 lg:shrink-0 lg:overflow-y-auto">
+    <aside
+      ref={asideRef}
+      className="lg:sticky lg:top-24 lg:h-[calc(100svh-8rem)] lg:w-56 lg:shrink-0 lg:overflow-y-auto"
+    >
       <nav className="flex flex-col gap-4">
         <p className="text-brand text-xs font-medium tracking-wide uppercase">
           Components
@@ -139,24 +143,14 @@ export function ComponentRegistrySidebar({
 
               if (variantDetail) {
                 return (
-                  <Link
-                    key={item.name}
-                    ref={setLinkRef(item.name)}
-                    href={href}
-                    className={className}
-                  >
+                  <Link key={item.name} href={href} className={className}>
                     {item.title}
                   </Link>
                 )
               }
 
               return (
-                <a
-                  key={item.name}
-                  ref={setLinkRef(item.name)}
-                  href={href}
-                  className={className}
-                >
+                <a key={item.name} href={href} className={className}>
                   {item.title}
                 </a>
               )

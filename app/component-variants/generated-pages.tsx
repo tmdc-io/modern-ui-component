@@ -24,8 +24,8 @@ import { SidebarMenuCollapsiblePreview } from "@/app/component-examples/generate
 import { SidebarMenuCollapsibleCode } from "@/app/component-examples/generated/sidebar/menu-collapsible.code"
 import { SidebarMenuSubPreview } from "@/app/component-examples/generated/sidebar/menu-sub"
 import { SidebarMenuSubCode } from "@/app/component-examples/generated/sidebar/menu-sub.code"
-import { SidebarRscPreview } from "@/app/component-examples/generated/sidebar/rsc"
-import { SidebarRscCode } from "@/app/component-examples/generated/sidebar/rsc.code"
+import { SidebarModernUiRscPreview } from "@/app/component-examples/sidebar-modernui-rsc"
+import { sidebarModernUiRscCode } from "@/app/component-examples/sidebar-modernui-rsc.code"
 import { Sidebar01Preview } from "@/app/component-examples/generated/sidebar/01"
 import { Sidebar01Code } from "@/app/component-examples/generated/sidebar/01.code"
 import { Sidebar02Preview } from "@/app/component-examples/generated/sidebar/02"
@@ -461,10 +461,11 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
       },
       {
         id: "rsc",
-        title: "Rsc",
-        description: "shadcn sidebar pattern.",
-        Preview: SidebarRscPreview,
-        code: SidebarRscCode,
+        title: "RSC",
+        description:
+          "Load ModernUI registry sections with Suspense and a skeleton fallback.",
+        Preview: SidebarModernUiRscPreview,
+        code: sidebarModernUiRscCode,
       },
       {
         id: "01",
