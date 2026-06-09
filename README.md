@@ -126,19 +126,19 @@ pnpm start
 ### GitHub Registry
 
 ```bash
-npx shadcn@latest list ashishsahu/ModernUIComponent
-npx shadcn@latest view ashishsahu/ModernUIComponent/button
-npx shadcn@latest add ashishsahu/ModernUIComponent/theme
-npx shadcn@latest add ashishsahu/ModernUIComponent/utils
-npx shadcn@latest add ashishsahu/ModernUIComponent/button
-npx shadcn@latest add ashishsahu/ModernUIComponent/login-form
-npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup
+npx shadcn@latest list tmdc-io/modern-ui-component
+npx shadcn@latest view tmdc-io/modern-ui-component/button
+npx shadcn@latest add tmdc-io/modern-ui-component/theme
+npx shadcn@latest add tmdc-io/modern-ui-component/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/button
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 ```
 
 Pin a release:
 
 ```bash
-npx shadcn@latest add ashishsahu/ModernUIComponent/button#v1.0.0
+npx shadcn@latest add tmdc-io/modern-ui-component/button#v1.0.0
 ```
 
 ### Hosted namespace (@modernui)

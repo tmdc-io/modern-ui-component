@@ -34,7 +34,7 @@ export function ProjectSetupOverviewPreview() {
           Install command
         </div>
         <code className="bg-muted block rounded-md border px-3 py-2 text-xs">
-          npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup
+          npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
         </code>
       </div>
 

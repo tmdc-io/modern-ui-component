@@ -14,7 +14,7 @@ export type CatalogCategory = {
 }
 
 const install = (name: string) =>
-  `npx shadcn@latest add ashishsahu/ModernUIComponent/${name}`
+  `npx shadcn@latest add tmdc-io/modern-ui-component/${name}`
 
 const item = (
   name: string,

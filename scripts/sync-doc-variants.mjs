@@ -105,7 +105,7 @@ function renderDocPagesFile(docPages, mergeOnly) {
     name: ${JSON.stringify(page.name)},
     title: ${JSON.stringify(page.title)},
     description: ${JSON.stringify(page.description)},
-    install: ${JSON.stringify(`npx shadcn@latest add ashishsahu/ModernUIComponent/${page.name}`)},
+    install: ${JSON.stringify(`npx shadcn@latest add tmdc-io/modern-ui-component/${page.name}`)},
     variants: [
 ${page.variants
   .map(

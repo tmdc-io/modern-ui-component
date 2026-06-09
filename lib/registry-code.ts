@@ -65,7 +65,7 @@ export async function getRegistryComponentCode(
     name: item.name,
     title: item.title ?? item.name,
     description: item.description ?? "",
-    install: `npx shadcn@latest add ashishsahu/ModernUIComponent/${item.name}`,
+    install: `npx shadcn@latest add tmdc-io/modern-ui-component/${item.name}`,
     files,
   }
 }

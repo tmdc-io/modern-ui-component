@@ -25,7 +25,7 @@ export const accordionVariantPage: ComponentVariantPage = {
   name: "accordion",
   title: "Accordion",
   description: "Expandable sections.",
-  install: "npx shadcn@latest add ashishsahu/ModernUIComponent/accordion",
+  install: "npx shadcn@latest add tmdc-io/modern-ui-component/accordion",
   variants: [
     {
       id: "basic",

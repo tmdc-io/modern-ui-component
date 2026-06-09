@@ -51,7 +51,7 @@ const SPECIAL_PAGES = {
   "project-setup": {
     importPath: "@/components/project-setup",
     exportName: "ProjectSetup",
-    example: "npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup",
+    example: "npx shadcn@latest add tmdc-io/modern-ui-component/project-setup",
     title: "Project Setup",
     footnote:
       "Installs AGENTS.md and docs/modernui-setup.md into consumer projects.",

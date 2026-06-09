@@ -178,7 +178,7 @@ async function main() {
   const registry = {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "modernui",
-    homepage: "https://github.com/ashishsahu/ModernUIComponent",
+    homepage: "https://github.com/tmdc-io/modern-ui-component",
     items: [...foundation, ...items],
   }
 

@@ -498,7 +498,7 @@ export const chartVariantPage: ComponentVariantPage = {
   title: "Chart",
   description:
     "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
-  install: "npx shadcn@latest add ashishsahu/ModernUIComponent/chart",
+  install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart",
   sections: [
 ${sectionsObject}
   ],

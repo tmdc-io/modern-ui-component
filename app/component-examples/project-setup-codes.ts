@@ -1,6 +1,6 @@
 export const projectSetupCodes = {
   overview: `# Install project conventions into your app
-npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 
 # Files added to your project:
 #   AGENTS.md                  → project root
@@ -54,20 +54,20 @@ npx shadcn@latest init
 
 \`\`\`bash
 # Install foundation first
-npx shadcn@latest add ashishsahu/ModernUIComponent/theme
-npx shadcn@latest add ashishsahu/ModernUIComponent/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/theme
+npx shadcn@latest add tmdc-io/modern-ui-component/utils
 
 # Install primitives
-npx shadcn@latest add ashishsahu/ModernUIComponent/button
-npx shadcn@latest add ashishsahu/ModernUIComponent/input
-npx shadcn@latest add ashishsahu/ModernUIComponent/card
-npx shadcn@latest add ashishsahu/ModernUIComponent/dialog
+npx shadcn@latest add tmdc-io/modern-ui-component/button
+npx shadcn@latest add tmdc-io/modern-ui-component/input
+npx shadcn@latest add tmdc-io/modern-ui-component/card
+npx shadcn@latest add tmdc-io/modern-ui-component/dialog
 
 # Install composite blocks
-npx shadcn@latest add ashishsahu/ModernUIComponent/login-form
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form
 
 # Optional: project conventions
-npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 \`\`\`
 
 ## Install order

@@ -1,7 +1,7 @@
 import { GithubIcon } from "lucide-react"
 import Link from "next/link"
 
-export const GITHUB_URL = "https://github.com/ashishsahu/ModernUIComponent"
+export const GITHUB_URL = "https://github.com/tmdc-io/modern-ui-component"
 
 export function GitHubLink({ className }: { className?: string }) {
   return (

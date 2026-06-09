@@ -1,5 +1,5 @@
 export const qualitySummaryCardCodes = {
-  install: `npx shadcn@latest add ashishsahu/ModernUIComponent/quality-summary-card`,
+  install: `npx shadcn@latest add tmdc-io/modern-ui-component/quality-summary-card`,
 
   props: `type DimensionStatus = "pass" | "warn" | "fail"
 

@@ -6,7 +6,7 @@ export const projectSetupApi: ComponentApiDoc = {
   ],
   usage: {
     import: "import { ProjectSetup } from \"@/components/project-setup\"",
-    example: "npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup",
+    example: "npx shadcn@latest add tmdc-io/modern-ui-component/project-setup",
   },
   apiReference: {
     title: "Project Setup",

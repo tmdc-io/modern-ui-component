@@ -136,9 +136,9 @@ export function ComponentShowcase() {
           <h2 className="text-sm font-medium">Quick start</h2>
           <pre className="bg-background overflow-x-auto rounded-md border p-3 text-sm">
             <code>{`npx shadcn@latest init
-npx shadcn@latest add ashishsahu/ModernUIComponent/theme
-npx shadcn@latest add ashishsahu/ModernUIComponent/utils
-npx shadcn@latest add ashishsahu/ModernUIComponent/button`}</code>
+npx shadcn@latest add tmdc-io/modern-ui-component/theme
+npx shadcn@latest add tmdc-io/modern-ui-component/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/button`}</code>
           </pre>
         </section>
 
