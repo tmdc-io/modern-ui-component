@@ -56,6 +56,31 @@ function OmniSearchDialog({
   onOpenChange: (open: boolean) => void
 }) {
   const router = useRouter()
+  const listRef = React.useRef<HTMLDivElement>(null)
+  const [search, setSearch] = React.useState("")
+
+  React.useEffect(() => {
+    if (!open) {
+      setSearch("")
+    }
+  }, [open])
+
+  React.useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      listRef.current?.scrollTo({ top: 0 })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [search])
+
+  const handleOpenChange = React.useCallback(
+    (nextOpen: boolean) => {
+      if (!nextOpen) {
+        setSearch("")
+      }
+      onOpenChange(nextOpen)
+    },
+    [onOpenChange]
+  )
 
   const navigateToRegistryItem = React.useCallback(
     (name: string) => {
@@ -78,32 +103,37 @@ function OmniSearchDialog({
   return (
     <CommandDialog
       open={open}
-      onOpenChange={onOpenChange}
+      onOpenChange={handleOpenChange}
       title="Search"
       description="Search components, documentation, and links"
       showCloseButton={false}
       className="top-[12%] max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-0 sm:max-w-xl"
     >
       <div className="relative [&_[data-slot=command-input-wrapper]]:pr-10">
-        <CommandInput placeholder="Type to search..." />
+        <CommandInput
+          placeholder="Type to search..."
+          value={search}
+          onValueChange={setSearch}
+        />
         <Button
           type="button"
           variant="ghost"
           size="icon"
           className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 z-10 size-7 -translate-y-1/2"
-          onClick={() => onOpenChange(false)}
+          onClick={() => handleOpenChange(false)}
           aria-label="Close search"
         >
           <XIcon className="size-4" />
         </Button>
       </div>
-      <CommandList className="max-h-[min(420px,50vh)]">
+      <CommandList ref={listRef} className="max-h-[min(420px,50vh)]">
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Components">
           {searchableComponents.map((item) => (
             <CommandItem
               key={item.name}
-              value={`${item.title} ${item.name} ${item.description}`}
+              value={`${item.title} ${item.name}`}
+              keywords={[item.description]}
               onSelect={() => navigateToRegistryItem(item.name)}
             >
               <CircleIcon />
