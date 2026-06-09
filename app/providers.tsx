@@ -5,7 +5,8 @@ import { ThemeProvider } from "next-themes"
 
 import { ComponentSearchProvider } from "@/app/component-search"
 import { OmniSearchRoot } from "@/app/omni-search"
-import { Toaster } from "@/registry/default/ui/sonner"
+import { Toaster as SonnerToaster } from "@/registry/default/ui/sonner"
+import { Toaster as ToastToaster } from "@/registry/default/ui/toaster"
 import { TooltipProvider } from "@/registry/default/ui/tooltip"
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -20,7 +21,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <ComponentSearchProvider>
           <OmniSearchRoot>
             {children}
-            <Toaster />
+            <SonnerToaster />
+            <ToastToaster />
           </OmniSearchRoot>
         </ComponentSearchProvider>
       </TooltipProvider>

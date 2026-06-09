@@ -1,0 +1,1 @@
+export const TypographyH4Code = "export function TypographyH4() {\n  return (\n    <h4 className=\"scroll-m-20 text-xl font-semibold tracking-tight\">\n      People stopped telling jokes\n    </h4>\n  )\n}\n"

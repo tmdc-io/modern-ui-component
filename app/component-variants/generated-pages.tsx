@@ -158,6 +158,28 @@ import { ButtonGroupSplitPreview } from "@/app/component-examples/generated/butt
 import { ButtonGroupSplitCode } from "@/app/component-examples/generated/button-group/split.code"
 import { CalendarDemoPreview } from "@/app/component-examples/generated/calendar/default"
 import { CalendarDemoCode } from "@/app/component-examples/generated/calendar/default.code"
+import { CalendarBasicPreview } from "@/app/component-examples/generated/calendar/basic"
+import { CalendarBasicCode } from "@/app/component-examples/generated/calendar/basic.code"
+import { CalendarRangePreview } from "@/app/component-examples/generated/calendar/range"
+import { CalendarRangeCode } from "@/app/component-examples/generated/calendar/range.code"
+import { CalendarCaptionPreview } from "@/app/component-examples/generated/calendar/caption"
+import { CalendarCaptionCode } from "@/app/component-examples/generated/calendar/caption.code"
+import { CalendarPresetsPreview } from "@/app/component-examples/generated/calendar/presets"
+import { CalendarPresetsCode } from "@/app/component-examples/generated/calendar/presets.code"
+import { CalendarTimePreview } from "@/app/component-examples/generated/calendar/time"
+import { CalendarTimeCode } from "@/app/component-examples/generated/calendar/time.code"
+import { CalendarBookedDatesPreview } from "@/app/component-examples/generated/calendar/booked-dates"
+import { CalendarBookedDatesCode } from "@/app/component-examples/generated/calendar/booked-dates.code"
+import { CalendarCustomDaysPreview } from "@/app/component-examples/generated/calendar/custom-days"
+import { CalendarCustomDaysCode } from "@/app/component-examples/generated/calendar/custom-days.code"
+import { CalendarWeekNumbersPreview } from "@/app/component-examples/generated/calendar/week-numbers"
+import { CalendarWeekNumbersCode } from "@/app/component-examples/generated/calendar/week-numbers.code"
+import { CalendarRtlPreview } from "@/app/component-examples/generated/calendar/rtl"
+import { CalendarRtlCode } from "@/app/component-examples/generated/calendar/rtl.code"
+import { CalendarMultiplePreview } from "@/app/component-examples/generated/calendar/multiple"
+import { CalendarMultipleCode } from "@/app/component-examples/generated/calendar/multiple.code"
+import { CalendarFormPreview } from "@/app/component-examples/generated/calendar/form"
+import { CalendarFormCode } from "@/app/component-examples/generated/calendar/form.code"
 import { Calendar01Preview } from "@/app/component-examples/generated/calendar/01"
 import { Calendar01Code } from "@/app/component-examples/generated/calendar/01.code"
 import { Calendar02Preview } from "@/app/component-examples/generated/calendar/02"
@@ -222,28 +244,6 @@ import { Calendar31Preview } from "@/app/component-examples/generated/calendar/3
 import { Calendar31Code } from "@/app/component-examples/generated/calendar/31.code"
 import { Calendar32Preview } from "@/app/component-examples/generated/calendar/32"
 import { Calendar32Code } from "@/app/component-examples/generated/calendar/32.code"
-import { CalendarBasicPreview } from "@/app/component-examples/generated/calendar/basic"
-import { CalendarBasicCode } from "@/app/component-examples/generated/calendar/basic.code"
-import { CalendarBookedDatesPreview } from "@/app/component-examples/generated/calendar/booked-dates"
-import { CalendarBookedDatesCode } from "@/app/component-examples/generated/calendar/booked-dates.code"
-import { CalendarCaptionPreview } from "@/app/component-examples/generated/calendar/caption"
-import { CalendarCaptionCode } from "@/app/component-examples/generated/calendar/caption.code"
-import { CalendarCustomDaysPreview } from "@/app/component-examples/generated/calendar/custom-days"
-import { CalendarCustomDaysCode } from "@/app/component-examples/generated/calendar/custom-days.code"
-import { CalendarFormPreview } from "@/app/component-examples/generated/calendar/form"
-import { CalendarFormCode } from "@/app/component-examples/generated/calendar/form.code"
-import { CalendarMultiplePreview } from "@/app/component-examples/generated/calendar/multiple"
-import { CalendarMultipleCode } from "@/app/component-examples/generated/calendar/multiple.code"
-import { CalendarPresetsPreview } from "@/app/component-examples/generated/calendar/presets"
-import { CalendarPresetsCode } from "@/app/component-examples/generated/calendar/presets.code"
-import { CalendarRangePreview } from "@/app/component-examples/generated/calendar/range"
-import { CalendarRangeCode } from "@/app/component-examples/generated/calendar/range.code"
-import { CalendarRtlPreview } from "@/app/component-examples/generated/calendar/rtl"
-import { CalendarRtlCode } from "@/app/component-examples/generated/calendar/rtl.code"
-import { CalendarTimePreview } from "@/app/component-examples/generated/calendar/time"
-import { CalendarTimeCode } from "@/app/component-examples/generated/calendar/time.code"
-import { CalendarWeekNumbersPreview } from "@/app/component-examples/generated/calendar/week-numbers"
-import { CalendarWeekNumbersCode } from "@/app/component-examples/generated/calendar/week-numbers.code"
 import { CardDemoPreview } from "@/app/component-examples/generated/card/default"
 import { CardDemoCode } from "@/app/component-examples/generated/card/default.code"
 import { CardEdgeToEdgePreview } from "@/app/component-examples/generated/card/edge-to-edge"
@@ -370,6 +370,32 @@ import { ContextMenuShortcutsPreview } from "@/app/component-examples/generated/
 import { ContextMenuShortcutsCode } from "@/app/component-examples/generated/context-menu/shortcuts.code"
 import { ContextMenuSubmenuPreview } from "@/app/component-examples/generated/context-menu/submenu"
 import { ContextMenuSubmenuCode } from "@/app/component-examples/generated/context-menu/submenu.code"
+import { DataTableDemoPreview } from "@/app/component-examples/generated/data-table/default"
+import { DataTableDemoCode } from "@/app/component-examples/generated/data-table/default.code"
+import { DataTableRtlPreview } from "@/app/component-examples/generated/data-table/rtl"
+import { DataTableRtlCode } from "@/app/component-examples/generated/data-table/rtl.code"
+import { DatePickerDemoPreview } from "@/app/component-examples/generated/date-picker/default"
+import { DatePickerDemoCode } from "@/app/component-examples/generated/date-picker/default.code"
+import { DatePickerBasicPreview } from "@/app/component-examples/generated/date-picker/basic"
+import { DatePickerBasicCode } from "@/app/component-examples/generated/date-picker/basic.code"
+import { DatePickerDobPreview } from "@/app/component-examples/generated/date-picker/dob"
+import { DatePickerDobCode } from "@/app/component-examples/generated/date-picker/dob.code"
+import { DatePickerFormPreview } from "@/app/component-examples/generated/date-picker/form"
+import { DatePickerFormCode } from "@/app/component-examples/generated/date-picker/form.code"
+import { DatePickerInputPreview } from "@/app/component-examples/generated/date-picker/input"
+import { DatePickerInputCode } from "@/app/component-examples/generated/date-picker/input.code"
+import { DatePickerNaturalLanguagePreview } from "@/app/component-examples/generated/date-picker/natural-language"
+import { DatePickerNaturalLanguageCode } from "@/app/component-examples/generated/date-picker/natural-language.code"
+import { DatePickerRangePreview } from "@/app/component-examples/generated/date-picker/range"
+import { DatePickerRangeCode } from "@/app/component-examples/generated/date-picker/range.code"
+import { DatePickerRtlPreview } from "@/app/component-examples/generated/date-picker/rtl"
+import { DatePickerRtlCode } from "@/app/component-examples/generated/date-picker/rtl.code"
+import { DatePickerTimePreview } from "@/app/component-examples/generated/date-picker/time"
+import { DatePickerTimeCode } from "@/app/component-examples/generated/date-picker/time.code"
+import { DatePickerWithPresetsPreview } from "@/app/component-examples/generated/date-picker/with-presets"
+import { DatePickerWithPresetsCode } from "@/app/component-examples/generated/date-picker/with-presets.code"
+import { DatePickerWithRangePreview } from "@/app/component-examples/generated/date-picker/with-range"
+import { DatePickerWithRangeCode } from "@/app/component-examples/generated/date-picker/with-range.code"
 import { DialogDemoPreview } from "@/app/component-examples/generated/dialog/default"
 import { DialogDemoCode } from "@/app/component-examples/generated/dialog/default.code"
 import { DialogCloseButtonPreview } from "@/app/component-examples/generated/dialog/close-button"
@@ -886,6 +912,16 @@ import { TextareaWithLabelPreview } from "@/app/component-examples/generated/tex
 import { TextareaWithLabelCode } from "@/app/component-examples/generated/textarea/with-label.code"
 import { TextareaWithTextPreview } from "@/app/component-examples/generated/textarea/with-text"
 import { TextareaWithTextCode } from "@/app/component-examples/generated/textarea/with-text.code"
+import { ToastDemoPreview } from "@/app/component-examples/generated/toast/default"
+import { ToastDemoCode } from "@/app/component-examples/generated/toast/default.code"
+import { ToastDestructivePreview } from "@/app/component-examples/generated/toast/destructive"
+import { ToastDestructiveCode } from "@/app/component-examples/generated/toast/destructive.code"
+import { ToastSimplePreview } from "@/app/component-examples/generated/toast/simple"
+import { ToastSimpleCode } from "@/app/component-examples/generated/toast/simple.code"
+import { ToastWithActionPreview } from "@/app/component-examples/generated/toast/with-action"
+import { ToastWithActionCode } from "@/app/component-examples/generated/toast/with-action.code"
+import { ToastWithTitlePreview } from "@/app/component-examples/generated/toast/with-title"
+import { ToastWithTitleCode } from "@/app/component-examples/generated/toast/with-title.code"
 import { ToggleDemoPreview } from "@/app/component-examples/generated/toggle/default"
 import { ToggleDemoCode } from "@/app/component-examples/generated/toggle/default.code"
 import { ToggleDisabledPreview } from "@/app/component-examples/generated/toggle/disabled"
@@ -936,6 +972,36 @@ import { TooltipRtlPreview } from "@/app/component-examples/generated/tooltip/rt
 import { TooltipRtlCode } from "@/app/component-examples/generated/tooltip/rtl.code"
 import { TooltipSidesPreview } from "@/app/component-examples/generated/tooltip/sides"
 import { TooltipSidesCode } from "@/app/component-examples/generated/tooltip/sides.code"
+import { TypographyDemoPreview } from "@/app/component-examples/generated/typography/default"
+import { TypographyDemoCode } from "@/app/component-examples/generated/typography/default.code"
+import { TypographyBlockquotePreview } from "@/app/component-examples/generated/typography/blockquote"
+import { TypographyBlockquoteCode } from "@/app/component-examples/generated/typography/blockquote.code"
+import { TypographyH1Preview } from "@/app/component-examples/generated/typography/h1"
+import { TypographyH1Code } from "@/app/component-examples/generated/typography/h1.code"
+import { TypographyH2Preview } from "@/app/component-examples/generated/typography/h2"
+import { TypographyH2Code } from "@/app/component-examples/generated/typography/h2.code"
+import { TypographyH3Preview } from "@/app/component-examples/generated/typography/h3"
+import { TypographyH3Code } from "@/app/component-examples/generated/typography/h3.code"
+import { TypographyH4Preview } from "@/app/component-examples/generated/typography/h4"
+import { TypographyH4Code } from "@/app/component-examples/generated/typography/h4.code"
+import { TypographyInlineCodePreview } from "@/app/component-examples/generated/typography/inline-code"
+import { TypographyInlineCodeCode } from "@/app/component-examples/generated/typography/inline-code.code"
+import { TypographyLargePreview } from "@/app/component-examples/generated/typography/large"
+import { TypographyLargeCode } from "@/app/component-examples/generated/typography/large.code"
+import { TypographyLeadPreview } from "@/app/component-examples/generated/typography/lead"
+import { TypographyLeadCode } from "@/app/component-examples/generated/typography/lead.code"
+import { TypographyListPreview } from "@/app/component-examples/generated/typography/list"
+import { TypographyListCode } from "@/app/component-examples/generated/typography/list.code"
+import { TypographyMutedPreview } from "@/app/component-examples/generated/typography/muted"
+import { TypographyMutedCode } from "@/app/component-examples/generated/typography/muted.code"
+import { TypographyPPreview } from "@/app/component-examples/generated/typography/p"
+import { TypographyPCode } from "@/app/component-examples/generated/typography/p.code"
+import { TypographyRtlPreview } from "@/app/component-examples/generated/typography/rtl"
+import { TypographyRtlCode } from "@/app/component-examples/generated/typography/rtl.code"
+import { TypographySmallPreview } from "@/app/component-examples/generated/typography/small"
+import { TypographySmallCode } from "@/app/component-examples/generated/typography/small.code"
+import { TypographyTablePreview } from "@/app/component-examples/generated/typography/table"
+import { TypographyTableCode } from "@/app/component-examples/generated/typography/table.code"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
 export const generatedVariantPages: Record<string, ComponentVariantPage> = {
@@ -1871,7 +1937,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         Preview: Calendar32Preview,
         code: Calendar32Code,
       },
-    ]
+    ],
   },
   "card": {
     name: "card",
@@ -2367,6 +2433,113 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         description: "Submenu example from shadcn docs.",
         Preview: ContextMenuSubmenuPreview,
         code: ContextMenuSubmenuCode,
+      },
+    ],
+  },
+  "data-table": {
+    name: "data-table",
+    title: "Data Table",
+    description: "Sortable, filterable, paginated tables powered by TanStack Table.",
+    install: "npx shadcn@latest add ashishsahu/ModernUIComponent/data-table",
+    variants: [
+      {
+        id: "default",
+        title: "Default",
+        description: "shadcn data-table example.",
+        Preview: DataTableDemoPreview,
+        code: DataTableDemoCode,
+      },
+      {
+        id: "rtl",
+        title: "RTL",
+        description: "RTL example from shadcn docs.",
+        Preview: DataTableRtlPreview,
+        code: DataTableRtlCode,
+      },
+    ],
+  },
+  "date-picker": {
+    name: "date-picker",
+    title: "Date Picker",
+    description: "Date selection popover built with Calendar and Popover.",
+    install: "npx shadcn@latest add ashishsahu/ModernUIComponent/date-picker",
+    variants: [
+      {
+        id: "default",
+        title: "Default",
+        description: "shadcn date-picker example.",
+        Preview: DatePickerDemoPreview,
+        code: DatePickerDemoCode,
+      },
+      {
+        id: "basic",
+        title: "Basic",
+        description: "Basic example from shadcn docs.",
+        Preview: DatePickerBasicPreview,
+        code: DatePickerBasicCode,
+      },
+      {
+        id: "dob",
+        title: "Dob",
+        description: "Dob example from shadcn docs.",
+        Preview: DatePickerDobPreview,
+        code: DatePickerDobCode,
+      },
+      {
+        id: "form",
+        title: "Form",
+        description: "shadcn date-picker example.",
+        Preview: DatePickerFormPreview,
+        code: DatePickerFormCode,
+      },
+      {
+        id: "input",
+        title: "Input",
+        description: "Input example from shadcn docs.",
+        Preview: DatePickerInputPreview,
+        code: DatePickerInputCode,
+      },
+      {
+        id: "natural-language",
+        title: "Natural Language",
+        description: "Natural Language example from shadcn docs.",
+        Preview: DatePickerNaturalLanguagePreview,
+        code: DatePickerNaturalLanguageCode,
+      },
+      {
+        id: "range",
+        title: "Range",
+        description: "Range example from shadcn docs.",
+        Preview: DatePickerRangePreview,
+        code: DatePickerRangeCode,
+      },
+      {
+        id: "rtl",
+        title: "RTL",
+        description: "RTL example from shadcn docs.",
+        Preview: DatePickerRtlPreview,
+        code: DatePickerRtlCode,
+      },
+      {
+        id: "time",
+        title: "Time",
+        description: "Time example from shadcn docs.",
+        Preview: DatePickerTimePreview,
+        code: DatePickerTimeCode,
+      },
+      {
+        id: "with-presets",
+        title: "With Presets",
+        description: "shadcn date-picker example.",
+        Preview: DatePickerWithPresetsPreview,
+        code: DatePickerWithPresetsCode,
+      },
+      {
+        id: "with-range",
+        title: "With Range",
+        description: "shadcn date-picker example.",
+        Preview: DatePickerWithRangePreview,
+        code: DatePickerWithRangeCode,
       },
     ],
   },
@@ -4440,6 +4613,49 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
       },
     ],
   },
+  "toast": {
+    name: "toast",
+    title: "Toast",
+    description: "ModernUI Toast component.",
+    install: "npx shadcn@latest add ashishsahu/ModernUIComponent/toast",
+    variants: [
+      {
+        id: "default",
+        title: "Default",
+        description: "shadcn toast example.",
+        Preview: ToastDemoPreview,
+        code: ToastDemoCode,
+      },
+      {
+        id: "destructive",
+        title: "Destructive",
+        description: "shadcn toast example.",
+        Preview: ToastDestructivePreview,
+        code: ToastDestructiveCode,
+      },
+      {
+        id: "simple",
+        title: "Simple",
+        description: "shadcn toast example.",
+        Preview: ToastSimplePreview,
+        code: ToastSimpleCode,
+      },
+      {
+        id: "with-action",
+        title: "With Action",
+        description: "shadcn toast example.",
+        Preview: ToastWithActionPreview,
+        code: ToastWithActionCode,
+      },
+      {
+        id: "with-title",
+        title: "With Title",
+        description: "shadcn toast example.",
+        Preview: ToastWithTitlePreview,
+        code: ToastWithTitleCode,
+      },
+    ],
+  },
   "toggle": {
     name: "toggle",
     title: "Toggle",
@@ -4636,6 +4852,119 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         description: "Sides example from shadcn docs.",
         Preview: TooltipSidesPreview,
         code: TooltipSidesCode,
+      },
+    ],
+  },
+  "typography": {
+    name: "typography",
+    title: "Typography",
+    description: "Styled text elements for headings, paragraphs, lists, and inline code.",
+    install: "npx shadcn@latest add ashishsahu/ModernUIComponent/typography",
+    variants: [
+      {
+        id: "default",
+        title: "Default",
+        description: "shadcn typography example.",
+        Preview: TypographyDemoPreview,
+        code: TypographyDemoCode,
+      },
+      {
+        id: "blockquote",
+        title: "Blockquote",
+        description: "shadcn typography example.",
+        Preview: TypographyBlockquotePreview,
+        code: TypographyBlockquoteCode,
+      },
+      {
+        id: "h1",
+        title: "H1",
+        description: "shadcn typography example.",
+        Preview: TypographyH1Preview,
+        code: TypographyH1Code,
+      },
+      {
+        id: "h2",
+        title: "H2",
+        description: "shadcn typography example.",
+        Preview: TypographyH2Preview,
+        code: TypographyH2Code,
+      },
+      {
+        id: "h3",
+        title: "H3",
+        description: "shadcn typography example.",
+        Preview: TypographyH3Preview,
+        code: TypographyH3Code,
+      },
+      {
+        id: "h4",
+        title: "H4",
+        description: "shadcn typography example.",
+        Preview: TypographyH4Preview,
+        code: TypographyH4Code,
+      },
+      {
+        id: "inline-code",
+        title: "Inline Code",
+        description: "shadcn typography example.",
+        Preview: TypographyInlineCodePreview,
+        code: TypographyInlineCodeCode,
+      },
+      {
+        id: "large",
+        title: "Large",
+        description: "shadcn typography example.",
+        Preview: TypographyLargePreview,
+        code: TypographyLargeCode,
+      },
+      {
+        id: "lead",
+        title: "Lead",
+        description: "shadcn typography example.",
+        Preview: TypographyLeadPreview,
+        code: TypographyLeadCode,
+      },
+      {
+        id: "list",
+        title: "List",
+        description: "shadcn typography example.",
+        Preview: TypographyListPreview,
+        code: TypographyListCode,
+      },
+      {
+        id: "muted",
+        title: "Muted",
+        description: "shadcn typography example.",
+        Preview: TypographyMutedPreview,
+        code: TypographyMutedCode,
+      },
+      {
+        id: "p",
+        title: "P",
+        description: "shadcn typography example.",
+        Preview: TypographyPPreview,
+        code: TypographyPCode,
+      },
+      {
+        id: "rtl",
+        title: "RTL",
+        description: "RTL example from shadcn docs.",
+        Preview: TypographyRtlPreview,
+        code: TypographyRtlCode,
+      },
+      {
+        id: "small",
+        title: "Small",
+        description: "shadcn typography example.",
+        Preview: TypographySmallPreview,
+        code: TypographySmallCode,
+      },
+      {
+        id: "table",
+        title: "Table",
+        description: "shadcn typography example.",
+        Preview: TypographyTablePreview,
+        code: TypographyTableCode,
       },
     ],
   },

@@ -1,0 +1,98 @@
+"use client"
+
+import * as React from "react"
+import { format } from "date-fns"
+import { arSA, he } from "date-fns/locale"
+import { ChevronDownIcon } from "lucide-react"
+import {
+  arSA as arSADayPicker,
+  he as heDayPicker,
+} from "react-day-picker/locale"
+
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation-stub"
+import { Button } from "@/registry/default/ui/button"
+import { Calendar } from "@/registry/default/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/registry/default/ui/popover"
+
+const translations: Translations = {
+  en: {
+    dir: "ltr",
+    values: {
+      placeholder: "Pick a date",
+    },
+  },
+  ar: {
+    dir: "rtl",
+    values: {
+      placeholder: "اختر تاريخًا",
+    },
+  },
+  he: {
+    dir: "rtl",
+    values: {
+      placeholder: "בחר תאריך",
+    },
+  },
+}
+
+const dayPickerLocales = {
+  ar: arSADayPicker,
+  he: heDayPicker,
+} as const
+
+const dateFnsLocales = {
+  ar: arSA,
+  he: he,
+} as const
+
+export function DatePickerRtlPreview() {
+  const { dir, t, language } = useTranslation(translations, "ar")
+  const [date, setDate] = React.useState<Date>()
+
+  const dateFnsLocale =
+    dir === "rtl"
+      ? dateFnsLocales[language as keyof typeof dateFnsLocales]
+      : undefined
+  const dayPickerLocale =
+    dir === "rtl"
+      ? dayPickerLocales[language as keyof typeof dayPickerLocales]
+      : undefined
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          data-empty={!date}
+          className="w-[212px] justify-between text-left font-normal data-[empty=true]:text-muted-foreground"
+          dir={dir}
+        >
+          {date ? (
+            format(date, "PPP", { locale: dateFnsLocale })
+          ) : (
+            <span>{t.placeholder}</span>
+          )}
+          <ChevronDownIcon />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start" dir={dir}>
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          defaultMonth={date}
+          dir={dir}
+          locale={dayPickerLocale}
+        />
+      </PopoverContent>
+    </Popover>
+  )
+}
+

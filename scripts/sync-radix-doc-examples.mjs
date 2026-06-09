@@ -15,7 +15,7 @@ const GITHUB_API_DIR =
   "https://api.github.com/repos/shadcn-ui/ui/contents/apps/v4/examples/radix"
 const RADIX_MANIFEST = path.join(ROOT, "scripts/radix-example-manifest.json")
 
-const SKIP_COMPONENTS = new Set(["direction", "form", "typography", "toast"])
+const SKIP_COMPONENTS = new Set(["direction", "form"])
 const SKIP_VARIANTS = new Map([
   ["sidebar", new Set(["rsc"])],
   ["calendar", new Set(["hijri"])],

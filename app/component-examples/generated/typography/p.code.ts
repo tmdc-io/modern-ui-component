@@ -1,0 +1,1 @@
+export const TypographyPCode = "export function TypographyP() {\n  return (\n    <p className=\"leading-7 [&:not(:first-child)]:mt-6\">\n      The king, seeing how much happier his subjects were, realized the error of\n      his ways and repealed the joke tax.\n    </p>\n  )\n}\n"

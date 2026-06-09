@@ -1,0 +1,1 @@
+export const TypographyH1Code = "export function TypographyH1() {\n  return (\n    <h1 className=\"scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl\">\n      Taxing Laughter: The Joke Tax Chronicles\n    </h1>\n  )\n}\n"

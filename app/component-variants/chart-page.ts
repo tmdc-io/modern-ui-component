@@ -22,8 +22,6 @@ export const chartVariantPage: ComponentVariantPage = {
   title: "Chart",
   description:
     "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
-  intro:
-    "Charts are designed to look great out of the box. They work with the other components and are fully customizable. Browse ready-made chart blocks in the sidebar under Charts · Area, Bar, Line, and more.",
   install: "npx shadcn@latest add ashishsahu/ModernUIComponent/chart",
   sections: [
     {

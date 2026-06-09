@@ -1,0 +1,1 @@
+export const TypographyBlockquoteCode = "export function TypographyBlockquote() {\n  return (\n    <blockquote className=\"mt-6 border-l-2 pl-6 italic\">\n      \"After all,\" he said, \"everyone enjoys a good joke, so it's only fair that\n      they should pay for the privilege.\"\n    </blockquote>\n  )\n}\n"

@@ -18,11 +18,15 @@ const CURATED = new Set([
   "badge",
   "button",
   "card",
+  "data-table",
+  "date-picker",
   "dialog",
   "form",
   "input",
   "quality-summary-card",
   "select",
+  "toast",
+  "typography",
 ])
 
 const SPECIAL_PAGES = {

@@ -14,11 +14,14 @@ export function getVariantPageNames(): string[] {
   "card",
   "carousel",
   "chart",
+  "chart",
   "checkbox",
   "collapsible",
   "combobox",
   "command",
   "context-menu",
+  "data-table",
+  "date-picker",
   "dialog",
   "direction",
   "drawer",
@@ -58,8 +61,10 @@ export function getVariantPageNames(): string[] {
   "table",
   "tabs",
   "textarea",
+  "toast",
   "toggle",
   "toggle-group",
-  "tooltip"
+  "tooltip",
+  "typography"
 ]
 }

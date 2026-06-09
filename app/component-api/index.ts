@@ -16,6 +16,8 @@ import { collapsibleApi } from "@/app/component-api/collapsible"
 import { comboboxApi } from "@/app/component-api/combobox"
 import { commandApi } from "@/app/component-api/command"
 import { contextMenuApi } from "@/app/component-api/context-menu"
+import { dataTableApi } from "@/app/component-api/data-table"
+import { datePickerApi } from "@/app/component-api/date-picker"
 import { dialogApi } from "@/app/component-api/dialog"
 import { directionApi } from "@/app/component-api/direction"
 import { drawerApi } from "@/app/component-api/drawer"
@@ -55,9 +57,11 @@ import { switchApi } from "@/app/component-api/switch"
 import { tableApi } from "@/app/component-api/table"
 import { tabsApi } from "@/app/component-api/tabs"
 import { textareaApi } from "@/app/component-api/textarea"
+import { toastApi } from "@/app/component-api/toast"
 import { toggleApi } from "@/app/component-api/toggle"
 import { toggleGroupApi } from "@/app/component-api/toggle-group"
 import { tooltipApi } from "@/app/component-api/tooltip"
+import { typographyApi } from "@/app/component-api/typography"
 import type { ComponentApiDoc } from "@/app/component-variants/types"
 
 export const componentApiDocs: Record<string, ComponentApiDoc> = {
@@ -79,6 +83,8 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   combobox: comboboxApi,
   command: commandApi,
   "context-menu": contextMenuApi,
+  "data-table": dataTableApi,
+  "date-picker": datePickerApi,
   dialog: dialogApi,
   direction: directionApi,
   drawer: drawerApi,
@@ -118,9 +124,11 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   table: tableApi,
   tabs: tabsApi,
   textarea: textareaApi,
+  toast: toastApi,
   toggle: toggleApi,
   "toggle-group": toggleGroupApi,
   tooltip: tooltipApi,
+  typography: typographyApi,
 }
 
 export function hasComponentApiDoc(name: string) {

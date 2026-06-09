@@ -1,0 +1,1 @@
+export const TypographyLeadCode = "export function TypographyLead() {\n  return (\n    <p className=\"text-xl text-muted-foreground\">\n      A modal dialog that interrupts the user with important content and expects\n      a response.\n    </p>\n  )\n}\n"

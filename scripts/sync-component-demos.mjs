@@ -16,7 +16,23 @@ const CHART_EXAMPLES = new Set([
   "chart-bar-demo-legend",
   "chart-tooltip-demo",
 ])
-const EXCLUDE_ITEMS = new Set(["data-table-demo", "mode-toggle"])
+const EXCLUDE_ITEMS = new Set(["mode-toggle"])
+const EXAMPLE_ONLY_COMPONENTS = {
+  "data-table": {
+    title: "Data Table",
+    description:
+      "Sortable, filterable, paginated tables powered by TanStack Table.",
+  },
+  "date-picker": {
+    title: "Date Picker",
+    description: "Date selection popover built with Calendar and Popover.",
+  },
+  typography: {
+    title: "Typography",
+    description:
+      "Styled text elements for headings, paragraphs, lists, and inline code.",
+  },
+}
 const MANUAL_VARIANTS = new Map([
   [
     "sidebar",
@@ -558,10 +574,24 @@ async function main() {
   const uiNames = uiItems.map((item) => item.name)
   const uiItemByName = new Map(uiItems.map((item) => [item.name, item]))
 
+  for (const [name, meta] of Object.entries(EXAMPLE_ONLY_COMPONENTS)) {
+    if (!uiItemByName.has(name)) {
+      uiItemByName.set(name, {
+        name,
+        title: meta.title,
+        description: meta.description,
+      })
+    }
+  }
+
+  const allUiNames = [
+    ...new Set([...uiNames, ...Object.keys(EXAMPLE_ONLY_COMPONENTS)]),
+  ]
+
   const shadcnRegistry = await fetch(`${REGISTRY_URL}/registry.json`).then((r) =>
     r.json()
   )
-  const grouped = groupRegistryItems(uiNames, shadcnRegistry.items)
+  const grouped = groupRegistryItems(allUiNames, shadcnRegistry.items)
 
   const { resolveRadixExampleFiles } = await import("./sync-radix-doc-examples.mjs")
   const radixManifest = await resolveRadixExampleFiles({ requireRemote: false })
@@ -605,7 +635,7 @@ async function main() {
   const { syncRadixDocExamples } = await import("./sync-radix-doc-examples.mjs")
   await syncRadixDocExamples({
     generatedPages,
-    uiNames,
+    uiNames: allUiNames,
     uiItemByName,
     radixExampleFiles: radixManifest.files,
   })

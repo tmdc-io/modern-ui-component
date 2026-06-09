@@ -69,6 +69,11 @@ export const catalog: CatalogCategory[] = [
       item("field", "Field", "Form field wrapper with label and message."),
       item("form", "Form", "React Hook Form integration."),
       item("combobox", "Combobox", "Searchable select combobox."),
+      item(
+        "date-picker",
+        "Date Picker",
+        "Date selection popover built with Calendar and Popover."
+      ),
     ],
   },
   {
@@ -121,6 +126,11 @@ export const catalog: CatalogCategory[] = [
       item("skeleton", "Skeleton", "Loading placeholder."),
       item("spinner", "Spinner", "Loading spinner."),
       item("sonner", "Sonner", "Toast notifications."),
+      item(
+        "toast",
+        "Toast",
+        "Radix toast notifications with title, description, and actions."
+      ),
       item("empty", "Empty", "Empty state placeholder."),
     ],
   },
@@ -129,6 +139,11 @@ export const catalog: CatalogCategory[] = [
     title: "Data Display",
     items: [
       item("table", "Table", "Data table primitives."),
+      item(
+        "data-table",
+        "Data Table",
+        "Sortable, filterable, paginated tables powered by TanStack Table."
+      ),
       item(
         "chart",
         "Chart",
@@ -145,6 +160,11 @@ export const catalog: CatalogCategory[] = [
       item("item", "Item", "List item layout primitive."),
       item("collapsible", "Collapsible", "Show/hide content region."),
       item("command", "Command", "Command palette search."),
+      item(
+        "typography",
+        "Typography",
+        "Styled text elements for headings, paragraphs, lists, and inline code."
+      ),
     ],
   },
   ...chartCatalogCategories,

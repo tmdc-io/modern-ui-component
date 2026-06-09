@@ -12,6 +12,10 @@ import {
 } from "lucide-react"
 
 import { AccordionBasicPreview } from "@/app/component-examples/accordion-variants"
+import { DataTableDemoPreview } from "@/app/component-examples/generated/data-table/default"
+import { DatePickerDemoPreview } from "@/app/component-examples/generated/date-picker/default"
+import { ToastDemoPreview } from "@/app/component-examples/generated/toast/default"
+import { TypographyDemoPreview } from "@/app/component-examples/generated/typography/default"
 import { ProjectSetupOverviewPreview } from "@/app/component-examples/project-setup-detail"
 import { authBlockCatalogPreviews } from "@/app/component-examples/auth-block-catalog-previews"
 import { ChartCatalogPreview } from "@/app/component-examples/chart-detail/catalog-preview"
@@ -788,6 +792,18 @@ export const componentPreviews: Record<string, React.ReactNode> = {
       </CommandList>
     </Command>
   ),
+  "data-table": (
+    <div className="w-full overflow-x-auto">
+      <DataTableDemoPreview />
+    </div>
+  ),
+  "date-picker": <DatePickerDemoPreview />,
+  typography: (
+    <div className="max-w-xl">
+      <TypographyDemoPreview />
+    </div>
+  ),
+  toast: <ToastDemoPreview />,
   ...authBlockCatalogPreviews,
   "login-form": <LoginForm />,
   "quality-summary-card": (
