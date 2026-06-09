@@ -41,6 +41,7 @@ export function getVariantPageNames(): string[] {
   "popover",
   "progress",
   "project-setup",
+  "quality-summary-card",
   "radio-group",
   "resizable",
   "scroll-area",

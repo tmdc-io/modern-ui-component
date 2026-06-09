@@ -16,6 +16,7 @@ import {
   SignupVariantPage,
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
+import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
 import { projectSetupVariantPage } from "@/app/component-variants/project-setup-page"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
@@ -107,6 +108,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   login: LoginVariantPage,
   signup: SignupVariantPage,
   "project-setup": projectSetupVariantPage,
+  "quality-summary-card": qualitySummaryCardPage,
   ...mergeVariantPages(
     generatedWithoutChart,
     docVariantSupplements,
@@ -120,6 +122,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   login: "Blocks",
   signup: "Blocks",
   "project-setup": "Details",
+  "quality-summary-card": "Usage",
 }
 
 export function getDetailPageLabel(name: string) {

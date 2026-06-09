@@ -5,6 +5,7 @@ import {
   ArrowRightIcon,
   AwardIcon,
   CircleCheckIcon,
+  CircleXIcon,
 } from "lucide-react"
 
 import { Badge } from "@/registry/default/ui/badge"
@@ -16,8 +17,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/default/ui/card"
+import { cn } from "@/lib/utils"
 
-type DimensionStatus = "pass" | "warn"
+export type DimensionStatus = "pass" | "warn" | "fail"
 
 export type QualityDimension = {
   name: string
@@ -25,7 +27,17 @@ export type QualityDimension = {
   detail?: string
 }
 
+export type QualitySummary = {
+  title?: string
+  passed: number
+  total: number
+  updatedAt: string
+  dimensions: QualityDimension[]
+  statusLabel?: string
+}
+
 export type QualitySummaryCardProps = {
+  summary?: QualitySummary
   title?: string
   statusLabel?: string
   passed?: number
@@ -33,6 +45,7 @@ export type QualitySummaryCardProps = {
   dimensionCount?: number
   updatedAt?: string
   dimensions?: QualityDimension[]
+  href?: string
   onViewAll?: () => void
 }
 
@@ -47,10 +60,69 @@ const defaultDimensions: QualityDimension[] = [
 
 const labelLineClass = "text-[13px] leading-[18px] text-foreground"
 
-function StatusIcon({ status }: { status: DimensionStatus }) {
-  const isPass = status === "pass"
+const badgeVariantClass = {
+  success:
+    "border-0 bg-dataos-success-bg text-dataos-success-fg hover:bg-dataos-success-bg",
+  warn: "border-0 bg-dataos-warn-bg text-dataos-warn-fg hover:bg-dataos-warn-bg",
+  fail: "border-0 bg-dataos-fail-bg text-dataos-fail-fg hover:bg-dataos-fail-bg",
+} as const
 
-  if (isPass) {
+type BadgeVariant = keyof typeof badgeVariantClass
+
+export function deriveStatusLabel(dimensions: QualityDimension[]): string {
+  if (dimensions.some((dimension) => dimension.status === "fail")) {
+    return "Failed"
+  }
+  if (dimensions.some((dimension) => dimension.status === "warn")) {
+    return "At Risk"
+  }
+  return "Healthy"
+}
+
+function deriveBadgeVariant(dimensions: QualityDimension[]): BadgeVariant {
+  if (dimensions.some((dimension) => dimension.status === "fail")) {
+    return "fail"
+  }
+  if (dimensions.some((dimension) => dimension.status === "warn")) {
+    return "warn"
+  }
+  return "success"
+}
+
+function resolveCardProps({
+  summary,
+  title,
+  statusLabel,
+  passed,
+  total,
+  dimensionCount,
+  updatedAt,
+  dimensions,
+}: QualitySummaryCardProps) {
+  const resolvedDimensions = dimensions ?? summary?.dimensions ?? defaultDimensions
+  const resolvedPassed = passed ?? summary?.passed ?? 47
+  const resolvedTotal = total ?? summary?.total ?? 100
+  const resolvedTitle = title ?? summary?.title ?? "Quality"
+  const resolvedUpdatedAt = updatedAt ?? summary?.updatedAt ?? "3m ago"
+  const resolvedDimensionCount = dimensionCount ?? resolvedDimensions.length
+  const resolvedStatusLabel =
+    statusLabel ?? summary?.statusLabel ?? deriveStatusLabel(resolvedDimensions)
+  const badgeVariant = deriveBadgeVariant(resolvedDimensions)
+
+  return {
+    title: resolvedTitle,
+    statusLabel: resolvedStatusLabel,
+    passed: resolvedPassed,
+    total: resolvedTotal,
+    dimensionCount: resolvedDimensionCount,
+    updatedAt: resolvedUpdatedAt,
+    dimensions: resolvedDimensions,
+    badgeVariant,
+  }
+}
+
+function StatusIcon({ status }: { status: DimensionStatus }) {
+  if (status === "pass") {
     return (
       <span className="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] bg-dataos-success-bg">
         <CircleCheckIcon
@@ -61,26 +133,43 @@ function StatusIcon({ status }: { status: DimensionStatus }) {
     )
   }
 
+  if (status === "warn") {
+    return (
+      <span className="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] bg-dataos-warn-bg">
+        <AlertTriangleIcon
+          className="size-3 text-dataos-warn-fg"
+          strokeWidth={2.25}
+        />
+      </span>
+    )
+  }
+
   return (
-    <span className="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] bg-dataos-warn-bg">
-      <AlertTriangleIcon
-        className="size-3 text-dataos-warn-fg"
-        strokeWidth={2.25}
+    <span className="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] bg-dataos-fail-bg">
+      <CircleXIcon
+        className="size-3.5 text-dataos-fail-fg"
+        strokeWidth={2}
       />
     </span>
   )
 }
 
-export function QualitySummaryCard({
-  title = "Quality",
-  statusLabel = "Healthy",
-  passed = 47,
-  total = 100,
-  dimensionCount = 6,
-  updatedAt = "3m ago",
-  dimensions = defaultDimensions,
-  onViewAll,
-}: QualitySummaryCardProps) {
+const footerLinkClass =
+  "inline-flex items-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary/80"
+
+export function QualitySummaryCard(props: QualitySummaryCardProps) {
+  const { href, onViewAll } = props
+  const {
+    title,
+    statusLabel,
+    passed,
+    total,
+    dimensionCount,
+    updatedAt,
+    dimensions,
+    badgeVariant,
+  } = resolveCardProps(props)
+
   return (
     <Card className="w-full max-w-[22rem] gap-0 border border-border/60 bg-dataos-surface py-5 text-card-foreground shadow-sm">
       <CardHeader className="grid-rows-1 items-center gap-0 px-5 pb-4">
@@ -89,7 +178,12 @@ export function QualitySummaryCard({
           {title}
         </CardTitle>
         <CardAction>
-          <Badge className="rounded-full border-0 bg-dataos-success-bg px-2.5 py-0.5 text-xs font-medium text-dataos-success-fg hover:bg-dataos-success-bg">
+          <Badge
+            className={cn(
+              "rounded-full px-2.5 py-0.5 text-xs font-medium",
+              badgeVariantClass[badgeVariant]
+            )}
+          >
             {statusLabel}
           </Badge>
         </CardAction>
@@ -126,7 +220,14 @@ export function QualitySummaryCard({
               <div className="min-w-0">
                 <p className={labelLineClass}>{dimension.name}</p>
                 {dimension.detail ? (
-                  <p className="mt-0.5 text-[11px] leading-none text-dataos-warn-fg">
+                  <p
+                    className={cn(
+                      "mt-0.5 text-[11px] leading-none",
+                      dimension.status === "fail"
+                        ? "text-dataos-fail-fg"
+                        : "text-dataos-warn-fg"
+                    )}
+                  >
                     {dimension.detail}
                   </p>
                 ) : null}
@@ -137,14 +238,21 @@ export function QualitySummaryCard({
       </CardContent>
 
       <CardFooter className="border-t border-border/80 px-5 pt-4 pb-0">
-        <button
-          type="button"
-          className="inline-flex items-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary/80"
-          onClick={onViewAll}
-        >
-          View all {passed} quality rules
-          <ArrowRightIcon className="size-3.5" />
-        </button>
+        {href ? (
+          <a href={href} className={footerLinkClass}>
+            View all {passed} quality rules
+            <ArrowRightIcon className="size-3.5" />
+          </a>
+        ) : (
+          <button
+            type="button"
+            className={footerLinkClass}
+            onClick={onViewAll}
+          >
+            View all {passed} quality rules
+            <ArrowRightIcon className="size-3.5" />
+          </button>
+        )}
       </CardFooter>
     </Card>
   )
