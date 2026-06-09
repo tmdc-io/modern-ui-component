@@ -11,19 +11,27 @@ npx shadcn@latest add ashishsahu/ModernUIComponent/project-setup
 
 This repository is the source registry for **ModernUI** — a shadcn-extended React component library distributed via the official \`shadcn\` CLI.
 
-## Conventions
+## Commands (registry repo)
 
-- UI primitives live in \`registry/default/ui/\`
-- Composite blocks live in \`registry/default/blocks/\`
-- Design tokens live in \`registry/default/theme/globals.css\`
-- Registry catalog is defined in the root \`registry.json\`
+| Command | When to use |
+|---------|-------------|
+| \`pnpm dev\` | Local docs site |
+| \`pnpm registry:build\` | After registry source changes |
+| \`pnpm registry:validate\` | Verify public/r/*.json |
+| \`pnpm registry:sync-components\` | Refresh docs examples |
+| \`pnpm docs:scaffold-api\` | Regenerate component API docs |
+| \`npx shadcn@latest registry validate .\` | Before merge |
+
+See README.md for the full command reference.
 
 ## Adding a new component
 
-1. Create the source file under \`registry/default/ui/\` or \`registry/default/blocks/\`
-2. Register it in the root \`registry.json\`
-3. Run \`pnpm registry:build\` to rebuild hosted JSON
-4. Run \`npx shadcn@latest registry validate .\` before merging
+1. Create source under \`registry/default/ui/\` or \`registry/default/blocks/\`
+2. Register in \`registry.json\`
+3. \`pnpm registry:build\`
+4. \`pnpm registry:sync-components\` (optional, for docs examples)
+5. \`pnpm docs:scaffold-api\` (optional, for API reference)
+6. \`npx shadcn@latest registry validate .\` before merging
 
 ## Import paths
 

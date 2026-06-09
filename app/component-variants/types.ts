@@ -1,21 +1,63 @@
 import type { ComponentType } from "react"
 
+export type ApiPropRow = {
+  prop: string
+  type: string
+  default?: string
+  description: string
+}
+
+export type ComponentApiReference = {
+  title?: string
+  props: ApiPropRow[]
+  footnote?: string
+}
+
+export type CssVariantRow = {
+  name: string
+  description: string
+}
+
+export type CssVariantGroup = {
+  title: string
+  variants: CssVariantRow[]
+}
+
+export type ComponentEnhancementRow = {
+  enhancement: string
+  benefit: string
+}
+
+export type ComponentApiDoc = {
+  features?: string[]
+  intro?: string
+  usage?: { import: string; example: string }
+  apiReference?: ComponentApiReference
+  cssVariants?: CssVariantGroup[]
+  enhancements?: ComponentEnhancementRow[]
+}
+
 export type ComponentVariant = {
   id: string
   title: string
   description: string
-  Preview: ComponentType
+  Preview?: ComponentType
   code: string
+  body?: string
+  docLink?: { href: string; label: string }
+  tall?: boolean
+  codeOnly?: boolean
 }
 
 export type ComponentVariantSection = {
   id: string
   title?: string
   description?: string
+  body?: string
   variants: ComponentVariant[]
 }
 
-export type ComponentVariantPage = {
+export type ComponentVariantPage = ComponentApiDoc & {
   name: string
   title: string
   description: string

@@ -18,6 +18,7 @@ import {
 import { chartVariantPage } from "@/app/component-variants/chart-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
 import { projectSetupVariantPage } from "@/app/component-variants/project-setup-page"
+import { componentApiDocs, hasComponentApiDoc } from "@/app/component-api"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
 export const accordionVariantPage: ComponentVariantPage = {
@@ -126,6 +127,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
 }
 
 export function getDetailPageLabel(name: string) {
+  if (hasComponentApiDoc(name)) return "Docs"
   return DETAIL_PAGE_LABELS[name] ?? "Variants"
 }
 
@@ -133,8 +135,14 @@ export function hasVariantPage(name: string) {
   return name in componentVariantPages
 }
 
-export function getVariantPage(name: string) {
-  return componentVariantPages[name]
+export function getVariantPage(name: string): ComponentVariantPage | undefined {
+  const page = componentVariantPages[name]
+  if (!page) return undefined
+
+  const api = componentApiDocs[name]
+  if (!api) return page
+
+  return { ...page, ...api }
 }
 
 export function getVariantPageNames() {
