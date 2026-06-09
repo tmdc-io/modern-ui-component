@@ -79,6 +79,18 @@ function applySharedTransforms(content) {
     .replaceAll("@/components/ui/", "@/registry/default/ui/")
     .replaceAll("@/components/language-selector", "@/hooks/use-translation-stub")
     .replaceAll("clip-path=", "clipPath=")
+    .replace(
+      /<Link href="([^"]*)" legacyBehavior passHref>\s*<NavigationMenuLink className=\{navigationMenuTriggerStyle\(\)\}>\s*([\s\S]*?)\s*<\/NavigationMenuLink>\s*<\/Link>/g,
+      '<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>\n            <Link href="$1">$2</Link>\n          </NavigationMenuLink>'
+    )
+    .replace(
+      /<BreadcrumbLink>\s*<Link href="([^"]*)">([\s\S]*?)<\/Link>\s*<\/BreadcrumbLink>/g,
+      "<BreadcrumbLink asChild>\n            <Link href=\"$1\">$2</Link>\n          </BreadcrumbLink>"
+    )
+    .replace(
+      /<BreadcrumbItem key=\{index\}>\s*\{item\.href \? \(\s*<>\s*<BreadcrumbLink([\s\S]*?)<\/BreadcrumbLink>\s*<BreadcrumbSeparator \/>\s*<\/>\s*\) : \(([\s\S]*?)<\/BreadcrumbPage>\s*\)\s*\}\s*<\/BreadcrumbItem>/g,
+      "<React.Fragment key={item.label}>\n            <BreadcrumbItem>\n              {item.href ? (\n                <BreadcrumbLink$1</BreadcrumbLink>\n              ) : (\n                $2</BreadcrumbPage>\n              )}\n            </BreadcrumbItem>\n            {item.href ? <BreadcrumbSeparator /> : null}\n          </React.Fragment>"
+    )
     .replaceAll('direction="horizontal"', 'orientation="horizontal"')
     .replaceAll('direction="vertical"', 'orientation="vertical"')
     .replace(/\s*initialFocus(?:={[^}]*}|)/g, "")
