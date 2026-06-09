@@ -159,17 +159,18 @@ export function ComponentCodeDrawer({
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          {loading ? (
-            <p className="text-muted-foreground text-sm">Loading source...</p>
-          ) : null}
-          {error ? <p className="text-destructive text-sm">{error}</p> : null}
           {variant?.code ? (
             <pre className="bg-muted/50 text-foreground overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed whitespace-pre">
               <code className="font-mono">{variant.code}</code>
             </pre>
-          ) : (
-            <p className="text-muted-foreground text-sm">No source available.</p>
-          )}
+          ) : null}
+
+          {!variant && loading ? (
+            <p className="text-muted-foreground text-sm">Loading source...</p>
+          ) : null}
+          {!variant && error ? (
+            <p className="text-destructive text-sm">{error}</p>
+          ) : null}
           {!variant &&
             data?.files.map((file) => (
               <div key={file.path} className="mb-6 last:mb-0">
@@ -181,6 +182,12 @@ export function ComponentCodeDrawer({
                 </pre>
               </div>
             ))}
+          {!variant &&
+          !loading &&
+          !error &&
+          !data?.files.length ? (
+            <p className="text-muted-foreground text-sm">No source available.</p>
+          ) : null}
         </div>
       </SheetContent>
     </Sheet>
