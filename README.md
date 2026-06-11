@@ -15,11 +15,11 @@ npx shadcn@latest list tmdc-io/modern-ui-component
 
 | Category | Examples |
 |----------|----------|
-| **Foundation** | `project-setup`, `theme`, `utils` |
+| **Foundation** | `project-setup`, `theme`, `utils`, `attributions` (docs) |
 | **Actions & forms** | `button`, `input`, `select`, `date-picker`, `form`, … |
 | **Layout & navigation** | `card`, `sidebar`, `tabs`, `breadcrumb`, … |
 | **Overlays & feedback** | `dialog`, `drawer`, `toast`, `sonner`, … |
-| **Data & charts** | `table`, `data-table`, `chart`, area/bar/line/pie charts, … |
+| **Data & charts** | `table`, `data-table` (TanStack Table + Virtual), `chart`, area/bar/line/pie charts, … |
 | **DataOS UI** | `quality-summary-card` |
 | **Blocks** | `login`, `signup`, `login-form` |
 
@@ -31,13 +31,16 @@ The Next.js app in `app/` is the component registry documentation:
 
 | Section | URL | Description |
 |---------|-----|-------------|
-| Registry | `/` | Component catalog with live previews |
+| Registry | `/` | Component catalog with live previews and install commands |
 | Quick start | `/#quick-start` | Step-by-step bootstrap commands |
 | Monorepo | `/#monorepo-install` | pnpm/turbo workspace install guide |
 | Component docs | `/components/{name}` | Variants, usage, API reference |
+| Attributions | `/components/attributions` | Third-party libraries, licenses, and upstream credits |
 | Search | `⌘K` | Omni-search across components and docs |
 
-Foundation sidebar order: **Quick Start → Monorepo → Project Setup → Theme → Utils**.
+Foundation sidebar order: **Quick Start → Monorepo → Project Setup → Theme → Utils → Attributions**.
+
+On a component detail page, sidebar links navigate to other detail pages (`/components/{name}`). On the registry homepage, sidebar links scroll to catalog sections (`/#{name}`).
 
 ## Install in a consumer project
 
@@ -80,7 +83,7 @@ All scripts are run from the repository root after `pnpm install`.
 | Command | Description |
 |---------|-------------|
 | `pnpm dev` | Start the docs/registry site at [http://localhost:3000](http://localhost:3000) (Turbopack) |
-| `pnpm build` | Build hosted registry JSON, then production Next.js build |
+| `pnpm build` | Build hosted registry JSON, sync README counts and attributions, then production Next.js build |
 | `pnpm start` | Serve the production build |
 | `pnpm lint` | Run ESLint |
 | `pnpm typecheck` | Run TypeScript (`tsc --noEmit`) |
@@ -124,6 +127,7 @@ npx shadcn@latest registry validate .
 | `pnpm docs:scaffold-api` | Generate or refresh `app/component-api/*.ts` stubs and `index.ts` (skips curated files) |
 | `pnpm docs:scaffold-api:force` | Same as above, but overwrites curated API files (`button`, `dialog`, etc.) |
 | `pnpm docs:sync-readme` | Sync catalog item/category counts in `README.md` from `app/catalog.ts` |
+| `pnpm docs:sync-attributions` | Regenerate `app/attributions-data.ts` from `package.json` and `node_modules` metadata |
 
 Scaffold a single component:
 
@@ -170,6 +174,13 @@ pnpm typecheck
 
 ```bash
 pnpm docs:sync-readme
+```
+
+**After dependency changes** (refresh attributions page)
+
+```bash
+pnpm docs:sync-attributions
+pnpm typecheck
 ```
 
 **Production deploy**
@@ -222,6 +233,7 @@ registry/default/
 └── theme/               # globals.css design tokens
 app/
 ├── catalog.ts           # docs site component catalog
+├── attributions-data.ts # generated third-party package metadata
 ├── component-api/       # generated + curated API reference data
 ├── component-variants/  # detail page definitions
 ├── registry-quick-start.tsx
@@ -236,6 +248,6 @@ docs/                    # consumer, GitHub, and hosted setup guides
 
 ## Based on
 
-Built on the [shadcn registry template](https://github.com/shadcn-ui/registry-template) with Tailwind v4 and Next.js 15.
+Built on the [shadcn registry template](https://github.com/shadcn-ui/registry-template) with Tailwind v4 and Next.js 15. Key upstream libraries include [Radix UI](https://radix-ui.com), [TanStack Table](https://tanstack.com/table/latest), [TanStack Virtual](https://tanstack.com/virtual), and [Tailwind CSS](https://tailwindcss.com). Full license and version list: [`/components/attributions`](http://localhost:3000/components/attributions) on the docs site.
 
 Repository: [github.com/tmdc-io/modern-ui-component](https://github.com/tmdc-io/modern-ui-component)
