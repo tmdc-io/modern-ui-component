@@ -61,10 +61,12 @@ export function getVariantPageNames(): string[] {
   "table",
   "tabs",
   "textarea",
+  "theme",
   "toast",
   "toggle",
   "toggle-group",
   "tooltip",
-  "typography"
+  "typography",
+  "utils"
 ]
 }

@@ -42,8 +42,10 @@ const apiResponse: QualitySummary = {
   dimensions: [
     { name: "Accuracy", status: "pass" },
     { name: "Completeness", status: "pass" },
-    { name: "Freshness", status: "pass" },
-    { name: "Schema", status: "pass" },
+    { name: "Conformity", status: "pass" },
+    { name: "Consistency", status: "pass" },
+    { name: "Coverage", status: "pass" },
+    { name: "Timeliness", status: "pass" },
     { name: "Uniqueness", status: "warn", detail: "3 issues" },
     { name: "Validity", status: "pass" },
   ],
@@ -70,8 +72,10 @@ export function QualityPanel() {
       dimensions={[
         { name: "Accuracy", status: "pass" },
         { name: "Completeness", status: "pass" },
-        { name: "Freshness", status: "pass" },
-        { name: "Schema", status: "pass" },
+        { name: "Conformity", status: "pass" },
+        { name: "Consistency", status: "pass" },
+        { name: "Coverage", status: "pass" },
+        { name: "Timeliness", status: "pass" },
         { name: "Uniqueness", status: "warn", detail: "3 issues" },
         { name: "Validity", status: "pass" },
       ]}
@@ -205,8 +209,12 @@ export function QualityGrid() {
     dimensions: [
       { name: "Accuracy", status: "pass" },
       { name: "Completeness", status: "fail", detail: "8 issues" },
-      { name: "Freshness", status: "warn", detail: "2 issues" },
-      { name: "Schema", status: "pass" },
+      { name: "Conformity", status: "pass" },
+      { name: "Consistency", status: "warn", detail: "2 issues" },
+      { name: "Coverage", status: "pass" },
+      { name: "Timeliness", status: "pass" },
+      { name: "Uniqueness", status: "pass" },
+      { name: "Validity", status: "pass" },
     ],
   }}
   href="/quality/rules/orders"

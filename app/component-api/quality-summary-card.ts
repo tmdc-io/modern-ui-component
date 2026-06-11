@@ -14,7 +14,16 @@ export const qualitySummaryCardApi: ComponentApiDoc = {
     passed: 47,
     total: 100,
     updatedAt: "3m ago",
-    dimensions: [{ name: "Accuracy", status: "pass" }],
+    dimensions: [
+      { name: "Accuracy", status: "pass" },
+      { name: "Completeness", status: "pass" },
+      { name: "Conformity", status: "pass" },
+      { name: "Consistency", status: "pass" },
+      { name: "Coverage", status: "pass" },
+      { name: "Timeliness", status: "pass" },
+      { name: "Uniqueness", status: "warn", detail: "3 issues" },
+      { name: "Validity", status: "pass" },
+    ],
   }}
   href="/quality/rules"
 />`,

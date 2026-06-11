@@ -21,6 +21,7 @@ import { authBlockCatalogPreviews } from "@/app/component-examples/auth-block-ca
 import { ChartCatalogPreview } from "@/app/component-examples/chart-detail/catalog-preview"
 import { chartPreviewEntries } from "@/app/chart-previews"
 import { ThemePalettePreview } from "@/app/theme-palette-preview"
+import { UtilsPreview } from "@/app/utils-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import {
@@ -248,11 +249,7 @@ const comboboxItems = ["Next.js", "React", "Tailwind CSS", "TypeScript"]
 
 export const componentPreviews: Record<string, React.ReactNode> = {
   theme: <ThemePalettePreview />,
-  utils: (
-    <code className="bg-muted rounded-md px-3 py-2 text-sm">
-      cn(&quot;px-4&quot;, condition &amp;&amp; &quot;bg-primary&quot;)
-    </code>
-  ),
+  utils: <UtilsPreview />,
   button: (
     <div className="flex flex-wrap justify-center gap-2">
       <Button>Default</Button>

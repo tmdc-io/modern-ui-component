@@ -38,7 +38,11 @@ export const catalog: CatalogCategory[] = [
         "Install AGENTS.md and docs/modernui-setup.md — conventions for contributors and a step-by-step consumer install guide."
       ),
       item("theme", "Theme", "Figma Dev-Ready design tokens and CSS variables."),
-      item("utils", "Utils", "cn() classname utility."),
+      item(
+        "utils",
+        "Utils",
+        "cn() classname helper — clsx + tailwind-merge for every component."
+      ),
     ],
   },
   {

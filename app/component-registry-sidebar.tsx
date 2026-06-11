@@ -6,7 +6,6 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { catalog, type CatalogCategory, type CatalogItem } from "@/app/catalog"
 import { useComponentSearch } from "@/app/component-search"
-import { hasVariantPage } from "@/app/component-variants"
 import { cn } from "@/lib/utils"
 import {
   Collapsible,
@@ -14,9 +13,12 @@ import {
   CollapsibleTrigger,
 } from "@/registry/default/ui/collapsible"
 
-const REGISTRY_SECTION_IDS = catalog.flatMap((category) =>
-  category.items.map((item) => item.name)
-)
+export const QUICK_START_SECTION_ID = "quick-start"
+
+const REGISTRY_SECTION_IDS = [
+  QUICK_START_SECTION_ID,
+  ...catalog.flatMap((category) => category.items.map((item) => item.name)),
+]
 
 const SCROLL_SPY_OFFSET = 120
 const SIDEBAR_SCROLL_KEY = "registry:sidebar-scroll"
@@ -41,13 +43,6 @@ function splitCatalog(categories: CatalogCategory[]) {
 type ComponentRegistrySidebarProps = {
   activeName?: string
   variantDetail?: boolean
-}
-
-function getItemHref(name: string, variantDetail: boolean) {
-  if (variantDetail && hasVariantPage(name)) {
-    return `/components/${name}`
-  }
-  return `/#${name}`
 }
 
 function getActiveSectionFromScroll() {
@@ -120,17 +115,8 @@ function SidebarSectionLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
-function SidebarNavItem({
-  item,
-  activeName,
-  variantDetail,
-}: {
-  item: CatalogItem
-  activeName?: string
-  variantDetail: boolean
-}) {
-  const isActive = activeName === item.name
-  const href = getItemHref(item.name, variantDetail)
+function SidebarQuickStartLink({ activeName }: { activeName?: string }) {
+  const isActive = activeName === QUICK_START_SECTION_ID
   const className = cn(
     "rounded-md px-2 py-1 text-sm transition-colors",
     isActive
@@ -138,18 +124,40 @@ function SidebarNavItem({
       : "hover:text-primary"
   )
 
-  if (variantDetail) {
-    return (
-      <Link href={href} className={className}>
-        {item.title}
-      </Link>
-    )
-  }
+  return (
+    <Link
+      href={`/#${QUICK_START_SECTION_ID}`}
+      className={className}
+      onClick={() => markRegistryScrollTarget(QUICK_START_SECTION_ID)}
+    >
+      Quick Start
+    </Link>
+  )
+}
+
+function SidebarNavItem({
+  item,
+  activeName,
+}: {
+  item: CatalogItem
+  activeName?: string
+}) {
+  const isActive = activeName === item.name
+  const className = cn(
+    "rounded-md px-2 py-1 text-sm transition-colors",
+    isActive
+      ? "bg-accent text-accent-foreground font-medium"
+      : "hover:text-primary"
+  )
 
   return (
-    <a href={href} className={className}>
+    <Link
+      href={`/#${item.name}`}
+      className={className}
+      onClick={() => markRegistryScrollTarget(item.name)}
+    >
       {item.title}
-    </a>
+    </Link>
   )
 }
 
@@ -226,12 +234,14 @@ export function ComponentRegistrySidebar({
           <section className="flex flex-col gap-1">
             <SidebarSectionLabel>Foundation</SidebarSectionLabel>
             <div className="flex flex-col gap-0.5 pl-3">
+              {!isSearching ? (
+                <SidebarQuickStartLink activeName={activeName} />
+              ) : null}
               {filteredCatalog.foundation.items.map((item) => (
                 <SidebarNavItem
                   key={item.name}
                   item={item}
                   activeName={activeName}
-                  variantDetail={variantDetail}
                 />
               ))}
             </div>
@@ -270,7 +280,6 @@ export function ComponentRegistrySidebar({
                           key={item.name}
                           item={item}
                           activeName={activeName}
-                          variantDetail={variantDetail}
                         />
                       ))}
                     </CollapsibleContent>
@@ -290,7 +299,6 @@ export function ComponentRegistrySidebar({
                   key={item.name}
                   item={item}
                   activeName={activeName}
-                  variantDetail={variantDetail}
                 />
               ))}
             </div>
@@ -306,7 +314,6 @@ export function ComponentRegistrySidebar({
                   key={item.name}
                   item={item}
                   activeName={activeName}
-                  variantDetail={variantDetail}
                 />
               ))}
             </div>

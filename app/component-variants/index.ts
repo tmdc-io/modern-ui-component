@@ -18,6 +18,8 @@ import {
 import { chartVariantPage } from "@/app/component-variants/chart-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
 import { projectSetupVariantPage } from "@/app/component-variants/project-setup-page"
+import { themeVariantPage } from "@/app/component-variants/theme-page"
+import { utilsVariantPage } from "@/app/component-variants/utils-page"
 import { componentApiDocs, hasComponentApiDoc } from "@/app/component-api"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
@@ -110,6 +112,8 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   signup: SignupVariantPage,
   "project-setup": projectSetupVariantPage,
   "quality-summary-card": qualitySummaryCardPage,
+  theme: themeVariantPage,
+  utils: utilsVariantPage,
   ...mergeVariantPages(
     generatedWithoutChart,
     docVariantSupplements,
@@ -124,6 +128,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   signup: "Blocks",
   "project-setup": "Details",
   "quality-summary-card": "Usage",
+  theme: "Palette",
 }
 
 export function getDetailPageLabel(name: string) {

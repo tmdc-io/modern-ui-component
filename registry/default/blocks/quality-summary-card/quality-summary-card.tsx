@@ -52,8 +52,10 @@ export type QualitySummaryCardProps = {
 const defaultDimensions: QualityDimension[] = [
   { name: "Accuracy", status: "pass" },
   { name: "Completeness", status: "pass" },
-  { name: "Freshness", status: "pass" },
-  { name: "Schema", status: "pass" },
+  { name: "Conformity", status: "pass" },
+  { name: "Consistency", status: "pass" },
+  { name: "Coverage", status: "pass" },
+  { name: "Timeliness", status: "pass" },
   { name: "Uniqueness", status: "warn", detail: "3 issues" },
   { name: "Validity", status: "pass" },
 ]

@@ -5,8 +5,10 @@ import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-ca
 const defaultDimensions = [
   { name: "Accuracy", status: "pass" as const },
   { name: "Completeness", status: "pass" as const },
-  { name: "Freshness", status: "pass" as const },
-  { name: "Schema", status: "pass" as const },
+  { name: "Conformity", status: "pass" as const },
+  { name: "Consistency", status: "pass" as const },
+  { name: "Coverage", status: "pass" as const },
+  { name: "Timeliness", status: "pass" as const },
   { name: "Uniqueness", status: "warn" as const, detail: "3 issues" },
   { name: "Validity", status: "pass" as const },
 ]
@@ -28,8 +30,10 @@ export function QualitySummaryCardDefaultPreview() {
 const atRiskDimensions = [
   { name: "Accuracy", status: "pass" as const },
   { name: "Completeness", status: "pass" as const },
-  { name: "Freshness", status: "warn" as const, detail: "12 issues" },
-  { name: "Schema", status: "pass" as const },
+  { name: "Conformity", status: "pass" as const },
+  { name: "Consistency", status: "pass" as const },
+  { name: "Coverage", status: "pass" as const },
+  { name: "Timeliness", status: "warn" as const, detail: "12 issues" },
   { name: "Uniqueness", status: "warn" as const, detail: "3 issues" },
   { name: "Validity", status: "pass" as const },
 ]
@@ -50,8 +54,10 @@ export function QualitySummaryCardDataDrivenPreview() {
 const failedDimensions = [
   { name: "Accuracy", status: "pass" as const },
   { name: "Completeness", status: "fail" as const, detail: "8 issues" },
-  { name: "Freshness", status: "warn" as const, detail: "2 issues" },
-  { name: "Schema", status: "pass" as const },
+  { name: "Conformity", status: "pass" as const },
+  { name: "Consistency", status: "warn" as const, detail: "2 issues" },
+  { name: "Coverage", status: "pass" as const },
+  { name: "Timeliness", status: "pass" as const },
   { name: "Uniqueness", status: "pass" as const },
   { name: "Validity", status: "pass" as const },
 ]

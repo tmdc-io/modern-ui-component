@@ -57,11 +57,13 @@ import { switchApi } from "@/app/component-api/switch"
 import { tableApi } from "@/app/component-api/table"
 import { tabsApi } from "@/app/component-api/tabs"
 import { textareaApi } from "@/app/component-api/textarea"
+import { themeApi } from "@/app/component-api/theme"
 import { toastApi } from "@/app/component-api/toast"
 import { toggleApi } from "@/app/component-api/toggle"
 import { toggleGroupApi } from "@/app/component-api/toggle-group"
 import { tooltipApi } from "@/app/component-api/tooltip"
 import { typographyApi } from "@/app/component-api/typography"
+import { utilsApi } from "@/app/component-api/utils"
 import type { ComponentApiDoc } from "@/app/component-variants/types"
 
 export const componentApiDocs: Record<string, ComponentApiDoc> = {
@@ -124,11 +126,13 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   table: tableApi,
   tabs: tabsApi,
   textarea: textareaApi,
+  theme: themeApi,
   toast: toastApi,
   toggle: toggleApi,
   "toggle-group": toggleGroupApi,
   tooltip: tooltipApi,
   typography: typographyApi,
+  utils: utilsApi,
 }
 
 export function hasComponentApiDoc(name: string) {

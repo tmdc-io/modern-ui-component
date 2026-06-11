@@ -19,6 +19,8 @@ const MANUAL_PAGES = [
   "signup",
   "project-setup",
   "quality-summary-card",
+  "theme",
+  "utils",
 ]
 const DOC_ONLY_PAGES = new Set(Object.keys(docVariantDefinitions))
 

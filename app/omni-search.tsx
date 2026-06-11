@@ -9,6 +9,7 @@ import {
   LayoutGridIcon,
   PaletteIcon,
   SearchIcon,
+  WrenchIcon,
   XIcon,
 } from "lucide-react"
 
@@ -160,6 +161,13 @@ function OmniSearchDialog({
           >
             <PaletteIcon />
             <span>Theming</span>
+          </CommandItem>
+          <CommandItem
+            value="Utils cn classname helper"
+            onSelect={() => navigateToRegistryItem("utils")}
+          >
+            <WrenchIcon />
+            <span>Utils</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />

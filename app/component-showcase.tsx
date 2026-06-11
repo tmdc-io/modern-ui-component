@@ -16,6 +16,11 @@ import {
 import { useComponentSearch } from "@/app/component-search"
 import { getDetailPageLabel, hasVariantPage } from "@/app/component-variants"
 import { componentPreviews } from "@/app/component-previews"
+import { InstallCommand } from "@/app/install-command"
+import {
+  RegistryHero,
+  RegistryQuickStart,
+} from "@/app/registry-quick-start"
 
 function LazyPreview({ children }: { children: React.ReactNode }) {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -64,9 +69,7 @@ function ComponentCard({
         <div className="flex min-w-0 flex-col gap-1">
           <h3 className="text-lg font-semibold">{item.title}</h3>
           <p className="text-muted-foreground text-sm">{item.description}</p>
-          <code className="text-muted-foreground mt-1 break-all text-xs">
-            {item.install}
-          </code>
+          <InstallCommand command={item.install} className="mt-2" />
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {hasVariantPage(item.name) ? (
@@ -119,35 +122,43 @@ export function ComponentShowcase() {
   }, [query])
 
   const totalCount = catalog.reduce((sum, c) => sum + c.items.length, 0)
+  const categoryCount = catalog.length
+  const isSearching = query.trim().length > 0
 
   return (
     <ComponentRegistryLayout activeName={activeName}>
-      <header className="flex flex-col gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Component Registry
-          </h1>
-          <p className="text-muted-foreground max-w-2xl">
-            {totalCount} components distributed via the shadcn CLI. Install
-            source into any React project — teams own the code.
-          </p>
-        </header>
+      <RegistryHero totalCount={totalCount} categoryCount={categoryCount} />
 
-        <section className="bg-muted/50 flex flex-col gap-3 rounded-lg border p-4">
-          <h2 className="text-sm font-medium">Quick start</h2>
-          <pre className="bg-background overflow-x-auto rounded-md border p-3 text-sm">
-            <code>{`npx shadcn@latest init
-npx shadcn@latest add tmdc-io/modern-ui-component/theme
-npx shadcn@latest add tmdc-io/modern-ui-component/utils
-npx shadcn@latest add tmdc-io/modern-ui-component/button`}</code>
-          </pre>
-        </section>
+      {!isSearching ? <RegistryQuickStart /> : null}
 
-        <main className="flex flex-col gap-10 pb-16">
-          {filteredCatalog.map((category) => (
+      <main className="flex flex-col gap-10 pb-16">
+        {filteredCatalog.length === 0 ? (
+          <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed py-12 text-center">
+            <p className="text-sm font-medium">No components match your search</p>
+            <p className="text-muted-foreground text-sm">
+              Try a different keyword or clear the search filter.
+            </p>
+          </div>
+        ) : (
+          filteredCatalog.map((category) => (
             <section key={category.id} className="flex flex-col gap-4">
-              <h2 className="border-b pb-2 text-xl font-semibold">
-                {category.title}
-              </h2>
+              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
+                <div className="flex flex-col gap-0.5">
+                  <h2 className="text-xl font-semibold tracking-tight">
+                    {category.title}
+                  </h2>
+                  {category.id === "foundation" ? (
+                    <p className="text-muted-foreground text-sm">
+                      Install these before primitives — project docs, tokens, and
+                      cn().
+                    </p>
+                  ) : null}
+                </div>
+                <span className="text-muted-foreground text-sm tabular-nums">
+                  {category.items.length}{" "}
+                  {category.items.length === 1 ? "item" : "items"}
+                </span>
+              </div>
               <div className="grid gap-4">
                 {category.items.map((item) => (
                   <ComponentCard
@@ -158,8 +169,9 @@ npx shadcn@latest add tmdc-io/modern-ui-component/button`}</code>
                 ))}
               </div>
             </section>
-          ))}
-        </main>
+          ))
+        )}
+      </main>
 
       <ComponentCodeDrawer
         item={codeItem}

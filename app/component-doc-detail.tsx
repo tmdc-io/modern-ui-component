@@ -21,6 +21,7 @@ import type {
   ComponentVariantPage,
   ComponentVariantSection,
 } from "@/app/component-variants/types"
+import { InstallCommand } from "@/app/install-command"
 import { VariantPreviewCanvas } from "@/app/variant-preview-canvas"
 import { Button } from "@/registry/default/ui/button"
 
@@ -114,9 +115,7 @@ function DocPageHeader({ page }: { page: ComponentVariantPage }) {
             ))}
           </ul>
         ) : null}
-        <code className="text-muted-foreground break-all text-xs">
-          {page.install}
-        </code>
+        <InstallCommand command={page.install} />
       </div>
     </div>
   )
