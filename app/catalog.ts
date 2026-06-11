@@ -43,6 +43,13 @@ export const catalog: CatalogCategory[] = [
         "Utils",
         "cn() classname helper — clsx + tailwind-merge for every component."
       ),
+      {
+        name: "attributions",
+        title: "Attributions",
+        description:
+          "Open-source libraries and npm packages used to build ModernUI — licenses, versions, and upstream credits.",
+        install: "",
+      },
     ],
   },
   {
@@ -146,7 +153,7 @@ export const catalog: CatalogCategory[] = [
       item(
         "data-table",
         "Data Table",
-        "Sortable, filterable, paginated tables powered by TanStack Table."
+        "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling."
       ),
       item(
         "chart",

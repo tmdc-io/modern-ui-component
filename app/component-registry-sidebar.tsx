@@ -6,6 +6,7 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { catalog, type CatalogCategory, type CatalogItem } from "@/app/catalog"
 import { useComponentSearch } from "@/app/component-search"
+import { hasVariantPage } from "@/app/component-variants"
 import { cn } from "@/lib/utils"
 import {
   Collapsible,
@@ -45,6 +46,13 @@ function splitCatalog(categories: CatalogCategory[]) {
 type ComponentRegistrySidebarProps = {
   activeName?: string
   variantDetail?: boolean
+}
+
+export function getRegistryItemHref(name: string, variantDetail = false) {
+  if (variantDetail && hasVariantPage(name)) {
+    return `/components/${name}`
+  }
+  return `/#${name}`
 }
 
 function getActiveSectionFromScroll() {
@@ -160,11 +168,14 @@ function SidebarQuickStartLink({ activeName }: { activeName?: string }) {
 function SidebarNavItem({
   item,
   activeName,
+  variantDetail = false,
 }: {
   item: CatalogItem
   activeName?: string
+  variantDetail?: boolean
 }) {
   const isActive = activeName === item.name
+  const href = getRegistryItemHref(item.name, variantDetail)
   const className = cn(
     "rounded-md px-2 py-1 text-sm transition-colors",
     isActive
@@ -174,9 +185,13 @@ function SidebarNavItem({
 
   return (
     <Link
-      href={`/#${item.name}`}
+      href={href}
       className={className}
-      onClick={() => markRegistryScrollTarget(item.name)}
+      onClick={() => {
+        if (href.startsWith("/#")) {
+          markRegistryScrollTarget(item.name)
+        }
+      }}
     >
       {item.title}
     </Link>
@@ -267,6 +282,7 @@ export function ComponentRegistrySidebar({
                   key={item.name}
                   item={item}
                   activeName={activeName}
+                  variantDetail={variantDetail}
                 />
               ))}
             </div>
@@ -305,6 +321,7 @@ export function ComponentRegistrySidebar({
                           key={item.name}
                           item={item}
                           activeName={activeName}
+                          variantDetail={variantDetail}
                         />
                       ))}
                     </CollapsibleContent>
@@ -324,6 +341,7 @@ export function ComponentRegistrySidebar({
                   key={item.name}
                   item={item}
                   activeName={activeName}
+                  variantDetail={variantDetail}
                 />
               ))}
             </div>
@@ -339,6 +357,7 @@ export function ComponentRegistrySidebar({
                   key={item.name}
                   item={item}
                   activeName={activeName}
+                  variantDetail={variantDetail}
                 />
               ))}
             </div>

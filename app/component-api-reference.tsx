@@ -3,6 +3,7 @@ import type {
   ComponentEnhancementRow,
   CssVariantGroup,
 } from "@/app/component-variants/types"
+import { LinkifyText } from "@/app/linkify-text"
 
 export function ApiReferenceTable({
   apiReference,
@@ -34,7 +35,9 @@ export function ApiReferenceTable({
                 <td className="text-muted-foreground px-4 py-3 font-mono text-xs">
                   {row.default ?? "—"}
                 </td>
-                <td className="px-4 py-3">{row.description}</td>
+                <td className="px-4 py-3">
+                  <LinkifyText>{row.description}</LinkifyText>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -42,7 +45,7 @@ export function ApiReferenceTable({
       </div>
       {apiReference.footnote ? (
         <p className="text-muted-foreground text-sm leading-relaxed">
-          {apiReference.footnote}
+          <LinkifyText>{apiReference.footnote}</LinkifyText>
         </p>
       ) : null}
     </div>
@@ -69,7 +72,7 @@ export function CssVariantsReference({
               >
                 <code className="text-foreground text-xs">{variant.name}</code>
                 {" — "}
-                {variant.description}
+                <LinkifyText>{variant.description}</LinkifyText>
               </li>
             ))}
           </ul>
@@ -99,7 +102,9 @@ export function EnhancementsTable({
               <td className="text-muted-foreground px-4 py-3 font-mono text-xs">
                 {row.enhancement}
               </td>
-              <td className="px-4 py-3">{row.benefit}</td>
+              <td className="px-4 py-3">
+                <LinkifyText>{row.benefit}</LinkifyText>
+              </td>
             </tr>
           ))}
         </tbody>

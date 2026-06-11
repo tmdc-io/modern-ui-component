@@ -11,6 +11,7 @@ import {
   UserIcon,
 } from "lucide-react"
 
+import { AttributionsSummaryPreview } from "@/app/attributions-preview"
 import { AccordionBasicPreview } from "@/app/component-examples/accordion-variants"
 import { DataTableDemoPreview } from "@/app/component-examples/generated/data-table/default"
 import { DatePickerDemoPreview } from "@/app/component-examples/generated/date-picker/default"
@@ -250,6 +251,7 @@ const comboboxItems = ["Next.js", "React", "Tailwind CSS", "TypeScript"]
 export const componentPreviews: Record<string, React.ReactNode> = {
   theme: <ThemePalettePreview />,
   utils: <UtilsPreview />,
+  attributions: <AttributionsSummaryPreview />,
   button: (
     <div className="flex flex-wrap justify-center gap-2">
       <Button>Default</Button>

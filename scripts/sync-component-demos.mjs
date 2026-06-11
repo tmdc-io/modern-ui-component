@@ -21,7 +21,7 @@ const EXAMPLE_ONLY_COMPONENTS = {
   "data-table": {
     title: "Data Table",
     description:
-      "Sortable, filterable, paginated tables powered by TanStack Table.",
+      "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling.",
   },
   "date-picker": {
     title: "Date Picker",

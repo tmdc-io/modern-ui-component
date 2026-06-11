@@ -1,18 +1,52 @@
 "use client"
 
+import { InputDocFieldPreview } from "@/app/component-examples/generated/input/doc-field"
+import { InputDocFieldCode } from "@/app/component-examples/generated/input/doc-field.code"
+import { InputDocInvalidPreview } from "@/app/component-examples/generated/input/doc-invalid"
+import { InputDocInvalidCode } from "@/app/component-examples/generated/input/doc-invalid.code"
 import { TextareaDocFieldPreview } from "@/app/component-examples/generated/textarea/doc-field"
 import { TextareaDocFieldCode } from "@/app/component-examples/generated/textarea/doc-field.code"
 import { TextareaDocInvalidPreview } from "@/app/component-examples/generated/textarea/doc-invalid"
 import { TextareaDocInvalidCode } from "@/app/component-examples/generated/textarea/doc-invalid.code"
 import { TextareaDocRtlPreview } from "@/app/component-examples/generated/textarea/doc-rtl"
 import { TextareaDocRtlCode } from "@/app/component-examples/generated/textarea/doc-rtl.code"
-import { InputDocFieldPreview } from "@/app/component-examples/generated/input/doc-field"
-import { InputDocFieldCode } from "@/app/component-examples/generated/input/doc-field.code"
-import { InputDocInvalidPreview } from "@/app/component-examples/generated/input/doc-invalid"
-import { InputDocInvalidCode } from "@/app/component-examples/generated/input/doc-invalid.code"
+import { tableVirtualCodes } from "@/app/component-examples/table-virtual-codes"
+import { TableVirtualPreview } from "@/app/component-examples/table-virtual"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
 export const docVariantSupplements: Record<string, ComponentVariantPage> = {
+  "data-table": {
+    name: "data-table",
+    title: "Data Table",
+    description:
+      "Sortable, filterable, paginated tables powered by TanStack Table.",
+    install: "npx shadcn@latest add tmdc-io/modern-ui-component/table",
+    variants: [
+      {
+        id: "tanstack-virtual",
+        title: "Virtual rows",
+        description:
+          "Virtualized rows for large datasets with TanStack Virtual.",
+        Preview: TableVirtualPreview,
+        code: tableVirtualCodes.full,
+        tall: true,
+        docLinks: [
+          {
+            href: "https://tanstack.com/table/latest",
+            label: "TanStack Table documentation",
+          },
+          {
+            href: "https://tanstack.com/table/v8/docs/guide/virtualization",
+            label: "Virtualization guide",
+          },
+          {
+            href: "/components/table#tanstack-virtual",
+            label: "Table primitive reference",
+          },
+        ],
+      },
+    ],
+  },
   "textarea": {
     name: "textarea",
     title: "Textarea",

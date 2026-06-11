@@ -17,7 +17,9 @@ import {
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
+import { attributionsVariantPage } from "@/app/component-variants/attributions-page"
 import { projectSetupVariantPage } from "@/app/component-variants/project-setup-page"
+import { tableTanStackSupplement } from "@/app/component-variants/table-page"
 import { themeVariantPage } from "@/app/component-variants/theme-page"
 import { utilsVariantPage } from "@/app/component-variants/utils-page"
 import { componentApiDocs, hasComponentApiDoc } from "@/app/component-api"
@@ -101,6 +103,37 @@ function mergeVariantPages(
   return merged
 }
 
+function applyTableTanStackSupplement(
+  pages: Record<string, ComponentVariantPage>
+): Record<string, ComponentVariantPage> {
+  const table = pages.table
+  if (!table) return pages
+
+  const existingVariants = table.variants
+
+  return {
+    ...pages,
+    table: {
+      ...table,
+      intro: tableTanStackSupplement.intro,
+      sections: [
+        ...(existingVariants.length > 0
+          ? [
+              {
+                id: "examples",
+                title: "Examples",
+                description: "Table primitive layouts from shadcn docs.",
+                variants: existingVariants,
+              },
+            ]
+          : []),
+        ...(tableTanStackSupplement.sections ?? []),
+      ],
+      variants: [],
+    },
+  }
+}
+
 const generatedWithoutChart = Object.fromEntries(
   Object.entries(generatedVariantPages).filter(([name]) => name !== "chart")
 )
@@ -111,13 +144,16 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   login: LoginVariantPage,
   signup: SignupVariantPage,
   "project-setup": projectSetupVariantPage,
+  attributions: attributionsVariantPage,
   "quality-summary-card": qualitySummaryCardPage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
-  ...mergeVariantPages(
-    generatedWithoutChart,
-    docVariantSupplements,
-    docVariantPages
+  ...applyTableTanStackSupplement(
+    mergeVariantPages(
+      generatedWithoutChart,
+      docVariantSupplements,
+      docVariantPages
+    )
   ),
 }
 
@@ -127,6 +163,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   login: "Blocks",
   signup: "Blocks",
   "project-setup": "Details",
+  attributions: "Credits",
   "quality-summary-card": "Usage",
   theme: "Palette",
 }

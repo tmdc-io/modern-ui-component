@@ -20,8 +20,10 @@ import type {
   ComponentVariant,
   ComponentVariantPage,
   ComponentVariantSection,
+  DocLink,
 } from "@/app/component-variants/types"
 import { InstallCommand } from "@/app/install-command"
+import { LinkifyText } from "@/app/linkify-text"
 import { VariantPreviewCanvas } from "@/app/variant-preview-canvas"
 import { Button } from "@/registry/default/ui/button"
 
@@ -86,6 +88,46 @@ function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant
   }
 }
 
+function isExternalDocLink(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://")
+}
+
+function DocLinks({ links }: { links: DocLink[] }) {
+  if (links.length === 0) return null
+
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      {links.map((link) =>
+        isExternalDocLink(link.href) ? (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
+          >
+            {link.label}
+            <ArrowRightIcon className="size-3.5" />
+          </a>
+        ) : (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
+          >
+            {link.label}
+            <ArrowRightIcon className="size-3.5" />
+          </Link>
+        )
+      )}
+    </div>
+  )
+}
+
+function getVariantDocLinks(variant: ComponentVariant): DocLink[] {
+  return [...(variant.docLinks ?? []), ...(variant.docLink ? [variant.docLink] : [])]
+}
+
 function DocPageHeader({ page }: { page: ComponentVariantPage }) {
   return (
     <div className="flex flex-col gap-4">
@@ -101,21 +143,25 @@ function DocPageHeader({ page }: { page: ComponentVariantPage }) {
       <div className="flex w-full max-w-3xl flex-col gap-3">
         <h1 className="text-3xl font-bold tracking-tight">{page.title}</h1>
         <p className="text-muted-foreground leading-relaxed">
-          {page.description}
+          <LinkifyText>{page.description}</LinkifyText>
         </p>
         {page.intro ? (
           <p className="text-muted-foreground text-sm leading-relaxed">
-            {page.intro}
+            <LinkifyText>{page.intro}</LinkifyText>
           </p>
         ) : null}
         {page.features?.length ? (
           <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm leading-relaxed">
             {page.features.map((feature) => (
-              <li key={feature}>{feature}</li>
+              <li key={feature}>
+                <LinkifyText>{feature}</LinkifyText>
+              </li>
             ))}
           </ul>
         ) : null}
-        <InstallCommand command={page.install} />
+        {page.install.trim() ? (
+          <InstallCommand command={page.install} />
+        ) : null}
       </div>
     </div>
   )
@@ -168,12 +214,12 @@ function VariantExample({
               <h3 className="text-lg font-semibold">{variant.title}</h3>
               {variant.description ? (
                 <p className="text-muted-foreground text-sm">
-                  {variant.description}
+                  <LinkifyText>{variant.description}</LinkifyText>
                 </p>
               ) : null}
               {variant.body ? (
                 <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-                  {variant.body}
+                  <LinkifyText>{variant.body}</LinkifyText>
                 </p>
               ) : null}
             </div>
@@ -181,15 +227,7 @@ function VariantExample({
             <div />
           )}
           <div className="flex shrink-0 items-center gap-3">
-            {variant.docLink ? (
-              <Link
-                href={variant.docLink.href}
-                className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-              >
-                {variant.docLink.label}
-                <ArrowRightIcon className="size-3.5" />
-              </Link>
-            ) : null}
+            <DocLinks links={getVariantDocLinks(variant)} />
             {variant.code ? (
               <ViewCodeButton
                 onClick={() =>
@@ -242,13 +280,16 @@ function VariantSectionBlock({
           </h2>
           {section.description ? (
             <p className="text-muted-foreground text-sm leading-relaxed">
-              {section.description}
+              <LinkifyText>{section.description}</LinkifyText>
             </p>
           ) : null}
           {section.body ? (
             <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-              {section.body}
+              <LinkifyText>{section.body}</LinkifyText>
             </p>
+          ) : null}
+          {section.docLink ? (
+            <DocLinks links={[section.docLink]} />
           ) : null}
         </div>
       ) : null}

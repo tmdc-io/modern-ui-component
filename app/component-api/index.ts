@@ -1,3 +1,4 @@
+import { attributionsApi } from "@/app/component-api/attributions"
 import { accordionApi } from "@/app/component-api/accordion"
 import { alertApi } from "@/app/component-api/alert"
 import { alertDialogApi } from "@/app/component-api/alert-dialog"
@@ -68,6 +69,7 @@ import type { ComponentApiDoc } from "@/app/component-variants/types"
 
 export const componentApiDocs: Record<string, ComponentApiDoc> = {
   accordion: accordionApi,
+  attributions: attributionsApi,
   alert: alertApi,
   "alert-dialog": alertDialogApi,
   "aspect-ratio": aspectRatioApi,

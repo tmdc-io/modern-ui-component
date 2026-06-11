@@ -9,6 +9,12 @@ export function SiteFooter() {
         </p>
         <div className="flex items-center gap-6">
           <a
+            href="/components/attributions"
+            className="text-muted-foreground hover:text-primary text-sm transition-colors"
+          >
+            Attributions
+          </a>
+          <a
             href="#top"
             className="text-muted-foreground hover:text-primary text-sm transition-colors"
           >

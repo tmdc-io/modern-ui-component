@@ -15,8 +15,11 @@ import {
 } from "lucide-react"
 
 import { allComponents } from "@/app/catalog"
-import { hasVariantPage } from "@/app/component-variants"
-import { markRegistryScrollTarget, MONOREPO_SECTION_ID } from "@/app/component-registry-sidebar"
+import {
+  getRegistryItemHref,
+  markRegistryScrollTarget,
+  MONOREPO_SECTION_ID,
+} from "@/app/component-registry-sidebar"
 import { GITHUB_URL } from "@/app/github-link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/default/ui/button"
@@ -87,12 +90,11 @@ function OmniSearchDialog({
   const navigateToRegistryItem = React.useCallback(
     (name: string) => {
       onOpenChange(false)
-      markRegistryScrollTarget(name)
-      if (hasVariantPage(name)) {
-        router.push(`/components/${name}`)
-        return
+      const href = getRegistryItemHref(name, true)
+      if (href.startsWith("/#")) {
+        markRegistryScrollTarget(name)
       }
-      router.push(`/#${name}`)
+      router.push(href)
     },
     [onOpenChange, router]
   )

@@ -5,9 +5,10 @@ export const dataTableApi: ComponentApiDoc = {
     "Sortable, filterable, and paginated data tables with TanStack Table.",
     "Composed from the Table primitive plus column definitions.",
     "Supports row selection, column visibility, and faceted filtering.",
+    "Virtual row scrolling with TanStack Virtual for large client-side datasets.",
   ],
   intro:
-    "Data Table is a composition pattern — not a standalone component. Install the Table primitive and @tanstack/react-table, then wire columns and row models with useReactTable.",
+    "Data Table is a composition pattern — not a standalone component. Install the Table primitive and @tanstack/react-table, then wire columns and row models with useReactTable. Full TanStack Table documentation: https://tanstack.com/table/latest",
   usage: {
     import: `import {
   ColumnDef,
@@ -115,9 +116,15 @@ return (
         type: "() => RowModel<TData>",
         description: "Enables client-side pagination.",
       },
+      {
+        prop: "useVirtualizer (TanStack Virtual)",
+        type: "options",
+        description:
+          "count — row count from table.getRowModel().rows; getScrollElement — scroll container ref; estimateSize — row height in px; overscan — extra rows rendered above/below viewport.",
+      },
     ],
     footnote:
-      "Install @tanstack/react-table alongside the Table component. See the Table API reference for TableHeader, TableRow, TableCell, and related subcomponents.",
+      "Install @tanstack/react-table alongside the Table component. Full documentation: https://tanstack.com/table/latest. For virtual rows, also install @tanstack/react-virtual — see #tanstack-virtual and https://tanstack.com/table/v8/docs/guide/virtualization.",
   },
   cssVariants: [
     {
@@ -142,6 +149,11 @@ return (
         {
           name: "Button",
           description: "Used for sort toggles and pagination controls.",
+        },
+        {
+          name: "@tanstack/react-virtual",
+          description:
+            "Optional — virtualize rows for large datasets instead of pagination.",
         },
       ],
     },

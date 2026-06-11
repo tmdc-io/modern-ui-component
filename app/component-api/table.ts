@@ -2,7 +2,9 @@ import type { ComponentApiDoc } from "@/app/component-variants/types"
 
 export const tableApi: ComponentApiDoc = {
   features: [
-    "ModernUI Table component.",
+    "Semantic table markup with ModernUI styling for headers, rows, and cells.",
+    "Composable with TanStack Table for sortable, filterable data grids.",
+    "Pair with TanStack Virtual for large datasets — see the virtual rows example.",
   ],
   usage: {
     import: "import { Table } from \"@/components/ui/table\"",
@@ -52,6 +54,19 @@ export const tableApi: ComponentApiDoc = {
         description: "Additional CSS classes.",
       },
     ],
-    footnote: "Additionally, Table accepts all standard HTML table attributes.",
+    footnote:
+      "For data grids, install @tanstack/react-table and compose with flexRender. Full API reference: https://tanstack.com/table/latest. For virtual scrolling, add @tanstack/react-virtual — see /components/table#tanstack-virtual and https://tanstack.com/table/v8/docs/guide/virtualization.",
   },
+  enhancements: [
+    {
+      enhancement: "@tanstack/react-table",
+      benefit:
+        "Headless columns, row models, sorting, filtering, and selection. Docs: https://tanstack.com/table/latest",
+    },
+    {
+      enhancement: "@tanstack/react-virtual",
+      benefit:
+        "Render only visible rows in a fixed-height scroll container for large datasets.",
+    },
+  ],
 }

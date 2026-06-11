@@ -37,6 +37,11 @@ export type ComponentApiDoc = {
   enhancements?: ComponentEnhancementRow[]
 }
 
+export type DocLink = {
+  href: string
+  label: string
+}
+
 export type ComponentVariant = {
   id: string
   title: string
@@ -44,7 +49,8 @@ export type ComponentVariant = {
   Preview?: ComponentType
   code: string
   body?: string
-  docLink?: { href: string; label: string }
+  docLink?: DocLink
+  docLinks?: DocLink[]
   tall?: boolean
   codeOnly?: boolean
 }
@@ -54,6 +60,7 @@ export type ComponentVariantSection = {
   title?: string
   description?: string
   body?: string
+  docLink?: DocLink
   variants: ComponentVariant[]
 }
 

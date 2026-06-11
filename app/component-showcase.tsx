@@ -70,7 +70,9 @@ function ComponentCard({
         <div className="flex min-w-0 flex-col gap-1">
           <h3 className="text-lg font-semibold">{item.title}</h3>
           <p className="text-muted-foreground text-sm">{item.description}</p>
-          <InstallCommand command={item.install} className="mt-2" />
+          {item.install.trim() ? (
+            <InstallCommand command={item.install} className="mt-2" />
+          ) : null}
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {hasVariantPage(item.name) ? (
@@ -79,7 +81,9 @@ function ComponentCard({
               label={getDetailPageLabel(item.name)}
             />
           ) : null}
-          <ViewCodeButton onClick={() => onViewCode(item)} />
+          {item.install.trim() ? (
+            <ViewCodeButton onClick={() => onViewCode(item)} />
+          ) : null}
         </div>
       </div>
       {preview ? (
