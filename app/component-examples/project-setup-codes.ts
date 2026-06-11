@@ -77,6 +77,21 @@ npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 3. Primitives (\`button\`, \`input\`, \`card\`, \`dialog\`, etc.)
 4. Blocks (\`login-form\`, etc.)
 
+## Monorepo
+
+Scaffold with \`npx shadcn@latest init --monorepo\`, then init each workspace and install shared primitives into \`packages/ui\`:
+
+\`\`\`bash
+npx shadcn@latest init -c packages/ui
+npx shadcn@latest init -c apps/web
+npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
+\`\`\`
+
+Import in the app: \`import "@workspace/ui/globals.css"\` and \`import { Button } from "@workspace/ui/components/ui/button"\`.
+
 ## What you get
 
 Files are copied directly into your project. You own and can edit every file — there is no opaque npm dependency for components.`,

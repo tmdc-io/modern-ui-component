@@ -1,6 +1,8 @@
+import { monorepoCodes } from "@/app/component-examples/monorepo-codes"
 import {
   ProjectSetupAgentsPreview,
   ProjectSetupConsumerPreview,
+  ProjectSetupMonorepoPreview,
   ProjectSetupOverviewPreview,
 } from "@/app/component-examples/project-setup-detail"
 import { projectSetupCodes } from "@/app/component-examples/project-setup-codes"
@@ -33,6 +35,15 @@ export const projectSetupVariantPage: ComponentVariantPage = {
       description: "Setup documentation installed as docs/modernui-setup.md.",
       Preview: ProjectSetupConsumerPreview,
       code: projectSetupCodes.consumer,
+    },
+    {
+      id: "monorepo",
+      title: "Monorepo",
+      description:
+        "Install theme, utils, and primitives into packages/ui; app blocks into apps/web.",
+      Preview: ProjectSetupMonorepoPreview,
+      code: monorepoCodes.fullBootstrap,
+      tall: true,
     },
   ],
 }

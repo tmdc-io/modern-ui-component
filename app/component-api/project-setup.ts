@@ -3,6 +3,8 @@ import type { ComponentApiDoc } from "@/app/component-variants/types"
 export const projectSetupApi: ComponentApiDoc = {
   features: [
     "Shared project conventions and agent instructions for ModernUI projects.",
+    "Consumer setup guide with single-app and monorepo install flows.",
+    "Monorepo commands use -c packages/ui and -c apps/web workspace flags.",
   ],
   usage: {
     import: "import { ProjectSetup } from \"@/components/project-setup\"",

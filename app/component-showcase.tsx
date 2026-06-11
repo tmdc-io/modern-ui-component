@@ -17,6 +17,7 @@ import { useComponentSearch } from "@/app/component-search"
 import { getDetailPageLabel, hasVariantPage } from "@/app/component-variants"
 import { componentPreviews } from "@/app/component-previews"
 import { InstallCommand } from "@/app/install-command"
+import { RegistryMonorepoGuide } from "@/app/monorepo-install-guide"
 import {
   RegistryHero,
   RegistryQuickStart,
@@ -129,7 +130,12 @@ export function ComponentShowcase() {
     <ComponentRegistryLayout activeName={activeName}>
       <RegistryHero totalCount={totalCount} categoryCount={categoryCount} />
 
-      {!isSearching ? <RegistryQuickStart /> : null}
+      {!isSearching ? (
+        <>
+          <RegistryQuickStart />
+          <RegistryMonorepoGuide />
+        </>
+      ) : null}
 
       <main className="flex flex-col gap-10 pb-16">
         {filteredCatalog.length === 0 ? (

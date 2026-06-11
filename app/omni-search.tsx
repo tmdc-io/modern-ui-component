@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import {
   CircleIcon,
   FileTextIcon,
+  GitBranchIcon,
   GithubIcon,
   LayoutGridIcon,
   PaletteIcon,
@@ -15,7 +16,7 @@ import {
 
 import { allComponents } from "@/app/catalog"
 import { hasVariantPage } from "@/app/component-variants"
-import { markRegistryScrollTarget } from "@/app/component-registry-sidebar"
+import { markRegistryScrollTarget, MONOREPO_SECTION_ID } from "@/app/component-registry-sidebar"
 import { GITHUB_URL } from "@/app/github-link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/default/ui/button"
@@ -168,6 +169,17 @@ function OmniSearchDialog({
           >
             <WrenchIcon />
             <span>Utils</span>
+          </CommandItem>
+          <CommandItem
+            value="Monorepo installation pnpm turbo workspaces"
+            onSelect={() => {
+              onOpenChange(false)
+              markRegistryScrollTarget(MONOREPO_SECTION_ID)
+              router.push(`/#${MONOREPO_SECTION_ID}`)
+            }}
+          >
+            <GitBranchIcon />
+            <span>Monorepo</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />

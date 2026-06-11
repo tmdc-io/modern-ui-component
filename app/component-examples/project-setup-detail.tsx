@@ -2,6 +2,12 @@
 
 import { FileTextIcon, FolderOpenIcon, TerminalIcon } from "lucide-react"
 
+import { monorepoCodes } from "@/app/component-examples/monorepo-codes"
+import { InstallCommand } from "@/app/install-command"
+import {
+  MonorepoProcessPreview,
+  MonorepoStructurePreview,
+} from "@/app/monorepo-install-guide"
 import { Badge } from "@/registry/default/ui/badge"
 
 const installFiles = [
@@ -93,6 +99,27 @@ export function ProjectSetupAgentsPreview() {
   )
 }
 
+export function ProjectSetupMonorepoPreview() {
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-6 text-left text-sm">
+      <p className="text-muted-foreground leading-relaxed">
+        In a pnpm/turbo monorepo, install shared primitives into{" "}
+        <code className="text-foreground text-xs">packages/ui</code> and
+        app-specific blocks into{" "}
+        <code className="text-foreground text-xs">apps/web</code>. Use{" "}
+        <code className="text-foreground text-xs">-c &lt;workspace&gt;</code> on
+        every CLI command when running from the repo root.
+      </p>
+      <MonorepoStructurePreview />
+      <MonorepoProcessPreview />
+      <div className="flex flex-col gap-2">
+        <p className="font-medium">Bootstrap commands</p>
+        <InstallCommand command={monorepoCodes.fullBootstrap} />
+      </div>
+    </div>
+  )
+}
+
 export function ProjectSetupConsumerPreview() {
   return (
     <div className="flex w-full max-w-lg flex-col gap-4 text-left text-sm">
@@ -109,6 +136,7 @@ export function ProjectSetupConsumerPreview() {
         <li>GitHub registry install commands</li>
         <li>Hosted namespace option after deploy</li>
         <li>Recommended install order for new projects</li>
+        <li>Monorepo layout, -c workspace flags, and components.json aliases</li>
       </ul>
     </div>
   )

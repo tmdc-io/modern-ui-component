@@ -14,9 +14,11 @@ import {
 } from "@/registry/default/ui/collapsible"
 
 export const QUICK_START_SECTION_ID = "quick-start"
+export const MONOREPO_SECTION_ID = "monorepo-install"
 
 const REGISTRY_SECTION_IDS = [
   QUICK_START_SECTION_ID,
+  MONOREPO_SECTION_ID,
   ...catalog.flatMap((category) => category.items.map((item) => item.name)),
 ]
 
@@ -112,6 +114,26 @@ function SidebarSectionLabel({ children }: { children: React.ReactNode }) {
     <p className="text-brand px-2 text-xs font-medium tracking-wide uppercase">
       {children}
     </p>
+  )
+}
+
+function SidebarMonorepoLink({ activeName }: { activeName?: string }) {
+  const isActive = activeName === MONOREPO_SECTION_ID
+  const className = cn(
+    "rounded-md px-2 py-1 text-sm transition-colors",
+    isActive
+      ? "bg-accent text-accent-foreground font-medium"
+      : "hover:text-primary"
+  )
+
+  return (
+    <Link
+      href={`/#${MONOREPO_SECTION_ID}`}
+      className={className}
+      onClick={() => markRegistryScrollTarget(MONOREPO_SECTION_ID)}
+    >
+      Monorepo
+    </Link>
   )
 }
 
@@ -235,7 +257,10 @@ export function ComponentRegistrySidebar({
             <SidebarSectionLabel>Foundation</SidebarSectionLabel>
             <div className="flex flex-col gap-0.5 pl-3">
               {!isSearching ? (
-                <SidebarQuickStartLink activeName={activeName} />
+                <>
+                  <SidebarQuickStartLink activeName={activeName} />
+                  <SidebarMonorepoLink activeName={activeName} />
+                </>
               ) : null}
               {filteredCatalog.foundation.items.map((item) => (
                 <SidebarNavItem

@@ -68,6 +68,93 @@ Always install in this order for new projects:
 3. Primitives (`button`, `input`, `card`, `dialog`, etc.)
 4. Blocks (`login-form`, etc.)
 
+## Monorepo (pnpm / turbo / npm workspaces)
+
+Use a shared UI package for primitives and theme. Keep app-only blocks in the app workspace.
+
+### Typical layout
+
+```txt
+my-monorepo/
+├── apps/
+│   └── web/                 # Next.js app
+│       ├── app/
+│       ├── components/      # app-only blocks
+│       └── components.json
+├── packages/
+│   └── ui/                  # shared ModernUI primitives
+│       ├── src/
+│       │   ├── components/ui/
+│       │   ├── lib/utils.ts
+│       │   └── styles/globals.css
+│       ├── components.json
+│       └── package.json     # exports for @workspace/ui
+└── package.json
+```
+
+### Process
+
+1. **Scaffold** — `npx shadcn@latest init --monorepo` creates `apps/web` and `packages/ui`.
+2. **Init each workspace** — every folder that receives components needs its own `components.json`:
+   ```bash
+   npx shadcn@latest init -c packages/ui
+   npx shadcn@latest init -c apps/web
+   ```
+3. **Install foundation in `packages/ui`** — theme and utils must live in the shared package:
+   ```bash
+   npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
+   npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
+   ```
+4. **Add primitives to `packages/ui`**:
+   ```bash
+   npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
+   npx shadcn@latest add tmdc-io/modern-ui-component/input -c packages/ui
+   ```
+5. **Add app blocks to `apps/web`** (optional):
+   ```bash
+   npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
+   ```
+
+### Rules
+
+- Use the **same** `style`, `baseColor`, and `iconLibrary` in every `components.json`.
+- Point the app `utils` alias to `@workspace/ui/lib/utils` — do not install utils twice.
+- Import theme CSS once in the app: `import "@workspace/ui/globals.css"` in `app/layout.tsx`.
+- Expose `packages/ui` through `package.json` `exports` so apps can import `@workspace/ui/components/ui/button`.
+- Always pass **`-c <workspace>`** when running `add` from the monorepo root.
+
+### Example `packages/ui/package.json` exports
+
+```json
+{
+  "name": "@workspace/ui",
+  "exports": {
+    "./globals.css": "./src/styles/globals.css",
+    "./components/*": "./src/components/*.tsx",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts"
+  }
+}
+```
+
+### Example app import
+
+```tsx
+// apps/web/app/layout.tsx
+import "@workspace/ui/globals.css"
+
+// apps/web/components/login-page.tsx
+import { Button } from "@workspace/ui/components/ui/button"
+```
+
+### Discover components from a workspace
+
+```bash
+npx shadcn@latest list tmdc-io/modern-ui-component -c packages/ui
+```
+
+See the [shadcn monorepo docs](https://ui.shadcn.com/docs/monorepo) for package-import aliases and Tailwind v4 notes.
+
 ## What you get
 
 Files are copied directly into your project. You own and can edit every file — there is no opaque npm dependency for components.
