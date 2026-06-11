@@ -3,6 +3,7 @@ import Link from "next/link"
 import { OmniSearchTrigger } from "@/app/omni-search"
 import { GitHubLink } from "@/app/github-link"
 import { ModeToggle } from "@/app/mode-toggle"
+import { TextSizeControl } from "@/app/text-size-control"
 import { VersionDropdown } from "@/app/version-dropdown"
 
 function ModernLogo({ className }: { className?: string }) {
@@ -85,7 +86,8 @@ export function SiteHeader() {
           <VersionDropdown />
         </div>
         <OmniSearchTrigger className="mx-auto hidden w-full max-w-md sm:flex" />
-        <div className="flex items-center justify-end gap-2 sm:gap-4">
+        <div className="flex items-center justify-end gap-2 sm:gap-3">
+          <TextSizeControl />
           <ModeToggle />
           <GitHubLink className="text-foreground hover:text-primary inline-flex items-center gap-2 text-sm font-medium transition-colors" />
         </div>

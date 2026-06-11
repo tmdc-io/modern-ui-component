@@ -1,1 +1,5 @@
 @import "../registry/default/theme/globals.css";
+
+html {
+  font-size: 100%;
+}
