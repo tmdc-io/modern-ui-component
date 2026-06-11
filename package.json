@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "pnpm registry:build && next build",
+    "build": "pnpm registry:build && pnpm docs:sync-readme && next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -20,7 +20,8 @@
     "registry:prune-variants": "node scripts/prune-broken-variants.mjs",
     "registry:fix-radix": "node scripts/fix-radix-examples.mjs",
     "docs:scaffold-api": "node scripts/scaffold-component-api.mjs --write-index",
-    "docs:scaffold-api:force": "node scripts/scaffold-component-api.mjs --write-index --force"
+    "docs:scaffold-api:force": "node scripts/scaffold-component-api.mjs --write-index --force",
+    "docs:sync-readme": "node scripts/sync-readme-count.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

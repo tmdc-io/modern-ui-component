@@ -2,19 +2,74 @@
 
 A shadcn-extended React UI component library distributed via the official [shadcn CLI](https://ui.shadcn.com/docs/cli). Teams install components as source files they own and can customize.
 
+**Registry namespace:** `tmdc-io/modern-ui-component`  
+**Docs site:** [http://localhost:3000](http://localhost:3000) when running locally (`pnpm dev`)
+
 ## What's included
 
-| Item | Type | Description |
-|------|------|-------------|
-| `theme` | foundation | ModernUI design tokens and CSS variables |
-| `utils` | foundation | `cn()` classname utility |
-| `button` | primitive | Button with `brand` variant |
-| `input` | primitive | Text input |
-| `card` | primitive | Card layout |
-| `label` | primitive | Form label |
-| `dialog` | primitive | Modal dialog |
-| `login-form` | block | Sign-in form with Zod validation |
-| `project-setup` | meta | AGENTS.md and consumer docs |
+<!-- catalog-count:items -->138<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->17<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
+
+```bash
+npx shadcn@latest list tmdc-io/modern-ui-component
+```
+
+| Category | Examples |
+|----------|----------|
+| **Foundation** | `project-setup`, `theme`, `utils` |
+| **Actions & forms** | `button`, `input`, `select`, `date-picker`, `form`, … |
+| **Layout & navigation** | `card`, `sidebar`, `tabs`, `breadcrumb`, … |
+| **Overlays & feedback** | `dialog`, `drawer`, `toast`, `sonner`, … |
+| **Data & charts** | `table`, `data-table`, `chart`, area/bar/line/pie charts, … |
+| **DataOS UI** | `quality-summary-card` |
+| **Blocks** | `login`, `signup`, `login-form` |
+
+Design tokens follow the Figma Dev-Ready palette (see `registry/default/theme/globals.css`).
+
+## Docs site
+
+The Next.js app in `app/` is the component registry documentation:
+
+| Section | URL | Description |
+|---------|-----|-------------|
+| Registry | `/` | Component catalog with live previews |
+| Quick start | `/#quick-start` | Step-by-step bootstrap commands |
+| Monorepo | `/#monorepo-install` | pnpm/turbo workspace install guide |
+| Component docs | `/components/{name}` | Variants, usage, API reference |
+| Search | `⌘K` | Omni-search across components and docs |
+
+Foundation sidebar order: **Quick Start → Monorepo → Project Setup → Theme → Utils**.
+
+## Install in a consumer project
+
+### Single app
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup   # optional
+npx shadcn@latest add tmdc-io/modern-ui-component/theme
+npx shadcn@latest add tmdc-io/modern-ui-component/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/button
+```
+
+Recommended order: **theme → utils → primitives → blocks**.
+
+### Monorepo
+
+Install shared primitives into `packages/ui` and app-specific blocks into `apps/web`. Use `-c` on every command when running from the repo root:
+
+```bash
+npx shadcn@latest init --monorepo
+npx shadcn@latest init -c packages/ui
+npx shadcn@latest init -c apps/web
+npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
+```
+
+Import theme CSS in the app layout: `import "@workspace/ui/globals.css"`.
+
+Full details: [docs/CONSUMER.md](docs/CONSUMER.md) (also installed as `docs/modernui-setup.md` via `project-setup`).
 
 ## Commands
 
@@ -68,6 +123,7 @@ npx shadcn@latest registry validate .
 |---------|-------------|
 | `pnpm docs:scaffold-api` | Generate or refresh `app/component-api/*.ts` stubs and `index.ts` (skips curated files) |
 | `pnpm docs:scaffold-api:force` | Same as above, but overwrites curated API files (`button`, `dialog`, etc.) |
+| `pnpm docs:sync-readme` | Sync catalog item/category counts in `README.md` from `app/catalog.ts` |
 
 Scaffold a single component:
 
@@ -110,6 +166,12 @@ pnpm typecheck
 5. `pnpm docs:scaffold-api` (optional — API reference on `/components/{name}`)
 6. `npx shadcn@latest registry validate .`
 
+**After adding catalog entries** (new components listed on the docs site)
+
+```bash
+pnpm docs:sync-readme
+```
+
 **Production deploy**
 
 ```bash
@@ -119,9 +181,11 @@ pnpm start
 
 ## Distribute to consumer projects
 
-- [docs/CONSUMER.md](docs/CONSUMER.md) — consumer setup guide
-- [docs/GITHUB.md](docs/GITHUB.md) — publish to GitHub Registry
-- [docs/HOSTED.md](docs/HOSTED.md) — deploy hosted `@modernui` namespace
+| Guide | Purpose |
+|-------|---------|
+| [docs/CONSUMER.md](docs/CONSUMER.md) | Single-app and monorepo setup |
+| [docs/GITHUB.md](docs/GITHUB.md) | Publish to GitHub Registry |
+| [docs/HOSTED.md](docs/HOSTED.md) | Deploy hosted `@modernui` namespace |
 
 ### GitHub Registry
 
@@ -153,10 +217,16 @@ npx shadcn@latest add @modernui/button
 
 ```txt
 registry/default/
-├── ui/                  # primitives (button, input, card, dialog, label)
-├── blocks/              # composite components (login-form, chart blocks)
+├── ui/                  # primitives (button, input, dialog, chart, …)
+├── blocks/              # composite components (login-form, chart blocks, …)
 └── theme/               # globals.css design tokens
-app/component-api/       # generated + curated API reference data for docs site
+app/
+├── catalog.ts           # docs site component catalog
+├── component-api/       # generated + curated API reference data
+├── component-variants/  # detail page definitions
+├── registry-quick-start.tsx
+├── monorepo-install-guide.tsx
+└── components/[name]/   # /components/{name} doc routes
 lib/utils.ts             # cn() helper
 registry.json            # root catalog
 public/r/                # built registry JSON (generated)
@@ -167,3 +237,5 @@ docs/                    # consumer, GitHub, and hosted setup guides
 ## Based on
 
 Built on the [shadcn registry template](https://github.com/shadcn-ui/registry-template) with Tailwind v4 and Next.js 15.
+
+Repository: [github.com/tmdc-io/modern-ui-component](https://github.com/tmdc-io/modern-ui-component)
