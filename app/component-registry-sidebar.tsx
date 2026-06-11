@@ -25,6 +25,7 @@ const REGISTRY_SECTION_IDS = [
 
 const SCROLL_SPY_OFFSET = 120
 const SIDEBAR_SCROLL_KEY = "registry:sidebar-scroll"
+const SCROLL_TO_KEY = "registry:scroll-to"
 const FOUNDATION_ID = "foundation"
 const BLOCKS_ID = "blocks"
 const DATAOS_UI_ID = "dataos-ui"
@@ -56,12 +57,16 @@ export function getRegistryItemHref(name: string, variantDetail = false) {
 }
 
 function getActiveSectionFromScroll() {
-  let current = REGISTRY_SECTION_IDS[0]
+  let current: string = REGISTRY_SECTION_IDS[0]
+  let bestTop = Number.NEGATIVE_INFINITY
 
   for (const id of REGISTRY_SECTION_IDS) {
     const element = document.getElementById(id)
     if (!element) continue
-    if (element.getBoundingClientRect().top <= SCROLL_SPY_OFFSET) {
+
+    const top = element.getBoundingClientRect().top
+    if (top <= SCROLL_SPY_OFFSET && top > bestTop) {
+      bestTop = top
       current = id
     }
   }
@@ -69,35 +74,82 @@ function getActiveSectionFromScroll() {
   return current
 }
 
+function getPendingScrollTarget() {
+  if (typeof window === "undefined") return undefined
+
+  try {
+    const pending = sessionStorage.getItem(SCROLL_TO_KEY)
+    if (pending && REGISTRY_SECTION_IDS.includes(pending)) {
+      return pending
+    }
+  } catch {
+    // ignore storage failures
+  }
+
+  return undefined
+}
+
+function clearPendingScrollTarget() {
+  try {
+    sessionStorage.removeItem(SCROLL_TO_KEY)
+  } catch {
+    // ignore storage failures
+  }
+}
+
 export function useRegistryActiveSection() {
   const [activeName, setActiveName] = React.useState<string | undefined>()
 
   React.useEffect(() => {
-    const syncFromHash = () => {
-      const hash = window.location.hash.replace(/^#/, "")
-      if (hash && REGISTRY_SECTION_IDS.includes(hash)) {
-        setActiveName(hash)
-      }
-    }
+    let frame = 0
 
-    const syncFromScroll = () => {
+    const syncActiveSection = () => {
+      const pending = getPendingScrollTarget()
+
+      if (pending) {
+        const target = document.getElementById(pending)
+        if (target && target.getBoundingClientRect().top > SCROLL_SPY_OFFSET) {
+          setActiveName(pending)
+          return
+        }
+        clearPendingScrollTarget()
+      }
+
       const current = getActiveSectionFromScroll()
       setActiveName(current)
+
       const nextHash = `#${current}`
       if (window.location.hash !== nextHash) {
         history.replaceState(null, "", nextHash)
       }
     }
 
+    const scheduleSync = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(syncActiveSection)
+    }
+
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace(/^#/, "")
+      if (hash && REGISTRY_SECTION_IDS.includes(hash)) {
+        setActiveName(hash)
+        markRegistryScrollTarget(hash)
+      }
+      scheduleSync()
+    }
+
     syncFromHash()
-    syncFromScroll()
+    scheduleSync()
 
     window.addEventListener("hashchange", syncFromHash)
-    window.addEventListener("scroll", syncFromScroll, { passive: true })
+    window.addEventListener("scroll", scheduleSync, { passive: true })
+    window.addEventListener("resize", scheduleSync)
 
     return () => {
+      cancelAnimationFrame(frame)
       window.removeEventListener("hashchange", syncFromHash)
-      window.removeEventListener("scroll", syncFromScroll)
+      window.removeEventListener("scroll", scheduleSync)
+      window.removeEventListener("resize", scheduleSync)
     }
   }, [])
 
@@ -140,7 +192,7 @@ function SidebarMonorepoLink({ activeName }: { activeName?: string }) {
       className={className}
       onClick={() => markRegistryScrollTarget(MONOREPO_SECTION_ID)}
     >
-      Monorepo
+      Monorepo Installation
     </Link>
   )
 }
@@ -371,14 +423,10 @@ export function ComponentRegistrySidebar({
 export function useRegistryScrollTarget() {
   React.useEffect(() => {
     const scrollToTarget = () => {
-      const fromStorage = sessionStorage.getItem("registry:scroll-to")
+      const fromStorage = sessionStorage.getItem(SCROLL_TO_KEY)
       const hashId = window.location.hash.replace(/^#/, "")
       const id = fromStorage || hashId
       if (!id) return
-
-      if (fromStorage) {
-        sessionStorage.removeItem("registry:scroll-to")
-      }
 
       const scroll = () => {
         document.getElementById(id)?.scrollIntoView({
@@ -389,6 +437,7 @@ export function useRegistryScrollTarget() {
 
       scroll()
       window.setTimeout(scroll, 300)
+      window.setTimeout(scroll, 700)
     }
 
     scrollToTarget()
@@ -398,5 +447,5 @@ export function useRegistryScrollTarget() {
 }
 
 export function markRegistryScrollTarget(name: string) {
-  sessionStorage.setItem("registry:scroll-to", name)
+  sessionStorage.setItem(SCROLL_TO_KEY, name)
 }
