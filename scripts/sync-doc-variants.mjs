@@ -21,6 +21,7 @@ const MANUAL_PAGES = [
   "quality-summary-card",
   "data-product-table",
   "hero",
+  "dataos-sidebar",
   "theme",
   "utils",
 ]

@@ -198,6 +198,11 @@ export const catalog: CatalogCategory[] = [
         "Hero",
         "Data product hero header with quality card, metadata columns, jump nav, and full/internal/sticky variants."
       ),
+      item(
+        "dataos-sidebar",
+        "DataOS Sidebar",
+        "Application sidebar with brand logo, grouped navigation, active highlight, and expanded or collapsed rail."
+      ),
     ],
   },
   {

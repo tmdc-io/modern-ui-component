@@ -16,6 +16,7 @@ import {
   SignupVariantPage,
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
+import { dataosSidebarPage } from "@/app/component-variants/dataos-sidebar-page"
 import { dataProductTablePage } from "@/app/component-variants/data-product-table-page"
 import { heroPage } from "@/app/component-variants/hero-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
@@ -150,6 +151,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "quality-summary-card": qualitySummaryCardPage,
   "data-product-table": dataProductTablePage,
   hero: heroPage,
+  "dataos-sidebar": dataosSidebarPage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
   ...applyTableTanStackSupplement(
@@ -171,6 +173,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "quality-summary-card": "Usage",
   "data-product-table": "Usage",
   hero: "Usage",
+  "dataos-sidebar": "Usage",
   theme: "Palette",
 }
 

@@ -26,6 +26,7 @@ import { UtilsPreview } from "@/app/utils-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
+import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
 import {
   AlertDialog,
@@ -820,6 +821,11 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   hero: (
     <div className="w-full overflow-hidden">
       <HeroInternalPreview />
+    </div>
+  ),
+  "dataos-sidebar": (
+    <div className="h-64 w-full overflow-hidden">
+      <DataOsSidebarExpandedPreview />
     </div>
   ),
   ...chartPreviewEntries,

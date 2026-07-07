@@ -1195,6 +1195,26 @@
       ]
     },
     {
+      "name": "dataos-sidebar",
+      "type": "registry:block",
+      "title": "DataOS Sidebar",
+      "description": "DataOS application sidebar with brand logo, grouped navigation, and expanded or collapsed rail modes.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/blocks/dataos-sidebar/brand-logo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/blocks/dataos-sidebar/dataos-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "chart-area-axes",
       "type": "registry:block",
       "title": "Area Chart Axes",

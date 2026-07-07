@@ -26,6 +26,7 @@ const CURATED = new Set([
   "quality-summary-card",
   "data-product-table",
   "hero",
+  "dataos-sidebar",
   "select",
   "toast",
   "typography",

@@ -48,6 +48,7 @@ export function getVariantPageNames(): string[] {
   "quality-summary-card",
   "data-product-table",
   "hero",
+  "dataos-sidebar",
   "radio-group",
   "resizable",
   "scroll-area",
