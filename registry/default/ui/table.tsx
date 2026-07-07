@@ -1,20 +1,72 @@
 "use client"
 
 import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+const tableContainerVariants = cva("relative w-full overflow-x-auto", {
+  variants: {
+    variant: {
+      default: "",
+      borderless: cn(
+        "[&_[data-slot=table-header]_tr]:border-0",
+        "[&_[data-slot=table-row]]:border-0",
+        "[&_[data-slot=table-footer]]:border-0"
+      ),
+      striped:
+        "[&_[data-slot=table-body]_tr:nth-child(even)]:bg-muted/50",
+      bordered: cn(
+        "overflow-hidden rounded-md border",
+        "[&_[data-slot=table-head]]:border [&_[data-slot=table-cell]]:border",
+        "[&_[data-slot=table-head]]:border-border [&_[data-slot=table-cell]]:border-border"
+      ),
+      dense: cn(
+        "[&_[data-slot=table-head]]:h-8 [&_[data-slot=table-head]]:px-1.5",
+        "[&_[data-slot=table-cell]]:px-1.5 [&_[data-slot=table-cell]]:py-1"
+      ),
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+})
+
+type TableProps = React.ComponentProps<"table"> &
+  VariantProps<typeof tableContainerVariants> & {
+    noWrapper?: boolean
+    containerClassName?: string
+  }
+
+function Table({
+  className,
+  variant,
+  noWrapper,
+  containerClassName,
+  ...props
+}: TableProps) {
+  const table = (
+    <table
+      data-slot="table"
+      className={cn("w-full caption-bottom text-sm", className)}
+      {...props}
+    />
+  )
+
+  if (noWrapper) {
+    return table
+  }
+
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      data-variant={variant ?? "default"}
+      className={cn(
+        tableContainerVariants({ variant }),
+        containerClassName
+      )}
     >
-      <table
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
+      {table}
     </div>
   )
 }
@@ -113,4 +165,8 @@ export {
   TableRow,
   TableCell,
   TableCaption,
+  tableContainerVariants,
 }
+export type TableVariant = NonNullable<
+  VariantProps<typeof tableContainerVariants>["variant"]
+>

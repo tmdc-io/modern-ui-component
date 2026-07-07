@@ -6,6 +6,8 @@ export const dataTableApi: ComponentApiDoc = {
     "Composed from the Table primitive plus column definitions.",
     "Supports row selection, column visibility, and faceted filtering.",
     "Virtual row scrolling with TanStack Virtual for large client-side datasets.",
+    "Server-side pagination with manualPagination and TanStack Query.",
+    "Column reordering via columnOrder state and inline cell editing patterns.",
   ],
   intro:
     "Data Table is a composition pattern — not a standalone component. Install the Table primitive and @tanstack/react-table, then wire columns and row models with useReactTable. Full TanStack Table documentation: https://tanstack.com/table/latest",
@@ -122,9 +124,27 @@ return (
         description:
           "count — row count from table.getRowModel().rows; getScrollElement — scroll container ref; estimateSize — row height in px; overscan — extra rows rendered above/below viewport.",
       },
+      {
+        prop: "manualPagination",
+        type: "boolean",
+        description:
+          "When true, you control pagination server-side. Provide pageCount and fetch data per page. See /components/table#server-async.",
+      },
+      {
+        prop: "manualSorting",
+        type: "boolean",
+        description:
+          "When true, sorting is handled server-side. Pass sort state to your API and return sorted rows.",
+      },
+      {
+        prop: "columnOrder",
+        type: "ColumnOrderState",
+        description:
+          "Array of column ids controlling render order. Update via onColumnOrderChange for drag-and-drop reordering.",
+      },
     ],
     footnote:
-      "Install @tanstack/react-table alongside the Table component. Full documentation: https://tanstack.com/table/latest. For virtual rows, also install @tanstack/react-virtual — see #tanstack-virtual and https://tanstack.com/table/v8/docs/guide/virtualization.",
+      "Install @tanstack/react-table alongside the Table component. Full documentation: https://tanstack.com/table/latest. For virtual rows, also install @tanstack/react-virtual — see #tanstack-virtual and https://tanstack.com/table/v8/docs/guide/virtualization. For server-side data, add @tanstack/react-query — see /components/table#server-async.",
   },
   cssVariants: [
     {
@@ -154,6 +174,11 @@ return (
           name: "@tanstack/react-virtual",
           description:
             "Optional — virtualize rows for large datasets instead of pagination.",
+        },
+        {
+          name: "@tanstack/react-query",
+          description:
+            "Optional — fetch server-side pages for manualPagination tables.",
         },
       ],
     },

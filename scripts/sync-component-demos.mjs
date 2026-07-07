@@ -33,6 +33,23 @@ const EXAMPLE_ONLY_COMPONENTS = {
       "Styled text elements for headings, paragraphs, lists, and inline code.",
   },
 }
+const EXTRA_VARIANTS = new Map([
+  [
+    "table",
+    [
+      {
+        id: "borderless",
+        title: "Borderless",
+        description:
+          "Remove row dividers with border-0 classes; compare bordered and borderless layouts.",
+        previewName: "TableBorderlessPreview",
+        codeExportName: "TableBorderlessCode",
+        importPath: "@/app/component-examples/generated/table/borderless",
+      },
+    ],
+  ],
+])
+
 const MANUAL_VARIANTS = new Map([
   [
     "sidebar",
@@ -621,6 +638,9 @@ async function main() {
       skipped.push(componentName)
       continue
     }
+
+    const extraVariants = EXTRA_VARIANTS.get(componentName) ?? []
+    variants.push(...extraVariants)
 
     generatedPages.push({
       name: componentName,

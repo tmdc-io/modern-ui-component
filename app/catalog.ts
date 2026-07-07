@@ -188,6 +188,11 @@ export const catalog: CatalogCategory[] = [
         "Quality Summary Card",
         "Quality score overview with dimension pass/warn status and view-all action."
       ),
+      item(
+        "data-product-table",
+        "Data Product Table",
+        "Catalog table with product icon, glossary pills, quality badges, and sort/filter headers."
+      ),
     ],
   },
   {

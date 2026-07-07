@@ -10,6 +10,12 @@ import { TextareaDocInvalidPreview } from "@/app/component-examples/generated/te
 import { TextareaDocInvalidCode } from "@/app/component-examples/generated/textarea/doc-invalid.code"
 import { TextareaDocRtlPreview } from "@/app/component-examples/generated/textarea/doc-rtl"
 import { TextareaDocRtlCode } from "@/app/component-examples/generated/textarea/doc-rtl.code"
+import { tableServerAsyncCodes } from "@/app/component-examples/table-server-async-codes"
+import { TableServerAsyncPreview } from "@/app/component-examples/table-server-async"
+import { tablePaginationSelectionCodes } from "@/app/component-examples/table-pagination-selection-codes"
+import { TablePaginationSelectionPreview } from "@/app/component-examples/table-pagination-selection"
+import { tableSortFilterCodes } from "@/app/component-examples/table-sort-filter-codes"
+import { TableSortFilterPreview } from "@/app/component-examples/table-sort-filter"
 import { tableVirtualCodes } from "@/app/component-examples/table-virtual-codes"
 import { TableVirtualPreview } from "@/app/component-examples/table-virtual"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
@@ -22,6 +28,34 @@ export const docVariantSupplements: Record<string, ComponentVariantPage> = {
       "Sortable, filterable, paginated tables powered by TanStack Table.",
     install: "npx shadcn@latest add tmdc-io/modern-ui-component/table",
     variants: [
+      {
+        id: "tanstack-sort-filter",
+        title: "Sorting & filtering",
+        description:
+          "Stacked sort icons and popover column filters in the header row.",
+        Preview: TableSortFilterPreview,
+        code: tableSortFilterCodes.full,
+        docLinks: [
+          {
+            href: "/components/table#tanstack-sort-filter",
+            label: "Table primitive reference",
+          },
+        ],
+      },
+      {
+        id: "tanstack-pagination-selection",
+        title: "Pagination & selection",
+        description:
+          "Row selection, column visibility, filtering, and pagination controls.",
+        Preview: TablePaginationSelectionPreview,
+        code: tablePaginationSelectionCodes.full,
+        docLinks: [
+          {
+            href: "/components/table#tanstack-pagination-selection",
+            label: "Table primitive reference",
+          },
+        ],
+      },
       {
         id: "tanstack-virtual",
         title: "Virtual rows",
@@ -42,6 +76,24 @@ export const docVariantSupplements: Record<string, ComponentVariantPage> = {
           {
             href: "/components/table#tanstack-virtual",
             label: "Table primitive reference",
+          },
+        ],
+      },
+      {
+        id: "server-async",
+        title: "Server-side & async",
+        description:
+          "Manual pagination and sorting with TanStack Query fetching each page.",
+        Preview: TableServerAsyncPreview,
+        code: tableServerAsyncCodes.full,
+        docLinks: [
+          {
+            href: "/components/table#server-async",
+            label: "Table primitive reference",
+          },
+          {
+            href: "https://tanstack.com/query/latest",
+            label: "TanStack Query docs",
           },
         ],
       },

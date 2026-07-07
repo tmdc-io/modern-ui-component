@@ -919,6 +919,35 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "ModernUI Toast component.",
+      "files": [
+        {
+          "path": "registry/default/ui/toast.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/ui/toaster.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "hooks/use-toast.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-toast.ts"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-toast",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "sonner",
       "type": "registry:ui",
       "title": "Sonner",
@@ -984,6 +1013,9 @@
           "path": "registry/default/ui/table.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "utils"
@@ -1118,6 +1150,26 @@
       "files": [
         {
           "path": "registry/default/blocks/quality-summary-card/quality-summary-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-product-table",
+      "type": "registry:block",
+      "title": "Data Product Table",
+      "description": "DataOS catalog table with product icon, glossary pills, quality badges, and sort/filter headers.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "input",
+        "popover",
+        "table"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/data-product-table/data-product-table.tsx",
           "type": "registry:component"
         }
       ]

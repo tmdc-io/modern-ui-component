@@ -880,6 +880,8 @@ import { TableFooterPreview } from "@/app/component-examples/generated/table/foo
 import { TableFooterCode } from "@/app/component-examples/generated/table/footer.code"
 import { TableRtlPreview } from "@/app/component-examples/generated/table/rtl"
 import { TableRtlCode } from "@/app/component-examples/generated/table/rtl.code"
+import { TableBorderlessPreview } from "@/app/component-examples/generated/table/borderless"
+import { TableBorderlessCode } from "@/app/component-examples/generated/table/borderless.code"
 import { TabsDemoPreview } from "@/app/component-examples/generated/tabs/default"
 import { TabsDemoCode } from "@/app/component-examples/generated/tabs/default.code"
 import { TabsDisabledPreview } from "@/app/component-examples/generated/tabs/disabled"
@@ -4475,6 +4477,14 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         description: "Footer example from shadcn docs.",
         Preview: TableFooterPreview,
         code: TableFooterCode,
+      },
+      {
+        id: "borderless",
+        title: "Borderless",
+        description:
+          "Remove row dividers with border-0 classes; compare bordered and borderless layouts.",
+        Preview: TableBorderlessPreview,
+        code: TableBorderlessCode,
       },
       {
         id: "rtl",

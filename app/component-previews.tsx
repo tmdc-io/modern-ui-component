@@ -25,6 +25,7 @@ import { ThemePalettePreview } from "@/app/theme-palette-preview"
 import { UtilsPreview } from "@/app/utils-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
+import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -808,6 +809,11 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "quality-summary-card": (
     <div className="flex w-full justify-center">
       <QualitySummaryCard />
+    </div>
+  ),
+  "data-product-table": (
+    <div className="w-full overflow-hidden">
+      <TableDataProductPreview />
     </div>
   ),
   ...chartPreviewEntries,

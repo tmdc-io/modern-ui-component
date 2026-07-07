@@ -1014,6 +1014,9 @@
           "type": "registry:ui"
         }
       ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "utils"
       ]
@@ -1147,6 +1150,26 @@
       "files": [
         {
           "path": "registry/default/blocks/quality-summary-card/quality-summary-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-product-table",
+      "type": "registry:block",
+      "title": "Data Product Table",
+      "description": "DataOS catalog table with product icon, glossary pills, quality badges, and sort/filter headers.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "input",
+        "popover",
+        "table"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/data-product-table/data-product-table.tsx",
           "type": "registry:component"
         }
       ]

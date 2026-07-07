@@ -16,6 +16,7 @@ import {
   SignupVariantPage,
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
+import { dataProductTablePage } from "@/app/component-variants/data-product-table-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
 import { attributionsVariantPage } from "@/app/component-variants/attributions-page"
 import { projectSetupVariantPage } from "@/app/component-variants/project-setup-page"
@@ -146,6 +147,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "project-setup": projectSetupVariantPage,
   attributions: attributionsVariantPage,
   "quality-summary-card": qualitySummaryCardPage,
+  "data-product-table": dataProductTablePage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
   ...applyTableTanStackSupplement(
@@ -165,6 +167,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "project-setup": "Details",
   attributions: "Credits",
   "quality-summary-card": "Usage",
+  "data-product-table": "Usage",
   theme: "Palette",
 }
 

@@ -19,6 +19,8 @@ const MANUAL_PAGES = [
   "signup",
   "project-setup",
   "quality-summary-card",
+  "data-product-table",
+  "data-product-table",
   "theme",
   "utils",
 ]

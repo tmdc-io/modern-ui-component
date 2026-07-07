@@ -17,6 +17,7 @@ import { collapsibleApi } from "@/app/component-api/collapsible"
 import { comboboxApi } from "@/app/component-api/combobox"
 import { commandApi } from "@/app/component-api/command"
 import { contextMenuApi } from "@/app/component-api/context-menu"
+import { dataProductTableApi } from "@/app/component-api/data-product-table"
 import { dataTableApi } from "@/app/component-api/data-table"
 import { datePickerApi } from "@/app/component-api/date-picker"
 import { dialogApi } from "@/app/component-api/dialog"
@@ -87,6 +88,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   combobox: comboboxApi,
   command: commandApi,
   "context-menu": contextMenuApi,
+  "data-product-table": dataProductTableApi,
   "data-table": dataTableApi,
   "date-picker": datePickerApi,
   dialog: dialogApi,
