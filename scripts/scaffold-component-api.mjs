@@ -25,6 +25,7 @@ const CURATED = new Set([
   "input",
   "quality-summary-card",
   "data-product-table",
+  "hero",
   "select",
   "toast",
   "typography",

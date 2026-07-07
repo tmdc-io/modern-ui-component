@@ -193,6 +193,11 @@ export const catalog: CatalogCategory[] = [
         "Data Product Table",
         "Catalog table with product icon, glossary pills, quality badges, and sort/filter headers."
       ),
+      item(
+        "hero",
+        "Hero",
+        "Data product hero header with quality card, metadata columns, jump nav, and full/internal/sticky variants."
+      ),
     ],
   },
   {

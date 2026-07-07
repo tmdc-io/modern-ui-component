@@ -1175,6 +1175,26 @@
       ]
     },
     {
+      "name": "hero",
+      "type": "registry:block",
+      "title": "Hero",
+      "description": "DataOS data product hero header with quality card, metadata columns, jump bar, and full/internal/sticky variants.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/hero/hero.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "chart-area-axes",
       "type": "registry:block",
       "title": "Area Chart Axes",

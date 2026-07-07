@@ -27,6 +27,7 @@ import { dropdownMenuApi } from "@/app/component-api/dropdown-menu"
 import { emptyApi } from "@/app/component-api/empty"
 import { fieldApi } from "@/app/component-api/field"
 import { formApi } from "@/app/component-api/form"
+import { heroApi } from "@/app/component-api/hero"
 import { hoverCardApi } from "@/app/component-api/hover-card"
 import { inputApi } from "@/app/component-api/input"
 import { inputGroupApi } from "@/app/component-api/input-group"
@@ -98,6 +99,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   empty: emptyApi,
   field: fieldApi,
   form: formApi,
+  hero: heroApi,
   "hover-card": hoverCardApi,
   input: inputApi,
   "input-group": inputGroupApi,

@@ -20,7 +20,7 @@ const MANUAL_PAGES = [
   "project-setup",
   "quality-summary-card",
   "data-product-table",
-  "data-product-table",
+  "hero",
   "theme",
   "utils",
 ]

@@ -47,6 +47,7 @@ export function getVariantPageNames(): string[] {
   "attributions",
   "quality-summary-card",
   "data-product-table",
+  "hero",
   "radio-group",
   "resizable",
   "scroll-area",
