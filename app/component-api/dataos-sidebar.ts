@@ -5,8 +5,11 @@ export const dataosSidebarApi: ComponentApiDoc = {
     "DataOS brand logo with full wordmark in expanded mode and mark-only in collapsed mode.",
     "Grouped navigation with dividers after Home and Workbench.",
     "Teal active state on the current item; cream background shell.",
-    "Hover-to-pin (max three) with a dedicated pinned area under Home.",
+    "Hover-to-pin (max three) with Data Products pinned by default.",
+    "Locked pins via pinLocked — Data Products cannot be unpinned but can be reordered.",
+    "Pin tooltip when at the limit: hovering the pin icon shows only 3 allow.",
     "Drag-and-drop reordering of pinned apps via native HTML5 drag events.",
+    "Collapsed rail shows icon tooltips on hover for each navigation item.",
     "Footer actions for panel toggle and documentation.",
   ],
   usage: {
@@ -81,8 +84,8 @@ export const dataosSidebarApi: ComponentApiDoc = {
       {
         prop: "defaultPinnedIds",
         type: "string[]",
-        default: "[]",
-        description: "Initial pinned ids for uncontrolled usage.",
+        default: '["data-products"]',
+        description: "Initial pinned ids for uncontrolled usage. Data Products is pinned by default.",
       },
       {
         prop: "onPinnedChange",
@@ -91,7 +94,7 @@ export const dataosSidebarApi: ComponentApiDoc = {
       },
     ],
     footnote:
-      "Also exported: DataOsLogo, DataOsLogoMark, DataOsSidebarItem. Close panel toggles collapsed state. Set pinnable: false on an item to exclude it from the pinned area (Home is never pinnable).",
+      "Also exported: DataOsLogo, DataOsLogoMark, DataOsSidebarItem. Close panel toggles collapsed state. Set pinnable: false to exclude an item from pinning. Set pinLocked: true to keep an item always pinned (Data Products by default). Locked items can still be drag-reordered.",
   },
   enhancements: [
     {
@@ -107,8 +110,12 @@ export const dataosSidebarApi: ComponentApiDoc = {
       benefit: "Override items and footerItems for app-specific navigation",
     },
     {
+      enhancement: "Collapsed tooltips",
+      benefit: "Icon rail shows item labels on hover via the tooltip primitive",
+    },
+    {
       enhancement: "Pin & reorder",
-      benefit: "Hover-to-pin up to three apps and drag to reorder, with no extra dependencies",
+      benefit: "Data Products pinned by default; pin two more, drag to reorder, tooltip at limit",
     },
   ],
 }

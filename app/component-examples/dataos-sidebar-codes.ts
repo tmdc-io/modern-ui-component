@@ -7,6 +7,8 @@ export const dataosSidebarCodes = {
   icon: React.ReactNode
   href?: string
   onSelect?: () => void
+  pinnable?: boolean
+  pinLocked?: boolean           // always pinned; cannot be unpinned
 }
 
 type DataOsSidebarProps = {
@@ -21,7 +23,7 @@ type DataOsSidebarProps = {
   enablePinning?: boolean         // default true
   maxPinned?: number              // default 3
   pinnedIds?: string[]            // controlled pinned order
-  defaultPinnedIds?: string[]     // uncontrolled initial pins
+  defaultPinnedIds?: string[]     // default ["data-products"]
   onPinnedChange?: (ids: string[]) => void
   className?: string
 }`,
@@ -79,11 +81,11 @@ export function AppShell() {
 import * as React from "react"
 import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
 
-// Pin: hover a nav item and click the pin icon (max 3, per the design).
-// Pinned apps sit in a dedicated area under Home and can be dragged to reorder.
-// Persist pinnedIds (e.g. localStorage or a user preferences API) to keep them.
+// Data Products is pinned by default (pinLocked) and cannot be unpinned.
+// Users can pin two more apps (max 3 total). At the limit, the pin icon shows a tooltip.
+// Pinned apps can be dragged to reorder. Persist pinnedIds to keep preferences.
 export function AppShell() {
-  const [pinnedIds, setPinnedIds] = React.useState<string[]>(["datasets"])
+  const [pinnedIds, setPinnedIds] = React.useState<string[]>(["data-products"])
 
   return (
     <div className="flex min-h-screen">

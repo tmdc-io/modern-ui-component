@@ -26,6 +26,8 @@ import { UtilsPreview } from "@/app/utils-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
+import { DataProductCardDefaultPreview } from "@/app/component-examples/data-product-card-usage"
+import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
 import {
@@ -816,6 +818,16 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "data-product-table": (
     <div className="w-full overflow-hidden">
       <TableDataProductPreview />
+    </div>
+  ),
+  "data-product-card": (
+    <div className="w-full overflow-hidden">
+      <DataProductCardDefaultPreview />
+    </div>
+  ),
+  "application-header": (
+    <div className="w-full overflow-hidden">
+      <ApplicationHeaderL1Preview />
     </div>
   ),
   hero: (

@@ -42,7 +42,7 @@ export function DataOsSidebarInteractivePreview() {
 }
 
 export function DataOsSidebarPinnedPreview() {
-  const [pinnedIds, setPinnedIds] = React.useState<string[]>(["datasets"])
+  const [pinnedIds, setPinnedIds] = React.useState<string[]>(["data-products"])
   const [activeId, setActiveId] = React.useState("home")
 
   return (
@@ -55,7 +55,8 @@ export function DataOsSidebarPinnedPreview() {
       />
       <div className="bg-background text-muted-foreground flex flex-1 flex-col items-center justify-center gap-1 p-6 text-sm">
         <p>
-          Hover a nav item to pin it (max 3). Drag pinned rows to reorder.
+          Data Products is pinned by default and cannot be unpinned. Pin up to two
+          more apps, then drag pinned rows to reorder.
         </p>
         <p>
           Pinned:{" "}

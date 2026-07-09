@@ -9,7 +9,7 @@ import type { ComponentVariantPage } from "@/app/component-variants/types"
 
 export const dataosSidebarPage: ComponentVariantPage = {
   name: "dataos-sidebar",
-  title: "DataOS Sidebar",
+  title: "Application Sidebar",
   description:
     "DataOS application sidebar with brand logo, grouped navigation, active teal highlight, and expanded or collapsed rail modes.",
   install: dataosSidebarCodes.install,
@@ -54,13 +54,13 @@ export const dataosSidebarPage: ComponentVariantPage = {
       title: "Pin & reorder",
       description:
         "Hover a nav item to reveal its pin control. Pinned apps move into a dedicated area under Home and can be dragged to reorder.",
-      body: "Pinning is capped at three apps to match the design. Drag-and-drop uses native HTML5 drag events (no extra dependencies) and only applies inside the pinned area. Wire pinnedIds / onPinnedChange to persist the user's preference.",
+      body: "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows via native HTML5 events.",
       variants: [
         {
           id: "pinned",
           title: "Pin & drag to reorder",
           description:
-            "Pin up to three apps, then drag the pinned rows to change their order.",
+            "Data Products pinned by default; pin two more, drag to reorder.",
           Preview: DataOsSidebarPinnedPreview,
           code: dataosSidebarCodes.pinned,
           docLink: { href: "#api-reference", label: "Props reference" },

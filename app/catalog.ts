@@ -194,14 +194,24 @@ export const catalog: CatalogCategory[] = [
         "Catalog table with product icon, glossary pills, quality badges, and sort/filter headers."
       ),
       item(
+        "data-product-card",
+        "Data Product Card",
+        "Catalog card with product icon, subtitle, truncated description, and quality or last-run badge."
+      ),
+      item(
         "hero",
         "Hero",
         "Data product hero header with quality card, metadata columns, jump nav, and full/internal/sticky variants."
       ),
       item(
         "dataos-sidebar",
-        "DataOS Sidebar",
+        "Application Sidebar",
         "Application sidebar with brand logo, grouped navigation, active highlight, and expanded or collapsed rail."
+      ),
+      item(
+        "application-header",
+        "Application Header",
+        "Top panel with tenant switcher, breadcrumb navigation, and user avatar for L1 and L2 routes."
       ),
     ],
   },

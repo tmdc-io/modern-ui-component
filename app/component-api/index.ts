@@ -17,7 +17,9 @@ import { collapsibleApi } from "@/app/component-api/collapsible"
 import { comboboxApi } from "@/app/component-api/combobox"
 import { commandApi } from "@/app/component-api/command"
 import { contextMenuApi } from "@/app/component-api/context-menu"
+import { applicationHeaderApi } from "@/app/component-api/application-header"
 import { dataosSidebarApi } from "@/app/component-api/dataos-sidebar"
+import { dataProductCardApi } from "@/app/component-api/data-product-card"
 import { dataProductTableApi } from "@/app/component-api/data-product-table"
 import { dataTableApi } from "@/app/component-api/data-table"
 import { datePickerApi } from "@/app/component-api/date-picker"
@@ -90,6 +92,8 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   combobox: comboboxApi,
   command: commandApi,
   "context-menu": contextMenuApi,
+  "application-header": applicationHeaderApi,
+  "data-product-card": dataProductCardApi,
   "data-product-table": dataProductTableApi,
   "dataos-sidebar": dataosSidebarApi,
   "data-table": dataTableApi,

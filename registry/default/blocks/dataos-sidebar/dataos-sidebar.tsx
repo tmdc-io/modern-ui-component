@@ -16,6 +16,12 @@ import {
 } from "lucide-react"
 
 import { DataOsLogo, DataOsLogoMark } from "@/registry/default/blocks/dataos-sidebar/brand-logo"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/registry/default/ui/tooltip"
 import { cn } from "@/lib/utils"
 
 export type DataOsSidebarItem = {
@@ -26,6 +32,8 @@ export type DataOsSidebarItem = {
   onSelect?: () => void
   /** Set false to exclude from the pinned area. Defaults to true (except home). */
   pinnable?: boolean
+  /** When true, the item is always pinned and cannot be unpinned (drag reorder still allowed). */
+  pinLocked?: boolean
 }
 
 export type DataOsSidebarProps = {
@@ -58,6 +66,7 @@ const defaultMainItems: DataOsSidebarItem[] = [
     id: "data-products",
     label: "Data Products",
     icon: <BoxIcon className="size-[18px]" strokeWidth={1.75} />,
+    pinLocked: true,
   },
   {
     id: "datasets",
@@ -111,8 +120,10 @@ type SidebarRowProps = {
   collapsed: boolean
   onSelect: () => void
   pinned?: boolean
+  locked?: boolean
   showPin?: boolean
-  canPin?: boolean
+  atLimit?: boolean
+  limitMessage?: string
   onTogglePin?: () => void
   draggable?: boolean
   dragging?: boolean
@@ -129,8 +140,10 @@ function SidebarRow({
   collapsed,
   onSelect,
   pinned = false,
+  locked = false,
   showPin = false,
-  canPin = true,
+  atLimit = false,
+  limitMessage,
   onTogglePin,
   draggable = false,
   dragging = false,
@@ -141,12 +154,12 @@ function SidebarRow({
   onDragEnd,
 }: SidebarRowProps) {
   const buttonClassName = cn(
-    "flex w-full items-center rounded-md text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
-    collapsed ? "justify-center px-0 py-2" : "gap-2.5 px-3 py-2",
+    "flex items-center rounded-md text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
+    collapsed ? "mx-auto size-9 justify-center p-0" : "w-full gap-2.5 px-3 py-2",
     active
       ? "bg-primary text-primary-foreground hover:bg-primary/90"
       : "text-foreground hover:bg-teal-bg-2",
-    !collapsed && showPin && "pr-9"
+    !collapsed && showPin && (pinned ? "pr-14" : "pr-9")
   )
 
   const iconWrap = (
@@ -185,7 +198,18 @@ function SidebarRow({
     </button>
   )
 
-  if (collapsed || !showPin) {
+  if (collapsed) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>{navButton}</TooltipTrigger>
+        <TooltipContent side="right" align="center" sideOffset={8}>
+          {item.label}
+        </TooltipContent>
+      </Tooltip>
+    )
+  }
+
+  if (!showPin) {
     return navButton
   }
 
@@ -208,7 +232,7 @@ function SidebarRow({
         {pinned ? (
           <span
             className={cn(
-              "flex size-6 cursor-grab items-center justify-center rounded active:cursor-grabbing",
+              "flex size-6 cursor-grab items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 active:cursor-grabbing",
               active ? "text-primary-foreground/70" : "text-muted-foreground"
             )}
             aria-hidden
@@ -216,32 +240,60 @@ function SidebarRow({
             <GripVerticalIcon className="size-3.5" />
           </span>
         ) : null}
-        <button
-          type="button"
-          onClick={(event) => {
-            event.stopPropagation()
-            onTogglePin?.()
-          }}
-          disabled={!pinned && !canPin}
-          aria-label={pinned ? `Unpin ${item.label}` : `Pin ${item.label}`}
-          aria-pressed={pinned}
-          className={cn(
-            "flex size-6 items-center justify-center rounded transition-opacity",
-            active
-              ? "text-primary-foreground/80 hover:bg-primary-foreground/15"
-              : "text-muted-foreground hover:bg-teal-bg-1 hover:text-primary",
-            pinned
-              ? "opacity-100"
-              : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100",
-            !pinned && !canPin && "cursor-not-allowed opacity-40 group-hover:opacity-40"
-          )}
-        >
-          {pinned ? (
-            <PinOffIcon className="size-3.5" />
-          ) : (
-            <PinIcon className="size-3.5" />
-          )}
-        </button>
+        {locked ? (
+          <span
+            className={cn(
+              "flex size-6 items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100",
+              active ? "text-primary-foreground/70" : "text-muted-foreground"
+            )}
+            aria-label={`${item.label} is always pinned`}
+            title={`${item.label} is always pinned`}
+          >
+            <PinIcon className="size-3.5 fill-current" />
+          </span>
+        ) : !pinned && atLimit ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation()
+                  onTogglePin?.()
+                }}
+                aria-label={limitMessage ?? `Pin ${item.label}`}
+                aria-disabled
+                className="text-muted-foreground flex size-6 cursor-not-allowed items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-60 focus-visible:opacity-60"
+              >
+                <PinIcon className="size-3.5" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" align="center" sideOffset={6}>
+              {limitMessage ?? "Pin limit reached"}
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation()
+              onTogglePin?.()
+            }}
+            aria-label={pinned ? `Unpin ${item.label}` : `Pin ${item.label}`}
+            aria-pressed={pinned}
+            className={cn(
+              "flex size-6 items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100",
+              active
+                ? "text-primary-foreground/80 hover:bg-primary-foreground/15"
+                : "text-muted-foreground hover:bg-teal-bg-1 hover:text-primary"
+            )}
+          >
+            {pinned ? (
+              <PinOffIcon className="size-3.5" />
+            ) : (
+              <PinIcon className="size-3.5" />
+            )}
+          </button>
+        )}
       </div>
     </div>
   )
@@ -259,7 +311,7 @@ export function DataOsSidebar({
   enablePinning = true,
   maxPinned = 3,
   pinnedIds,
-  defaultPinnedIds = [],
+  defaultPinnedIds = ["data-products"],
   onPinnedChange,
   className,
 }: DataOsSidebarProps) {
@@ -275,7 +327,21 @@ export function DataOsSidebar({
 
   const resolvedCollapsed = isCollapsedControlled ? collapsed : internalCollapsed
   const resolvedActiveId = isActiveControlled ? activeId : internalActiveId
-  const resolvedPinned = isPinnedControlled ? pinnedIds : internalPinned
+  const rawPinned = isPinnedControlled ? pinnedIds : internalPinned
+
+  const lockedIds = React.useMemo(
+    () =>
+      items
+        .filter((item) => item.pinLocked && item.id !== "home")
+        .map((item) => item.id),
+    [items]
+  )
+
+  // Locked items are always pinned, even if a consumer omits them.
+  const resolvedPinned = React.useMemo(() => {
+    const missing = lockedIds.filter((id) => !rawPinned.includes(id))
+    return missing.length ? [...missing, ...rawPinned] : rawPinned
+  }, [rawPinned, lockedIds])
 
   const setCollapsed = React.useCallback(
     (next: boolean) => {
@@ -309,11 +375,12 @@ export function DataOsSidebar({
   )
 
   const togglePin = React.useCallback(
-    (id: string) => {
-      if (resolvedPinned.includes(id)) {
-        commitPinned(resolvedPinned.filter((value) => value !== id))
+    (item: DataOsSidebarItem) => {
+      if (resolvedPinned.includes(item.id)) {
+        if (item.pinLocked) return
+        commitPinned(resolvedPinned.filter((value) => value !== item.id))
       } else if (resolvedPinned.length < maxPinned) {
-        commitPinned([...resolvedPinned, id])
+        commitPinned([...resolvedPinned, item.id])
       }
     },
     [resolvedPinned, maxPinned, commitPinned]
@@ -344,15 +411,17 @@ export function DataOsSidebar({
 
   const mainItems = rest.filter((item) => !pinnedSet.has(item.id))
   const atPinLimit = resolvedPinned.length >= maxPinned
+  const pinLimitMessage = `Only ${maxPinned} allow`
 
   return (
-    <aside
-      className={cn(
-        "bg-cream-bg-1 text-foreground flex h-full min-h-[32rem] flex-col border-r border-grey-8/80 transition-[width] duration-200",
-        resolvedCollapsed ? "w-14" : "w-56",
-        className
-      )}
-    >
+    <TooltipProvider delayDuration={0}>
+      <aside
+        className={cn(
+          "bg-cream-bg-1 text-foreground flex h-full min-h-[32rem] flex-col border-r border-grey-8/80 transition-[width] duration-200",
+          resolvedCollapsed ? "w-14" : "w-56",
+          className
+        )}
+      >
       <div
         className={cn(
           "flex items-center",
@@ -387,8 +456,9 @@ export function DataOsSidebar({
                 collapsed={resolvedCollapsed}
                 onSelect={() => handleSelect(item)}
                 pinned
+                locked={item.pinLocked}
                 showPin={!resolvedCollapsed}
-                onTogglePin={() => togglePin(item.id)}
+                onTogglePin={() => togglePin(item)}
                 draggable={!resolvedCollapsed}
                 dragging={draggingId === item.id}
                 dragOver={dragOverId === item.id && draggingId !== item.id}
@@ -432,8 +502,9 @@ export function DataOsSidebar({
                 collapsed={resolvedCollapsed}
                 onSelect={() => handleSelect(item)}
                 showPin={pinnable && !resolvedCollapsed}
-                canPin={!atPinLimit}
-                onTogglePin={() => togglePin(item.id)}
+                atLimit={atPinLimit}
+                limitMessage={pinLimitMessage}
+                onTogglePin={() => togglePin(item)}
               />
               {mainDividersAfter.has(item.id) && index < mainItems.length - 1 ? (
                 <SidebarDivider collapsed={resolvedCollapsed} />
@@ -457,5 +528,6 @@ export function DataOsSidebar({
         ))}
       </div>
     </aside>
+    </TooltipProvider>
   )
 }

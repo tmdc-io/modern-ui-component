@@ -16,7 +16,9 @@ import {
   SignupVariantPage,
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
+import { applicationHeaderPage } from "@/app/component-variants/application-header-page"
 import { dataosSidebarPage } from "@/app/component-variants/dataos-sidebar-page"
+import { dataProductCardPage } from "@/app/component-variants/data-product-card-page"
 import { dataProductTablePage } from "@/app/component-variants/data-product-table-page"
 import { heroPage } from "@/app/component-variants/hero-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
@@ -149,7 +151,9 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "project-setup": projectSetupVariantPage,
   attributions: attributionsVariantPage,
   "quality-summary-card": qualitySummaryCardPage,
+  "data-product-card": dataProductCardPage,
   "data-product-table": dataProductTablePage,
+  "application-header": applicationHeaderPage,
   hero: heroPage,
   "dataos-sidebar": dataosSidebarPage,
   theme: themeVariantPage,
@@ -171,7 +175,9 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "project-setup": "Details",
   attributions: "Credits",
   "quality-summary-card": "Usage",
+  "data-product-card": "Usage",
   "data-product-table": "Usage",
+  "application-header": "Usage",
   hero: "Usage",
   "dataos-sidebar": "Usage",
   theme: "Palette",

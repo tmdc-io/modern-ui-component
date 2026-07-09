@@ -405,7 +405,7 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
   } = quality
 
   return (
-    <div className="border-grey-8 bg-background flex w-full max-w-[20rem] flex-col gap-4 rounded-xl border p-4 shadow-sm">
+    <div className="border-grey-8 bg-card flex w-full max-w-[20rem] flex-col gap-4 rounded-xl border p-4 shadow-sm">
       <div className="flex items-center gap-3">
         <HeroQualityDonut percentage={percentage} />
         <div className="space-y-0.5">

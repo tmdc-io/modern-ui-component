@@ -20,8 +20,10 @@ const MANUAL_PAGES = [
   "project-setup",
   "quality-summary-card",
   "data-product-table",
+  "data-product-card",
   "hero",
   "dataos-sidebar",
+  "application-header",
   "theme",
   "utils",
 ]

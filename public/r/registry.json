@@ -1175,6 +1175,22 @@
       ]
     },
     {
+      "name": "data-product-card",
+      "type": "registry:block",
+      "title": "Data Product Card",
+      "description": "Catalog card for data products with icon, subtitle, description, and status badge.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/default/blocks/data-product-card/data-product-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hero",
       "type": "registry:block",
       "title": "Hero",
@@ -1197,12 +1213,14 @@
     {
       "name": "dataos-sidebar",
       "type": "registry:block",
-      "title": "DataOS Sidebar",
+      "title": "Application Sidebar",
       "description": "DataOS application sidebar with brand logo, grouped navigation, and expanded or collapsed rail modes.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "tooltip"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/dataos-sidebar/brand-logo.tsx",
@@ -1210,6 +1228,26 @@
         },
         {
           "path": "registry/default/blocks/dataos-sidebar/dataos-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "application-header",
+      "type": "registry:block",
+      "title": "Application Header",
+      "description": "Top application panel with tenant switcher, breadcrumb navigation, and user avatar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "breadcrumb",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/application-header/application-header.tsx",
           "type": "registry:component"
         }
       ]
