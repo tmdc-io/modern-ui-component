@@ -24,6 +24,8 @@ const MANUAL_PAGES = [
   "hero",
   "dataos-sidebar",
   "application-header",
+  "run-duration",
+  "model-health-runs",
   "theme",
   "utils",
 ]

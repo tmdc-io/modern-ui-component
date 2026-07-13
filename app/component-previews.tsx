@@ -27,6 +27,8 @@ import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
 import { DataProductCardDefaultPreview } from "@/app/component-examples/data-product-card-usage"
+import { ModelHealthRunsDefaultPreview } from "@/app/component-examples/model-health-runs-usage"
+import { RunDurationDefaultPreview } from "@/app/component-examples/run-duration-usage"
 import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
@@ -823,6 +825,16 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "data-product-card": (
     <div className="w-full overflow-hidden">
       <DataProductCardDefaultPreview />
+    </div>
+  ),
+  "run-duration": (
+    <div className="w-full overflow-hidden">
+      <RunDurationDefaultPreview />
+    </div>
+  ),
+  "model-health-runs": (
+    <div className="w-full overflow-hidden">
+      <ModelHealthRunsDefaultPreview />
     </div>
   ),
   "application-header": (

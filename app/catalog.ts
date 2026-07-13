@@ -213,6 +213,16 @@ export const catalog: CatalogCategory[] = [
         "Application Header",
         "Top panel with tenant switcher, breadcrumb navigation, and user avatar for L1 and L2 routes."
       ),
+      item(
+        "run-duration",
+        "Run Duration",
+        "Run duration bar chart with normal, anomaly, selected states, and baseline reference."
+      ),
+      item(
+        "model-health-runs",
+        "Model Health Across Runs",
+        "Model health grid across runs with status pills and row/column health summaries."
+      ),
     ],
   },
   {

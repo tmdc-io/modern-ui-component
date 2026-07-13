@@ -51,6 +51,8 @@ export function getVariantPageNames(): string[] {
   "hero",
   "dataos-sidebar",
   "application-header",
+  "run-duration",
+  "model-health-runs",
   "radio-group",
   "resizable",
   "scroll-area",

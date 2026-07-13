@@ -95,6 +95,15 @@
   --color-dataos-fail-bg: var(--dataos-fail-bg);
   --color-dataos-fail-fg: var(--dataos-fail-fg);
 
+  /* DataOS charts — model health & run duration */
+  --color-model-health-healthy: var(--model-health-healthy);
+  --color-model-health-quality: var(--model-health-quality);
+  --color-model-health-failed: var(--model-health-failed);
+  --color-model-health-none: var(--model-health-none);
+  --color-run-duration-normal: var(--run-duration-normal);
+  --color-run-duration-anomaly: var(--run-duration-anomaly);
+  --color-run-duration-selected: var(--run-duration-selected);
+
   /* Typography & radius */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -172,6 +181,22 @@
   --dataos-warn-fg: #d4a017;
   --dataos-fail-bg: #fde8e8;
   --dataos-fail-fg: #dc2626;
+
+  /* DataOS charts — model health heatmap */
+  --model-health-healthy: #94d2c9;
+  --model-health-quality: #f9cb8d;
+  --model-health-failed: #f9bdc2;
+  --model-health-none: #f2f4f7;
+
+  /* DataOS charts — run duration */
+  --run-duration-normal: #b8e4de;
+  --run-duration-anomaly: #f9bdc2;
+  --run-duration-selected: #009293;
+  --run-duration-normal-label: #4a7c6f;
+  --run-duration-anomaly-label: #c97a8a;
+  --run-duration-selected-label: #009293;
+  --run-duration-baseline: #8c8c8c;
+  --run-duration-selection: #009293;
 
   /* Text scale */
   --text-primary: #1f1f1f;
@@ -258,6 +283,22 @@
   --dataos-fail-bg: #3d2020;
   --dataos-fail-fg: #f87171;
 
+  /* DataOS charts — model health heatmap */
+  --model-health-healthy: #6ec4b8;
+  --model-health-quality: #d4a55c;
+  --model-health-failed: #d98a94;
+  --model-health-none: #3a3a38;
+
+  /* DataOS charts — run duration */
+  --run-duration-normal: #3d6b63;
+  --run-duration-anomaly: #6b4549;
+  --run-duration-selected: #00a8a9;
+  --run-duration-normal-label: #8fd4a8;
+  --run-duration-anomaly-label: #f87171;
+  --run-duration-selected-label: #00a8a9;
+  --run-duration-baseline: #8c8c8c;
+  --run-duration-selection: #00a8a9;
+
   --text-primary: #f9f8f7;
   --text-secondary: var(--black-secondary);
   --text-tertiary: var(--black-tertiary);
@@ -282,6 +323,12 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  .recharts-surface,
+  .recharts-wrapper,
+  .recharts-surface *,
+  .recharts-wrapper * {
+    outline: none;
   }
   body {
     @apply bg-background text-foreground;

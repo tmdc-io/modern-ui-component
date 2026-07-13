@@ -40,12 +40,14 @@ function LazyVariantPreview({
 export function VariantPreviewCanvas({
   Preview,
   tall = false,
+  fitContent = false,
   blockLayout = false,
   containSidebar = false,
   popoverPreview = false,
 }: {
   Preview: React.ComponentType
   tall?: boolean
+  fitContent?: boolean
   blockLayout?: boolean
   containSidebar?: boolean
   popoverPreview?: boolean
@@ -56,27 +58,31 @@ export function VariantPreviewCanvas({
         className={cn(
           "relative isolate w-full rounded-md bg-card shadow-sm ring-1 ring-border/40",
           "[transform:translateZ(0)]",
-          popoverPreview ? "overflow-visible" : "overflow-hidden",
+          popoverPreview || fitContent ? "overflow-visible" : "overflow-hidden",
           blockLayout
             ? "h-[min(720px,80vh)]"
-            : popoverPreview
-              ? "min-h-80"
-              : tall
-                ? "h-[min(520px,70vh)]"
-                : "min-h-48",
+            : fitContent
+              ? undefined
+              : popoverPreview
+                ? "min-h-80"
+                : tall
+                  ? "h-[min(520px,70vh)]"
+                  : "min-h-48",
           containSidebar &&
             "[&_[data-slot=sidebar-wrapper]]:!min-h-0 [&_[data-slot=sidebar-wrapper]]:h-full [&_[data-slot=sidebar-container]]:!absolute [&_[data-slot=sidebar-container]]:top-0 [&_[data-slot=sidebar-container]]:!h-full"
         )}
       >
         <div
           className={cn(
-            "size-full",
-            popoverPreview
-              ? "overflow-visible p-4 pb-52"
-              : cn(
-                  "overflow-auto",
-                  blockLayout ? "overflow-x-hidden" : "p-4"
-                )
+            fitContent ? "w-full" : "size-full",
+            fitContent
+              ? "overflow-visible p-4"
+              : popoverPreview
+                ? "overflow-visible p-4 pb-52"
+                : cn(
+                    "overflow-auto",
+                    blockLayout ? "overflow-x-hidden" : "p-4"
+                  )
           )}
         >
           <LazyVariantPreview Preview={Preview} />

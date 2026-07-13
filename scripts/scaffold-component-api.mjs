@@ -29,6 +29,8 @@ const CURATED = new Set([
   "hero",
   "dataos-sidebar",
   "application-header",
+  "run-duration",
+  "model-health-runs",
   "select",
   "toast",
   "typography",

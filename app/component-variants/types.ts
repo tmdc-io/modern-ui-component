@@ -52,6 +52,7 @@ export type ComponentVariant = {
   docLink?: DocLink
   docLinks?: DocLink[]
   tall?: boolean
+  fitContent?: boolean
   codeOnly?: boolean
 }
 

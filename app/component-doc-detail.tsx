@@ -73,6 +73,7 @@ function isPopoverPreviewPage(componentName: string) {
 
 function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant) {
   return {
+    fitContent: variant.fitContent,
     tall:
       variant.tall ||
       (isSidebarPage(page.name) && !isBlockLayoutVariant(variant.id)) ||
@@ -247,6 +248,7 @@ function VariantExample({
         <VariantPreviewCanvas
           Preview={variant.Preview}
           tall={hero || previewOptions.tall}
+          fitContent={previewOptions.fitContent}
           blockLayout={previewOptions.blockLayout}
           containSidebar={previewOptions.containSidebar}
           popoverPreview={previewOptions.popoverPreview}

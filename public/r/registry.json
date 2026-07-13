@@ -1253,6 +1253,38 @@
       ]
     },
     {
+      "name": "run-duration",
+      "type": "registry:block",
+      "title": "Run Duration",
+      "description": "Run duration bar chart with normal, anomaly, selected states, and baseline.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/run-duration/run-duration.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "model-health-runs",
+      "type": "registry:block",
+      "title": "Model Health Across Runs",
+      "description": "Model health heatmap across runs with status pills and health summaries.",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/model-health-runs/model-health-runs.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "chart-area-axes",
       "type": "registry:block",
       "title": "Area Chart Axes",

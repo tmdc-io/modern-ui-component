@@ -16,6 +16,8 @@ import {
   SignupVariantPage,
 } from "@/app/component-variants/auth-block-pages"
 import { chartVariantPage } from "@/app/component-variants/chart-page"
+import { modelHealthRunsPage } from "@/app/component-variants/model-health-runs-page"
+import { runDurationPage } from "@/app/component-variants/run-duration-page"
 import { applicationHeaderPage } from "@/app/component-variants/application-header-page"
 import { dataosSidebarPage } from "@/app/component-variants/dataos-sidebar-page"
 import { dataProductCardPage } from "@/app/component-variants/data-product-card-page"
@@ -154,6 +156,8 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "data-product-card": dataProductCardPage,
   "data-product-table": dataProductTablePage,
   "application-header": applicationHeaderPage,
+  "run-duration": runDurationPage,
+  "model-health-runs": modelHealthRunsPage,
   hero: heroPage,
   "dataos-sidebar": dataosSidebarPage,
   theme: themeVariantPage,
@@ -178,6 +182,8 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "data-product-card": "Usage",
   "data-product-table": "Usage",
   "application-header": "Usage",
+  "run-duration": "Usage",
+  "model-health-runs": "Usage",
   hero: "Usage",
   "dataos-sidebar": "Usage",
   theme: "Palette",
