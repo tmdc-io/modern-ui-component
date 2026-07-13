@@ -5,6 +5,45 @@ const ROOT = process.cwd()
 const BLOCKS_DIR = path.join(ROOT, "registry/default/blocks")
 const REGISTRY_URL = "https://ui.shadcn.com/r/styles/new-york"
 const EXCLUDE = /^chart-bar-demo/
+
+const CUSTOM_CHARTS = [
+  {
+    name: "chart-sparkline-line",
+    title: "Sparkline Chart Line",
+    description: "Compact line sparkline for KPI cards and table cells.",
+  },
+  {
+    name: "chart-sparkline-area",
+    title: "Sparkline Chart Area",
+    description: "Filled area sparkline for compact trend visualization.",
+  },
+  {
+    name: "chart-histogram-default",
+    title: "Histogram Chart Default",
+    description: "Distribution chart with zero-gap bars for binned data.",
+  },
+  {
+    name: "chart-histogram-minimal",
+    title: "Histogram Chart Minimal",
+    description: "Axis-free histogram with rounded bars and active bin highlight.",
+  },
+  {
+    name: "chart-histogram-nav",
+    title: "Histogram Chart Nav",
+    description: "Paginated histogram with previous and next bin navigation.",
+    registryDependencies: ["card", "chart", "button"],
+  },
+  {
+    name: "chart-scatter-default",
+    title: "Scatter Chart Default",
+    description: "Correlation chart with optional bubble sizing via ZAxis.",
+  },
+  {
+    name: "chart-composed-default",
+    title: "Composed Chart Default",
+    description: "Bar and line series combined on dual axes.",
+  },
+]
 const TS_NOCHECK = new Set([
   "chart-bar-active",
   "chart-bar-label-custom",
@@ -161,7 +200,19 @@ function buildCatalogCategories(blocks) {
     groups.get(type).push(block)
   }
 
-  const order = ["area", "bar", "line", "pie", "radar", "radial", "tooltip"]
+  const order = [
+    "area",
+    "bar",
+    "line",
+    "pie",
+    "radar",
+    "radial",
+    "sparkline",
+    "histogram",
+    "scatter",
+    "composed",
+    "tooltip",
+  ]
 
   return order
     .filter((type) => groups.has(type))
@@ -243,6 +294,17 @@ ${sections},
 `
 }
 
+function buildCustomChartBlocks() {
+  return CUSTOM_CHARTS.map((chart) => ({
+    name: chart.name,
+    exportName: toExportName(chart.name),
+    title: chart.title,
+    description: chart.description,
+    registryDependencies: chart.registryDependencies ?? ["card", "chart"],
+    npmDependencies: ["recharts"],
+  }))
+}
+
 async function main() {
   const names = await fetchChartNames()
   console.log(`Syncing ${names.length} chart blocks...`)
@@ -253,6 +315,9 @@ async function main() {
     console.log(`  ${name}`)
   }
 
+  const allBlocks = [...blocks, ...buildCustomChartBlocks()]
+  console.log(`Including ${CUSTOM_CHARTS.length} custom chart blocks...`)
+
   const registryPath = path.join(ROOT, "registry.json")
   const registry = JSON.parse(await readFile(registryPath, "utf8"))
   registry.items = registry.items.filter((item) => !item.name.startsWith("chart-"))
@@ -262,21 +327,21 @@ async function main() {
   registry.items.splice(
     projectSetupIndex,
     0,
-    ...blocks.map(buildRegistryItem)
+    ...allBlocks.map(buildRegistryItem)
   )
   await writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`)
 
-  const categories = buildCatalogCategories(blocks)
+  const categories = buildCatalogCategories(allBlocks)
   await writeFile(
     path.join(ROOT, "app/chart-catalog.ts"),
     buildChartCatalogFile(categories)
   )
   await writeFile(
     path.join(ROOT, "app/chart-previews.tsx"),
-    buildChartPreviewsFile(blocks)
+    buildChartPreviewsFile(allBlocks)
   )
 
-  console.log(`Done. ${blocks.length} chart blocks synced.`)
+  console.log(`Done. ${allBlocks.length} chart blocks synced.`)
 }
 
 main().catch((error) => {

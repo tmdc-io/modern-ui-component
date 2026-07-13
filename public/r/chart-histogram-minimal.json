@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-histogram-minimal",
+  "title": "Histogram Chart Minimal",
+  "description": "Axis-free histogram with rounded bars and active bin highlight.",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "card",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/chart-histogram-minimal/chart-histogram-minimal.tsx",
+      "content": "\"use client\"\n\nimport { Bar, BarChart, Cell } from \"recharts\"\n\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/default/ui/card\"\nimport {\n  ChartContainer,\n  ChartTooltip,\n  ChartTooltipContent,\n  type ChartConfig,\n} from \"@/registry/default/ui/chart\"\n\nconst chartData = [\n  { bin: \"0-10\", count: 4, active: false },\n  { bin: \"10-20\", count: 12, active: false },\n  { bin: \"20-30\", count: 18, active: false },\n  { bin: \"30-40\", count: 24, active: true },\n  { bin: \"40-50\", count: 16, active: false },\n  { bin: \"50-60\", count: 9, active: false },\n  { bin: \"60-70\", count: 5, active: false },\n]\n\nconst chartConfig = {\n  count: {\n    label: \"Frequency\",\n    color: \"var(--chart-1)\",\n  },\n  muted: {\n    label: \"Frequency\",\n    color: \"var(--grey-16)\",\n  },\n} satisfies ChartConfig\n\nexport function ChartHistogramMinimal() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Minimal Histogram</CardTitle>\n        <CardDescription>Axis-free distribution bars for compact panels</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <ChartContainer config={chartConfig} className=\"h-20 w-full max-w-md\">\n          <BarChart\n            accessibilityLayer\n            data={chartData}\n            margin={{ top: 4, right: 4, bottom: 4, left: 4 }}\n            barCategoryGap=\"18%\"\n          >\n            <ChartTooltip\n              cursor={false}\n              content={<ChartTooltipContent hideLabel />}\n            />\n            <Bar dataKey=\"count\" radius={[6, 6, 0, 0]}>\n              {chartData.map((entry) => (\n                <Cell\n                  key={entry.bin}\n                  fill={\n                    entry.active\n                      ? \"var(--color-count)\"\n                      : \"var(--color-muted)\"\n                  }\n                />\n              ))}\n            </Bar>\n          </BarChart>\n        </ChartContainer>\n      </CardContent>\n      <CardFooter className=\"text-muted-foreground text-sm leading-none\">\n        No axes or grid — highlight the active bin with primary color\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

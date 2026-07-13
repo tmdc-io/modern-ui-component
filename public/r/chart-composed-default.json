@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-composed-default",
+  "title": "Composed Chart Default",
+  "description": "Bar and line series combined on dual axes.",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "card",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/chart-composed-default/chart-composed-default.tsx",
+      "content": "\"use client\"\n\nimport { TrendingUp } from \"lucide-react\"\nimport {\n  Bar,\n  CartesianGrid,\n  ComposedChart,\n  Line,\n  XAxis,\n  YAxis,\n} from \"recharts\"\n\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/default/ui/card\"\nimport {\n  ChartContainer,\n  ChartLegend,\n  ChartLegendContent,\n  ChartTooltip,\n  ChartTooltipContent,\n  type ChartConfig,\n} from \"@/registry/default/ui/chart\"\n\nconst chartData = [\n  { month: \"Jan\", revenue: 186, growth: 4.2 },\n  { month: \"Feb\", revenue: 305, growth: 5.1 },\n  { month: \"Mar\", revenue: 237, growth: 3.8 },\n  { month: \"Apr\", revenue: 273, growth: 6.4 },\n  { month: \"May\", revenue: 209, growth: 4.9 },\n  { month: \"Jun\", revenue: 314, growth: 7.2 },\n]\n\nconst chartConfig = {\n  revenue: {\n    label: \"Revenue\",\n    color: \"var(--chart-1)\",\n  },\n  growth: {\n    label: \"Growth %\",\n    color: \"var(--chart-2)\",\n  },\n} satisfies ChartConfig\n\nexport function ChartComposedDefault() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Composed Chart</CardTitle>\n        <CardDescription>Revenue bars with growth line overlay</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <ChartContainer config={chartConfig}>\n          <ComposedChart accessibilityLayer data={chartData}>\n            <CartesianGrid vertical={false} />\n            <XAxis\n              dataKey=\"month\"\n              tickLine={false}\n              axisLine={false}\n              tickMargin={8}\n            />\n            <YAxis\n              yAxisId=\"left\"\n              tickLine={false}\n              axisLine={false}\n              width={32}\n            />\n            <YAxis\n              yAxisId=\"right\"\n              orientation=\"right\"\n              tickLine={false}\n              axisLine={false}\n              width={32}\n            />\n            <ChartTooltip content={<ChartTooltipContent />} />\n            <ChartLegend content={<ChartLegendContent />} />\n            <Bar\n              yAxisId=\"left\"\n              dataKey=\"revenue\"\n              fill=\"var(--color-revenue)\"\n              radius={6}\n            />\n            <Line\n              yAxisId=\"right\"\n              type=\"monotone\"\n              dataKey=\"growth\"\n              stroke=\"var(--color-growth)\"\n              strokeWidth={2}\n              dot={false}\n            />\n          </ComposedChart>\n        </ChartContainer>\n      </CardContent>\n      <CardFooter className=\"flex-col items-start gap-2 text-sm\">\n        <div className=\"flex gap-2 font-medium leading-none\">\n          Growth accelerating in June <TrendingUp className=\"h-4 w-4\" />\n        </div>\n        <div className=\"text-muted-foreground leading-none\">\n          Combine bars and lines on dual axes in one chart\n        </div>\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

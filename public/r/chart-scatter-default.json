@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-scatter-default",
+  "title": "Scatter Chart Default",
+  "description": "Correlation chart with optional bubble sizing via ZAxis.",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "card",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/chart-scatter-default/chart-scatter-default.tsx",
+      "content": "\"use client\"\n\nimport { TrendingUp } from \"lucide-react\"\nimport {\n  CartesianGrid,\n  Scatter,\n  ScatterChart,\n  XAxis,\n  YAxis,\n  ZAxis,\n} from \"recharts\"\n\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/default/ui/card\"\nimport {\n  ChartContainer,\n  ChartTooltip,\n  ChartTooltipContent,\n  type ChartConfig,\n} from \"@/registry/default/ui/chart\"\n\nconst chartData = [\n  { latency: 12, throughput: 220, size: 120 },\n  { latency: 18, throughput: 180, size: 200 },\n  { latency: 24, throughput: 260, size: 160 },\n  { latency: 30, throughput: 210, size: 240 },\n  { latency: 36, throughput: 290, size: 180 },\n  { latency: 42, throughput: 250, size: 220 },\n  { latency: 48, throughput: 320, size: 260 },\n  { latency: 54, throughput: 280, size: 300 },\n]\n\nconst chartConfig = {\n  latency: {\n    label: \"Latency\",\n    color: \"var(--chart-1)\",\n  },\n  throughput: {\n    label: \"Throughput\",\n    color: \"var(--chart-2)\",\n  },\n} satisfies ChartConfig\n\nexport function ChartScatterDefault() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Scatter Chart</CardTitle>\n        <CardDescription>Latency vs throughput by workload size</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <ChartContainer config={chartConfig}>\n          <ScatterChart accessibilityLayer data={chartData}>\n            <CartesianGrid />\n            <XAxis\n              type=\"number\"\n              dataKey=\"latency\"\n              name=\"Latency\"\n              tickLine={false}\n              axisLine={false}\n              tickMargin={8}\n            />\n            <YAxis\n              type=\"number\"\n              dataKey=\"throughput\"\n              name=\"Throughput\"\n              tickLine={false}\n              axisLine={false}\n              tickMargin={8}\n            />\n            <ZAxis type=\"number\" dataKey=\"size\" range={[80, 400]} />\n            <ChartTooltip\n              cursor={{ strokeDasharray: \"3 3\" }}\n              content={<ChartTooltipContent indicator=\"line\" />}\n            />\n            <Scatter\n              dataKey=\"throughput\"\n              fill=\"var(--color-latency)\"\n            />\n          </ScatterChart>\n        </ChartContainer>\n      </CardContent>\n      <CardFooter className=\"flex-col items-start gap-2 text-sm\">\n        <div className=\"flex gap-2 font-medium leading-none\">\n          Correlation visible across workloads <TrendingUp className=\"h-4 w-4\" />\n        </div>\n        <div className=\"text-muted-foreground leading-none\">\n          Bubble size encodes a third metric via ZAxis\n        </div>\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

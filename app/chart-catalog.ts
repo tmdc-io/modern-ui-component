@@ -404,6 +404,72 @@ export const chartCatalogCategories: CatalogCategory[] = [
     ],
   },
   {
+    id: "charts-sparkline",
+    title: "Charts · Sparkline",
+    items: [
+      {
+        name: "chart-sparkline-line",
+        title: "Sparkline Chart Line",
+        description: "Compact line sparkline for KPI cards and table cells.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-sparkline-line",
+      },
+      {
+        name: "chart-sparkline-area",
+        title: "Sparkline Chart Area",
+        description: "Filled area sparkline for compact trend visualization.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-sparkline-area",
+      },
+    ],
+  },
+  {
+    id: "charts-histogram",
+    title: "Charts · Histogram",
+    items: [
+      {
+        name: "chart-histogram-default",
+        title: "Histogram Chart Default",
+        description: "Distribution chart with zero-gap bars for binned data.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-histogram-default",
+      },
+      {
+        name: "chart-histogram-minimal",
+        title: "Histogram Chart Minimal",
+        description: "Axis-free histogram with rounded bars and active bin highlight.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-histogram-minimal",
+      },
+      {
+        name: "chart-histogram-nav",
+        title: "Histogram Chart Nav",
+        description: "Paginated histogram with previous and next bin navigation.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-histogram-nav",
+      },
+    ],
+  },
+  {
+    id: "charts-scatter",
+    title: "Charts · Scatter",
+    items: [
+      {
+        name: "chart-scatter-default",
+        title: "Scatter Chart Default",
+        description: "Correlation chart with optional bubble sizing via ZAxis.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-scatter-default",
+      },
+    ],
+  },
+  {
+    id: "charts-composed",
+    title: "Charts · Composed",
+    items: [
+      {
+        name: "chart-composed-default",
+        title: "Composed Chart Default",
+        description: "Bar and line series combined on dual axes.",
+        install: "npx shadcn@latest add tmdc-io/modern-ui-component/chart-composed-default",
+      },
+    ],
+  },
+  {
     id: "charts-tooltip",
     title: "Charts · Tooltip",
     items: [

@@ -62,6 +62,13 @@ import { ChartRadialShape } from "@/registry/default/blocks/chart-radial-shape/c
 import { ChartRadialSimple } from "@/registry/default/blocks/chart-radial-simple/chart-radial-simple"
 import { ChartRadialStacked } from "@/registry/default/blocks/chart-radial-stacked/chart-radial-stacked"
 import { ChartRadialText } from "@/registry/default/blocks/chart-radial-text/chart-radial-text"
+import { ChartComposedDefault } from "@/registry/default/blocks/chart-composed-default/chart-composed-default"
+import { ChartHistogramDefault } from "@/registry/default/blocks/chart-histogram-default/chart-histogram-default"
+import { ChartHistogramMinimal } from "@/registry/default/blocks/chart-histogram-minimal/chart-histogram-minimal"
+import { ChartHistogramNav } from "@/registry/default/blocks/chart-histogram-nav/chart-histogram-nav"
+import { ChartScatterDefault } from "@/registry/default/blocks/chart-scatter-default/chart-scatter-default"
+import { ChartSparklineArea } from "@/registry/default/blocks/chart-sparkline-area/chart-sparkline-area"
+import { ChartSparklineLine } from "@/registry/default/blocks/chart-sparkline-line/chart-sparkline-line"
 import { ChartTooltipAdvanced } from "@/registry/default/blocks/chart-tooltip-advanced/chart-tooltip-advanced"
 import { ChartTooltipDefault } from "@/registry/default/blocks/chart-tooltip-default/chart-tooltip-default"
 import { ChartTooltipDemo } from "@/registry/default/blocks/chart-tooltip-demo/chart-tooltip-demo"
@@ -377,6 +384,41 @@ export const chartPreviewEntries: Record<string, React.ReactNode> = {
   "chart-radial-text": (
     <div className="w-full max-w-md">
       <ChartRadialText />
+    </div>
+  ),
+  "chart-sparkline-line": (
+    <div className="w-full max-w-md">
+      <ChartSparklineLine />
+    </div>
+  ),
+  "chart-sparkline-area": (
+    <div className="w-full max-w-md">
+      <ChartSparklineArea />
+    </div>
+  ),
+  "chart-histogram-default": (
+    <div className="w-full max-w-md">
+      <ChartHistogramDefault />
+    </div>
+  ),
+  "chart-histogram-minimal": (
+    <div className="w-full max-w-md">
+      <ChartHistogramMinimal />
+    </div>
+  ),
+  "chart-histogram-nav": (
+    <div className="w-full max-w-md">
+      <ChartHistogramNav />
+    </div>
+  ),
+  "chart-scatter-default": (
+    <div className="w-full max-w-md">
+      <ChartScatterDefault />
+    </div>
+  ),
+  "chart-composed-default": (
+    <div className="w-full max-w-md">
+      <ChartComposedDefault />
     </div>
   ),
   "chart-tooltip-advanced": (

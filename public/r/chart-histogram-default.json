@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-histogram-default",
+  "title": "Histogram Chart Default",
+  "description": "Distribution chart with zero-gap bars for binned data.",
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "card",
+    "chart"
+  ],
+  "files": [
+    {
+      "path": "registry/default/blocks/chart-histogram-default/chart-histogram-default.tsx",
+      "content": "\"use client\"\n\nimport { TrendingUp } from \"lucide-react\"\nimport { Bar, BarChart, CartesianGrid, XAxis, YAxis } from \"recharts\"\n\nimport {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/default/ui/card\"\nimport {\n  ChartContainer,\n  ChartTooltip,\n  ChartTooltipContent,\n  type ChartConfig,\n} from \"@/registry/default/ui/chart\"\n\nconst chartData = [\n  { bin: \"0-10\", count: 4 },\n  { bin: \"10-20\", count: 12 },\n  { bin: \"20-30\", count: 18 },\n  { bin: \"30-40\", count: 24 },\n  { bin: \"40-50\", count: 16 },\n  { bin: \"50-60\", count: 9 },\n  { bin: \"60-70\", count: 5 },\n]\n\nconst chartConfig = {\n  count: {\n    label: \"Frequency\",\n    color: \"var(--chart-1)\",\n  },\n} satisfies ChartConfig\n\nexport function ChartHistogramDefault() {\n  return (\n    <Card>\n      <CardHeader>\n        <CardTitle>Histogram</CardTitle>\n        <CardDescription>Distribution of response times (ms)</CardDescription>\n      </CardHeader>\n      <CardContent>\n        <ChartContainer config={chartConfig}>\n          <BarChart accessibilityLayer data={chartData} barCategoryGap={0}>\n            <CartesianGrid vertical={false} />\n            <XAxis\n              dataKey=\"bin\"\n              tickLine={false}\n              axisLine={false}\n              tickMargin={8}\n            />\n            <YAxis tickLine={false} axisLine={false} width={32} />\n            <ChartTooltip\n              cursor={false}\n              content={<ChartTooltipContent hideLabel />}\n            />\n            <Bar\n              dataKey=\"count\"\n              fill=\"var(--color-count)\"\n              radius={0}\n            />\n          </BarChart>\n        </ChartContainer>\n      </CardContent>\n      <CardFooter className=\"flex-col items-start gap-2 text-sm\">\n        <div className=\"flex gap-2 font-medium leading-none\">\n          Peak around 30-40ms <TrendingUp className=\"h-4 w-4\" />\n        </div>\n        <div className=\"text-muted-foreground leading-none\">\n          Pass pre-binned data with zero gap between bars\n        </div>\n      </CardFooter>\n    </Card>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:block"
+}

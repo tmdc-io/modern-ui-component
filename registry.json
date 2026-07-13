@@ -2603,6 +2603,104 @@
       ]
     },
     {
+      "name": "chart-sparkline-line",
+      "type": "registry:block",
+      "title": "Sparkline Chart Line",
+      "description": "Compact line sparkline for KPI cards and table cells.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-sparkline-line/chart-sparkline-line.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-sparkline-area",
+      "type": "registry:block",
+      "title": "Sparkline Chart Area",
+      "description": "Filled area sparkline for compact trend visualization.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-sparkline-area/chart-sparkline-area.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-histogram-default",
+      "type": "registry:block",
+      "title": "Histogram Chart Default",
+      "description": "Distribution chart with zero-gap bars for binned data.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-histogram-default/chart-histogram-default.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-histogram-minimal",
+      "type": "registry:block",
+      "title": "Histogram Chart Minimal",
+      "description": "Axis-free histogram with rounded bars and active bin highlight.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-histogram-minimal/chart-histogram-minimal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-histogram-nav",
+      "type": "registry:block",
+      "title": "Histogram Chart Nav",
+      "description": "Paginated histogram with previous and next bin navigation.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart", "button"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-histogram-nav/chart-histogram-nav.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-scatter-default",
+      "type": "registry:block",
+      "title": "Scatter Chart Default",
+      "description": "Correlation chart with optional bubble sizing via ZAxis.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-scatter-default/chart-scatter-default.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "chart-composed-default",
+      "type": "registry:block",
+      "title": "Composed Chart Default",
+      "description": "Bar and line series combined on dual axes.",
+      "dependencies": ["recharts"],
+      "registryDependencies": ["card", "chart"],
+      "files": [
+        {
+          "path": "registry/default/blocks/chart-composed-default/chart-composed-default.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "project-setup",
       "type": "registry:item",
       "title": "Project Setup",
