@@ -116,34 +116,6 @@ const defaultQualityRules: ModelTableQualityRule[] = [
 
 const defaultRows: ModelTableRow[] = [
   {
-    id: "m1",
-    name: "BUILDING_COMPETITORS_AGG",
-    namespace: "SFDATAPRODUC... / SALES",
-    kind: "INCREMENTAL_BY_UNIQUE_KEY",
-    type: "SQL",
-    status: "fail",
-    statusCount: 1,
-    hasError: true,
-    showSparkline: true,
-    expansion: "error",
-    errorDetail: {
-      errorType: "Py4JJavaError",
-      message:
-        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114). Retried 3x.\n    at Connection.open (driver.js:64:11)",
-      viewMoreLabel: "View more",
-    },
-  },
-  {
-    id: "m2",
-    name: "CONTRACT_HISTORY",
-    namespace: "SFDATAPRODUC... / SALES",
-    kind: "FULL",
-    type: "ROLLUP",
-    status: "fail",
-    statusCount: 1,
-    hasError: true,
-  },
-  {
     id: "m3",
     name: "BUILDING_COMPETITORS_AGG",
     namespace: "SFDATAPRODUC... / SALES",
@@ -245,6 +217,34 @@ const defaultRows: ModelTableRow[] = [
     dataSize: "850mb",
     status: "none",
     showSparkline: true,
+  },
+  {
+    id: "m1",
+    name: "BUILDING_COMPETITORS_AGG",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "INCREMENTAL_BY_UNIQUE_KEY",
+    type: "SQL",
+    status: "fail",
+    statusCount: 1,
+    hasError: true,
+    showSparkline: true,
+    expansion: "error",
+    errorDetail: {
+      errorType: "Py4JJavaError",
+      message:
+        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114). Retried 3x.\n    at Connection.open (driver.js:64:11)",
+      viewMoreLabel: "View more",
+    },
+  },
+  {
+    id: "m2",
+    name: "CONTRACT_HISTORY",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "FULL",
+    type: "ROLLUP",
+    status: "fail",
+    statusCount: 1,
+    hasError: true,
   },
 ]
 
@@ -437,7 +437,7 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
           {detail.errorType}
         </span>
       </div>
-      <div className="relative rounded-lg bg-[#f2f2f2] p-4 dark:bg-muted/60">
+      <div className="relative rounded-lg bg-cream-bg-1 p-4">
         <button
           type="button"
           onClick={handleCopy}
@@ -478,7 +478,7 @@ function isTableLevelRule(column: string) {
 
 function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
   return (
-    <div className="w-full">
+    <div className="w-full bg-cream-bg-3">
       <table className="w-full table-fixed text-left text-sm">
         <colgroup>
           <col className="w-[33%]" />
@@ -676,16 +676,16 @@ function ModelTableExpandedRow({
   onToggleExpand: () => void
 }) {
   return (
-    <TableRow className="border-border hover:bg-transparent">
+    <TableRow className="border-border !bg-cream-bg-3 hover:!bg-cream-bg-3">
       <TableCell
         colSpan={columnCount}
         className={cn(
-          "relative bg-[#f5f5f5] p-0 dark:bg-muted/50",
+          "relative !bg-cream-bg-3 p-0",
           row.hasError &&
             "before:bg-destructive before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-0.5"
         )}
       >
-        <div className="bg-[#f5f5f5] dark:bg-transparent">
+        <div className="bg-cream-bg-3">
           <div className="grid w-full grid-cols-[33%_46%_13%_8%] items-start py-0">
             <div className="flex min-w-0 items-start gap-2 px-3 py-4 sm:px-4">
               <button
