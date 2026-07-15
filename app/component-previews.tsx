@@ -28,7 +28,9 @@ import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-ca
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
 import { DataProductCardDefaultPreview } from "@/app/component-examples/data-product-card-usage"
 import { ModelHealthRunsDefaultPreview } from "@/app/component-examples/model-health-runs-usage"
+import { ModelsTableDefaultPreview } from "@/app/component-examples/models-table-usage"
 import { RunDurationDefaultPreview } from "@/app/component-examples/run-duration-usage"
+import { RunMetricsDefaultPreview } from "@/app/component-examples/run-metrics-usage"
 import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
@@ -835,6 +837,16 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "model-health-runs": (
     <div className="w-full overflow-hidden">
       <ModelHealthRunsDefaultPreview />
+    </div>
+  ),
+  "run-metrics": (
+    <div className="w-full overflow-hidden">
+      <RunMetricsDefaultPreview />
+    </div>
+  ),
+  "models-table": (
+    <div className="w-full overflow-hidden">
+      <ModelsTableDefaultPreview />
     </div>
   ),
   "application-header": (

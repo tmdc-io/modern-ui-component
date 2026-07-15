@@ -53,6 +53,8 @@ export function getVariantPageNames(): string[] {
   "application-header",
   "run-duration",
   "model-health-runs",
+  "run-metrics",
+  "models-table",
   "radio-group",
   "resizable",
   "scroll-area",

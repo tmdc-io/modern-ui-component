@@ -1285,6 +1285,32 @@
       ]
     },
     {
+      "name": "run-metrics",
+      "type": "registry:block",
+      "title": "Run Metrics",
+      "description": "Pipeline run metrics grid with serif values and optional quality breakdown.",
+      "files": [
+        {
+          "path": "registry/default/blocks/run-metrics/run-metrics.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "models-table",
+      "type": "registry:block",
+      "title": "Models Table",
+      "description": "Pipeline models table with kind/type pills, runtime bars, row counts, and status indicators.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["dropdown-menu", "input", "table"],
+      "files": [
+        {
+          "path": "registry/default/blocks/models-table/models-table.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "chart-area-axes",
       "type": "registry:block",
       "title": "Area Chart Axes",

@@ -19,7 +19,9 @@ import { commandApi } from "@/app/component-api/command"
 import { contextMenuApi } from "@/app/component-api/context-menu"
 import { applicationHeaderApi } from "@/app/component-api/application-header"
 import { modelHealthRunsApi } from "@/app/component-api/model-health-runs"
+import { modelsTableApi } from "@/app/component-api/models-table"
 import { runDurationApi } from "@/app/component-api/run-duration"
+import { runMetricsApi } from "@/app/component-api/run-metrics"
 import { dataosSidebarApi } from "@/app/component-api/dataos-sidebar"
 import { dataProductCardApi } from "@/app/component-api/data-product-card"
 import { dataProductTableApi } from "@/app/component-api/data-product-table"
@@ -96,7 +98,9 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   "context-menu": contextMenuApi,
   "application-header": applicationHeaderApi,
   "model-health-runs": modelHealthRunsApi,
+  "models-table": modelsTableApi,
   "run-duration": runDurationApi,
+  "run-metrics": runMetricsApi,
   "data-product-card": dataProductCardApi,
   "data-product-table": dataProductTableApi,
   "dataos-sidebar": dataosSidebarApi,

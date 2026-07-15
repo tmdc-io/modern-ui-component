@@ -26,6 +26,8 @@ const MANUAL_PAGES = [
   "application-header",
   "run-duration",
   "model-health-runs",
+  "run-metrics",
+  "models-table",
   "theme",
   "utils",
 ]

@@ -223,6 +223,16 @@ export const catalog: CatalogCategory[] = [
         "Model Health Across Runs",
         "Model health grid across runs with status pills and row/column health summaries."
       ),
+      item(
+        "run-metrics",
+        "Run Metrics",
+        "Pipeline run metrics grid with serif values and quality passed/failed breakdown."
+      ),
+      item(
+        "models-table",
+        "Models Table",
+        "Pipeline models catalog with kind/type pills, runtime bars, and status indicators."
+      ),
     ],
   },
   {
