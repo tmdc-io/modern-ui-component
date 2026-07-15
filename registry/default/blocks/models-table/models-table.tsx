@@ -8,7 +8,6 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   CircleCheckIcon,
-  Columns3Icon,
   CopyIcon,
   FilterIcon,
   ListIcon,
@@ -125,11 +124,12 @@ const defaultRows: ModelTableRow[] = [
     status: "fail",
     statusCount: 1,
     hasError: true,
+    showSparkline: true,
     expansion: "error",
     errorDetail: {
       errorType: "Py4JJavaError",
       message:
-        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114). Retried 3x. at Connection.open (driver.js:64:11)",
+        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114). Retried 3x.\n    at Connection.open (driver.js:64:11)",
       viewMoreLabel: "View more",
     },
   },
@@ -311,7 +311,7 @@ function HeaderFilterButton({ label }: { label: string }) {
 
 function KindTypePill({ label }: { label: string }) {
   return (
-    <span className="bg-card text-foreground inline-flex max-w-full rounded-full border border-border px-2.5 py-1 text-[10px] font-medium tracking-wide uppercase shadow-sm dark:bg-white dark:text-[#242422]">
+    <span className="inline-flex max-w-full rounded px-2 py-1 font-mono text-[10px] font-medium tracking-wide text-[#242422] uppercase bg-[#ececec] dark:bg-white/90 dark:text-[#242422]">
       <span className="truncate">{label}</span>
     </span>
   )
@@ -343,14 +343,18 @@ function RuntimeBar({
 
 function RuleStatusIcon({ status }: { status: ModelTableRuleStatus }) {
   if (status === "fail") {
-    return <AlertCircleIcon className="text-dataos-fail-fg size-3.5 shrink-0" />
+    return (
+      <AlertCircleIcon className="size-4 shrink-0 fill-dataos-fail-bg text-dataos-fail-fg" />
+    )
   }
   if (status === "warn") {
     return (
-      <AlertTriangleIcon className="text-dataos-warn-fg size-3.5 shrink-0 fill-current" />
+      <AlertTriangleIcon className="size-4 shrink-0 fill-[#FFF1DE] text-[#E68600]" />
     )
   }
-  return <CircleCheckIcon className="text-dataos-success-fg size-3.5 shrink-0" />
+  return (
+    <CircleCheckIcon className="size-4 shrink-0 fill-dataos-success-bg text-dataos-success-fg" />
+  )
 }
 
 function StatusCell({ row }: { row: ModelTableRow }) {
@@ -360,8 +364,8 @@ function StatusCell({ row }: { row: ModelTableRow }) {
 
   if (row.status === "fail") {
     return (
-      <span className="text-dataos-fail-fg inline-flex items-center gap-1 text-sm font-medium">
-        <AlertCircleIcon className="size-3.5 shrink-0" />
+      <span className="text-dataos-fail-fg inline-flex items-center gap-1.5 text-sm font-medium">
+        <AlertCircleIcon className="size-4 shrink-0 fill-dataos-fail-bg" />
         {row.statusCount}
       </span>
     )
@@ -369,16 +373,16 @@ function StatusCell({ row }: { row: ModelTableRow }) {
 
   if (row.status === "warn") {
     return (
-      <span className="text-dataos-warn-fg inline-flex items-center gap-1 text-sm font-medium">
-        <AlertTriangleIcon className="size-3.5 shrink-0 fill-current" />
+      <span className="inline-flex items-center gap-1.5 text-sm font-medium text-[#E68600]">
+        <AlertTriangleIcon className="size-4 shrink-0 fill-[#FFF1DE]" />
         {row.statusCount}
       </span>
     )
   }
 
   return (
-    <span className="text-dataos-success-fg inline-flex items-center gap-1 text-sm font-medium">
-      <CircleCheckIcon className="size-3.5 shrink-0" />
+    <span className="text-dataos-success-fg inline-flex items-center gap-1.5 text-sm font-medium">
+      <CircleCheckIcon className="size-4 shrink-0 fill-dataos-success-bg" />
       {row.statusCount}
     </span>
   )
@@ -420,40 +424,46 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
     }
   }
 
+  const showViewMore =
+    Boolean(detail.viewMoreLabel) ||
+    Boolean(detail.viewMoreHref) ||
+    Boolean(detail.onViewMore)
+  const viewMoreLabel = detail.viewMoreLabel ?? "View more"
+
   return (
-    <div className="px-4 pb-4 sm:px-6 sm:pb-5">
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <span className="border-destructive/60 text-destructive inline-flex rounded border px-2 py-0.5 text-xs font-medium">
+    <div className="px-3 pb-5 pl-10 sm:px-4 sm:pl-11">
+      <div className="mb-3">
+        <span className="border-dataos-fail-fg text-dataos-fail-fg inline-flex rounded border bg-white px-2 py-0.5 text-xs font-medium dark:bg-transparent">
           {detail.errorType}
         </span>
       </div>
-      <div className="bg-muted/80 relative rounded-md border border-border/70 p-3 sm:p-4">
+      <div className="relative rounded-lg bg-[#f2f2f2] p-4 dark:bg-muted/60">
         <button
           type="button"
           onClick={handleCopy}
-          className="text-muted-foreground hover:text-foreground absolute top-2 right-2 inline-flex size-7 items-center justify-center rounded-sm transition-colors"
+          className="text-muted-foreground hover:text-foreground absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-sm transition-colors"
           aria-label="Copy error message"
         >
           <CopyIcon className="size-3.5" />
         </button>
-        <p className="text-foreground pr-8 font-mono text-xs leading-relaxed">
+        <p className="text-foreground pr-9 font-mono text-xs leading-relaxed whitespace-pre-wrap">
           {detail.message}
         </p>
-        {detail.viewMoreHref || detail.onViewMore ? (
+        {showViewMore ? (
           detail.viewMoreHref ? (
             <a
               href={detail.viewMoreHref}
-              className="text-primary mt-3 inline-block text-xs font-medium hover:underline"
+              className="text-primary mt-3 inline-block text-sm font-medium hover:underline"
             >
-              {detail.viewMoreLabel ?? "View more"}
+              {viewMoreLabel}
             </a>
           ) : (
             <button
               type="button"
               onClick={detail.onViewMore}
-              className="text-primary mt-3 text-xs font-medium hover:underline"
+              className="text-primary mt-3 text-sm font-medium hover:underline"
             >
-              {detail.viewMoreLabel ?? "View more"}
+              {viewMoreLabel}
             </button>
           )
         ) : null}
@@ -462,54 +472,72 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
   )
 }
 
-function ColumnCell({ rule }: { rule: ModelTableQualityRule }) {
-  const isTableLevel = rule.column === "—" || rule.column.toLowerCase() === "table-level rule"
-
-  return (
-    <span className="text-foreground inline-flex items-center gap-2">
-      {isTableLevel ? (
-        <TableIcon className="text-muted-foreground size-3.5 shrink-0" />
-      ) : (
-        <Columns3Icon className="text-muted-foreground size-3.5 shrink-0" />
-      )}
-      <span className={cn(isTableLevel && "italic")}>
-        {isTableLevel ? "table-level rule" : rule.column}
-      </span>
-    </span>
-  )
+function isTableLevelRule(column: string) {
+  return column === "—" || column.toLowerCase() === "table-level rule"
 }
 
 function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[24rem] text-left text-sm">
+    <div className="w-full">
+      <table className="w-full table-fixed text-left text-sm">
+        <colgroup>
+          <col className="w-[33%]" />
+          <col className="w-[46%]" />
+          <col className="w-[13%]" />
+          <col className="w-[8%]" />
+        </colgroup>
         <thead>
           <tr className="border-b border-border">
-            <th className="text-muted-foreground px-4 py-2.5 text-xs font-medium sm:px-6">
+            <th className="text-muted-foreground h-9 pl-10 text-xs font-medium">
               Column
             </th>
-            <th className="text-muted-foreground px-4 py-2.5 text-xs font-medium sm:px-6">
+            <th className="text-muted-foreground relative h-9 px-3 text-xs font-medium sm:px-4">
+              <HeaderDivider />
               Rule
             </th>
-            <th className="text-muted-foreground w-24 px-4 py-2.5 text-xs font-medium sm:px-6">
+            <th className="text-muted-foreground relative h-9 px-3 text-xs font-medium sm:px-4">
+              <HeaderDivider />
               Status
+            </th>
+            <th className="relative h-9 px-2 sm:px-3">
+              <HeaderDivider />
             </th>
           </tr>
         </thead>
         <tbody>
-          {rules.map((rule) => (
-            <tr key={rule.id} className="border-b border-border/70 last:border-0">
-              <td className="px-4 py-3 sm:px-6">
-                <ColumnCell rule={rule} />
-              </td>
-              <td className="text-foreground max-w-md truncate px-4 py-3 sm:px-6">
-                {rule.rule}
-              </td>
-              <td className="px-4 py-3 sm:px-6">
-                <RuleStatusIcon status={rule.status} />
-              </td>
-            </tr>
-          ))}
+          {rules.map((rule) => {
+            const tableLevel = isTableLevelRule(rule.column)
+
+            return (
+              <tr
+                key={rule.id}
+                className="border-b border-border/70 last:border-0"
+              >
+                <td className="px-3 py-3 pl-10">
+                  <div className="flex min-w-0 items-center gap-2">
+                    <span className="inline-flex size-4 shrink-0 items-center justify-center">
+                      <TableIcon className="text-muted-foreground size-3.5" />
+                    </span>
+                    <span
+                      className={cn(
+                        "text-foreground truncate",
+                        tableLevel ? "italic" : "font-mono text-[13px]"
+                      )}
+                    >
+                      {tableLevel ? "table-level rule" : rule.column}
+                    </span>
+                  </div>
+                </td>
+                <td className="text-foreground truncate px-3 py-3 sm:px-4">
+                  {rule.rule}
+                </td>
+                <td className="px-3 py-3 sm:px-4">
+                  <RuleStatusIcon status={rule.status} />
+                </td>
+                <td className="px-2 py-3 sm:px-3" />
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>
@@ -571,8 +599,9 @@ function ModelTableDataRow({
     <TableRow className="group border-border bg-transparent hover:bg-muted/40">
       <TableCell
         className={cn(
-          "whitespace-normal px-3 py-4 align-middle sm:px-4",
-          row.hasError && "border-l-2 border-l-destructive"
+          "relative whitespace-normal px-3 py-4 align-middle sm:px-4",
+          row.hasError &&
+            "before:bg-destructive before:absolute before:inset-y-0 before:left-0 before:w-0.5"
         )}
       >
         <div className="flex min-w-0 items-start gap-2">
@@ -647,16 +676,18 @@ function ModelTableExpandedRow({
   onToggleExpand: () => void
 }) {
   return (
-    <TableRow className="border-border bg-muted/25 hover:bg-muted/25">
-      <TableCell colSpan={columnCount} className="p-0">
-        <div
-          className={cn(
-            "bg-card",
-            row.hasError && "border-l-2 border-l-destructive"
-          )}
-        >
-          <div className="flex items-start justify-between gap-3 px-4 py-4 sm:px-6">
-            <div className="flex min-w-0 items-start gap-2">
+    <TableRow className="border-border hover:bg-transparent">
+      <TableCell
+        colSpan={columnCount}
+        className={cn(
+          "relative bg-[#f5f5f5] p-0 dark:bg-muted/50",
+          row.hasError &&
+            "before:bg-destructive before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-0.5"
+        )}
+      >
+        <div className="bg-[#f5f5f5] dark:bg-transparent">
+          <div className="grid w-full grid-cols-[33%_46%_13%_8%] items-start py-0">
+            <div className="flex min-w-0 items-start gap-2 px-3 py-4 sm:px-4">
               <button
                 type="button"
                 onClick={onToggleExpand}
@@ -667,7 +698,7 @@ function ModelTableExpandedRow({
                 <ChevronDownIcon className="size-4" />
               </button>
               <div className="min-w-0">
-                <p className="text-foreground truncate text-[15px] font-semibold">
+                <p className="text-foreground truncate text-sm font-semibold uppercase">
                   {row.name}
                 </p>
                 <p className="text-muted-foreground mt-0.5 truncate text-xs italic">
@@ -675,7 +706,9 @@ function ModelTableExpandedRow({
                 </p>
               </div>
             </div>
-            <div className="flex shrink-0 items-center gap-1">
+            <div />
+            <div />
+            <div className="flex items-center justify-end gap-1 px-2 py-[1.3rem] sm:px-3">
               {row.showSparkline ? (
                 <BarChart3Icon className="text-muted-foreground/60 size-4 shrink-0" />
               ) : null}
