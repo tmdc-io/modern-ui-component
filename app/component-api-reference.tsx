@@ -1,16 +1,25 @@
+"use client"
+
 import type {
   ComponentApiReference,
   ComponentEnhancementRow,
   CssVariantGroup,
 } from "@/app/component-variants/types"
+import { docsCopy } from "@/app/docs-copy-es"
+import { docsMessages } from "@/app/docs-messages"
 import { LinkifyText } from "@/app/linkify-text"
+import { useTranslation } from "@/hooks/use-translation"
 
 export function ApiReferenceTable({
   apiReference,
 }: {
   apiReference: ComponentApiReference
 }) {
-  const title = apiReference.title ?? "Component Props"
+  const { t, language } = useTranslation(docsMessages)
+  const title = docsCopy(
+    apiReference.title ?? "Component Props",
+    language
+  )
 
   return (
     <div className="flex flex-col gap-4">
@@ -19,10 +28,18 @@ export function ApiReferenceTable({
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b bg-muted/50">
-              <th className="px-4 py-3 text-left font-medium">Prop</th>
-              <th className="px-4 py-3 text-left font-medium">Type</th>
-              <th className="px-4 py-3 text-left font-medium">Default</th>
-              <th className="px-4 py-3 text-left font-medium">Description</th>
+              <th className="px-4 py-3 text-left font-medium">
+                {t["detail.prop"]}
+              </th>
+              <th className="px-4 py-3 text-left font-medium">
+                {t["detail.type"]}
+              </th>
+              <th className="px-4 py-3 text-left font-medium">
+                {t["detail.default"]}
+              </th>
+              <th className="px-4 py-3 text-left font-medium">
+                {t["detail.description"]}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +53,9 @@ export function ApiReferenceTable({
                   {row.default ?? "—"}
                 </td>
                 <td className="px-4 py-3">
-                  <LinkifyText>{row.description}</LinkifyText>
+                  <LinkifyText>
+                    {docsCopy(row.description, language) ?? row.description}
+                  </LinkifyText>
                 </td>
               </tr>
             ))}
@@ -45,7 +64,9 @@ export function ApiReferenceTable({
       </div>
       {apiReference.footnote ? (
         <p className="text-muted-foreground text-sm leading-relaxed">
-          <LinkifyText>{apiReference.footnote}</LinkifyText>
+          <LinkifyText>
+            {docsCopy(apiReference.footnote, language) ?? apiReference.footnote}
+          </LinkifyText>
         </p>
       ) : null}
     </div>
@@ -57,12 +78,14 @@ export function CssVariantsReference({
 }: {
   groups: CssVariantGroup[]
 }) {
+  const { language } = useTranslation(docsMessages)
+
   return (
     <div className="flex flex-col gap-6">
       {groups.map((group) => (
         <div key={group.title} className="flex flex-col gap-3">
           <h3 className="text-base font-semibold tracking-tight">
-            {group.title}
+            {docsCopy(group.title, language) ?? group.title}
           </h3>
           <ul className="flex flex-col gap-2">
             {group.variants.map((variant) => (
@@ -72,7 +95,10 @@ export function CssVariantsReference({
               >
                 <code className="text-foreground text-xs">{variant.name}</code>
                 {" — "}
-                <LinkifyText>{variant.description}</LinkifyText>
+                <LinkifyText>
+                  {docsCopy(variant.description, language) ??
+                    variant.description}
+                </LinkifyText>
               </li>
             ))}
           </ul>
@@ -87,23 +113,31 @@ export function EnhancementsTable({
 }: {
   rows: ComponentEnhancementRow[]
 }) {
+  const { t, language } = useTranslation(docsMessages)
+
   return (
     <div className="overflow-x-auto rounded-lg border">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b bg-muted/50">
-            <th className="px-4 py-3 text-left font-medium">Enhancement</th>
-            <th className="px-4 py-3 text-left font-medium">Benefit</th>
+            <th className="px-4 py-3 text-left font-medium">
+              {t["detail.enhancement"]}
+            </th>
+            <th className="px-4 py-3 text-left font-medium">
+              {t["detail.benefit"]}
+            </th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row) => (
             <tr key={row.enhancement} className="border-b last:border-0">
               <td className="text-muted-foreground px-4 py-3 font-mono text-xs">
-                {row.enhancement}
+                {docsCopy(row.enhancement, language) ?? row.enhancement}
               </td>
               <td className="px-4 py-3">
-                <LinkifyText>{row.benefit}</LinkifyText>
+                <LinkifyText>
+                  {docsCopy(row.benefit, language) ?? row.benefit}
+                </LinkifyText>
               </td>
             </tr>
           ))}

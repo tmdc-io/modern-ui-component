@@ -43,6 +43,11 @@ export const catalog: CatalogCategory[] = [
         "Utils",
         "cn() classname helper — clsx + tailwind-merge for every component."
       ),
+      item(
+        "i18n",
+        "i18n",
+        "LanguageProvider, useTranslation, and LanguageSelector for block copy — English and Spanish to start."
+      ),
       {
         name: "attributions",
         title: "Attributions",

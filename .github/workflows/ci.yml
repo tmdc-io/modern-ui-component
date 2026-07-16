@@ -25,6 +25,8 @@ jobs:
 
       - run: pnpm typecheck
 
+      - run: pnpm docs:i18n:verify
+
       - run: pnpm lint
 
       - run: pnpm registry:build

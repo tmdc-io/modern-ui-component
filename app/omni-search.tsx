@@ -15,12 +15,15 @@ import {
 } from "lucide-react"
 
 import { allComponents } from "@/app/catalog"
+import { catalogItemTitle } from "@/app/catalog-item-titles"
 import {
   getRegistryItemHref,
   markRegistryScrollTarget,
   MONOREPO_SECTION_ID,
 } from "@/app/component-registry-sidebar"
+import { docsMessages } from "@/app/docs-messages"
 import { GITHUB_URL } from "@/app/github-link"
+import { useTranslation } from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/default/ui/button"
 import {
@@ -60,6 +63,7 @@ function OmniSearchDialog({
   open: boolean
   onOpenChange: (open: boolean) => void
 }) {
+  const { t, language } = useTranslation(docsMessages)
   const router = useRouter()
   const listRef = React.useRef<HTMLDivElement>(null)
   const [search, setSearch] = React.useState("")
@@ -108,14 +112,14 @@ function OmniSearchDialog({
     <CommandDialog
       open={open}
       onOpenChange={handleOpenChange}
-      title="Search"
-      description="Search components, documentation, and links"
+      title={t["search.trigger"]}
+      description={t["search.placeholder"]}
       showCloseButton={false}
       className="top-[12%] max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-0 sm:max-w-xl"
     >
       <div className="relative [&_[data-slot=command-input-wrapper]]:pr-10">
         <CommandInput
-          placeholder="Type to search..."
+          placeholder={t["search.placeholder"]}
           value={search}
           onValueChange={setSearch}
         />
@@ -125,14 +129,14 @@ function OmniSearchDialog({
           size="icon"
           className="text-muted-foreground hover:text-foreground absolute top-1/2 right-2 z-10 size-7 -translate-y-1/2"
           onClick={() => handleOpenChange(false)}
-          aria-label="Close search"
+          aria-label={t["search.close"]}
         >
           <XIcon className="size-4" />
         </Button>
       </div>
       <CommandList ref={listRef} className="max-h-[min(420px,50vh)]">
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Components">
+        <CommandEmpty>{t["search.empty"]}</CommandEmpty>
+        <CommandGroup heading={t["search.groupComponents"]}>
           {searchableComponents.map((item) => (
             <CommandItem
               key={item.name}
@@ -141,36 +145,36 @@ function OmniSearchDialog({
               onSelect={() => navigateToRegistryItem(item.name)}
             >
               <CircleIcon />
-              <span>{item.title}</span>
+              <span>{catalogItemTitle(item.name, item.title, language)}</span>
             </CommandItem>
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Documentation">
+        <CommandGroup heading={t["search.groupDocs"]}>
           <CommandItem
             value="Getting Started project setup"
             onSelect={() => navigateToRegistryItem("project-setup")}
           >
             <FileTextIcon />
-            <span>Getting Started</span>
+            <span>{t["search.docGettingStarted"]}</span>
           </CommandItem>
           <CommandItem value="Components catalog" onSelect={navigateToHome}>
             <LayoutGridIcon />
-            <span>Components</span>
+            <span>{t["search.docComponents"]}</span>
           </CommandItem>
           <CommandItem
             value="Theming theme design tokens"
             onSelect={() => navigateToRegistryItem("theme")}
           >
             <PaletteIcon />
-            <span>Theming</span>
+            <span>{t["search.docTheming"]}</span>
           </CommandItem>
           <CommandItem
             value="Utils cn classname helper"
             onSelect={() => navigateToRegistryItem("utils")}
           >
             <WrenchIcon />
-            <span>Utils</span>
+            <span>{t["search.docUtils"]}</span>
           </CommandItem>
           <CommandItem
             value="Monorepo installation pnpm turbo workspaces"
@@ -181,11 +185,11 @@ function OmniSearchDialog({
             }}
           >
             <GitBranchIcon />
-            <span>Monorepo</span>
+            <span>{t["search.docMonorepo"]}</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Links">
+        <CommandGroup heading={t["search.groupLinks"]}>
           <CommandItem
             value="GitHub Repository"
             onSelect={() => {
@@ -194,7 +198,7 @@ function OmniSearchDialog({
             }}
           >
             <GithubIcon />
-            <span>GitHub Repository</span>
+            <span>{t["search.docGitHub"]}</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
@@ -228,6 +232,7 @@ export function OmniSearchRoot({ children }: { children: React.ReactNode }) {
 }
 
 export function OmniSearchTrigger({ className }: { className?: string }) {
+  const { t } = useTranslation(docsMessages)
   const { setOpen } = useOmniSearch()
 
   return (
@@ -238,10 +243,10 @@ export function OmniSearchTrigger({ className }: { className?: string }) {
         "border-input bg-muted/40 text-muted-foreground hover:bg-muted/60 inline-flex h-9 w-full items-center gap-2 rounded-md border px-3 text-sm transition-colors",
         className
       )}
-      aria-label="Open search"
+      aria-label={t["search.open"]}
     >
       <SearchIcon className="size-4 shrink-0 opacity-60" />
-      <span className="flex-1 truncate text-left">Type to search...</span>
+      <span className="flex-1 truncate text-left">{t["search.placeholder"]}</span>
       <kbd className="bg-background text-muted-foreground pointer-events-none hidden h-5 shrink-0 items-center gap-0.5 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:inline-flex">
         <span className="text-xs">⌘</span>K
       </kbd>

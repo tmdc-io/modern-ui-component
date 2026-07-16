@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "i18n",
+  "title": "i18n",
+  "description": "Language provider, useTranslation hook, and language selector for ModernUI blocks.",
+  "dependencies": [
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "select",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "hooks/use-translation.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nexport type TranslationEntry = {\n  dir: \"ltr\" | \"rtl\"\n  values: Record<string, string>\n  locale?: string\n}\n\nexport type Translations = Record<string, TranslationEntry>\n\ntype LanguageContextValue = {\n  language: string\n  setLanguage: (language: string) => void\n}\n\nconst LanguageContext = React.createContext<LanguageContextValue | null>(null)\n\nexport const LANGUAGE_STORAGE_KEY = \"modernui-language\"\n\nexport function LanguageProvider({\n  children,\n  defaultLanguage = \"en\",\n  storageKey = LANGUAGE_STORAGE_KEY,\n}: {\n  children: React.ReactNode\n  defaultLanguage?: string\n  /** Pass `null` to disable persistence. */\n  storageKey?: string | null\n}) {\n  const [language, setLanguageState] = React.useState(defaultLanguage)\n\n  React.useEffect(() => {\n    if (!storageKey) return\n    try {\n      const stored = window.localStorage.getItem(storageKey)\n      if (stored) setLanguageState(stored)\n    } catch {\n      // ignore storage failures\n    }\n  }, [storageKey])\n\n  const setLanguage = React.useCallback(\n    (next: string) => {\n      setLanguageState(next)\n      if (!storageKey) return\n      try {\n        window.localStorage.setItem(storageKey, next)\n      } catch {\n        // ignore storage failures\n      }\n    },\n    [storageKey]\n  )\n\n  const value = React.useMemo(\n    () => ({ language, setLanguage }),\n    [language, setLanguage]\n  )\n\n  return (\n    <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>\n  )\n}\n\nexport function useLanguage() {\n  const context = React.useContext(LanguageContext)\n  if (!context) {\n    throw new Error(\"useLanguage must be used within a LanguageProvider\")\n  }\n  return context\n}\n\nexport function useOptionalLanguage() {\n  return React.useContext(LanguageContext)\n}\n\n/**\n * Resolve strings for the active language.\n * Pass `locale` to pin a language (e.g. RTL demos under a site-wide provider).\n * Omit `locale` to follow LanguageProvider / LanguageSelector.\n */\nexport function useTranslation(translations: Translations, locale?: string) {\n  const context = useOptionalLanguage()\n  const [localLanguage, setLocalLanguage] = React.useState(locale ?? \"en\")\n\n  // Explicit locale pins the catalog (RTL demos). Otherwise prefer provider.\n  const language = locale ?? context?.language ?? localLanguage\n  const setLanguage = context?.setLanguage ?? setLocalLanguage\n\n  const entry =\n    translations[language] ??\n    (locale ? translations[locale] : undefined) ??\n    translations.en ??\n    Object.values(translations)[0]\n\n  if (!entry) {\n    throw new Error(\"useTranslation requires at least one translation entry\")\n  }\n\n  return {\n    dir: entry.dir,\n    language: entry.locale ?? language,\n    locale: entry.locale ?? language,\n    t: entry.values,\n    setLanguage,\n  }\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-translation.tsx"
+    },
+    {
+      "path": "registry/default/ui/language-selector.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { useOptionalLanguage } from \"@/hooks/use-translation\"\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/default/ui/select\"\nimport { cn } from \"@/lib/utils\"\n\nexport type LanguageOption = {\n  value: string\n  label: string\n}\n\nconst defaultLanguages: LanguageOption[] = [\n  { value: \"en\", label: \"English\" },\n  { value: \"es\", label: \"Español\" },\n]\n\nfunction LanguageSelector({\n  value,\n  onValueChange,\n  className,\n  languages = defaultLanguages,\n  ...props\n}: Omit<React.ComponentProps<typeof Select>, \"value\" | \"onValueChange\"> & {\n  value?: string\n  onValueChange?: (value: string) => void\n  className?: string\n  languages?: LanguageOption[]\n}) {\n  const context = useOptionalLanguage()\n  const [uncontrolled, setUncontrolled] = React.useState(\"en\")\n\n  const resolvedValue = value ?? context?.language ?? uncontrolled\n  const handleChange =\n    onValueChange ?? context?.setLanguage ?? setUncontrolled\n\n  const options = React.useMemo(() => {\n    if (languages.some((language) => language.value === resolvedValue)) {\n      return languages\n    }\n    return [\n      ...languages,\n      { value: resolvedValue, label: resolvedValue.toUpperCase() },\n    ]\n  }, [languages, resolvedValue])\n\n  return (\n    <Select value={resolvedValue} onValueChange={handleChange} {...props}>\n      <SelectTrigger\n        size=\"sm\"\n        className={cn(\"min-w-[8.5rem]\", className)}\n        aria-label=\"Select language\"\n      >\n        <SelectValue placeholder=\"Language\" />\n      </SelectTrigger>\n      <SelectContent>\n        {options.map((language) => (\n          <SelectItem key={language.value} value={language.value}>\n            {language.label}\n          </SelectItem>\n        ))}\n      </SelectContent>\n    </Select>\n  )\n}\n\nexport { LanguageSelector }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

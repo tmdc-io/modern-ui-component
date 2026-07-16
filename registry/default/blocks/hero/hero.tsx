@@ -19,6 +19,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type HeroVariant = "full" | "internal" | "sticky"
@@ -90,6 +94,43 @@ export type HeroProps = {
   className?: string
 }
 
+export const heroMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      follow: "Follow",
+      following: "Following",
+      explore: "Explore",
+      exploreOptions: "{label} options",
+      dataQuality: "Data Quality",
+      rulesPassed: "rules passed",
+      passed: "passed",
+      failed: "failed",
+      knowMore: "Know more",
+      jumpTo: "Jump to:",
+      viewMore: "View more",
+      members: "+{count} more",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      follow: "Seguir",
+      following: "Siguiendo",
+      explore: "Explorar",
+      exploreOptions: "Opciones de {label}",
+      dataQuality: "Calidad de datos",
+      rulesPassed: "reglas aprobadas",
+      passed: "aprobadas",
+      failed: "fallidas",
+      knowMore: "Saber más",
+      jumpTo: "Ir a:",
+      viewMore: "Ver más",
+      members: "+{count} más",
+    },
+  },
+} satisfies Translations
+
 function HeroIconTile({
   icon,
   size = "default",
@@ -124,13 +165,20 @@ function HeroActions({
   size = "default",
 }: {
   following?: boolean
-  followLabel: string
+  followLabel?: string
   onFollowChange?: (next: boolean) => void
-  exploreLabel: string
+  exploreLabel?: string
   onExplore?: () => void
   exploreMenu?: React.ReactNode
   size?: "default" | "sm"
 }) {
+  const { t } = useTranslation(heroMessages)
+  const resolvedFollowLabel = followLabel ?? t.follow
+  const resolvedExploreLabel = exploreLabel ?? t.explore
+  const exploreOptionsLabel = t.exploreOptions.replace(
+    "{label}",
+    resolvedExploreLabel
+  )
   const buttonSize = size === "sm" ? "sm" : "default"
 
   return (
@@ -141,7 +189,7 @@ function HeroActions({
         aria-pressed={following}
         onClick={() => onFollowChange?.(!following)}
       >
-        {following ? "Following" : followLabel}
+        {following ? t.following : resolvedFollowLabel}
       </Button>
       <div className="flex items-center">
         <Button
@@ -149,7 +197,7 @@ function HeroActions({
           className="rounded-r-none"
           onClick={onExplore}
         >
-          {exploreLabel}
+          {resolvedExploreLabel}
         </Button>
         {exploreMenu ? (
           <DropdownMenu>
@@ -157,7 +205,7 @@ function HeroActions({
               <Button
                 size={size === "sm" ? "icon-sm" : "icon"}
                 className="border-primary-foreground/20 rounded-l-none border-l"
-                aria-label={`${exploreLabel} options`}
+                aria-label={exploreOptionsLabel}
               >
                 <ChevronDownIcon className="size-4" />
               </Button>
@@ -170,7 +218,7 @@ function HeroActions({
           <Button
             size={size === "sm" ? "icon-sm" : "icon"}
             className="border-primary-foreground/20 rounded-l-none border-l"
-            aria-label={`${exploreLabel} options`}
+            aria-label={exploreOptionsLabel}
             onClick={onExplore}
           >
             <ChevronDownIcon className="size-4" />
@@ -302,6 +350,7 @@ export function HeroMemberStack({
   members: HeroMember[]
   max?: number
 }) {
+  const { t } = useTranslation(heroMessages)
   const visible = members.slice(0, max)
   const overflow = members.length - visible.length
 
@@ -328,7 +377,9 @@ export function HeroMemberStack({
         ))}
       </div>
       {overflow > 0 ? (
-        <span className="text-muted-foreground text-xs">+{overflow} more</span>
+        <span className="text-muted-foreground text-xs">
+          {t.members.replace("{count}", String(overflow))}
+        </span>
       ) : null}
     </div>
   )
@@ -357,6 +408,7 @@ function QualityStatusIcon({ status }: { status: HeroDimensionStatus }) {
 }
 
 function HeroQualityDonut({ percentage }: { percentage: number }) {
+  const { t } = useTranslation(heroMessages)
   const radius = 26
   const circumference = 2 * Math.PI * radius
   const dash = (Math.min(Math.max(percentage, 0), 100) / 100) * circumference
@@ -387,15 +439,16 @@ function HeroQualityDonut({ percentage }: { percentage: number }) {
         <span className="text-foreground text-sm font-semibold">
           {percentage}%
         </span>
-        <span className="text-muted-foreground text-[8px]">rules passed</span>
+        <span className="text-muted-foreground text-[8px]">{t.rulesPassed}</span>
       </div>
     </div>
   )
 }
 
 export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
+  const { t } = useTranslation(heroMessages)
   const {
-    title = "Data Quality",
+    title,
     percentage,
     passed,
     failed,
@@ -403,17 +456,22 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
     href,
     onKnowMore,
   } = quality
+  const resolvedTitle = title ?? t.dataQuality
 
   return (
     <div className="border-grey-8 bg-card flex w-full max-w-[20rem] flex-col gap-4 rounded-xl border p-4 shadow-sm">
       <div className="flex items-center gap-3">
         <HeroQualityDonut percentage={percentage} />
         <div className="space-y-0.5">
-          <p className="text-foreground text-sm font-semibold">{title}</p>
+          <p className="text-foreground text-sm font-semibold">{resolvedTitle}</p>
           <p className="text-xs font-medium">
-            <span className="text-dataos-success-fg">{passed} passed</span>
+            <span className="text-dataos-success-fg">
+              {passed} {t.passed}
+            </span>
             <span className="text-muted-foreground"> • </span>
-            <span className="text-dataos-fail-fg">{failed} failed</span>
+            <span className="text-dataos-fail-fg">
+              {failed} {t.failed}
+            </span>
           </p>
         </div>
       </div>
@@ -434,7 +492,7 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
             href={href}
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            Know more <ArrowRightIcon className="size-3.5" />
+            {t.knowMore} <ArrowRightIcon className="size-3.5" />
           </a>
         ) : (
           <button
@@ -442,7 +500,7 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
             onClick={onKnowMore}
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            Know more <ArrowRightIcon className="size-3.5" />
+            {t.knowMore} <ArrowRightIcon className="size-3.5" />
           </button>
         )}
       </div>
@@ -451,9 +509,10 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
 }
 
 export function HeroJumpBar({ items }: { items: HeroJumpItem[] }) {
+  const { t } = useTranslation(heroMessages)
   return (
     <div className="border-grey-8 flex flex-wrap items-center gap-1 border-t pt-3">
-      <span className="text-muted-foreground mr-1 text-xs">Jump to:</span>
+      <span className="text-muted-foreground mr-1 text-xs">{t.jumpTo}</span>
       {items.map((item) => (
         <button
           key={item.label}
@@ -486,18 +545,21 @@ export function Hero({
   quality,
   metaColumns,
   jumpItems,
-  members,
+  members: _members,
   showDescription = true,
-  descriptionExpandLabel = "View more",
+  descriptionExpandLabel,
   onDescriptionExpand,
   following = false,
-  followLabel = "Follow",
+  followLabel,
   onFollowChange,
-  exploreLabel = "Explore",
+  exploreLabel,
   onExplore,
   exploreMenu,
   className,
 }: HeroProps) {
+  const { t } = useTranslation(heroMessages)
+  const resolvedExpandLabel = descriptionExpandLabel ?? t.viewMore
+
   if (variant === "sticky") {
     return (
       <div
@@ -562,7 +624,7 @@ export function Hero({
             {description && showDescription ? (
               <HeroDescription
                 description={description}
-                expandLabel={descriptionExpandLabel}
+                expandLabel={resolvedExpandLabel}
                 onExpand={onDescriptionExpand}
               />
             ) : null}

@@ -31,6 +31,7 @@ import { projectSetupVariantPage } from "@/app/component-variants/project-setup-
 import { tableTanStackSupplement } from "@/app/component-variants/table-page"
 import { themeVariantPage } from "@/app/component-variants/theme-page"
 import { utilsVariantPage } from "@/app/component-variants/utils-page"
+import { i18nVariantPage } from "@/app/component-variants/i18n-page"
 import { componentApiDocs, hasComponentApiDoc } from "@/app/component-api"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
@@ -166,6 +167,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "dataos-sidebar": dataosSidebarPage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
+  i18n: i18nVariantPage,
   ...applyTableTanStackSupplement(
     mergeVariantPages(
       generatedWithoutChart,
@@ -193,6 +195,8 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   hero: "Usage",
   "dataos-sidebar": "Usage",
   theme: "Palette",
+  utils: "Usage",
+  i18n: "Usage",
 }
 
 export function getDetailPageLabel(name: string) {

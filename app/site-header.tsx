@@ -1,10 +1,15 @@
+"use client"
+
 import Link from "next/link"
 
 import { OmniSearchTrigger } from "@/app/omni-search"
+import { docsMessages } from "@/app/docs-messages"
 import { GitHubLink } from "@/app/github-link"
 import { ModeToggle } from "@/app/mode-toggle"
 import { TextSizeControl } from "@/app/text-size-control"
 import { VersionDropdown } from "@/app/version-dropdown"
+import { useTranslation } from "@/hooks/use-translation"
+import { LanguageSelector } from "@/registry/default/ui/language-selector"
 
 function ModernLogo({ className }: { className?: string }) {
   return (
@@ -68,6 +73,8 @@ function ModernLogo({ className }: { className?: string }) {
 }
 
 export function SiteHeader() {
+  const { t } = useTranslation(docsMessages)
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="grid h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-6 lg:px-10">
@@ -79,21 +86,25 @@ export function SiteHeader() {
               className="bg-border hidden h-5 w-px sm:block"
             />
             <span className="text-muted-foreground hidden truncate text-sm sm:inline">
-              Component Registry
+              {t["header.registry"]}
             </span>
-            <span className="sr-only">Modern — Component Registry</span>
+            <span className="sr-only">{t["header.srOnly"]}</span>
           </Link>
           <VersionDropdown />
         </div>
         <OmniSearchTrigger className="mx-auto hidden w-full max-w-md sm:flex" />
         <div className="flex items-center justify-end gap-2 sm:gap-3">
+          <LanguageSelector className="hidden sm:flex" />
           <TextSizeControl />
           <ModeToggle />
           <GitHubLink className="text-foreground hover:text-primary inline-flex items-center gap-2 text-sm font-medium transition-colors" />
         </div>
       </div>
       <div className="border-t px-6 pb-3 sm:hidden">
-        <OmniSearchTrigger className="w-full" />
+        <div className="flex items-center gap-2">
+          <OmniSearchTrigger className="min-w-0 flex-1" />
+          <LanguageSelector />
+        </div>
       </div>
     </header>
   )

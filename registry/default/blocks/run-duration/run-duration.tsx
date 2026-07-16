@@ -19,6 +19,10 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/registry/default/ui/chart"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type RunDurationStatus = "normal" | "anomaly" | "selected"
@@ -41,6 +45,29 @@ export type RunDurationProps = {
   onSelectedChange?: (id: string) => void
   className?: string
 }
+
+export const runDurationMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      title: "Run duration",
+      normal: "Normal",
+      anomaly: "Anomaly",
+      selected: "Selected",
+      baseline: "Baseline",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      title: "Duracion de ejecucion",
+      normal: "Normal",
+      anomaly: "Anomalia",
+      selected: "Seleccionado",
+      baseline: "Linea base",
+    },
+  },
+} satisfies Translations
 
 const defaultRuns: RunDurationRun[] = [
   { id: "r1", date: "Mar 15, 2027", time: "11:42", duration: 29, durationLabel: "29m", status: "normal" },
@@ -75,12 +102,13 @@ const statusLabelClass: Record<RunDurationStatus, string> = {
 }
 
 function RunDurationLegend() {
+  const { t } = useTranslation(runDurationMessages)
   const items = [
-    { label: "Normal", swatchClass: "bg-run-duration-normal" },
-    { label: "Anomaly", swatchClass: "bg-run-duration-anomaly" },
-    { label: "Selected", swatchClass: "bg-run-duration-selected" },
+    { label: t.normal, swatchClass: "bg-run-duration-normal" },
+    { label: t.anomaly, swatchClass: "bg-run-duration-anomaly" },
+    { label: t.selected, swatchClass: "bg-run-duration-selected" },
     {
-      label: "baseline",
+      label: t.baseline,
       swatchClass:
         "h-0 w-4 border-t border-dashed border-muted-foreground/70 bg-transparent",
     },
@@ -166,7 +194,7 @@ function DurationLabel(props: {
 }
 
 export function RunDuration({
-  title = "Run duration",
+  title,
   runs = defaultRuns,
   baseline = 56,
   selectedId,
@@ -174,9 +202,11 @@ export function RunDuration({
   onSelectedChange,
   className,
 }: RunDurationProps) {
+  const { t } = useTranslation(runDurationMessages)
   const isControlled = selectedId !== undefined
   const [internalSelectedId, setInternalSelectedId] = React.useState(defaultSelectedId)
   const resolvedSelectedId = isControlled ? selectedId : internalSelectedId
+  const resolvedTitle = title ?? t.title
 
   const resolvedRuns = runs.map((run) => ({
     ...run,
@@ -199,7 +229,7 @@ export function RunDuration({
     <section className={cn("bg-card w-full", className)}>
       <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
-          {title}
+          {resolvedTitle}
         </h3>
         <RunDurationLegend />
       </div>

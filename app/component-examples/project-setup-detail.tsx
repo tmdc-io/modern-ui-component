@@ -3,6 +3,7 @@
 import { FileTextIcon, FolderOpenIcon, TerminalIcon } from "lucide-react"
 
 import { monorepoCodes } from "@/app/component-examples/monorepo-codes"
+import { GITHUB_DOCS } from "@/app/github-link"
 import { InstallCommand } from "@/app/install-command"
 import {
   MonorepoProcessPreview,
@@ -27,6 +28,7 @@ const installOrder = [
   "project-setup — AGENTS.md and consumer docs (this item)",
   "theme — CSS variables and base styles",
   "utils — cn() helper",
+  "i18n — LanguageProvider + useTranslation (optional)",
   "Primitives — button, input, card, dialog, …",
   "Blocks — login, signup, login-form, …",
 ] as const
@@ -128,13 +130,53 @@ export function ProjectSetupConsumerPreview() {
         docs/modernui-setup.md
       </div>
       <p className="text-muted-foreground">
-        Renamed from CONSUMER.md when installed. A setup guide your team can
-        follow in any shadcn-compatible React project.
+        Renamed from{" "}
+        <a
+          href={GITHUB_DOCS.consumer}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-brand font-medium hover:underline"
+        >
+          CONSUMER.md
+        </a>{" "}
+        when installed. A setup guide your team can follow in any
+        shadcn-compatible React project.
       </p>
       <ul className="text-muted-foreground list-disc space-y-1 pl-5">
         <li>Prerequisites — shadcn init</li>
-        <li>GitHub registry install commands</li>
-        <li>Hosted namespace option after deploy</li>
+        <li>
+          <a
+            href={GITHUB_DOCS.i18n}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            i18n usage
+          </a>{" "}
+          — LanguageProvider, block messages, next-intl bridge
+        </li>
+        <li>
+          <a
+            href={GITHUB_DOCS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            GitHub Registry
+          </a>{" "}
+          install commands
+        </li>
+        <li>
+          <a
+            href={GITHUB_DOCS.hosted}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            Hosted namespace
+          </a>{" "}
+          option after deploy
+        </li>
         <li>Recommended install order for new projects</li>
         <li>Monorepo layout, -c workspace flags, and components.json aliases</li>
       </ul>

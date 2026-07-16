@@ -2,6 +2,10 @@
 
 import * as React from "react"
 
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type RunMetricQualityDetail = {
@@ -21,6 +25,35 @@ export type RunMetricsProps = {
   columns?: 2 | 3 | 4
   className?: string
 }
+
+export const runMetricsMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      passed: "passed",
+      failed: "failed",
+      wall: "WALL",
+      models: "MODELS",
+      parallelism: "PARALLELISM",
+      eval: "EVAL",
+      quality: "QUALITY",
+      assertions: "ASSERTIONS",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      passed: "aprobadas",
+      failed: "fallidas",
+      wall: "TIEMPO TOTAL",
+      models: "MODELOS",
+      parallelism: "PARALELISMO",
+      eval: "EVAL",
+      quality: "CALIDAD",
+      assertions: "ASERCIONES",
+    },
+  },
+} satisfies Translations
 
 const defaultMetrics: RunMetric[] = [
   { id: "wall", label: "WALL", value: "4.1s" },
@@ -43,6 +76,7 @@ const columnClass = {
 } as const
 
 function MetricDetail({ detail }: { detail: string | RunMetricQualityDetail }) {
+  const { t } = useTranslation(runMetricsMessages)
   if (typeof detail === "string") {
     return (
       <p className="text-muted-foreground mt-1.5 max-w-full px-1 text-[11px] leading-snug sm:mt-2 sm:text-xs">
@@ -53,18 +87,35 @@ function MetricDetail({ detail }: { detail: string | RunMetricQualityDetail }) {
 
   return (
     <p className="text-muted-foreground mt-1.5 flex max-w-full flex-wrap items-center justify-center gap-x-1 gap-y-0.5 px-1 text-[11px] leading-snug sm:mt-2 sm:text-xs">
-      <span>{detail.passed} passed</span>
+      <span>{detail.passed} {t.passed}</span>
       <span aria-hidden="true">•</span>
-      <span className="text-dataos-fail-fg">{detail.failed} failed</span>
+      <span className="text-dataos-fail-fg">
+        {detail.failed} {t.failed}
+      </span>
     </p>
   )
 }
 
 function RunMetricCard({ metric }: { metric: RunMetric }) {
+  const { t } = useTranslation(runMetricsMessages)
+  const translatedLabel =
+    metric.id === "wall"
+      ? t.wall
+      : metric.id === "models"
+        ? t.models
+        : metric.id === "parallelism"
+          ? t.parallelism
+          : metric.id === "eval"
+            ? t.eval
+            : metric.id === "quality"
+              ? t.quality
+              : metric.id === "assertions"
+                ? t.assertions
+                : metric.label
   return (
     <article className="bg-dataos-surface flex min-h-[5.5rem] min-w-0 flex-col items-center justify-center rounded-lg px-2.5 py-4 text-center sm:min-h-[7.5rem] sm:px-4 sm:py-6">
       <p className="text-muted-foreground max-w-full text-[10px] font-medium tracking-[0.1em] uppercase sm:text-[11px] sm:tracking-[0.14em]">
-        {metric.label}
+        {translatedLabel}
       </p>
       <p className="font-serif mt-1.5 text-[1.375rem] leading-none font-medium tracking-tight text-foreground sm:mt-2 sm:text-[1.75rem] lg:text-[2rem]">
         {metric.value}

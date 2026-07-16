@@ -9,6 +9,10 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/registry/default/ui/chart"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type ModelHealthStatus = "healthy" | "quality" | "failed" | "none"
@@ -38,19 +42,39 @@ export type ModelHealthRunsProps = {
   className?: string
 }
 
+export const modelHealthRunsMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      title: "Model health across runs",
+      healthy: "Healthy",
+      qualityIssues: "Quality issues",
+      failed: "Failed",
+      notEvaluated: "Not evaluated",
+      models: "Models",
+      health: "Health",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      title: "Estado del modelo en todas las ejecuciones",
+      healthy: "Saludable",
+      qualityIssues: "Problemas de calidad",
+      failed: "Fallido",
+      notEvaluated: "No evaluado",
+      models: "Modelos",
+      health: "Salud",
+    },
+  },
+} satisfies Translations
+
 /** Figma heatmap palette — adapts via --model-health-* theme tokens */
 const STATUS_COLOR: Record<ModelHealthStatus, string> = {
   healthy: "var(--model-health-healthy)",
   quality: "var(--model-health-quality)",
   failed: "var(--model-health-failed)",
   none: "var(--model-health-none)",
-}
-
-const STATUS_LABEL: Record<ModelHealthStatus, string> = {
-  healthy: "Healthy",
-  quality: "Quality issues",
-  failed: "Failed",
-  none: "Not evaluated",
 }
 
 const CELL_HEIGHT = 32
@@ -270,11 +294,12 @@ function cellStatus(model: ModelHealthModel, runId: string): ModelHealthStatus {
 }
 
 function ModelHealthLegend() {
+  const { t } = useTranslation(modelHealthRunsMessages)
   const items: Array<{ label: string; swatchClass: string }> = [
-    { label: "Healthy", swatchClass: "bg-model-health-healthy" },
-    { label: "Quality issues", swatchClass: "bg-model-health-quality" },
-    { label: "Failed", swatchClass: "bg-model-health-failed" },
-    { label: "Not evaluated", swatchClass: "bg-model-health-none" },
+    { label: t.healthy, swatchClass: "bg-model-health-healthy" },
+    { label: t.qualityIssues, swatchClass: "bg-model-health-quality" },
+    { label: t.failed, swatchClass: "bg-model-health-failed" },
+    { label: t.notEvaluated, swatchClass: "bg-model-health-none" },
   ]
 
   return (
@@ -373,8 +398,17 @@ function HeatmapCellShape(props: {
   cellWidth: number
   cellHeight: number
 }) {
+  const { t } = useTranslation(modelHealthRunsMessages)
   const { cx = 0, cy = 0, payload, cellWidth, cellHeight } = props
   const color = STATUS_COLOR[payload?.status ?? "none"]
+  const statusLabel = payload
+    ? {
+        healthy: t.healthy,
+        quality: t.qualityIssues,
+        failed: t.failed,
+        none: t.notEvaluated,
+      }[payload.status]
+    : undefined
 
   return (
     <rect
@@ -389,7 +423,7 @@ function HeatmapCellShape(props: {
       style={{ outline: "none" }}
       aria-label={
         payload
-          ? `${payload.modelName} ${payload.runLabel}: ${STATUS_LABEL[payload.status]}`
+          ? `${payload.modelName} ${payload.runLabel}: ${statusLabel}`
           : undefined
       }
     />
@@ -397,13 +431,24 @@ function HeatmapCellShape(props: {
 }
 
 export function ModelHealthRuns({
-  title = "Model health across runs",
+  title,
   runs = defaultRuns,
   models = defaultModels,
   className,
 }: ModelHealthRunsProps) {
+  const { t } = useTranslation(modelHealthRunsMessages)
   const chartRef = React.useRef<HTMLDivElement>(null)
   const [plotWidth, setPlotWidth] = React.useState(656)
+  const resolvedTitle = title ?? t.title
+  const statusLabel = React.useMemo(
+    () => ({
+      healthy: t.healthy,
+      quality: t.qualityIssues,
+      failed: t.failed,
+      none: t.notEvaluated,
+    }),
+    [t]
+  )
 
   React.useEffect(() => {
     const node = chartRef.current
@@ -455,7 +500,7 @@ export function ModelHealthRuns({
     <section className={cn("bg-card w-full overflow-x-auto", className)}>
       <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
-          {title}
+          {resolvedTitle}
         </h3>
         <ModelHealthLegend />
       </div>
@@ -469,7 +514,7 @@ export function ModelHealthRuns({
             className="text-muted-foreground text-xs leading-none"
             style={{ marginTop: TOP_HEADER_HEIGHT - 16 }}
           >
-            health
+            {t.health}
           </span>
           <div
             className="flex w-full flex-col items-center"
@@ -540,7 +585,7 @@ export function ModelHealthRuns({
                   }}
                   formatter={(_, __, item) => {
                     const point = item.payload as HeatmapPoint
-                    return STATUS_LABEL[point.status]
+                    return statusLabel[point.status]
                   }}
                 />
               }

@@ -34,6 +34,31 @@
       ]
     },
     {
+      "name": "i18n",
+      "type": "registry:ui",
+      "title": "i18n",
+      "description": "Language provider, useTranslation hook, and language selector for ModernUI blocks.",
+      "files": [
+        {
+          "path": "hooks/use-translation.tsx",
+          "type": "registry:hook",
+          "target": "hooks/use-translation.tsx"
+        },
+        {
+          "path": "registry/default/ui/language-selector.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "select",
+        "utils"
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
@@ -1124,7 +1149,8 @@
         "button",
         "input",
         "label",
-        "card"
+        "card",
+        "i18n"
       ],
       "files": [
         {
@@ -1145,7 +1171,8 @@
         "badge",
         "button",
         "card",
-        "separator"
+        "separator",
+        "i18n"
       ],
       "files": [
         {
@@ -1165,7 +1192,8 @@
       "registryDependencies": [
         "input",
         "popover",
-        "table"
+        "table",
+        "i18n"
       ],
       "files": [
         {
@@ -1201,7 +1229,8 @@
       "registryDependencies": [
         "avatar",
         "button",
-        "dropdown-menu"
+        "dropdown-menu",
+        "i18n"
       ],
       "files": [
         {
@@ -1258,7 +1287,7 @@
       "title": "Run Duration",
       "description": "Run duration bar chart with normal, anomaly, selected states, and baseline.",
       "dependencies": ["recharts"],
-      "registryDependencies": ["chart"],
+      "registryDependencies": ["chart", "i18n"],
       "files": [
         {
           "path": "registry/default/blocks/run-duration/run-duration.tsx",
@@ -1275,7 +1304,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "chart"
+        "chart",
+        "i18n"
       ],
       "files": [
         {
@@ -1289,6 +1319,7 @@
       "type": "registry:block",
       "title": "Run Metrics",
       "description": "Pipeline run metrics grid with serif values and optional quality breakdown.",
+      "registryDependencies": ["i18n"],
       "files": [
         {
           "path": "registry/default/blocks/run-metrics/run-metrics.tsx",
@@ -1302,7 +1333,7 @@
       "title": "Models Table",
       "description": "Pipeline models table with kind/type pills, runtime bars, row counts, and status indicators.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["dropdown-menu", "input", "table"],
+      "registryDependencies": ["dropdown-menu", "input", "table", "i18n"],
       "files": [
         {
           "path": "registry/default/blocks/models-table/models-table.tsx",

@@ -16,6 +16,7 @@ npx shadcn@latest init
 # Install foundation first
 npx shadcn@latest add tmdc-io/modern-ui-component/theme
 npx shadcn@latest add tmdc-io/modern-ui-component/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/i18n   # LanguageProvider + useTranslation — see docs/I18N.md
 
 # Install primitives
 npx shadcn@latest add tmdc-io/modern-ui-component/button
@@ -65,8 +66,9 @@ Always install in this order for new projects:
 
 1. `theme` — CSS variables and base styles
 2. `utils` — `cn()` helper
-3. Primitives (`button`, `input`, `card`, `dialog`, etc.)
-4. Blocks (`login-form`, etc.)
+3. `i18n` — `LanguageProvider` + `useTranslation` (needed for login-form, hero, models-table, …). Full guide: [I18N.md](./I18N.md)
+4. Primitives (`button`, `input`, `card`, `dialog`, etc.)
+5. Blocks (`login-form`, etc.)
 
 ## Monorepo (pnpm / turbo / npm workspaces)
 
@@ -104,6 +106,7 @@ my-monorepo/
    ```bash
    npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
    npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
+   npx shadcn@latest add tmdc-io/modern-ui-component/i18n -c packages/ui   # optional
    ```
 4. **Add primitives to `packages/ui`**:
    ```bash
@@ -158,3 +161,11 @@ See the [shadcn monorepo docs](https://ui.shadcn.com/docs/monorepo) for package-
 ## What you get
 
 Files are copied directly into your project. You own and can edit every file — there is no opaque npm dependency for components.
+
+## Guides
+
+| Doc | Topic |
+|-----|--------|
+| [I18N.md](./I18N.md) | LanguageProvider, block messages, Español, next-intl bridge |
+| [GITHUB.md](./GITHUB.md) | GitHub Registry install |
+| [HOSTED.md](./HOSTED.md) | Hosted `@modernui` namespace |

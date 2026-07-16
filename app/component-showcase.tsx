@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { catalog, type CatalogItem } from "@/app/catalog"
+import { catalogItemTitle } from "@/app/catalog-item-titles"
 import {
   ComponentCodeDrawer,
   ViewCodeButton,
@@ -16,12 +17,17 @@ import {
 import { useComponentSearch } from "@/app/component-search"
 import { getDetailPageLabel, hasVariantPage } from "@/app/component-variants"
 import { componentPreviews } from "@/app/component-previews"
+import {
+  catalogCategoryTitle,
+  docsMessages,
+} from "@/app/docs-messages"
 import { InstallCommand } from "@/app/install-command"
 import { RegistryMonorepoGuide } from "@/app/monorepo-install-guide"
 import {
   RegistryHero,
   RegistryQuickStart,
 } from "@/app/registry-quick-start"
+import { useTranslation } from "@/hooks/use-translation"
 
 function LazyPreview({ children }: { children: React.ReactNode }) {
   const ref = React.useRef<HTMLDivElement>(null)
@@ -59,6 +65,7 @@ function ComponentCard({
   item: CatalogItem
   onViewCode: (item: CatalogItem) => void
 }) {
+  const { language } = useTranslation(docsMessages)
   const preview = componentPreviews[item.name]
 
   return (
@@ -68,7 +75,9 @@ function ComponentCard({
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 flex-col gap-1">
-          <h3 className="text-lg font-semibold">{item.title}</h3>
+          <h3 className="text-lg font-semibold">
+            {catalogItemTitle(item.name, item.title, language)}
+          </h3>
           <p className="text-muted-foreground text-sm">{item.description}</p>
           {item.install.trim() ? (
             <InstallCommand command={item.install} className="mt-2" />
@@ -101,6 +110,7 @@ export function ComponentShowcase() {
   useRegistryScrollTarget()
   const activeName = useRegistryActiveSection()
   const { query } = useComponentSearch()
+  const { t } = useTranslation(docsMessages)
   const [codeItem, setCodeItem] = React.useState<CatalogItem | null>(null)
   const [codeOpen, setCodeOpen] = React.useState(false)
 
@@ -155,7 +165,7 @@ export function ComponentShowcase() {
               <div className="flex flex-wrap items-baseline justify-between gap-2 border-b pb-2">
                 <div className="flex flex-col gap-0.5">
                   <h2 className="text-xl font-semibold tracking-tight">
-                    {category.title}
+                    {catalogCategoryTitle(category.id, category.title, t)}
                   </h2>
                   {category.id === "foundation" ? (
                     <p className="text-muted-foreground text-sm">

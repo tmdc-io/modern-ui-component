@@ -1,0 +1,4 @@
+[
+  "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows via native HTML5 events.",
+  "License and homepage links are sourced from each package's published metadata."
+]

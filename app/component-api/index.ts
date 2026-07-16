@@ -36,6 +36,7 @@ import { fieldApi } from "@/app/component-api/field"
 import { formApi } from "@/app/component-api/form"
 import { heroApi } from "@/app/component-api/hero"
 import { hoverCardApi } from "@/app/component-api/hover-card"
+import { i18nApi } from "@/app/component-api/i18n"
 import { inputApi } from "@/app/component-api/input"
 import { inputGroupApi } from "@/app/component-api/input-group"
 import { inputOtpApi } from "@/app/component-api/input-otp"
@@ -115,6 +116,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   form: formApi,
   hero: heroApi,
   "hover-card": hoverCardApi,
+  i18n: i18nApi,
   input: inputApi,
   "input-group": inputGroupApi,
   "input-otp": inputOtpApi,

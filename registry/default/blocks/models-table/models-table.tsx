@@ -31,6 +31,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/registry/default/ui/table"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type ModelTableStatus = "fail" | "warn" | "pass" | "none"
@@ -86,6 +90,71 @@ export type ModelsTableProps = {
   onExpandedChange?: (ids: string[]) => void
   className?: string
 }
+
+export const modelsTableMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      title: "Models",
+      searchPlaceholder: "Search by keywords",
+      columnModel: "Model",
+      columnKindType: "Kind / Type",
+      columnRuntime: "Runtime",
+      columnRows: "Rows",
+      columnStatus: "Status",
+      columnColumn: "Column",
+      columnRule: "Rule",
+      notEval: "Not eval",
+      viewMore: "View more",
+      tableLevelRule: "table-level rule",
+      noModelsFound: "No models found.",
+      sortModels: "Sort models",
+      copyError: "Copy error message",
+      filterKindType: "kind and type",
+      filterRuntime: "runtime",
+      filterRows: "rows",
+      filterStatus: "status",
+      filterPrefix: "Filter",
+      actionsFor: "Actions for",
+      viewRunLog: "View run log",
+      openInEditor: "Open in editor",
+      copyModelName: "Copy model name",
+      expand: "Expand",
+      collapse: "Collapse",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      title: "Modelos",
+      searchPlaceholder: "Buscar por palabras clave",
+      columnModel: "Modelo",
+      columnKindType: "Tipo / Clase",
+      columnRuntime: "Duración",
+      columnRows: "Filas",
+      columnStatus: "Estado",
+      columnColumn: "Columna",
+      columnRule: "Regla",
+      notEval: "Sin eval",
+      viewMore: "Ver más",
+      tableLevelRule: "regla a nivel de tabla",
+      noModelsFound: "No se encontraron modelos.",
+      sortModels: "Ordenar modelos",
+      copyError: "Copiar mensaje de error",
+      filterKindType: "tipo y clase",
+      filterRuntime: "duración",
+      filterRows: "filas",
+      filterStatus: "estado",
+      filterPrefix: "Filtrar",
+      actionsFor: "Acciones para",
+      viewRunLog: "Ver registro de ejecución",
+      openInEditor: "Abrir en el editor",
+      copyModelName: "Copiar nombre del modelo",
+      expand: "Expandir",
+      collapse: "Contraer",
+    },
+  },
+} satisfies Translations
 
 const defaultQualityRules: ModelTableQualityRule[] = [
   {
@@ -302,8 +371,13 @@ function HeaderDivider() {
 }
 
 function HeaderFilterButton({ label }: { label: string }) {
+  const { t } = useTranslation(modelsTableMessages)
   return (
-    <button type="button" className={headerIconClassName} aria-label={`Filter ${label}`}>
+    <button
+      type="button"
+      className={headerIconClassName}
+      aria-label={`${t.filterPrefix} ${label}`}
+    >
       <FilterIcon className="size-3" />
     </button>
   )
@@ -358,8 +432,11 @@ function RuleStatusIcon({ status }: { status: ModelTableRuleStatus }) {
 }
 
 function StatusCell({ row }: { row: ModelTableRow }) {
+  const { t } = useTranslation(modelsTableMessages)
   if (!row.status || row.status === "none") {
-    return <span className="text-muted-foreground text-sm italic">Not eval</span>
+    return (
+      <span className="text-muted-foreground text-sm italic">{t.notEval}</span>
+    )
   }
 
   if (row.status === "fail") {
@@ -394,28 +471,30 @@ function formatRowCount(row: ModelTableRow) {
 }
 
 function RowActionsMenu({ row }: { row: ModelTableRow }) {
+  const { t } = useTranslation(modelsTableMessages)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
           className={cn(headerIconClassName, "size-7")}
-          aria-label={`Actions for ${row.name}`}
+          aria-label={`${t.actionsFor} ${row.name}`}
           onClick={(event) => event.stopPropagation()}
         >
           <MoreVerticalIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuItem>View run log</DropdownMenuItem>
-        <DropdownMenuItem>Open in editor</DropdownMenuItem>
-        <DropdownMenuItem>Copy model name</DropdownMenuItem>
+        <DropdownMenuItem>{t.viewRunLog}</DropdownMenuItem>
+        <DropdownMenuItem>{t.openInEditor}</DropdownMenuItem>
+        <DropdownMenuItem>{t.copyModelName}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
 
 function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
+  const { t } = useTranslation(modelsTableMessages)
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(detail.message)
@@ -428,7 +507,7 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
     Boolean(detail.viewMoreLabel) ||
     Boolean(detail.viewMoreHref) ||
     Boolean(detail.onViewMore)
-  const viewMoreLabel = detail.viewMoreLabel ?? "View more"
+  const viewMoreLabel = detail.viewMoreLabel ?? t.viewMore
 
   return (
     <div className="px-3 pb-5 pl-10 sm:px-4 sm:pl-11">
@@ -442,7 +521,7 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
           type="button"
           onClick={handleCopy}
           className="text-muted-foreground hover:text-foreground absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-sm transition-colors"
-          aria-label="Copy error message"
+          aria-label={t.copyError}
         >
           <CopyIcon className="size-3.5" />
         </button>
@@ -477,6 +556,7 @@ function isTableLevelRule(column: string) {
 }
 
 function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
+  const { t } = useTranslation(modelsTableMessages)
   return (
     <div className="w-full bg-cream-bg-3">
       <table className="w-full table-fixed text-left text-sm">
@@ -489,15 +569,15 @@ function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
         <thead>
           <tr className="border-b border-border">
             <th className="text-muted-foreground h-9 pl-10 text-xs font-medium">
-              Column
+              {t.columnColumn}
             </th>
             <th className="text-muted-foreground relative h-9 px-3 text-xs font-medium sm:px-4">
               <HeaderDivider />
-              Rule
+              {t.columnRule}
             </th>
             <th className="text-muted-foreground relative h-9 px-3 text-xs font-medium sm:px-4">
               <HeaderDivider />
-              Status
+              {t.columnStatus}
             </th>
             <th className="relative h-9 px-2 sm:px-3">
               <HeaderDivider />
@@ -524,7 +604,7 @@ function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
                         tableLevel ? "italic" : "font-mono text-[13px]"
                       )}
                     >
-                      {tableLevel ? "table-level rule" : rule.column}
+                      {tableLevel ? t.tableLevelRule : rule.column}
                     </span>
                   </div>
                 </td>
@@ -557,6 +637,7 @@ function ExpandButton({
   onToggleExpand: () => void
   name: string
 }) {
+  const { t } = useTranslation(modelsTableMessages)
   if (!enableExpand || !expandable) {
     return <ChevronRightIcon className="text-muted-foreground mt-0.5 size-4 shrink-0" />
   }
@@ -567,7 +648,9 @@ function ExpandButton({
       onClick={onToggleExpand}
       className="text-muted-foreground hover:text-foreground mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-sm transition-colors"
       aria-expanded={expanded}
-      aria-label={expanded ? `Collapse ${name}` : `Expand ${name}`}
+      aria-label={
+        expanded ? `${t.collapse} ${name}` : `${t.expand} ${name}`
+      }
     >
       {expanded ? (
         <ChevronDownIcon className="size-4" />
@@ -675,6 +758,7 @@ function ModelTableExpandedRow({
   columnCount: number
   onToggleExpand: () => void
 }) {
+  const { t } = useTranslation(modelsTableMessages)
   return (
     <TableRow className="border-border !bg-cream-bg-3 hover:!bg-cream-bg-3">
       <TableCell
@@ -693,7 +777,7 @@ function ModelTableExpandedRow({
                 onClick={onToggleExpand}
                 className="text-muted-foreground hover:text-foreground mt-0.5 inline-flex size-4 shrink-0 items-center justify-center rounded-sm transition-colors"
                 aria-expanded="true"
-                aria-label={`Collapse ${row.name}`}
+                aria-label={`${t.collapse} ${row.name}`}
               >
                 <ChevronDownIcon className="size-4" />
               </button>
@@ -728,9 +812,9 @@ function ModelTableExpandedRow({
 }
 
 export function ModelsTable({
-  title = "Models",
+  title,
   rows = defaultRows,
-  searchPlaceholder = "Search by keywords",
+  searchPlaceholder,
   searchQuery,
   defaultSearchQuery = "",
   onSearchChange,
@@ -742,6 +826,9 @@ export function ModelsTable({
   onExpandedChange,
   className,
 }: ModelsTableProps) {
+  const { t } = useTranslation(modelsTableMessages)
+  const resolvedTitle = title ?? t.title
+  const resolvedSearchPlaceholder = searchPlaceholder ?? t.searchPlaceholder
   const isSearchControlled = searchQuery !== undefined
   const [internalSearch, setInternalSearch] = React.useState(defaultSearchQuery)
   const resolvedSearch = isSearchControlled ? searchQuery : internalSearch
@@ -829,7 +916,7 @@ export function ModelsTable({
     <section className={cn("w-full min-w-0", className)}>
       <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-center sm:justify-between">
         <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.14em] uppercase">
-          {title}
+          {resolvedTitle}
         </h3>
         {enableSearch ? (
           <div className="relative w-full sm:max-w-[15rem]">
@@ -837,7 +924,7 @@ export function ModelsTable({
             <Input
               value={resolvedSearch}
               onChange={(event) => handleSearchChange(event.target.value)}
-              placeholder={searchPlaceholder}
+              placeholder={resolvedSearchPlaceholder}
               className="h-9 rounded-full border border-black/10 bg-white pl-9 text-sm text-[#242422] shadow-sm placeholder:text-[#8c8c8c] dark:border-transparent dark:bg-white dark:text-[#242422]"
             />
           </div>
@@ -864,7 +951,7 @@ export function ModelsTable({
                   <div className="flex items-center gap-2">
                     <ListIcon className="text-muted-foreground size-4 shrink-0" />
                     <span>
-                      Model
+                      {t.columnModel}
                       <span className="text-muted-foreground ml-1 font-normal">
                         ({rows.length})
                       </span>
@@ -875,7 +962,7 @@ export function ModelsTable({
                       type="button"
                       className={headerIconClassName}
                       onClick={toggleSort}
-                      aria-label="Sort models"
+                      aria-label={t.sortModels}
                     >
                       <ColumnSortIcon direction={sortDirection} />
                     </button>
@@ -885,29 +972,29 @@ export function ModelsTable({
               <TableHead className="text-foreground relative h-11 w-[20%] px-3 font-semibold sm:px-4">
                 <HeaderDivider />
                 <div className="flex items-center justify-between gap-2">
-                  <span className="whitespace-nowrap">Kind / Type</span>
-                  <HeaderFilterButton label="kind and type" />
+                  <span className="whitespace-nowrap">{t.columnKindType}</span>
+                  <HeaderFilterButton label={t.filterKindType} />
                 </div>
               </TableHead>
               <TableHead className="text-foreground relative h-11 w-[15%] px-3 font-semibold sm:px-4">
                 <HeaderDivider />
                 <div className="flex items-center justify-between gap-2">
-                  <span>Runtime</span>
-                  <HeaderFilterButton label="runtime" />
+                  <span>{t.columnRuntime}</span>
+                  <HeaderFilterButton label={t.filterRuntime} />
                 </div>
               </TableHead>
               <TableHead className="text-foreground relative h-11 w-[11%] px-3 font-semibold sm:px-4">
                 <HeaderDivider />
                 <div className="flex items-center justify-between gap-2">
-                  <span>Rows</span>
-                  <HeaderFilterButton label="rows" />
+                  <span>{t.columnRows}</span>
+                  <HeaderFilterButton label={t.filterRows} />
                 </div>
               </TableHead>
               <TableHead className="text-foreground relative h-11 w-[13%] px-3 font-semibold sm:px-4">
                 <HeaderDivider />
                 <div className="flex items-center justify-between gap-2">
-                  <span>Status</span>
-                  <HeaderFilterButton label="status" />
+                  <span>{t.columnStatus}</span>
+                  <HeaderFilterButton label={t.filterStatus} />
                 </div>
               </TableHead>
               <TableHead className="relative h-11 w-[8%] px-2 sm:px-3">
@@ -947,7 +1034,7 @@ export function ModelsTable({
             ) : (
               <TableRow>
                 <TableCell colSpan={columnCount} className="h-24 text-center">
-                  No models found.
+                  {t.noModelsFound}
                 </TableCell>
               </TableRow>
             )}

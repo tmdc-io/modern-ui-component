@@ -22,9 +22,13 @@ import type {
   ComponentVariantSection,
   DocLink,
 } from "@/app/component-variants/types"
+import { catalogItemTitle } from "@/app/catalog-item-titles"
+import { docsCopy } from "@/app/docs-copy-es"
+import { docsMessages } from "@/app/docs-messages"
 import { InstallCommand } from "@/app/install-command"
 import { LinkifyText } from "@/app/linkify-text"
 import { VariantPreviewCanvas } from "@/app/variant-preview-canvas"
+import { useTranslation } from "@/hooks/use-translation"
 import { Button } from "@/registry/default/ui/button"
 
 type VariantCodeTarget = {
@@ -94,12 +98,17 @@ function isExternalDocLink(href: string) {
 }
 
 function DocLinks({ links }: { links: DocLink[] }) {
+  const { t } = useTranslation(docsMessages)
   if (links.length === 0) return null
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {links.map((link) =>
-        isExternalDocLink(link.href) ? (
+      {links.map((link) => {
+        const label =
+          link.label === "Props reference"
+            ? t["detail.propsReference"]
+            : link.label
+        return isExternalDocLink(link.href) ? (
           <a
             key={link.href}
             href={link.href}
@@ -107,7 +116,7 @@ function DocLinks({ links }: { links: DocLink[] }) {
             rel="noopener noreferrer"
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            {link.label}
+            {label}
             <ArrowRightIcon className="size-3.5" />
           </a>
         ) : (
@@ -116,11 +125,11 @@ function DocLinks({ links }: { links: DocLink[] }) {
             href={link.href}
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            {link.label}
+            {label}
             <ArrowRightIcon className="size-3.5" />
           </Link>
         )
-      )}
+      })}
     </div>
   )
 }
@@ -130,6 +139,9 @@ function getVariantDocLinks(variant: ComponentVariant): DocLink[] {
 }
 
 function DocPageHeader({ page }: { page: ComponentVariantPage }) {
+  const { t, language } = useTranslation(docsMessages)
+  const title = catalogItemTitle(page.name, page.title, language)
+
   return (
     <div className="flex flex-col gap-4">
       <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
@@ -138,24 +150,30 @@ function DocPageHeader({ page }: { page: ComponentVariantPage }) {
           onClick={() => markRegistryScrollTarget(page.name)}
         >
           <ArrowLeftIcon className="size-4" />
-          Back to registry
+          {t["detail.backToRegistry"]}
         </Link>
       </Button>
       <div className="flex w-full max-w-3xl flex-col gap-3">
-        <h1 className="text-3xl font-bold tracking-tight">{page.title}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
         <p className="text-muted-foreground leading-relaxed">
-          <LinkifyText>{page.description}</LinkifyText>
+          <LinkifyText>
+            {docsCopy(page.description, language) ?? page.description}
+          </LinkifyText>
         </p>
         {page.intro ? (
           <p className="text-muted-foreground text-sm leading-relaxed">
-            <LinkifyText>{page.intro}</LinkifyText>
+            <LinkifyText>
+              {docsCopy(page.intro, language) ?? page.intro}
+            </LinkifyText>
           </p>
         ) : null}
         {page.features?.length ? (
           <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm leading-relaxed">
             {page.features.map((feature) => (
               <li key={feature}>
-                <LinkifyText>{feature}</LinkifyText>
+                <LinkifyText>
+                  {docsCopy(feature, language) ?? feature}
+                </LinkifyText>
               </li>
             ))}
           </ul>
@@ -169,14 +187,20 @@ function DocPageHeader({ page }: { page: ComponentVariantPage }) {
 }
 
 function UsageSection({ page }: { page: ComponentVariantPage }) {
+  const { t } = useTranslation(docsMessages)
   if (!page.usage) return null
 
   return (
     <section id="usage" className="scroll-mt-24 flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-semibold tracking-tight">Usage</h2>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t["detail.usage"]}
+        </h2>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          Import the component and use it in your project.
+          {t["detail.usageIntro"]}
+        </p>
+        <p className="text-muted-foreground text-xs leading-relaxed">
+          {t["detail.codeSamplesNote"]}
         </p>
       </div>
       <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">
@@ -200,8 +224,13 @@ function VariantExample({
   hero?: boolean
   onViewCode: (target: VariantCodeTarget) => void
 }) {
+  const { language } = useTranslation(docsMessages)
   const showHeading = !hero && variant.title
   const previewOptions = getPreviewOptions(page, variant)
+  const variantTitle = docsCopy(variant.title, language) ?? variant.title
+  const variantDescription =
+    docsCopy(variant.description, language) ?? variant.description
+  const variantBody = docsCopy(variant.body, language)
 
   return (
     <article
@@ -212,15 +241,15 @@ function VariantExample({
         <div className="flex items-start justify-between gap-4">
           {showHeading ? (
             <div className="flex min-w-0 flex-col gap-1">
-              <h3 className="text-lg font-semibold">{variant.title}</h3>
-              {variant.description ? (
+              <h3 className="text-lg font-semibold">{variantTitle}</h3>
+              {variantDescription ? (
                 <p className="text-muted-foreground text-sm">
-                  <LinkifyText>{variant.description}</LinkifyText>
+                  <LinkifyText>{variantDescription}</LinkifyText>
                 </p>
               ) : null}
-              {variant.body ? (
+              {variantBody ? (
                 <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-                  <LinkifyText>{variant.body}</LinkifyText>
+                  <LinkifyText>{variantBody}</LinkifyText>
                 </p>
               ) : null}
             </div>
@@ -233,8 +262,8 @@ function VariantExample({
               <ViewCodeButton
                 onClick={() =>
                   onViewCode({
-                    title: `${page.title} — ${variant.title}`,
-                    description: variant.description,
+                    title: `${page.title} — ${variantTitle}`,
+                    description: variantDescription,
                     install: page.install,
                     code: variant.code,
                   })
@@ -271,23 +300,27 @@ function VariantSectionBlock({
   page: ComponentVariantPage
   onViewCode: (target: VariantCodeTarget) => void
 }) {
+  const { language } = useTranslation(docsMessages)
   const isHero = section.id === "hero"
+  const sectionTitle = docsCopy(section.title, language)
+  const sectionDescription = docsCopy(section.description, language)
+  const sectionBody = docsCopy(section.body, language)
 
   return (
     <section id={section.id} className="scroll-mt-24 flex flex-col gap-6">
-      {section.title ? (
+      {sectionTitle ? (
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-semibold tracking-tight">
-            {section.title}
+            {sectionTitle}
           </h2>
-          {section.description ? (
+          {sectionDescription ? (
             <p className="text-muted-foreground text-sm leading-relaxed">
-              <LinkifyText>{section.description}</LinkifyText>
+              <LinkifyText>{sectionDescription}</LinkifyText>
             </p>
           ) : null}
-          {section.body ? (
+          {sectionBody ? (
             <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-              <LinkifyText>{section.body}</LinkifyText>
+              <LinkifyText>{sectionBody}</LinkifyText>
             </p>
           ) : null}
           {section.docLink ? (
@@ -317,8 +350,10 @@ function ExamplesSection({
   page: ComponentVariantPage
   onViewCode: (target: VariantCodeTarget) => void
 }) {
+  const { t, language } = useTranslation(docsMessages)
   const sections = page.sections
   const hasSections = sections && sections.length > 0
+  const title = catalogItemTitle(page.name, page.title, language)
 
   if (!hasSections && page.variants.length === 0) {
     return null
@@ -328,9 +363,11 @@ function ExamplesSection({
     <section id="examples" className="scroll-mt-24 flex flex-col gap-6">
       {!hasSections ? (
         <div className="flex flex-col gap-2">
-          <h2 className="text-xl font-semibold tracking-tight">Examples</h2>
+          <h2 className="text-xl font-semibold tracking-tight">
+            {t["detail.variants"]}
+          </h2>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Common patterns and variants for {page.title}.
+            {t["detail.examples"].replace("{title}", title)}
           </p>
         </div>
       ) : null}
@@ -356,6 +393,7 @@ function ExamplesSection({
 }
 
 function ApiReferenceSection({ page }: { page: ComponentVariantPage }) {
+  const { t } = useTranslation(docsMessages)
   const hasApi =
     page.apiReference ||
     page.cssVariants?.length ||
@@ -366,9 +404,11 @@ function ApiReferenceSection({ page }: { page: ComponentVariantPage }) {
   return (
     <section id="api-reference" className="scroll-mt-24 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        <h2 className="text-xl font-semibold tracking-tight">API Reference</h2>
+        <h2 className="text-xl font-semibold tracking-tight">
+          {t["detail.apiReference"]}
+        </h2>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          Props, variants, and configuration options.
+          {t["detail.apiIntro"]}
         </p>
       </div>
       {page.apiReference ? (
@@ -380,7 +420,7 @@ function ApiReferenceSection({ page }: { page: ComponentVariantPage }) {
       {page.enhancements?.length ? (
         <div className="flex flex-col gap-4">
           <h3 className="text-base font-semibold tracking-tight">
-            Built-in enhancements
+            {t["detail.enhancements"]}
           </h3>
           <EnhancementsTable rows={page.enhancements} />
         </div>

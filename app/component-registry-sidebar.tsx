@@ -5,8 +5,14 @@ import Link from "next/link"
 import { ChevronDownIcon } from "lucide-react"
 
 import { catalog, type CatalogCategory, type CatalogItem } from "@/app/catalog"
+import { catalogItemTitle } from "@/app/catalog-item-titles"
 import { useComponentSearch } from "@/app/component-search"
 import { hasVariantPage } from "@/app/component-variants"
+import {
+  catalogCategoryTitle,
+  docsMessages,
+} from "@/app/docs-messages"
+import { useTranslation } from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 import {
   Collapsible,
@@ -178,6 +184,7 @@ function SidebarSectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function SidebarMonorepoLink({ activeName }: { activeName?: string }) {
+  const { t } = useTranslation(docsMessages)
   const isActive = activeName === MONOREPO_SECTION_ID
   const className = cn(
     "rounded-md px-2 py-1 text-sm transition-colors",
@@ -192,12 +199,13 @@ function SidebarMonorepoLink({ activeName }: { activeName?: string }) {
       className={className}
       onClick={() => markRegistryScrollTarget(MONOREPO_SECTION_ID)}
     >
-      Monorepo Installation
+      {t["sidebar.monorepo"]}
     </Link>
   )
 }
 
 function SidebarQuickStartLink({ activeName }: { activeName?: string }) {
+  const { t } = useTranslation(docsMessages)
   const isActive = activeName === QUICK_START_SECTION_ID
   const className = cn(
     "rounded-md px-2 py-1 text-sm transition-colors",
@@ -212,7 +220,7 @@ function SidebarQuickStartLink({ activeName }: { activeName?: string }) {
       className={className}
       onClick={() => markRegistryScrollTarget(QUICK_START_SECTION_ID)}
     >
-      Quick Start
+      {t["sidebar.quickStart"]}
     </Link>
   )
 }
@@ -226,6 +234,7 @@ function SidebarNavItem({
   activeName?: string
   variantDetail?: boolean
 }) {
+  const { language } = useTranslation(docsMessages)
   const isActive = activeName === item.name
   const href = getRegistryItemHref(item.name, variantDetail)
   const className = cn(
@@ -245,7 +254,7 @@ function SidebarNavItem({
         }
       }}
     >
-      {item.title}
+      {catalogItemTitle(item.name, item.title, language)}
     </Link>
   )
 }
@@ -254,6 +263,7 @@ export function ComponentRegistrySidebar({
   activeName,
   variantDetail = false,
 }: ComponentRegistrySidebarProps) {
+  const { t } = useTranslation(docsMessages)
   const { query } = useComponentSearch()
   const asideRef = React.useRef<HTMLElement>(null)
   const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>(
@@ -321,7 +331,7 @@ export function ComponentRegistrySidebar({
       <nav className="flex flex-col gap-6">
         {filteredCatalog.foundation ? (
           <section className="flex flex-col gap-1">
-            <SidebarSectionLabel>Foundation</SidebarSectionLabel>
+            <SidebarSectionLabel>{t["sidebar.foundation"]}</SidebarSectionLabel>
             <div className="flex flex-col gap-0.5 pl-3">
               {!isSearching ? (
                 <>
@@ -343,7 +353,7 @@ export function ComponentRegistrySidebar({
 
         {filteredCatalog.components.length > 0 ? (
           <section className="flex flex-col gap-2">
-            <SidebarSectionLabel>Components</SidebarSectionLabel>
+            <SidebarSectionLabel>{t["sidebar.components"]}</SidebarSectionLabel>
             <div className="flex flex-col gap-1 pl-3">
               {filteredCatalog.components.map((category) => {
                 const isOpen = isSearching
@@ -364,7 +374,9 @@ export function ComponentRegistrySidebar({
                     className="group/collapsible"
                   >
                     <CollapsibleTrigger className="text-muted-foreground hover:text-foreground flex w-full items-center gap-1 rounded-md px-2 py-1 text-xs font-medium uppercase transition-colors">
-                      <span className="flex-1 text-left">{category.title}</span>
+                      <span className="flex-1 text-left">
+                        {catalogCategoryTitle(category.id, category.title, t)}
+                      </span>
                       <ChevronDownIcon className="size-3.5 shrink-0 transition-transform group-data-[state=open]/collapsible:rotate-180" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-1 flex flex-col gap-0.5 pl-3">
@@ -386,7 +398,7 @@ export function ComponentRegistrySidebar({
 
         {filteredCatalog.dataosUi ? (
           <section className="flex flex-col gap-1">
-            <SidebarSectionLabel>DataOS UI Components</SidebarSectionLabel>
+            <SidebarSectionLabel>{t["sidebar.dataos"]}</SidebarSectionLabel>
             <div className="flex flex-col gap-0.5 pl-3">
               {filteredCatalog.dataosUi.items.map((item) => (
                 <SidebarNavItem
@@ -402,7 +414,7 @@ export function ComponentRegistrySidebar({
 
         {filteredCatalog.blocks ? (
           <section className="flex flex-col gap-1">
-            <SidebarSectionLabel>Blocks</SidebarSectionLabel>
+            <SidebarSectionLabel>{t["sidebar.blocks"]}</SidebarSectionLabel>
             <div className="flex flex-col gap-0.5 pl-3">
               {filteredCatalog.blocks.items.map((item) => (
                 <SidebarNavItem

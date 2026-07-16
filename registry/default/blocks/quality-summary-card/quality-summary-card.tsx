@@ -17,6 +17,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/default/ui/card"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type DimensionStatus = "pass" | "warn" | "fail"
@@ -49,6 +53,37 @@ export type QualitySummaryCardProps = {
   onViewAll?: () => void
 }
 
+export const qualitySummaryCardMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      title: "Quality",
+      failed: "Failed",
+      atRisk: "At Risk",
+      healthy: "Healthy",
+      rules: "rules",
+      across: "across",
+      dimensions: "dimensions",
+      viewAllPrefix: "View all",
+      viewAllSuffix: "quality rules",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      title: "Calidad",
+      failed: "Fallido",
+      atRisk: "En riesgo",
+      healthy: "Saludable",
+      rules: "reglas",
+      across: "en",
+      dimensions: "dimensiones",
+      viewAllPrefix: "Ver las",
+      viewAllSuffix: "reglas de calidad",
+    },
+  },
+} satisfies Translations
+
 const defaultDimensions: QualityDimension[] = [
   { name: "Accuracy", status: "pass" },
   { name: "Completeness", status: "pass" },
@@ -70,15 +105,23 @@ const badgeVariantClass = {
 } as const
 
 type BadgeVariant = keyof typeof badgeVariantClass
+type StatusLabels = { failed: string; atRisk: string; healthy: string }
+type ResolveCardPropsArgs = QualitySummaryCardProps & {
+  fallbackTitle: string
+  statusLabels: StatusLabels
+}
 
-export function deriveStatusLabel(dimensions: QualityDimension[]): string {
+export function deriveStatusLabel(
+  dimensions: QualityDimension[],
+  labels?: StatusLabels
+): string {
   if (dimensions.some((dimension) => dimension.status === "fail")) {
-    return "Failed"
+    return labels?.failed ?? "Failed"
   }
   if (dimensions.some((dimension) => dimension.status === "warn")) {
-    return "At Risk"
+    return labels?.atRisk ?? "At Risk"
   }
-  return "Healthy"
+  return labels?.healthy ?? "Healthy"
 }
 
 function deriveBadgeVariant(dimensions: QualityDimension[]): BadgeVariant {
@@ -100,15 +143,19 @@ function resolveCardProps({
   dimensionCount,
   updatedAt,
   dimensions,
-}: QualitySummaryCardProps) {
+  fallbackTitle,
+  statusLabels,
+}: ResolveCardPropsArgs) {
   const resolvedDimensions = dimensions ?? summary?.dimensions ?? defaultDimensions
   const resolvedPassed = passed ?? summary?.passed ?? 47
   const resolvedTotal = total ?? summary?.total ?? 100
-  const resolvedTitle = title ?? summary?.title ?? "Quality"
+  const resolvedTitle = title ?? summary?.title ?? fallbackTitle
   const resolvedUpdatedAt = updatedAt ?? summary?.updatedAt ?? "3m ago"
   const resolvedDimensionCount = dimensionCount ?? resolvedDimensions.length
   const resolvedStatusLabel =
-    statusLabel ?? summary?.statusLabel ?? deriveStatusLabel(resolvedDimensions)
+    statusLabel ??
+    summary?.statusLabel ??
+    deriveStatusLabel(resolvedDimensions, statusLabels)
   const badgeVariant = deriveBadgeVariant(resolvedDimensions)
 
   return {
@@ -160,6 +207,7 @@ const footerLinkClass =
   "inline-flex items-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary/80"
 
 export function QualitySummaryCard(props: QualitySummaryCardProps) {
+  const { t } = useTranslation(qualitySummaryCardMessages)
   const { href, onViewAll } = props
   const {
     title,
@@ -170,7 +218,15 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
     updatedAt,
     dimensions,
     badgeVariant,
-  } = resolveCardProps(props)
+  } = resolveCardProps({
+    ...props,
+    fallbackTitle: t.title,
+    statusLabels: {
+      failed: t.failed,
+      atRisk: t.atRisk,
+      healthy: t.healthy,
+    },
+  })
 
   return (
     <Card className="w-full max-w-[22rem] gap-0 border border-border/60 bg-dataos-surface py-5 text-card-foreground shadow-sm">
@@ -197,11 +253,11 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
             {passed}
           </span>
           <span className="text-base font-normal text-muted-foreground">
-            /{total} rules
+            /{total} {t.rules}
           </span>
         </p>
         <p className="text-[13px] text-muted-foreground">
-          across {dimensionCount} dimensions • {updatedAt}
+          {t.across} {dimensionCount} {t.dimensions} • {updatedAt}
         </p>
       </CardContent>
 
@@ -242,7 +298,7 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
       <CardFooter className="border-t border-border/80 px-5 pt-4 pb-0">
         {href ? (
           <a href={href} className={footerLinkClass}>
-            View all {passed} quality rules
+            {t.viewAllPrefix} {passed} {t.viewAllSuffix}
             <ArrowRightIcon className="size-3.5" />
           </a>
         ) : (
@@ -251,7 +307,7 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
             className={footerLinkClass}
             onClick={onViewAll}
           >
-            View all {passed} quality rules
+            {t.viewAllPrefix} {passed} {t.viewAllSuffix}
             <ArrowRightIcon className="size-3.5" />
           </button>
         )}

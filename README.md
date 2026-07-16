@@ -7,7 +7,7 @@ A shadcn-extended React UI component library distributed via the official [shadc
 
 ## What's included
 
-<!-- catalog-count:items -->138<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->17<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
+<!-- catalog-count:items -->155<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->21<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
 
 ```bash
 npx shadcn@latest list tmdc-io/modern-ui-component
@@ -38,7 +38,7 @@ The Next.js app in `app/` is the component registry documentation:
 | Attributions | `/components/attributions` | Third-party libraries, licenses, and upstream credits |
 | Search | `⌘K` | Omni-search across components and docs |
 
-Foundation sidebar order: **Quick Start → Monorepo → Project Setup → Theme → Utils → Attributions**.
+Foundation sidebar order: **Quick Start → Monorepo → Project Setup → Theme → Utils → i18n → Attributions**.
 
 On a component detail page, sidebar links navigate to other detail pages (`/components/{name}`). On the registry homepage, sidebar links scroll to catalog sections (`/#{name}`).
 
@@ -51,10 +51,11 @@ npx shadcn@latest init
 npx shadcn@latest add tmdc-io/modern-ui-component/project-setup   # optional
 npx shadcn@latest add tmdc-io/modern-ui-component/theme
 npx shadcn@latest add tmdc-io/modern-ui-component/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/i18n   # optional
 npx shadcn@latest add tmdc-io/modern-ui-component/button
 ```
 
-Recommended order: **theme → utils → primitives → blocks**.
+Recommended order: **theme → utils → i18n (optional) → primitives → blocks**.
 
 ### Monorepo
 
@@ -66,6 +67,7 @@ npx shadcn@latest init -c packages/ui
 npx shadcn@latest init -c apps/web
 npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
 npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/i18n -c packages/ui   # optional
 npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
 npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
 ```
@@ -126,6 +128,8 @@ npx shadcn@latest registry validate .
 |---------|-------------|
 | `pnpm docs:scaffold-api` | Generate or refresh `app/component-api/*.ts` stubs and `index.ts` (skips curated files) |
 | `pnpm docs:scaffold-api:force` | Same as above, but overwrites curated API files (`button`, `dialog`, etc.) |
+| `pnpm docs:i18n` | Translate missing docs Spanish, then verify coverage + block key parity |
+| `pnpm docs:i18n:verify` | CI gate: docs Spanish coverage + block `en`/`es` key parity |
 | `pnpm docs:sync-readme` | Sync catalog item/category counts in `README.md` from `app/catalog.ts` |
 | `pnpm docs:sync-attributions` | Regenerate `app/attributions-data.ts` from `package.json` and `node_modules` metadata |
 

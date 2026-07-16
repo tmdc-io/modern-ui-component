@@ -23,6 +23,7 @@ import { ChartCatalogPreview } from "@/app/component-examples/chart-detail/catal
 import { chartPreviewEntries } from "@/app/chart-previews"
 import { ThemePalettePreview } from "@/app/theme-palette-preview"
 import { UtilsPreview } from "@/app/utils-preview"
+import { I18nPreview } from "@/app/component-examples/i18n-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
@@ -260,6 +261,7 @@ const comboboxItems = ["Next.js", "React", "Tailwind CSS", "TypeScript"]
 export const componentPreviews: Record<string, React.ReactNode> = {
   theme: <ThemePalettePreview />,
   utils: <UtilsPreview />,
+  i18n: <I18nPreview />,
   attributions: <AttributionsSummaryPreview />,
   button: (
     <div className="flex flex-wrap justify-center gap-2">

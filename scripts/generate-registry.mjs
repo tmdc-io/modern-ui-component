@@ -96,10 +96,32 @@ async function main() {
         },
       ],
     },
+    {
+      name: "i18n",
+      type: "registry:ui",
+      title: "i18n",
+      description:
+        "Language provider, useTranslation hook, and language selector for ModernUI blocks.",
+      dependencies: ["lucide-react", "radix-ui"],
+      registryDependencies: ["select", "utils"],
+      files: [
+        {
+          path: "hooks/use-translation.tsx",
+          type: "registry:hook",
+          target: "hooks/use-translation.tsx",
+        },
+        {
+          path: "registry/default/ui/language-selector.tsx",
+          type: "registry:ui",
+        },
+      ],
+    },
   ]
 
   for (const file of componentFiles.sort()) {
     const name = file.replace(/\.tsx$/, "")
+    // Bundled with the foundation `i18n` item — not a standalone registry entry.
+    if (name === "language-selector") continue
     const source = await readFile(path.join(ROOT, UI_DIR, file), "utf8")
     const { registryDeps, npmDeps } = parseImports(source)
 

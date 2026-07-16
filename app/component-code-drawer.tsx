@@ -5,6 +5,8 @@ import Link from "next/link"
 import { CheckIcon, CodeIcon, CopyIcon } from "lucide-react"
 
 import type { CatalogItem } from "@/app/catalog"
+import { docsMessages } from "@/app/docs-messages"
+import { useTranslation } from "@/hooks/use-translation"
 import { Button } from "@/registry/default/ui/button"
 import {
   Sheet,
@@ -199,24 +201,26 @@ export function ViewCodeButton({
 }: {
   onClick: () => void
 }) {
+  const { t } = useTranslation(docsMessages)
   return (
     <Button type="button" variant="outline" size="sm" onClick={onClick}>
       <CodeIcon className="size-4" />
-      Code
+      {t["detail.code"]}
     </Button>
   )
 }
 
 export function ViewVariantsButton({
   href,
-  label = "Variants",
+  label,
 }: {
   href: string
   label?: string
 }) {
+  const { t } = useTranslation(docsMessages)
   return (
     <Button type="button" variant="outline" size="sm" asChild>
-      <Link href={href}>{label}</Link>
+      <Link href={href}>{label ?? t["detail.variants"]}</Link>
     </Button>
   )
 }

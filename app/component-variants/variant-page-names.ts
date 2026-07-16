@@ -77,6 +77,7 @@ export function getVariantPageNames(): string[] {
   "toggle-group",
   "tooltip",
   "typography",
-  "utils"
+  "utils",
+  "i18n",
 ]
 }

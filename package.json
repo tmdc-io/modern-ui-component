@@ -22,7 +22,14 @@
     "docs:scaffold-api": "node scripts/scaffold-component-api.mjs --write-index",
     "docs:scaffold-api:force": "node scripts/scaffold-component-api.mjs --write-index --force",
     "docs:sync-readme": "node scripts/sync-readme-count.mjs",
-    "docs:sync-attributions": "node scripts/generate-attributions.mjs"
+    "docs:sync-attributions": "node scripts/generate-attributions.mjs",
+    "docs:i18n": "pnpm docs:i18n-translate && pnpm docs:i18n:verify",
+    "docs:i18n:verify": "pnpm docs:i18n-check && pnpm docs:i18n-lint-blocks",
+    "docs:i18n-extract": "node scripts/docs-i18n-extract.mjs --write-missing",
+    "docs:i18n-merge": "node scripts/docs-i18n-merge.mjs",
+    "docs:i18n-translate": "node scripts/docs-i18n-translate.mjs",
+    "docs:i18n-check": "node scripts/docs-i18n-extract.mjs --check",
+    "docs:i18n-lint-blocks": "node scripts/lint-block-i18n.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

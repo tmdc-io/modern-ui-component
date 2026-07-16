@@ -24,6 +24,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/registry/default/ui/table"
+import {
+  useTranslation,
+  type Translations,
+} from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
 
 export type DataProductRow = {
@@ -55,6 +59,35 @@ export type DataProductTableProps = {
   /** Fires with the next set of selected row ids when selection changes. */
   onSelectionChange?: (ids: string[]) => void
 }
+
+export const dataProductTableMessages = {
+  en: {
+    dir: "ltr",
+    values: {
+      dataProduct: "Data Product",
+      glossaryTerm: "Glossary term",
+      sortDataProducts: "Sort data products",
+      filterGlossaryTerms: "Filter glossary terms",
+      filterGlossaryTerm: "Filter glossary term",
+      searchTerms: "Search terms...",
+      quality: "Quality",
+      emptyMessage: "No results.",
+    },
+  },
+  es: {
+    dir: "ltr",
+    values: {
+      dataProduct: "Producto de datos",
+      glossaryTerm: "Termino del glosario",
+      sortDataProducts: "Ordenar productos de datos",
+      filterGlossaryTerms: "Filtrar terminos del glosario",
+      filterGlossaryTerm: "Filtrar termino del glosario",
+      searchTerms: "Buscar terminos...",
+      quality: "Calidad",
+      emptyMessage: "Sin resultados.",
+    },
+  },
+} satisfies Translations
 
 function ColumnSortIcon({
   direction,
@@ -106,18 +139,19 @@ function DataProductInteractiveHeader({
   enableSort: boolean
   enableGlossaryFilter: boolean
 }) {
+  const { t } = useTranslation(dataProductTableMessages)
   return (
     <TableHeader className="[&_tr]:border-b-2 [&_tr]:border-border">
       <TableRow className="border-border bg-transparent hover:bg-transparent">
         <TableHead className="text-foreground h-11 px-4 font-bold">
           <div className="flex w-full items-center justify-between gap-2">
-            <span>Data Product</span>
+            <span>{t.dataProduct}</span>
             {enableSort ? (
               <button
                 type="button"
                 className={headerIconClassName}
                 onClick={onSort}
-                aria-label="Sort data products"
+                aria-label={t.sortDataProducts}
               >
                 <ColumnSortIcon direction={sortDirection} />
               </button>
@@ -130,7 +164,7 @@ function DataProductInteractiveHeader({
             aria-hidden
           />
           <div className="flex w-full items-center justify-between gap-2">
-            <span>Glossary term</span>
+            <span>{t.glossaryTerm}</span>
             {enableGlossaryFilter ? (
               <Popover>
                 <PopoverTrigger asChild>
@@ -140,7 +174,7 @@ function DataProductInteractiveHeader({
                       headerIconClassName,
                       glossaryFilter && "text-primary"
                     )}
-                    aria-label="Filter glossary terms"
+                    aria-label={t.filterGlossaryTerms}
                   >
                     <FilterIcon className="size-3" />
                   </button>
@@ -148,12 +182,12 @@ function DataProductInteractiveHeader({
                 <PopoverContent align="start" className="w-56 p-3">
                   <PopoverHeader className="px-0 pt-0">
                     <PopoverTitle className="text-sm">
-                      Filter glossary term
+                      {t.filterGlossaryTerm}
                     </PopoverTitle>
                   </PopoverHeader>
                   <div className="pt-2">
                     <Input
-                      placeholder="Search terms..."
+                      placeholder={t.searchTerms}
                       value={glossaryFilter}
                       onChange={(event) => onGlossaryFilter(event.target.value)}
                       className="h-8 text-xs"
@@ -171,18 +205,19 @@ function DataProductInteractiveHeader({
 }
 
 export function DataProductStaticHeader() {
+  const { t } = useTranslation(dataProductTableMessages)
   return (
     <TableHeader className="[&_tr]:border-b-2 [&_tr]:border-border">
       <TableRow className="border-border bg-transparent hover:bg-transparent">
         <TableHead className="text-foreground h-11 px-4 font-bold">
-          Data Product
+          {t.dataProduct}
         </TableHead>
         <TableHead className="text-foreground relative h-11 px-4 font-bold">
           <span
             className="bg-border pointer-events-none absolute top-1/2 left-0 h-4 w-px -translate-y-1/2"
             aria-hidden
           />
-          Glossary term
+          {t.glossaryTerm}
         </TableHead>
         <TableHead className="h-11 w-[120px] px-4" />
       </TableRow>
@@ -200,10 +235,11 @@ function GlossaryPill({ label }: { label: string }) {
 }
 
 function QualityBadge() {
+  const { t } = useTranslation(dataProductTableMessages)
   return (
     <span className="inline-flex items-center gap-1 rounded-md bg-[#FFF0E6] px-2.5 py-1 text-xs font-medium text-[#242422]">
       <AlertTriangleIcon className="size-3.5 fill-[#E68600] text-[#E68600]" />
-      Quality
+      {t.quality}
     </span>
   )
 }
@@ -318,7 +354,7 @@ export function DataProductTable({
   className,
   enableSort = true,
   enableGlossaryFilter = true,
-  emptyMessage = "No results.",
+  emptyMessage,
   onRowClick,
   onRowHover,
   selectable = false,
@@ -327,10 +363,12 @@ export function DataProductTable({
   defaultSelectedIds,
   onSelectionChange,
 }: DataProductTableProps) {
+  const { t } = useTranslation(dataProductTableMessages)
   const [sortDirection, setSortDirection] = React.useState<
     false | "asc" | "desc"
   >(false)
   const [glossaryFilter, setGlossaryFilter] = React.useState("")
+  const resolvedEmptyMessage = emptyMessage ?? t.emptyMessage
 
   const isControlled = selectedIds !== undefined
   const [internalSelected, setInternalSelected] = React.useState<string[]>(
@@ -432,7 +470,7 @@ export function DataProductTable({
           ) : (
             <TableRow>
               <TableCell colSpan={3} className="h-24 text-center">
-                {emptyMessage}
+                {resolvedEmptyMessage}
               </TableCell>
             </TableRow>
           )}

@@ -10,11 +10,14 @@ import {
   TerminalIcon,
 } from "lucide-react"
 
+import { docsMessages } from "@/app/docs-messages"
+import { GITHUB_DOCS } from "@/app/github-link"
 import { InstallCommand } from "@/app/install-command"
 import {
   markRegistryScrollTarget,
   QUICK_START_SECTION_ID,
 } from "@/app/component-registry-sidebar"
+import { useTranslation } from "@/hooks/use-translation"
 import { Badge } from "@/registry/default/ui/badge"
 import { Button } from "@/registry/default/ui/button"
 import { cn } from "@/lib/utils"
@@ -23,8 +26,8 @@ const REGISTRY_NAMESPACE = "tmdc-io/modern-ui-component"
 
 type QuickStartStep = {
   id: string
-  title: string
-  description: string
+  titleKey: string
+  descriptionKey: string
   command: string
   href?: string
   scrollTarget?: string
@@ -33,34 +36,30 @@ type QuickStartStep = {
 const QUICK_START_STEPS: QuickStartStep[] = [
   {
     id: "init",
-    title: "Initialize shadcn",
-    description:
-      "Run once in your React project. Configures components.json and Tailwind paths.",
+    titleKey: "quickStart.stepInitTitle",
+    descriptionKey: "quickStart.stepInitDesc",
     command: "npx shadcn@latest init",
   },
   {
     id: "project-setup",
-    title: "Project setup",
-    description:
-      "Adds AGENTS.md and docs/modernui-setup.md — team conventions and install guide.",
+    titleKey: "quickStart.stepSetupTitle",
+    descriptionKey: "quickStart.stepSetupDesc",
     command: `npx shadcn@latest add ${REGISTRY_NAMESPACE}/project-setup`,
     href: "/#project-setup",
     scrollTarget: "project-setup",
   },
   {
     id: "foundation",
-    title: "Theme & utils",
-    description:
-      "Design tokens and the cn() helper. Required before any UI primitive.",
-    command: `npx shadcn@latest add ${REGISTRY_NAMESPACE}/theme\nnpx shadcn@latest add ${REGISTRY_NAMESPACE}/utils`,
+    titleKey: "quickStart.stepFoundationTitle",
+    descriptionKey: "quickStart.stepFoundationDesc",
+    command: `npx shadcn@latest add ${REGISTRY_NAMESPACE}/theme\nnpx shadcn@latest add ${REGISTRY_NAMESPACE}/utils\nnpx shadcn@latest add ${REGISTRY_NAMESPACE}/i18n`,
     href: "/#theme",
     scrollTarget: "theme",
   },
   {
     id: "first-component",
-    title: "Add a component",
-    description:
-      "Install source you own. Swap button for any primitive, block, or chart.",
+    titleKey: "quickStart.stepComponentTitle",
+    descriptionKey: "quickStart.stepComponentDesc",
     command: `npx shadcn@latest add ${REGISTRY_NAMESPACE}/button`,
     href: "/#button",
     scrollTarget: "button",
@@ -71,13 +70,15 @@ const FULL_BOOTSTRAP = QUICK_START_STEPS.map((step) => step.command).join("\n")
 
 function CopyCommandButton({
   text,
-  label = "Copy",
+  label,
   className,
 }: {
   text: string
   label?: string
   className?: string
 }) {
+  const { t } = useTranslation(docsMessages)
+  const resolvedLabel = label ?? t["quickStart.copy"]
   const [copied, setCopied] = React.useState(false)
 
   const handleCopy = React.useCallback(async () => {
@@ -93,14 +94,16 @@ function CopyCommandButton({
       size="sm"
       className={cn("h-8 shrink-0 gap-1.5 px-2", className)}
       onClick={handleCopy}
-      aria-label={copied ? "Copied" : label}
+      aria-label={copied ? t["quickStart.copied"] : resolvedLabel}
     >
       {copied ? (
         <CheckIcon className="size-3.5 text-brand" />
       ) : (
         <CopyIcon className="size-3.5" />
       )}
-      <span className="text-xs">{copied ? "Copied" : label}</span>
+      <span className="text-xs">
+        {copied ? t["quickStart.copied"] : resolvedLabel}
+      </span>
     </Button>
   )
 }
@@ -111,6 +114,8 @@ type RegistryHeroProps = {
 }
 
 export function RegistryHero({ totalCount, categoryCount }: RegistryHeroProps) {
+  const { t } = useTranslation(docsMessages)
+
   return (
     <header className="flex flex-col gap-5">
       <div className="flex flex-wrap gap-2">
@@ -131,12 +136,10 @@ export function RegistryHero({ totalCount, categoryCount }: RegistryHeroProps) {
 
       <div className="flex max-w-3xl flex-col gap-3">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Component Registry
+          {t["quickStart.badge"]}
         </h1>
         <p className="text-muted-foreground text-base leading-relaxed">
-          ModernUI extends shadcn/ui with Figma-aligned tokens, DataOS blocks,
-          and chart primitives. Install into any React codebase — your team
-          owns every file.
+          {t["quickStart.intro"]}
         </p>
       </div>
     </header>
@@ -144,6 +147,8 @@ export function RegistryHero({ totalCount, categoryCount }: RegistryHeroProps) {
 }
 
 export function RegistryQuickStart() {
+  const { t } = useTranslation(docsMessages)
+
   return (
     <section
       id={QUICK_START_SECTION_ID}
@@ -155,17 +160,16 @@ export function RegistryQuickStart() {
             <div className="flex items-center gap-2">
               <TerminalIcon className="text-brand size-4" />
               <h2 className="text-base font-semibold tracking-tight">
-                Quick start
+                {t["quickStart.title"]}
               </h2>
             </div>
             <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
-              Four commands to bootstrap a new project. Copy each step or grab
-              the full script below.
+              {t["quickStart.intro"]}
             </p>
           </div>
           <CopyCommandButton
             text={FULL_BOOTSTRAP}
-            label="Copy all"
+            label={t["quickStart.copyAll"]}
             className="self-start border bg-background"
           />
         </div>
@@ -183,7 +187,7 @@ export function RegistryQuickStart() {
               </span>
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-sm font-medium">{step.title}</h3>
+                  <h3 className="text-sm font-medium">{t[step.titleKey]}</h3>
                   {step.href ? (
                     <Link
                       href={step.href}
@@ -194,13 +198,13 @@ export function RegistryQuickStart() {
                       }}
                       className="text-brand inline-flex items-center gap-0.5 text-xs font-medium hover:underline"
                     >
-                      View in registry
+                      {t["quickStart.viewInRegistry"]}
                       <ArrowRightIcon className="size-3" />
                     </Link>
                   ) : null}
                 </div>
                 <p className="text-muted-foreground text-xs leading-relaxed">
-                  {step.description}
+                  {t[step.descriptionKey]}
                 </p>
               </div>
             </div>
@@ -218,11 +222,43 @@ export function RegistryQuickStart() {
           <code className="text-foreground font-mono">
             {REGISTRY_NAMESPACE}
           </code>
-          . Browse components below or press{" "}
-          <kbd className="bg-muted rounded border px-1.5 py-0.5 font-mono text-[10px]">
-            ⌘K
-          </kbd>{" "}
-          to search.
+          . {t["quickStart.footer"]}{" "}
+          <a
+            href={GITHUB_DOCS.consumer}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            {t["quickStart.guideConsumer"]}
+          </a>
+          {" · "}
+          <a
+            href={GITHUB_DOCS.i18n}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            {t["quickStart.guideI18n"]}
+          </a>
+          {" · "}
+          <a
+            href={GITHUB_DOCS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            {t["quickStart.guideGithub"]}
+          </a>
+          {" · "}
+          <a
+            href={GITHUB_DOCS.hosted}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand font-medium hover:underline"
+          >
+            {t["quickStart.guideHosted"]}
+          </a>
+          .
         </p>
       </div>
     </section>

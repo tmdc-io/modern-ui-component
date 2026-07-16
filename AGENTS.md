@@ -44,6 +44,13 @@ Run from the repository root.
 | `pnpm registry:sync-chart-detail` | Refresh chart doc sections only |
 | `pnpm docs:scaffold-api` | Regenerate API reference stubs from registry source |
 | `pnpm docs:scaffold-api:force` | Overwrite curated API files too |
+| `pnpm docs:i18n` | Translate missing docs Spanish, then verify coverage + block key parity |
+| `pnpm docs:i18n:verify` | CI gate: docs coverage + block `en`/`es` key parity |
+| `pnpm docs:i18n-extract` | List docs strings missing Spanish (`scripts/docs-missing-en.json`) |
+| `pnpm docs:i18n-translate` | Auto-translate missing docs strings (MyMemory) and merge |
+| `pnpm docs:i18n-merge` | Rebuild `app/docs-copy-es.generated.ts` from batch JSON |
+| `pnpm docs:i18n-check` | Fail if any docs English string lacks Spanish |
+| `pnpm docs:i18n-lint-blocks` | Fail if block `en`/`es` message keys diverge |
 
 ### Maintenance
 
@@ -69,8 +76,26 @@ Run from the repository root.
 5. Run `pnpm docs:scaffold-api` to add API reference on `/components/{name}`
 6. Run `npx shadcn@latest registry validate .` before merging
 
+## Docs i18n (Spanish)
+
+Docs prose uses `docsCopy()` with:
+
+1. Curated map — `app/docs-copy-es.ts` (blocks / overrides; wins on conflict)
+2. Generated map — `app/docs-copy-es.generated.ts` (primitives, charts, remaining API)
+
+```bash
+pnpm docs:i18n           # one command: translate missing + verify
+pnpm docs:i18n:verify    # CI only (coverage + block key parity, no network)
+```
+
+Optional: `DOCS_I18N_TRANSLATE_EMAIL=you@example.com` raises MyMemory quota.  
+`--dry-run` / `--limit=20` on `docs:i18n-translate` for smoke tests.
+
+Code samples stay English on purpose. See [docs/I18N.md](docs/I18N.md) (maintainer section) for the full script table.
+
 ## Import paths
 
 - Registry source files use `@/lib/utils` for utilities
 - Blocks import primitives from `@/registry/default/ui/...` during local development
 - Consumer projects receive files at `@/components/ui/...` after `shadcn add`
+

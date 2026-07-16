@@ -1,0 +1,23 @@
+{
+  "\"Healthy\" / \"At Risk\" / \"Failed\" from dimension statuses": "\"Healthy\" / \"At Risk\" / \"Failed\" según estados de dimensión",
+  "`status: \"fail\"`": "`status: \"fail\"`",
+  "Badge label. Auto-derived as \"Healthy\", \"At Risk\", or \"Failed\" when omitted.": "Etiqueta del badge. Se deriva como \"Healthy\", \"At Risk\" o \"Failed\" si se omite.",
+  "Bar color state. Overridden to \"selected\" when id matches selectedId.": "Estado de color de la barra. Se sobrescribe a \"selected\" cuando id coincide con selectedId.",
+  "Column header text (e.g. \"R1\", \"R2\").": "Texto de cabecera de columna (p. ej. \"R1\", \"R2\").",
+  "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows via native HTML5 events.": "Data Products está fijado por defecto y no se puede desfijar (pinLocked). Se pueden fijar dos apps más (máx. 3). Al llegar al límite, el tooltip del pin dice: only 3 allow. Drag-and-drop reordena con eventos HTML5 nativos.",
+  "Dimension rows with status \"pass\", \"warn\", or \"fail\" and optional detail.": "Filas de dimensión con status \"pass\", \"warn\" o \"fail\" y detail opcional.",
+  "First line of X-axis tick (e.g. \"Mar 15, 2027\").": "Primera línea del tick del eje X (p. ej. \"Mar 15, 2027\").",
+  "Label above the bar (e.g. \"29m\"). Centered over bar width.": "Etiqueta encima de la barra (p. ej. \"29m\"). Centrada sobre el ancho de la barra.",
+  "License and homepage links are sourced from each package's published metadata.": "Los enlaces de licencia y homepage salen de los metadatos publicados de cada paquete.",
+  "Primary serif display value (e.g. \"4.1s\", \"14/18\").": "Valor serif principal (p. ej. \"4.1s\", \"14/18\").",
+  "Second line of X-axis tick (e.g. \"11:42\").": "Segunda línea del tick del eje X (p. ej. \"11:42\").",
+  "Set expansion to \"error\" with errorDetail, or \"quality\" with qualityRules. hasError hides runtime/row metrics. Requires table, input, and dropdown-menu.": "Usa expansion: \"error\" con errorDetail, o \"quality\" con qualityRules. hasError oculta métricas de runtime/filas. Requiere table, input y dropdown-menu.",
+  "Status pill with label and status: \"pass\" | \"warn\" | \"fail\".": "Pill de estado con label y status: \"pass\" | \"warn\" | \"fail\".",
+  "Uppercase metric name (e.g. \"WALL\", \"QUALITY\").": "Nombre de métrica en mayúsculas (p. ej. \"WALL\", \"QUALITY\").",
+  "Use badge.status=\"fail\" when the most recent pipeline run failed. Omit subtitle for simpler product cards.": "Usa badge.status=\"fail\" cuando falló la última ejecución del pipeline. Omite subtitle para tarjetas más simples.",
+  "Use badge.status=\"warn\" for at-risk quality. The subtitle row shows a glossary or category label with a document icon.": "Usa badge.status=\"warn\" para calidad en riesgo. La fila de subtítulo muestra glosario o categoría con icono de documento.",
+  "Use variant=\"l1\" on home or top-level routes. The tenant trigger shows the colored badge, tenant name, and chevron. Click to open the tenant list with a checkmark on the active item.": "Usa variant=\"l1\" en home o rutas de nivel superior. El trigger muestra badge de color, nombre de tenant y chevron. Haz clic para abrir la lista con checkmark en el activo.",
+  "Use variant=\"l2\" on nested pages. The tenant switcher collapses to the initials badge; breadcrumbs fill the center area. Long labels truncate with ellipsis.": "Usa variant=\"l2\" en páginas anidadas. El selector se colapsa al badge de iniciales; los breadcrumbs llenan el centro. Etiquetas largas se truncan con ellipsis.",
+  "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows via native HTML5 events.": "Data Products está fijado por defecto y no se puede desfijar (pinLocked). Se pueden fijar dos apps más (máx. 3). Al llegar al límite, el tooltip del pin dice: only 3 allow. Drag-and-drop reordena con eventos HTML5 nativos.",
+  "License and homepage links are sourced from each package's published metadata.": "Los enlaces de licencia y homepage salen de los metadatos publicados de cada paquete."
+}
