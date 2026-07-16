@@ -35,6 +35,7 @@ import { RunMetricsDefaultPreview } from "@/app/component-examples/run-metrics-u
 import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
+import { LayoutCatalogPreview } from "@/app/component-examples/layout-usage"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -412,6 +413,7 @@ export const componentPreviews: Record<string, React.ReactNode> = {
       <span className="text-sm">Right</span>
     </div>
   ),
+  layout: <LayoutCatalogPreview />,
   "aspect-ratio": (
     <AspectRatio ratio={16 / 9} className="bg-muted max-w-sm overflow-hidden rounded-lg">
       <div className="flex h-full items-center justify-center text-sm">16:9</div>

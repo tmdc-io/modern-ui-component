@@ -96,6 +96,11 @@ export const catalog: CatalogCategory[] = [
     id: "layout",
     title: "Layout",
     items: [
+      item(
+        "layout",
+        "Layout",
+        "Page shell with Header, Sider, Content, and Footer."
+      ),
       item("card", "Card", "Content container with header and footer."),
       item("separator", "Separator", "Visual divider."),
       item("aspect-ratio", "Aspect Ratio", "Fixed aspect ratio container."),

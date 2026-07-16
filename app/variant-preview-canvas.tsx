@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils"
 
 function LazyVariantPreview({
   Preview,
+  fill,
 }: {
   Preview: React.ComponentType
+  fill?: boolean
 }) {
   const ref = React.useRef<HTMLDivElement>(null)
   const [visible, setVisible] = React.useState(false)
@@ -31,7 +33,10 @@ function LazyVariantPreview({
   }, [])
 
   return (
-    <div ref={ref} className="min-h-[12rem] w-full">
+    <div
+      ref={ref}
+      className={cn("w-full", fill ? "h-full min-h-0" : "min-h-[12rem]")}
+    >
       {visible ? <Preview /> : null}
     </div>
   )
@@ -44,6 +49,7 @@ export function VariantPreviewCanvas({
   blockLayout = false,
   containSidebar = false,
   popoverPreview = false,
+  flushPreview = false,
 }: {
   Preview: React.ComponentType
   tall?: boolean
@@ -51,13 +57,26 @@ export function VariantPreviewCanvas({
   blockLayout?: boolean
   containSidebar?: boolean
   popoverPreview?: boolean
+  /** Edge-to-edge demos (no padding); child should use h-full when tall. */
+  flushPreview?: boolean
 }) {
+  const fillHeight =
+    flushPreview && (tall || blockLayout)
+
   return (
-    <div className="rounded-lg border border-border bg-muted/50 p-1.5">
+    <div
+      className={cn(
+        "rounded-lg border border-border bg-muted/50",
+        flushPreview ? "overflow-hidden p-0" : "p-1.5"
+      )}
+    >
       <div
         className={cn(
-          "relative isolate w-full rounded-md bg-card shadow-sm ring-1 ring-border/40",
+          "relative isolate w-full bg-card",
           "[transform:translateZ(0)]",
+          flushPreview
+            ? "rounded-lg"
+            : "rounded-md shadow-sm ring-1 ring-border/40",
           popoverPreview || fitContent ? "overflow-visible" : "overflow-hidden",
           blockLayout
             ? "h-[min(720px,80vh)]"
@@ -66,8 +85,12 @@ export function VariantPreviewCanvas({
               : popoverPreview
                 ? "min-h-80"
                 : tall
-                  ? "h-[min(520px,70vh)]"
-                  : "min-h-48",
+                  ? flushPreview
+                    ? "h-[min(36rem,75vh)]"
+                    : "h-[min(520px,70vh)]"
+                  : flushPreview
+                    ? undefined
+                    : "min-h-48",
           containSidebar &&
             "[&_[data-slot=sidebar-wrapper]]:!min-h-0 [&_[data-slot=sidebar-wrapper]]:h-full [&_[data-slot=sidebar-container]]:!absolute [&_[data-slot=sidebar-container]]:top-0 [&_[data-slot=sidebar-container]]:!h-full"
         )}
@@ -79,13 +102,18 @@ export function VariantPreviewCanvas({
               ? "overflow-visible p-4"
               : popoverPreview
                 ? "overflow-visible p-4 pb-52"
-                : cn(
-                    "overflow-auto",
-                    blockLayout ? "overflow-x-hidden" : "p-4"
-                  )
+                : flushPreview
+                  ? cn(
+                      "min-h-0 overflow-hidden p-0",
+                      fillHeight ? "h-full" : "h-auto"
+                    )
+                  : cn(
+                      "overflow-auto",
+                      blockLayout ? "overflow-x-hidden" : "p-4"
+                    )
           )}
         >
-          <LazyVariantPreview Preview={Preview} />
+          <LazyVariantPreview Preview={Preview} fill={fillHeight} />
         </div>
       </div>
     </div>

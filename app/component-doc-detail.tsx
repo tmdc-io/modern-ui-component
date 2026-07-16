@@ -76,6 +76,7 @@ function isPopoverPreviewPage(componentName: string) {
 }
 
 function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant) {
+  const layoutPage = page.name === "layout"
   return {
     fitContent: variant.fitContent,
     tall:
@@ -90,6 +91,8 @@ function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant
     containSidebar:
       isSidebarPage(page.name) && !isBlockLayoutVariant(variant.id),
     popoverPreview: isPopoverPreviewPage(page.name),
+    /** Layout demos fill the card edge-to-edge (Ant Design style). */
+    flushPreview: layoutPage,
   }
 }
 
@@ -281,6 +284,7 @@ function VariantExample({
           blockLayout={previewOptions.blockLayout}
           containSidebar={previewOptions.containSidebar}
           popoverPreview={previewOptions.popoverPreview}
+          flushPreview={previewOptions.flushPreview}
         />
       ) : variant.code && variant.codeOnly ? (
         <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">

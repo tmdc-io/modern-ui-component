@@ -43,6 +43,7 @@ import { inputOtpApi } from "@/app/component-api/input-otp"
 import { itemApi } from "@/app/component-api/item"
 import { kbdApi } from "@/app/component-api/kbd"
 import { labelApi } from "@/app/component-api/label"
+import { layoutApi } from "@/app/component-api/page-layout"
 import { loginApi } from "@/app/component-api/login"
 import { menubarApi } from "@/app/component-api/menubar"
 import { nativeSelectApi } from "@/app/component-api/native-select"
@@ -123,6 +124,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   item: itemApi,
   kbd: kbdApi,
   label: labelApi,
+  layout: layoutApi,
   login: loginApi,
   menubar: menubarApi,
   "native-select": nativeSelectApi,

@@ -25,6 +25,7 @@ export const catalogItemTitlesEs: Record<string, string> = {
   combobox: "Combobox",
   "date-picker": "Selector de fecha",
   card: "Tarjeta",
+  layout: "Layout",
   separator: "Separador",
   "aspect-ratio": "Relación de aspecto",
   "scroll-area": "Área de desplazamiento",

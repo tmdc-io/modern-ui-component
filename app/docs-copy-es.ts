@@ -947,6 +947,114 @@ export const docsCopyEs: Record<string, string> = {
   "Override tenants array and badge colors for your environments":
     "Sobrescribe el array tenants y colores de badge para tus entornos",
 
+  // ── Layout page ────────────────────────────────────────────
+  "Layout": "Layout",
+  "Handling the overall layout of a page.":
+    "Gestión del layout general de una página.",
+  "Page shell with Header, Sider, Content, and Footer.":
+    "Cáscara de página con Header, Sider, Content y Footer.",
+  "Compose page shells with Layout, LayoutHeader, LayoutSider, LayoutContent, and LayoutFooter. Nest Layouts for row/column regions. Pair with Sidebar for rich navigation, or DataOS ApplicationHeader and DataOsSidebar for product shells.":
+    "Compón cáscaras de página con Layout, LayoutHeader, LayoutSider, LayoutContent y LayoutFooter. Anida Layouts para regiones en fila/columna. Combínalo con Sidebar para navegación rica, o ApplicationHeader y DataOsSidebar de DataOS para shells de producto.",
+  "Examples": "Ejemplos",
+  "Common page structures built from Layout compounds.":
+    "Estructuras de página habituales con los compuestos de Layout.",
+  "Basic Structure": "Estructura básica",
+  "Header, Sider, Content, and Footer.":
+    "Header, Sider, Content y Footer.",
+  "Nest a horizontal Layout (hasSider) between Header and Footer for the classic app chrome.":
+    "Anida un Layout horizontal (hasSider) entre Header y Footer para el chrome clásico de la app.",
+  "Header-Content-Footer": "Header-Content-Footer",
+  "Top and bottom chrome with a flexible content area.":
+    "Chrome superior e inferior con un área de contenido flexible.",
+  "Header-Sider": "Header-Sider",
+  "Full-width header above a sider and content row.":
+    "Header a ancho completo encima de una fila sider + contenido.",
+  "Header Sider 2": "Header Sider 2",
+  "Sider spans the full height; header sits in the content column.":
+    "El sider ocupa toda la altura; el header queda en la columna de contenido.",
+  "Sider": "Sider",
+  "Left navigation column and main content only.":
+    "Solo columna de navegación izquierda y contenido principal.",
+  "Custom trigger": "Trigger personalizado",
+  "Replace the default collapse control.":
+    "Sustituye el control de colapso por defecto.",
+  "Collapsible": "Colapsable",
+  "Built-in collapse trigger on LayoutSider.":
+    "Trigger de colapso integrado en LayoutSider.",
+  "Fixed Header": "Header fijo",
+  "Sticky header while content scrolls.":
+    "Header sticky mientras el contenido hace scroll.",
+  "Fixed Sider": "Sider fijo",
+  "Sticky sider while content scrolls.":
+    "Sider sticky mientras el contenido hace scroll.",
+  "Composition": "Composición",
+  "Combine Layout with navigation building blocks.":
+    "Combina Layout con bloques de navegación.",
+  "With Sidebar": "Con Sidebar",
+  "Generic SidebarProvider + Sidebar inside a Layout shell.":
+    "SidebarProvider + Sidebar genéricos dentro de un shell Layout.",
+  "Use the sidebar primitive for menus, cookies, and mobile sheet behavior. Layout supplies header/content chrome. See /components/sidebar.":
+    "Usa el primitivo sidebar para menús, cookies y sheet móvil. Layout aporta el chrome de header/contenido. Ver /components/sidebar.",
+  "Sidebar docs": "Docs de Sidebar",
+  "DataOS shell": "Shell DataOS",
+  "DataOS home": "Home DataOS",
+  "Sidebar + content with user avatar and centered page title — the standard DataOS app frame.":
+    "Sidebar + contenido con avatar de usuario y título centrado — el marco estándar de la app DataOS.",
+  "Compose DataOsSidebar with LayoutContent. Hover nav items for descriptions; the avatar sits in the content corner. See DataOS Sidebar docs for pinning and collapse.":
+    "Compón DataOsSidebar con LayoutContent. Pasa el cursor por los ítems para ver descripciones; el avatar queda en la esquina del contenido. Ver docs de DataOS Sidebar para pinning y colapso.",
+  "DataOS Sidebar": "DataOS Sidebar",
+  "DataOS shell with header": "Shell DataOS con header",
+  "ApplicationHeader + DataOsSidebar composed with Layout.":
+    "ApplicationHeader + DataOsSidebar compuestos con Layout.",
+  "Add ApplicationHeader above the sider row when you need tenant switch and breadcrumbs.":
+    "Añade ApplicationHeader encima de la fila del sider cuando necesites cambio de tenant y breadcrumbs.",
+  "Full-height sidebar beside header + content; expand/collapse overlays without resizing the main column.":
+    "Sidebar a altura completa junto a header + contenido; expandir/colapsar hace overlay sin redimensionar la columna principal.",
+  "Sidebar is position absolute and full height. Header sits above content in a pl-14 column (collapsed rail width). Expanding the sidebar overlays header and content — it does not shrink them.":
+    "El sidebar es absolute y a altura completa. El header queda encima del contenido en una columna con pl-14 (ancho del rail colapsado). Al expandir, el sidebar se superpone al header y al contenido — no los encoge.",
+  "Product shells nest DataOS blocks in Layout regions. See Application Header and DataOS Sidebar docs.":
+    "Los shells de producto anidan bloques DataOS en regiones Layout. Ver docs de Application Header y DataOS Sidebar.",
+  "Application Header": "Application Header",
+  "Compound page shell: Layout, LayoutHeader, LayoutSider, LayoutContent, LayoutFooter.":
+    "Shell de página compuesto: Layout, LayoutHeader, LayoutSider, LayoutContent, LayoutFooter.",
+  "Nested Layouts for row (hasSider) and column regions.":
+    "Layouts anidados para regiones en fila (hasSider) y columna.",
+  "LayoutSider supports collapsed, collapsible, width, collapsedWidth, and custom trigger.":
+    "LayoutSider admite collapsed, collapsible, width, collapsedWidth y trigger personalizado.",
+  "Compose with Sidebar for rich nav, or DataOS ApplicationHeader / DataOsSidebar for product shells.":
+    "Compón con Sidebar para navegación rica, o ApplicationHeader / DataOsSidebar de DataOS para shells de producto.",
+  "Layout & LayoutSider Props": "Props de Layout y LayoutSider",
+  "Layout: force horizontal (row) direction when a Sider is present. Useful for SSR; otherwise Layout detects mounted LayoutSider children.":
+    "Layout: fuerza dirección horizontal (fila) cuando hay Sider. Útil en SSR; si no, Layout detecta LayoutSider montados.",
+  "LayoutSider: expanded width (px number or CSS length).":
+    "LayoutSider: ancho expandido (número en px o longitud CSS).",
+  "LayoutSider: width when collapsed.":
+    "LayoutSider: ancho al colapsar.",
+  "LayoutSider: controlled collapsed state.":
+    "LayoutSider: estado colapsado controlado.",
+  "LayoutSider: initial collapsed state when uncontrolled.":
+    "LayoutSider: estado colapsado inicial si es no controlado.",
+  "LayoutSider: show a collapse trigger (default or custom).":
+    "LayoutSider: muestra un trigger de colapso (por defecto o personalizado).",
+  "LayoutSider: custom trigger. Omit for the default icon button. Pass null to hide the trigger.":
+    "LayoutSider: trigger personalizado. Omítelo para el botón icono por defecto. Pasa null para ocultarlo.",
+  "LayoutSider: which edge the sider attaches to.":
+    "LayoutSider: borde al que se adjunta el sider.",
+  "LayoutSider: called when the trigger toggles collapse.":
+    "LayoutSider: se llama cuando el trigger cambia el colapso.",
+  "Additional CSS classes on Layout or LayoutSider.":
+    "Clases CSS adicionales en Layout o LayoutSider.",
+  "LayoutHeader, LayoutFooter, and LayoutContent accept standard HTML attributes plus className. For menus, cookies, and mobile drawers, nest Sidebar or use DataOsSidebar — LayoutSider is structural chrome only.":
+    "LayoutHeader, LayoutFooter y LayoutContent aceptan atributos HTML estándar más className. Para menús, cookies y drawers móviles, anida Sidebar o usa DataOsSidebar — LayoutSider es solo chrome estructural.",
+  "Nested layouts": "Layouts anidados",
+  "Mix full-width headers with side navigation columns":
+    "Combina headers a ancho completo con columnas de navegación lateral",
+  "Collapsible sider": "Sider colapsable",
+  "Ant-style width animation without pulling in Sidebar":
+    "Animación de ancho al estilo Ant sin depender de Sidebar",
+  "Drop in Sidebar or DataOS blocks for product navigation":
+    "Inserta Sidebar o bloques DataOS para la navegación del producto",
+
   // ── i18n foundation page ───────────────────────────────────
   "Full consumer guide (install, provider wiring, which blocks use messages vs props, next-intl bridge): docs/I18N.md in the repository.":
     "Guía completa del consumidor (instalación, LanguageProvider, bloques con mensajes vs props, puente next-intl): docs/I18N.md en el repositorio.",

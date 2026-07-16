@@ -36,6 +36,7 @@ export function getVariantPageNames(): string[] {
   "item",
   "kbd",
   "label",
+  "layout",
   "login",
   "menubar",
   "native-select",

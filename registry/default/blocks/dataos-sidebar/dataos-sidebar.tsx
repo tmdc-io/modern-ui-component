@@ -10,6 +10,7 @@ import {
   GripVerticalIcon,
   HomeIcon,
   PanelLeftCloseIcon,
+  PanelLeftOpenIcon,
   PinIcon,
   PinOffIcon,
   ShapesIcon,
@@ -416,7 +417,7 @@ export function DataOsSidebar({
   return (
     <TooltipProvider delayDuration={0}>
       <aside
-        className={cn(
+          className={cn(
           "bg-cream-bg-1 text-foreground flex h-full min-h-[32rem] flex-col border-r border-grey-8/80 transition-[width] duration-200",
           resolvedCollapsed ? "w-14" : "w-56",
           className
@@ -515,17 +516,34 @@ export function DataOsSidebar({
       </nav>
 
       <div className="mt-auto flex flex-col gap-1 px-2 pb-4">
-        {footerItems.map((item, index) => (
-          <React.Fragment key={item.id}>
-            <SidebarRow
-              item={item}
-              active={resolvedActiveId === item.id}
-              collapsed={resolvedCollapsed}
-              onSelect={() => handleSelect(item)}
-            />
-            {index === 0 ? <SidebarDivider collapsed={resolvedCollapsed} /> : null}
-          </React.Fragment>
-        ))}
+        {footerItems.map((item, index) => {
+          const footerItem =
+            item.id === "close-panel"
+              ? {
+                  ...item,
+                  label: resolvedCollapsed ? "Open panel" : "Close panel",
+                  icon: resolvedCollapsed ? (
+                    <PanelLeftOpenIcon className="size-[18px]" strokeWidth={1.75} />
+                  ) : (
+                    <PanelLeftCloseIcon className="size-[18px]" strokeWidth={1.75} />
+                  ),
+                }
+              : item
+
+          return (
+            <React.Fragment key={item.id}>
+              <SidebarRow
+                item={footerItem}
+                active={resolvedActiveId === item.id}
+                collapsed={resolvedCollapsed}
+                onSelect={() => handleSelect(item)}
+              />
+              {index === 0 ? (
+                <SidebarDivider collapsed={resolvedCollapsed} />
+              ) : null}
+            </React.Fragment>
+          )
+        })}
       </div>
     </aside>
     </TooltipProvider>

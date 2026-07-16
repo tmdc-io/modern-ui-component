@@ -657,6 +657,24 @@
       ]
     },
     {
+      "name": "layout",
+      "type": "registry:ui",
+      "title": "Layout",
+      "description": "Page shell with Header, Sider, Content, and Footer.",
+      "files": [
+        {
+          "path": "registry/default/ui/layout.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
