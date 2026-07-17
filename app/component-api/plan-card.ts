@@ -122,6 +122,12 @@ export const planCardApi: ComponentApiDoc = {
         description: "Override the Open plan details link label.",
       },
       {
+        prop: "children",
+        type: "React.ReactNode",
+        description:
+          "Optional content under expanded detail rows (for example Plan Status Cards).",
+      },
+      {
         prop: "selected",
         type: "boolean",
         default: "false",

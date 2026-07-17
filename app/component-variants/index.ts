@@ -19,6 +19,7 @@ import { chartVariantPage } from "@/app/component-variants/chart-page"
 import { modelHealthRunsPage } from "@/app/component-variants/model-health-runs-page"
 import { modelsTablePage } from "@/app/component-variants/models-table-page"
 import { planCardPage } from "@/app/component-variants/plan-card-page"
+import { planStatusCardPage } from "@/app/component-variants/plan-status-card-page"
 import { runCardPage } from "@/app/component-variants/run-card-page"
 import { runDurationPage } from "@/app/component-variants/run-duration-page"
 import { runMetricsPage } from "@/app/component-variants/run-metrics-page"
@@ -163,6 +164,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "data-product-table": dataProductTablePage,
   "application-header": applicationHeaderPage,
   "plan-card": planCardPage,
+  "plan-status-card": planStatusCardPage,
   "run-card": runCardPage,
   "run-duration": runDurationPage,
   "model-health-runs": modelHealthRunsPage,
@@ -195,6 +197,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "data-product-table": "Usage",
   "application-header": "Usage",
   "plan-card": "Usage",
+  "plan-status-card": "Usage",
   "run-card": "Usage",
   "run-duration": "Usage",
   "model-health-runs": "Usage",

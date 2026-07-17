@@ -229,6 +229,11 @@ export const catalog: CatalogCategory[] = [
         "Plan summary card with success, hover, error, and expandable change/impact details."
       ),
       item(
+        "plan-status-card",
+        "Plan Status Card",
+        "Expandable plan feature status card for SQL diffs, impacts, errors, and environment changes."
+      ),
+      item(
         "run-card",
         "Run Card",
         "Pipeline run summary card with success, selected hover, and error states."

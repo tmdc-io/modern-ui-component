@@ -73,6 +73,7 @@ export const catalogItemTitlesEs: Record<string, string> = {
   "dataos-sidebar": "Barra lateral de aplicación",
   "application-header": "Encabezado de aplicación",
   "plan-card": "Tarjeta de plan",
+  "plan-status-card": "Tarjeta de estado del plan",
   "run-card": "Tarjeta de ejecución",
   "run-duration": "Duración de ejecución",
   "model-health-runs": "Salud del modelo entre ejecuciones",

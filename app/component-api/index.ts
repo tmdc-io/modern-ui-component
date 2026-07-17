@@ -21,6 +21,7 @@ import { applicationHeaderApi } from "@/app/component-api/application-header"
 import { modelHealthRunsApi } from "@/app/component-api/model-health-runs"
 import { modelsTableApi } from "@/app/component-api/models-table"
 import { planCardApi } from "@/app/component-api/plan-card"
+import { planStatusCardApi } from "@/app/component-api/plan-status-card"
 import { runCardApi } from "@/app/component-api/run-card"
 import { runDurationApi } from "@/app/component-api/run-duration"
 import { runMetricsApi } from "@/app/component-api/run-metrics"
@@ -104,6 +105,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   "model-health-runs": modelHealthRunsApi,
   "models-table": modelsTableApi,
   "plan-card": planCardApi,
+  "plan-status-card": planStatusCardApi,
   "run-card": runCardApi,
   "run-duration": runDurationApi,
   "run-metrics": runMetricsApi,

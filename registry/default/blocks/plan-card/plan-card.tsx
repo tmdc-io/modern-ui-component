@@ -67,6 +67,8 @@ export type PlanCardProps = {
   /** When set, shows the “Open plan details” footer link. */
   detailsHref?: string
   detailsLabel?: string
+  /** Extra content under expanded detail rows (for example Plan Status Cards). */
+  children?: React.ReactNode
   selected?: boolean
   onSelect?: () => void
   href?: string
@@ -273,6 +275,7 @@ export function PlanCard({
   onExpandedChange,
   detailsHref,
   detailsLabel,
+  children,
   selected = false,
   onSelect,
   href,
@@ -427,6 +430,9 @@ export function PlanCard({
           {openDetailsLabel}
           <ArrowRightIcon className="size-4" strokeWidth={1.8} />
         </a>
+      ) : null}
+      {children ? (
+        <div className="pointer-events-auto mt-4 flex flex-col gap-2">{children}</div>
       ) : null}
     </div>
   ) : null

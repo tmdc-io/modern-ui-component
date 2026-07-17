@@ -33,6 +33,7 @@ import { ModelsTableDefaultPreview } from "@/app/component-examples/models-table
 import { RunDurationDefaultPreview } from "@/app/component-examples/run-duration-usage"
 import { RunMetricsDefaultPreview } from "@/app/component-examples/run-metrics-usage"
 import { PlanCardSuccessPreview } from "@/app/component-examples/plan-card-usage"
+import { PlanStatusBreakingCollapsedPreview } from "@/app/component-examples/plan-status-card-usage"
 import { RunCardSuccessPreview } from "@/app/component-examples/run-card-usage"
 import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
@@ -843,6 +844,11 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "plan-card": (
     <div className="w-full overflow-hidden">
       <PlanCardSuccessPreview />
+    </div>
+  ),
+  "plan-status-card": (
+    <div className="w-full overflow-hidden">
+      <PlanStatusBreakingCollapsedPreview />
     </div>
   ),
   "run-card": (

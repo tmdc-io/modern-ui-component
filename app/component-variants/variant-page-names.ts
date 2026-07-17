@@ -53,6 +53,7 @@ export function getVariantPageNames(): string[] {
   "dataos-sidebar",
   "application-header",
   "plan-card",
+  "plan-status-card",
   "run-card",
   "run-duration",
   "model-health-runs",

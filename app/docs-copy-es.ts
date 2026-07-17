@@ -1188,6 +1188,152 @@ export const docsCopyEs: Record<string, string> = {
   "Selected run card with persistent teal styling.":
     "Tarjeta de ejecución seleccionada con estilo teal persistente.",
 
+  // ── Plan Status Card page ──────────────────────────────────
+  "Plan Status Card": "Tarjeta de estado del plan",
+  "Expandable plan feature status card for SQL diffs, impacts, errors, and environment changes.":
+    "Tarjeta expandible de estado para diferencias SQL, impactos, errores y cambios de entorno.",
+  "Use Plan Status Card inside plan details to summarize model changes. It supports collapsed and expanded states, semantic badges, error borders, SQL diff lines, and impacted resources.":
+    "Usa Plan Status Card en los detalles del plan para resumir cambios de modelos. Admite estados colapsado y expandido, badges semánticos, bordes de error, diferencias SQL y recursos afectados.",
+  "Breaking change": "Cambio incompatible",
+  "Breaking": "Incompatible",
+  "Breaking and backfill status with SQL diff and impacts.":
+    "Estado incompatible y backfill con diferencias SQL e impactos.",
+  "Compact model row with Breaking and Backfill badges.":
+    "Fila compacta de modelo con badges Breaking y Backfill.",
+  "Expanded SQL diff with added/removed lines and impacted resources.":
+    "Diferencia SQL expandida con líneas añadidas/eliminadas y recursos afectados.",
+  "Undefined table": "Tabla no definida",
+  "Error state with a red border and diagnostic stack trace.":
+    "Estado de error con borde rojo y traza de diagnóstico.",
+  "Collapsed error": "Error colapsado",
+  "Compact undefined-table error state.":
+    "Estado compacto de error de tabla no definida.",
+  "Expanded error": "Error expandido",
+  "Expanded diagnostic message and stack trace.":
+    "Mensaje de diagnóstico y traza expandidos.",
+  "Environment changes": "Cambios de entorno",
+  "Environment-level SQL changes without model badges.":
+    "Cambios SQL de entorno sin badges de modelo.",
+  "Collapsed environment": "Entorno colapsado",
+  "Compact environment changes row.":
+    "Fila compacta de cambios de entorno.",
+  "Expanded environment": "Entorno expandido",
+  "Expanded environment SQL diff.":
+    "Diferencia SQL de entorno expandida.",
+  "Collapsed breaking-change status.":
+    "Estado colapsado de cambio incompatible.",
+  "Collapsed undefined-table error.":
+    "Error colapsado de tabla no definida.",
+  "Controlled or uncontrolled collapsed and expanded states.":
+    "Estados colapsado y expandido controlados o no controlados.",
+  "Default and error card borders.":
+    "Bordes de tarjeta predeterminado y de error.",
+  "Breaking, Backfill, Undefined table, and custom semantic badges.":
+    "Badges semánticos Breaking, Backfill, Undefined table y personalizados.",
+  "SQL diff panel with context, info, added, and removed line colors.":
+    "Panel de diferencias SQL con colores para contexto, información, líneas añadidas y eliminadas.",
+  "Impacted metric and semantic resource list.":
+    "Lista de métricas y recursos semánticos afectados.",
+  "Diagnostic error panel for query and planning failures.":
+    "Panel de diagnóstico para errores de consulta y planificación.",
+  "Accessible header button with aria-expanded and aria-controls.":
+    "Botón de cabecera accesible con aria-expanded y aria-controls.",
+  "PlanStatusCard Props": "Props de PlanStatusCard",
+  "Model, feature, or environment label.":
+    "Etiqueta de modelo, característica o entorno.",
+  "Optional model type label, such as \"FULL\".":
+    "Etiqueta opcional del tipo de modelo, como \"FULL\".",
+  "Status badges shown on the right side of the header.":
+    "Badges de estado mostrados a la derecha de la cabecera.",
+  "Controls the card border treatment.":
+    "Controla el estilo del borde de la tarjeta.",
+  "Controlled expanded state.": "Estado expandido controlado.",
+  "Called when the header toggles expansion.":
+    "Se llama cuando la cabecera alterna la expansión.",
+  "Expanded content, usually diff, error, and impact panels.":
+    "Contenido expandido, normalmente paneles de diferencias, errores e impactos.",
+  "Also exported: PlanStatusDiff, PlanStatusError, PlanStatusImpacts, PlanStatusBadge, PlanStatusDiffLine, and PlanStatusImpact.":
+    "También exportados: PlanStatusDiff, PlanStatusError, PlanStatusImpacts, PlanStatusBadge, PlanStatusDiffLine y PlanStatusImpact.",
+  "PlanStatusBadge": "PlanStatusBadge",
+  "Badge treatment: \"default\", \"muted\", or \"error\".":
+    "Estilo del badge: \"default\", \"muted\" o \"error\".",
+  "PlanStatusDiffLine": "PlanStatusDiffLine",
+  "\"context\", \"info\", \"add\", or \"remove\".":
+    "\"context\", \"info\", \"add\" o \"remove\".",
+
+  "Use Plan Status Card inside plan details to summarize model changes. It supports collapsed and expanded states, cream hover, teal selection, semantic badges, copyable SQL diffs, empty panels, density, and nested composition inside Plan Card.":
+    "Usa Plan Status Card en los detalles del plan para resumir cambios de modelos. Admite estados colapsado y expandido, hover cream, selección teal, badges semánticos, diferencias SQL copiables, paneles vacíos, densidad y composición anidada dentro de Plan Card.",
+  "Selected status card with teal surface and dark teal border.":
+    "Tarjeta de estado seleccionada con superficie teal y borde dark teal.",
+  "Selected status card with teal styling.":
+    "Tarjeta de estado seleccionada con estilo teal.",
+  "Expanded SQL diff with file path, line numbers, copy/download, and impacts.":
+    "Diferencia SQL expandida con ruta de archivo, números de línea, copiar/descargar e impactos.",
+  "Expanded diagnostic message with copy and download actions.":
+    "Mensaje de diagnóstico expandido con acciones de copiar y descargar.",
+  "Interaction and density": "Interacción y densidad",
+  "Badge tones, empty panels, compact size, and loading.":
+    "Tonos de badge, paneles vacíos, tamaño compacto y carga.",
+  "More badges": "Más badges",
+  "Non-breaking, Schema, Config, and other semantic badge tones.":
+    "Tonos semánticos Non-breaking, Schema, Config y otros.",
+  "Empty panels": "Paneles vacíos",
+  "Localized empty states for missing diffs and impacts.":
+    "Estados vacíos localizados para diferencias e impactos ausentes.",
+  "Compact rows with size=\"sm\".": "Filas compactas con size=\"sm\".",
+  "PlanStatusCardSkeleton placeholders while features load.":
+    "Marcadores PlanStatusCardSkeleton mientras cargan las características.",
+  "Accordion lists, filters, and composition inside Plan Card.":
+    "Listas de acordeón, filtros y composición dentro de Plan Card.",
+  "Accordion list": "Lista de acordeón",
+  "Control expanded and selected so only one status card stays open.":
+    "Controla expanded y selected para mantener abierta una sola tarjeta de estado.",
+  "Filter chips": "Chips de filtro",
+  "Filter a stack by Breaking, Errors, or Environment.":
+    "Filtra una pila por Breaking, Errors o Environment.",
+  "Inside Plan Card": "Dentro de Plan Card",
+  "Nest Plan Status Cards under an expanded Plan Card children slot.":
+    "Anida Plan Status Cards bajo el slot children de un Plan Card expandido.",
+  "Cream hover (cream-bg-3) and teal selected surface with dark teal border.":
+    "Hover cream (cream-bg-3) y superficie seleccionada teal con borde dark teal.",
+  "Breaking, Non-breaking, Backfill, Schema, Config, Undefined table, and custom badges.":
+    "Badges Breaking, Non-breaking, Backfill, Schema, Config, Undefined table y personalizados.",
+  "SQL diff panel with file path, line numbers, copy, and download.":
+    "Panel de diferencias SQL con ruta, números de línea, copiar y descargar.",
+  "Diagnostic error panel with copy and download.":
+    "Panel de error de diagnóstico con copiar y descargar.",
+  "Compact density via size=\"sm\".": "Densidad compacta mediante size=\"sm\".",
+  "PlanStatusCardSkeleton loading placeholder.":
+    "Marcador de carga PlanStatusCardSkeleton.",
+  "Built-in en/es message catalog for panel labels and actions.":
+    "Catálogo en/es integrado para etiquetas y acciones del panel.",
+  "Accessible header button with aria-expanded, aria-controls, and keyboard activation.":
+    "Botón de cabecera accesible con aria-expanded, aria-controls y activación por teclado.",
+  "Header and badge density.": "Densidad de cabecera y badges.",
+  "Pins teal surface and dark teal border when tone is default.":
+    "Fija superficie teal y borde dark teal cuando tone es default.",
+  "Called when the header is activated; sets aria-pressed.":
+    "Se llama cuando se activa la cabecera; establece aria-pressed.",
+  "Also exported: PlanStatusCardSkeleton, PlanStatusDiff, PlanStatusError, PlanStatusImpacts, planStatusCardMessages, and related types. Wrap the tree in LanguageProvider for message catalogs.":
+    "También exportados: PlanStatusCardSkeleton, PlanStatusDiff, PlanStatusError, PlanStatusImpacts, planStatusCardMessages y tipos relacionados. Envuelve el árbol en LanguageProvider para los catálogos.",
+  "\"default\", \"muted\", \"error\", \"success\", \"warning\", or \"info\".":
+    "\"default\", \"muted\", \"error\", \"success\", \"warning\" o \"info\".",
+  "PlanStatusDiff": "PlanStatusDiff",
+  "Optional path shown above the diff lines.":
+    "Ruta opcional mostrada encima de las líneas de diferencia.",
+  "Renders old/new line number gutters when true.":
+    "Renderiza gutters de números de línea old/new cuando es true.",
+  "Line kind: \"context\", \"info\", \"add\", or \"remove\".":
+    "Tipo de línea: \"context\", \"info\", \"add\" o \"remove\".",
+  "Optional content under expanded detail rows (for example Plan Status Cards).":
+    "Contenido opcional bajo las filas de detalle expandidas (por ejemplo Plan Status Cards).",
+  "Selected uses teal surface and dark teal border.":
+    "La selección usa superficie teal y borde dark teal.",
+  "Only one status card stays expanded.":
+    "Solo una tarjeta de estado permanece expandida.",
+  "Status cards nested inside an expanded Plan Card.":
+    "Tarjetas de estado anidadas dentro de un Plan Card expandido.",
+
   // ── Run Card page ──────────────────────────────────────────
   "Run Card": "Tarjeta de ejecución",
   "Pipeline run summary card with success, selected hover, and error states.":

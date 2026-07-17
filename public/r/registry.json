@@ -1328,6 +1328,20 @@
       ]
     },
     {
+      "name": "plan-status-card",
+      "type": "registry:block",
+      "title": "Plan Status Card",
+      "description": "Expandable plan feature status card for SQL diffs, impacts, errors, and environment changes.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "files": [
+        {
+          "path": "registry/default/blocks/plan-status-card/plan-status-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "run-duration",
       "type": "registry:block",
       "title": "Run Duration",
