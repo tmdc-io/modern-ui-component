@@ -7,7 +7,7 @@ A shadcn-extended React UI component library distributed via the official [shadc
 
 ## What's included
 
-<!-- catalog-count:items -->156<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->21<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
+<!-- catalog-count:items -->157<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->21<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
 
 ```bash
 npx shadcn@latest list tmdc-io/modern-ui-component

@@ -32,6 +32,8 @@ import { ModelHealthRunsDefaultPreview } from "@/app/component-examples/model-he
 import { ModelsTableDefaultPreview } from "@/app/component-examples/models-table-usage"
 import { RunDurationDefaultPreview } from "@/app/component-examples/run-duration-usage"
 import { RunMetricsDefaultPreview } from "@/app/component-examples/run-metrics-usage"
+import { PlanCardSuccessPreview } from "@/app/component-examples/plan-card-usage"
+import { RunCardSuccessPreview } from "@/app/component-examples/run-card-usage"
 import { ApplicationHeaderL1Preview } from "@/app/component-examples/application-header-usage"
 import { DataOsSidebarExpandedPreview } from "@/app/component-examples/dataos-sidebar-usage"
 import { HeroInternalPreview } from "@/app/component-examples/hero-usage"
@@ -836,6 +838,16 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "run-duration": (
     <div className="w-full overflow-hidden">
       <RunDurationDefaultPreview />
+    </div>
+  ),
+  "plan-card": (
+    <div className="w-full overflow-hidden">
+      <PlanCardSuccessPreview />
+    </div>
+  ),
+  "run-card": (
+    <div className="w-full overflow-hidden">
+      <RunCardSuccessPreview />
     </div>
   ),
   "model-health-runs": (

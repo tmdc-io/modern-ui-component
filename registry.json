@@ -1300,6 +1300,34 @@
       ]
     },
     {
+      "name": "run-card",
+      "type": "registry:block",
+      "title": "Run Card",
+      "description": "Pipeline run summary card with status variants, selection, metrics, and loading states.",
+      "dependencies": ["date-fns", "lucide-react"],
+      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "files": [
+        {
+          "path": "registry/default/blocks/run-card/run-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "plan-card",
+      "type": "registry:block",
+      "title": "Plan Card",
+      "description": "Plan summary card with success, hover, error, and expandable change/impact details.",
+      "dependencies": ["date-fns", "lucide-react"],
+      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "files": [
+        {
+          "path": "registry/default/blocks/plan-card/plan-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "run-duration",
       "type": "registry:block",
       "title": "Run Duration",

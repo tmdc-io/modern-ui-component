@@ -20,6 +20,8 @@ import { contextMenuApi } from "@/app/component-api/context-menu"
 import { applicationHeaderApi } from "@/app/component-api/application-header"
 import { modelHealthRunsApi } from "@/app/component-api/model-health-runs"
 import { modelsTableApi } from "@/app/component-api/models-table"
+import { planCardApi } from "@/app/component-api/plan-card"
+import { runCardApi } from "@/app/component-api/run-card"
 import { runDurationApi } from "@/app/component-api/run-duration"
 import { runMetricsApi } from "@/app/component-api/run-metrics"
 import { dataosSidebarApi } from "@/app/component-api/dataos-sidebar"
@@ -101,6 +103,8 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   "application-header": applicationHeaderApi,
   "model-health-runs": modelHealthRunsApi,
   "models-table": modelsTableApi,
+  "plan-card": planCardApi,
+  "run-card": runCardApi,
   "run-duration": runDurationApi,
   "run-metrics": runMetricsApi,
   "data-product-card": dataProductCardApi,

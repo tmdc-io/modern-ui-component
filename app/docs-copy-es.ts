@@ -1055,6 +1055,202 @@ export const docsCopyEs: Record<string, string> = {
   "Drop in Sidebar or DataOS blocks for product navigation":
     "Inserta Sidebar o bloques DataOS para la navegación del producto",
 
+  // ── Plan Card page ─────────────────────────────────────────
+  "Plan Card": "Tarjeta de plan",
+  "Plan summary card with success, hover, error, and expandable change/impact details.":
+    "Tarjeta de resumen de plan con estados success, hover, error y detalles expandibles de cambios/impactos.",
+  "A compact card for browsing plan versions. It shows plan id, version, timestamp, duration, and change/impact metrics, with an expandable panel for detailed deltas and an optional details link.":
+    "Tarjeta compacta para explorar versiones de plan. Muestra id, versión, fecha, duración y métricas de cambios/impactos, con panel expandible y enlace opcional a detalles.",
+  "Success, hover, error, and expanded detail views.":
+    "Vistas success, hover, error y detalle expandido.",
+  "Successful plan card with changes and impacts.":
+    "Tarjeta de plan correcta con cambios e impactos.",
+  "Successful plan card.": "Tarjeta de plan correcta.",
+  "Failed plan card with error, changes, and impacts.":
+    "Tarjeta de plan fallida con error, cambios e impactos.",
+  "Failed plan card.": "Tarjeta de plan fallida.",
+  "Expanded panel with detail metrics, status rows, and Open plan details link.":
+    "Panel expandido con métricas detalladas, filas de estado y enlace Abrir detalles del plan.",
+  "Plan list": "Lista de planes",
+  "Stack success, hover, and error cards.":
+    "Apila tarjetas success, hover y error.",
+  "PlanCardSkeleton placeholders while plan data loads.":
+    "Marcadores PlanCardSkeleton mientras cargan los datos del plan.",
+  "Plan id, version, timestamp, and duration header layout.":
+    "Cabecera con id de plan, versión, fecha y duración.",
+  "Summary metric row (Changes, Impacts, optional Error) with expand chevron.":
+    "Fila de métricas resumen (Changes, Impacts, Error opcional) con chevron de expansión.",
+  "Expandable panel with detail metrics, italic status rows, and Open plan details link.":
+    "Panel expandible con métricas detalladas, filas de estado en cursiva y enlace Abrir detalles del plan.",
+  "PlanCardSkeleton loading placeholder.":
+    "Marcador de carga PlanCardSkeleton.",
+  "Built-in en/es message catalog for default labels and status screen-reader text.":
+    "Catálogo en/es integrado para etiquetas por defecto y texto de estado para lectores de pantalla.",
+  "PlanCard Props": "Props de PlanCard",
+  "Plan identifier shown as the primary label (for example \"#7\").":
+    "Identificador del plan como etiqueta principal (por ejemplo \"#7\").",
+  "Version label in the top-right corner (for example \"v0.1.3\").":
+    "Etiqueta de versión en la esquina superior derecha (por ejemplo \"v0.1.3\").",
+  "Localized plan timestamp text.": "Texto de fecha/hora del plan.",
+  "Plan duration text (for example \"4.1s\").":
+    "Texto de duración del plan (por ejemplo \"4.1s\").",
+  "Controls the status icon and plan id color.":
+    "Controla el icono de estado y el color del id del plan.",
+  "Collapsed summary chips as \"Label (value)\". Defaults to Changes and Impacts.":
+    "Chips de resumen colapsados como \"Label (value)\". Por defecto Changes e Impacts.",
+  "Expanded key/value rows (Modified, Added, Removed, Impacts, Backfills).":
+    "Filas clave/valor expandidas (Modified, Added, Removed, Impacts, Backfills).",
+  "Expanded status lines with italic values (for example Environment statement → \"changed\").":
+    "Líneas de estado expandidas con valores en cursiva (por ejemplo Environment statement → \"changed\").",
+  "Controlled expanded state for the detail panel.":
+    "Estado expandido controlado del panel de detalle.",
+  "Initial expanded state when uncontrolled.":
+    "Estado expandido inicial cuando no está controlado.",
+  "Called when the expand chevron toggles the detail panel.":
+    "Se llama cuando el chevron expande o contrae el panel de detalle.",
+  "When set, shows the Open plan details footer link in the expanded panel.":
+    "Si se define, muestra el enlace Abrir detalles del plan en el panel expandido.",
+  "Override the Open plan details link label.":
+    "Sobrescribe la etiqueta del enlace Abrir detalles del plan.",
+  "Also exported: PlanCardSkeleton, planCardMessages, PlanCardMetric, PlanCardDetailRow, and PlanCardStatus. Wrap the tree in LanguageProvider (i18n registry item) for planCardMessages.":
+    "También exportados: PlanCardSkeleton, planCardMessages, PlanCardMetric, PlanCardDetailRow y PlanCardStatus. Envuelve el árbol en LanguageProvider (ítem i18n) para planCardMessages.",
+  "Metric label, such as \"Changes\", \"Impacts\", or \"Error\".":
+    "Etiqueta de métrica, como \"Changes\", \"Impacts\" o \"Error\".",
+  "Additional classes on the skeleton wrapper.":
+    "Clases adicionales en el contenedor del skeleton.",
+  "Lists, selection, and loading placeholders.":
+    "Listas, selección y marcadores de carga.",
+  "Metric value rendered inside parentheses, such as \"3\" or \"7\".":
+    "Valor de métrica entre paréntesis, como \"3\" o \"7\".",
+  "Optional selected and onSelect for controlled plan lists with aria-pressed.":
+    "selected y onSelect opcionales para listas de planes controladas con aria-pressed.",
+  "Optional semantic color: \"success\", \"error\", or \"default\".":
+    "Color semántico opcional: \"success\", \"error\" o \"default\".",
+  "PlanCardMetric": "PlanCardMetric",
+  "PlanCardSkeleton": "PlanCardSkeleton",
+  "Use selected with onSelect for a plan list; cards expose aria-pressed when selectable.":
+    "Usa selected con onSelect para una lista de planes; las tarjetas exponen aria-pressed cuando son seleccionables.",
+  "A compact card for browsing plan versions. It supports semantic statuses, relative time, clickable metrics, controlled expansion, density, and an expandable panel for detailed deltas.":
+    "Tarjeta compacta para explorar versiones de planes. Admite estados semánticos, tiempo relativo, métricas interactivas, expansión controlada, densidad y un panel expandible con cambios detallados.",
+  "Accordion expansion, clickable metrics, compact density, and empty details.":
+    "Expansión tipo acordeón, métricas interactivas, densidad compacta y detalles vacíos.",
+  "Accordion plan list": "Lista de planes en acordeón",
+  "Clickable metrics via per-metric href or onClick.":
+    "Métricas interactivas mediante href u onClick por métrica.",
+  "Compact density via size=\"sm\" and relative time via startedAt.":
+    "Densidad compacta mediante size=\"sm\" y tiempo relativo mediante startedAt.",
+  "Control expanded and onExpandedChange so only one plan remains open.":
+    "Controla expanded y onExpandedChange para mantener abierto un solo plan.",
+  "Controlled accordion lists via expanded and onExpandedChange.":
+    "Listas de acordeón controladas mediante expanded y onExpandedChange.",
+  "Density and empty state": "Densidad y estado vacío",
+  "Draft, running, warning, and cancelled plans with relative time where applicable.":
+    "Planes en borrador, en curso, con advertencias y cancelados, con tiempo relativo cuando corresponde.",
+  "Localized plan timestamp text when startedAt is omitted.":
+    "Texto localizado de fecha y hora cuando se omite startedAt.",
+  "Optional metric link or action; activation does not trigger card selection.":
+    "Enlace o acción opcional por métrica; su activación no selecciona la tarjeta.",
+  "Optional semantic color matching PlanCardStatus.":
+    "Color semántico opcional correspondiente a PlanCardStatus.",
+  "Related runs": "Ejecuciones relacionadas",
+  "Renders relative time instead of timestamp.":
+    "Muestra tiempo relativo en lugar de timestamp.",
+  "Select a plan and show its related Run Cards beside the plan list.":
+    "Selecciona un plan y muestra sus Run Cards junto a la lista de planes.",
+  "Success, error, draft, running, warning, and cancelled semantic statuses.":
+    "Estados semánticos success, error, draft, running, warning y cancelled.",
+  "Use href or onClick on Changes, Impacts, and Error summary metrics.":
+    "Usa href u onClick en las métricas resumen Changes, Impacts y Error.",
+  "Use size=\"sm\" for compact histories; empty details show a localized message.":
+    "Usa size=\"sm\" para historiales compactos; los detalles vacíos muestran un mensaje localizado.",
+
+  "One card with cream hover (cream-bg-3). Move the pointer over the card to preview.":
+    "Una tarjeta con hover cream (cream-bg-3). Pasa el cursor para previsualizar.",
+  "Cream hover surface on one card.":
+    "Superficie cream al hover en una tarjeta.",
+  "Cream hover surface (cream-bg-3); selected uses teal surface and dark teal border.":
+    "Superficie cream al hover (cream-bg-3); el seleccionado usa superficie teal y borde dark teal.",
+  "Pins the teal surface and dark teal border for an active/selected card.":
+    "Fija la superficie teal y el borde dark teal para una tarjeta activa/seleccionada.",
+  "Hover the card to see the cream surface (cream-bg-3).":
+    "Pasa el cursor para ver la superficie cream (cream-bg-3).",
+  "Click a card to select it. Selected cards use the teal surface and border.":
+    "Haz clic para seleccionar. Las tarjetas seleccionadas usan superficie y borde teal.",
+  "Active / selected": "Activo / seleccionado",
+  "Selected cards keep the teal surface and dark teal border.":
+    "Las tarjetas seleccionadas mantienen la superficie teal y el borde dark teal.",
+  "Selected plan card with a teal surface and dark teal border.":
+    "Tarjeta de plan seleccionada con superficie teal y borde dark teal.",
+  "Selected plan card with persistent teal styling.":
+    "Tarjeta de plan seleccionada con estilo teal persistente.",
+  "Selected run card with a teal surface and dark teal border.":
+    "Tarjeta de ejecución seleccionada con superficie teal y borde dark teal.",
+  "Selected run card with persistent teal styling.":
+    "Tarjeta de ejecución seleccionada con estilo teal persistente.",
+
+  // ── Run Card page ──────────────────────────────────────────
+  "Run Card": "Tarjeta de ejecución",
+  "Pipeline run summary card with success, selected hover, and error states.":
+    "Tarjeta de resumen de ejecución con estados success, hover seleccionado y error.",
+  "A compact card for browsing pipeline runs. It shows run id, plan, timestamp, duration, and summary metrics with semantic success/error styling.":
+    "Tarjeta compacta para explorar ejecuciones. Muestra id, plan, fecha, duración y métricas con estilos success/error.",
+  "States": "Estados",
+  "Success, selected hover, and error cards.":
+    "Tarjetas success, hover seleccionado y error.",
+  "Success": "Success",
+  "Successful run card with model and DQ metrics.":
+    "Tarjeta de ejecución correcta con métricas de modelos y DQ.",
+  "Successful run card.": "Tarjeta de ejecución correcta.",
+  "Hover": "Hover",
+  "One card with built-in teal hover. Move the pointer over the card to preview.":
+    "Una tarjeta con hover teal integrado. Pasa el cursor para previsualizar.",
+  "Built-in teal hover on one card.":
+    "Hover teal integrado en una tarjeta.",
+  "Built-in teal hover surface and dark teal border on every card.":
+    "Superficie teal y borde dark teal al hover en cada tarjeta.",
+  "Optional selected prop to pin the hover look for active cards.":
+    "Prop selected opcional para fijar el aspecto hover en tarjetas activas.",
+  "Pins the teal hover surface and dark teal border for an active/selected card.":
+    "Fija la superficie teal y el borde dark teal para una tarjeta activa/seleccionada.",
+  "Also exported: RunCardMetric and RunCardStatus. Metric status supports \"success\", \"error\", or \"default\". Hover styles are always applied via CSS.":
+    "También exportados: RunCardMetric y RunCardStatus. El status de métrica admite \"success\", \"error\" o \"default\". El hover se aplica siempre con CSS.",
+  "Error": "Error",
+  "Failed run card with error, model, and DQ metrics.":
+    "Tarjeta de ejecución fallida con métricas de error, modelos y DQ.",
+  "Failed run card.": "Tarjeta de ejecución fallida.",
+  "Render cards as a vertical run history.":
+    "Renderiza las tarjetas como un historial vertical de ejecuciones.",
+  "Run list": "Lista de ejecuciones",
+  "Stack success, selected, and error cards.":
+    "Apila tarjetas success, seleccionada y error.",
+  "Success and error status icons with DataOS semantic colors.":
+    "Iconos de estado success y error con colores semánticos DataOS.",
+  "Run id, plan, timestamp, and duration header layout.":
+    "Cabecera con id de ejecución, plan, fecha y duración.",
+  "Metric row with per-metric semantic coloring, including error count.":
+    "Fila de métricas con color semántico por métrica, incluido el conteo de errores.",
+  "Optional href or onClick for clickable run navigation.":
+    "href u onClick opcionales para navegar a la ejecución.",
+  "RunCard Props": "Props de RunCard",
+  "Run identifier shown as the primary label (for example \"#10010\").":
+    "Identificador de ejecución como etiqueta principal (por ejemplo \"#10010\").",
+  "Plan label shown in the top-right corner (for example \"Plan #01\").":
+    "Etiqueta del plan en la esquina superior derecha (por ejemplo \"Plan #01\").",
+  "Localized run timestamp text.": "Texto de fecha/hora de la ejecución.",
+  "Run duration text (for example \"4.1s\").":
+    "Texto de duración (por ejemplo \"4.1s\").",
+  "Controls the status icon and run id color.":
+    "Controla el icono de estado y el color del id de ejecución.",
+  "Footer metrics rendered as \"Label (value)\" segments. Defaults to Models (7) and DQ (12/16).":
+    "Métricas del pie como segmentos \"Label (value)\". Por defecto Models (7) y DQ (12/16).",
+  "RunCardMetric": "RunCardMetric",
+  "Metric label, such as \"Error\", \"Models\", or \"DQ\".":
+    "Etiqueta de métrica, como \"Error\", \"Models\" o \"DQ\".",
+  "Metric value rendered inside parentheses, such as \"3\" or \"12/16\".":
+    "Valor de métrica entre paréntesis, como \"3\" o \"12/16\".",
+  "Optional semantic color override: \"success\", \"error\", or \"default\".":
+    "Color semántico opcional: \"success\", \"error\" o \"default\".",
+
   // ── i18n foundation page ───────────────────────────────────
   "Full consumer guide (install, provider wiring, which blocks use messages vs props, next-intl bridge): docs/I18N.md in the repository.":
     "Guía completa del consumidor (instalación, LanguageProvider, bloques con mensajes vs props, puente next-intl): docs/I18N.md en el repositorio.",

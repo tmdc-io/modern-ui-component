@@ -224,6 +224,16 @@ export const catalog: CatalogCategory[] = [
         "Top panel with tenant switcher, breadcrumb navigation, and user avatar for L1 and L2 routes."
       ),
       item(
+        "plan-card",
+        "Plan Card",
+        "Plan summary card with success, hover, error, and expandable change/impact details."
+      ),
+      item(
+        "run-card",
+        "Run Card",
+        "Pipeline run summary card with success, selected hover, and error states."
+      ),
+      item(
         "run-duration",
         "Run Duration",
         "Run duration bar chart with normal, anomaly, selected states, and baseline reference."
