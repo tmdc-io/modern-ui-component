@@ -31,6 +31,15 @@ type ProjectRow = {
   score: number
 }
 
+const statuses = ["active", "review", "shipped"] as const
+
+const sampleData: ProjectRow[] = Array.from({ length: 1000 }, (_, index) => ({
+  id: String(index + 1),
+  name: \`Project \${index + 1}\`,
+  status: statuses[index % statuses.length]!,
+  score: 40 + ((index * 17) % 60),
+}))
+
 const columns: ColumnDef<ProjectRow>[] = [
   { accessorKey: "name", header: "Project" },
   { accessorKey: "status", header: "Status" },
@@ -43,7 +52,11 @@ const columns: ColumnDef<ProjectRow>[] = [
   },
 ]
 
-export function VirtualizedTable({ data }: { data: ProjectRow[] }) {
+export function VirtualizedTable({
+  data = sampleData,
+}: {
+  data?: ProjectRow[]
+}) {
   const parentRef = React.useRef<HTMLDivElement>(null)
 
   const table = useReactTable({
@@ -119,5 +132,9 @@ export function VirtualizedTable({ data }: { data: ProjectRow[] }) {
       </Table>
     </div>
   )
+}
+
+export function TableVirtualDemo() {
+  return <VirtualizedTable />
 }`,
 } as const

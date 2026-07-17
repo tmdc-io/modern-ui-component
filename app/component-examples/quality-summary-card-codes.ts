@@ -84,7 +84,9 @@ export function QualityPanel() {
   )
 }`,
 
-  api: `import useSWR from "swr"
+  api: `"use client"
+
+import useSWR from "swr"
 import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -99,6 +101,22 @@ type QualityApiResponse = {
     status: "PASS" | "WARN" | "FAIL"
     issueCount?: number
   }>
+}
+
+async function fetcher(url: string): Promise<QualityApiResponse> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error("Failed to load quality summary")
+  return response.json()
+}
+
+function formatRelativeTime(iso: string) {
+  const diffMs = Date.now() - new Date(iso).getTime()
+  const minutes = Math.max(0, Math.round(diffMs / 60_000))
+  if (minutes < 1) return "just now"
+  if (minutes < 60) return \`\${minutes}m ago\`
+  const hours = Math.round(minutes / 60)
+  if (hours < 24) return \`\${hours}h ago\`
+  return \`\${Math.round(hours / 24)}d ago\`
 }
 
 function mapApiToSummary(data: QualityApiResponse) {
@@ -138,9 +156,32 @@ export function QualityDashboard() {
 }`,
 
   derived: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
+import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 
-// dimensionCount and statusLabel are derived inside the card.
-// Pass dimensions only — badge shows "Healthy", "At Risk", or "Failed".
+const apiData = {
+  rulesPassed: 47,
+  rulesTotal: 100,
+  dimensions: [
+    { label: "Accuracy", status: "PASS" as const },
+    { label: "Completeness", status: "PASS" as const },
+    { label: "Conformity", status: "PASS" as const },
+    { label: "Consistency", status: "PASS" as const },
+    { label: "Coverage", status: "PASS" as const },
+    { label: "Timeliness", status: "PASS" as const },
+    { label: "Uniqueness", status: "WARN" as const, issueCount: 3 },
+    { label: "Validity", status: "PASS" as const },
+  ],
+}
+
+const dimensions: QualityDimension[] = apiData.dimensions.map((d) => ({
+  name: d.label,
+  status:
+    d.status === "FAIL" ? "fail" : d.status === "WARN" ? "warn" : "pass",
+  detail:
+    "issueCount" in d && d.issueCount && d.status !== "PASS"
+      ? \`\${d.issueCount} issues\`
+      : undefined,
+}))
 
 export function QualitySummary() {
   return (
@@ -148,13 +189,36 @@ export function QualitySummary() {
       passed={apiData.rulesPassed}
       total={apiData.rulesTotal}
       updatedAt="3m ago"
-      dimensions={apiData.dimensions.map(/* map to QualityDimension */)}
+      dimensions={dimensions}
       href="/quality/rules"
     />
   )
 }`,
 
   multiple: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
+import type { QualityDimension } from "@/components/blocks/quality-summary-card"
+
+const healthy: QualityDimension[] = [
+  { name: "Accuracy", status: "pass" },
+  { name: "Completeness", status: "pass" },
+  { name: "Conformity", status: "pass" },
+  { name: "Consistency", status: "pass" },
+  { name: "Coverage", status: "pass" },
+  { name: "Timeliness", status: "pass" },
+  { name: "Uniqueness", status: "warn", detail: "3 issues" },
+  { name: "Validity", status: "pass" },
+]
+
+const atRisk: QualityDimension[] = [
+  { name: "Accuracy", status: "pass" },
+  { name: "Completeness", status: "fail", detail: "8 issues" },
+  { name: "Conformity", status: "pass" },
+  { name: "Consistency", status: "warn", detail: "2 issues" },
+  { name: "Coverage", status: "pass" },
+  { name: "Timeliness", status: "pass" },
+  { name: "Uniqueness", status: "pass" },
+  { name: "Validity", status: "pass" },
+]
 
 const datasets = [
   {
@@ -163,7 +227,7 @@ const datasets = [
     passed: 47,
     total: 100,
     updatedAt: "3m ago",
-    dimensions: [/* ... */],
+    dimensions: healthy,
   },
   {
     id: "orders",
@@ -171,7 +235,7 @@ const datasets = [
     passed: 32,
     total: 100,
     updatedAt: "12m ago",
-    dimensions: [/* ... */],
+    dimensions: atRisk,
   },
 ]
 
@@ -200,23 +264,27 @@ export function QualityGrid() {
 // status "fail": destructive badge + row styling
 // href: server-friendly footer link
 
-<QualitySummaryCard
-  summary={{
-    title: "Orders",
-    passed: 18,
-    total: 100,
-    updatedAt: "1h ago",
-    dimensions: [
-      { name: "Accuracy", status: "pass" },
-      { name: "Completeness", status: "fail", detail: "8 issues" },
-      { name: "Conformity", status: "pass" },
-      { name: "Consistency", status: "warn", detail: "2 issues" },
-      { name: "Coverage", status: "pass" },
-      { name: "Timeliness", status: "pass" },
-      { name: "Uniqueness", status: "pass" },
-      { name: "Validity", status: "pass" },
-    ],
-  }}
-  href="/quality/rules/orders"
-/>`,
+export function FailedQualityCard() {
+  return (
+    <QualitySummaryCard
+      summary={{
+        title: "Orders",
+        passed: 18,
+        total: 100,
+        updatedAt: "1h ago",
+        dimensions: [
+          { name: "Accuracy", status: "pass" },
+          { name: "Completeness", status: "fail", detail: "8 issues" },
+          { name: "Conformity", status: "pass" },
+          { name: "Consistency", status: "warn", detail: "2 issues" },
+          { name: "Coverage", status: "pass" },
+          { name: "Timeliness", status: "pass" },
+          { name: "Uniqueness", status: "pass" },
+          { name: "Validity", status: "pass" },
+        ],
+      }}
+      href="/quality/rules/orders"
+    />
+  )
+}`,
 }

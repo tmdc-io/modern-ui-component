@@ -23,7 +23,42 @@ export const planStatusCardApi: ComponentApiDoc = {
   PlanStatusImpacts,
   planStatusCardMessages,
 } from "@/components/blocks/plan-status-card"`,
-    example: `<PlanStatusCard
+    example: `const diffLines = [
+  { value: "--- .../usage_events.sql", kind: "info" },
+  { value: "+++ .../usage_events.sql", kind: "info" },
+  { value: "@@ -33,6 +33,7 @@", kind: "info" },
+  { value: "   event_count,", oldLine: 35, newLine: 35 },
+  {
+    value: "+  event_count AS new_event_count,",
+    kind: "add",
+    oldLine: null,
+    newLine: 36,
+  },
+  {
+    value: "-  event_date >= CURRENT_DATE - INTERVAL '90 DAYS'",
+    kind: "remove",
+    oldLine: 56,
+    newLine: null,
+  },
+  {
+    value: "+  event_date >= CURRENT_DATE - INTERVAL '30 DAYS'",
+    kind: "add",
+    oldLine: null,
+    newLine: 57,
+  },
+]
+
+const impacts = [
+  { name: "churn_analysis", type: "metric", kind: "metric" },
+  { name: "arr_growth", type: "metric", kind: "metric" },
+  {
+    name: "usage_without_subscription",
+    type: "semantic",
+    kind: "semantic",
+  },
+]
+
+<PlanStatusCard
   title="b2b_saas.users"
   typeLabel="FULL"
   selected

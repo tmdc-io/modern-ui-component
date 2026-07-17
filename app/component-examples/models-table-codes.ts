@@ -48,26 +48,148 @@ type ModelsTableProps = {
 
   default: `"use client"
 
-import { ModelsTable } from "@/components/blocks/models-table"
+import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
+
+const rows: ModelTableRow[] = [
+  {
+    id: "m3",
+    name: "BUILDING_COMPETITORS_AGG",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "INCREMENTAL_BY_UNIQUE_KEY",
+    type: "SQL",
+    runtimeMs: 142,
+    rowCount: 24830,
+    dataSize: "1gb",
+    status: "warn",
+    statusCount: 1,
+    showSparkline: true,
+    expansion: "quality",
+    qualityRules: [
+      { id: "q1", column: "account_id", rule: "not_null", status: "pass" },
+      { id: "q2", column: "amount", rule: "accepted_values", status: "warn" },
+    ],
+  },
+  {
+    id: "m5",
+    name: "MAINT_COST",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "VIEW",
+    type: "ROLLUP",
+    runtimeMs: 315,
+    rowCount: 30110,
+    dataSize: "2gb",
+    status: "pass",
+    statusCount: 8,
+    showSparkline: true,
+  },
+  {
+    id: "m1",
+    name: "BUILDING_COMPETITORS_AGG",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "INCREMENTAL_BY_UNIQUE_KEY",
+    type: "SQL",
+    status: "fail",
+    statusCount: 1,
+    hasError: true,
+    showSparkline: true,
+    expansion: "error",
+    errorDetail: {
+      errorType: "Py4JJavaError",
+      message:
+        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114).",
+      viewMoreLabel: "View more",
+    },
+  },
+]
 
 export function PipelineModelsPanel() {
-  return <ModelsTable title="Models" />
+  return <ModelsTable title="Models" rows={rows} />
 }`,
 
   expandedError: `"use client"
 
-import { ModelsTable } from "@/components/blocks/models-table"
+import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
+
+const rows: ModelTableRow[] = [
+  {
+    id: "m1",
+    name: "BUILDING_COMPETITORS_AGG",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "INCREMENTAL_BY_UNIQUE_KEY",
+    type: "SQL",
+    status: "fail",
+    statusCount: 1,
+    hasError: true,
+    showSparkline: true,
+    expansion: "error",
+    errorDetail: {
+      errorType: "Py4JJavaError",
+      message:
+        "Could not establish connection to warehouse 'TRANSFORM_WH': authentication token expired (390114). Retried 3x.\\n    at Connection.open (driver.js:64:11)",
+      viewMoreLabel: "View more",
+      viewMoreHref: "/runs/errors/m1",
+    },
+  },
+  {
+    id: "m5",
+    name: "MAINT_COST",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "VIEW",
+    type: "ROLLUP",
+    runtimeMs: 315,
+    rowCount: 30110,
+    dataSize: "2gb",
+    status: "pass",
+    statusCount: 8,
+    showSparkline: true,
+  },
+]
 
 export function PipelineModelsPanel() {
-  return <ModelsTable defaultExpandedIds={["m1"]} />
+  return <ModelsTable rows={rows} defaultExpandedIds={["m1"]} />
 }`,
 
   expandedQuality: `"use client"
 
-import { ModelsTable } from "@/components/blocks/models-table"
+import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
+
+const rows: ModelTableRow[] = [
+  {
+    id: "m3",
+    name: "BUILDING_COMPETITORS_AGG",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "INCREMENTAL_BY_UNIQUE_KEY",
+    type: "SQL",
+    runtimeMs: 142,
+    rowCount: 24830,
+    dataSize: "1gb",
+    status: "warn",
+    statusCount: 1,
+    showSparkline: true,
+    expansion: "quality",
+    qualityRules: [
+      { id: "q1", column: "account_id", rule: "not_null", status: "pass" },
+      { id: "q2", column: "amount", rule: "accepted_values", status: "warn" },
+      { id: "q3", column: "updated_at", rule: "freshness", status: "fail" },
+    ],
+  },
+  {
+    id: "m5",
+    name: "MAINT_COST",
+    namespace: "SFDATAPRODUC... / SALES",
+    kind: "VIEW",
+    type: "ROLLUP",
+    runtimeMs: 315,
+    rowCount: 30110,
+    dataSize: "2gb",
+    status: "pass",
+    statusCount: 8,
+    showSparkline: true,
+  },
+]
 
 export function PipelineModelsPanel() {
-  return <ModelsTable defaultExpandedIds={["m3"]} />
+  return <ModelsTable rows={rows} defaultExpandedIds={["m3"]} />
 }`,
 
   custom: `"use client"
@@ -88,6 +210,7 @@ const rows: ModelTableRow[] = [
     errorDetail: {
       errorType: "Py4JJavaError",
       message: "Connection to warehouse failed.",
+      viewMoreHref: "/runs/errors/m1",
     },
   },
 ]

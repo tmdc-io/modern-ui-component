@@ -24,7 +24,19 @@ type HeroProps = {
 
   full: `"use client"
 
-import { BoxIcon, DatabaseIcon, GaugeIcon } from "lucide-react"
+import {
+  AppWindowIcon,
+  BarChart3Icon,
+  BoxIcon,
+  DatabaseIcon,
+  FileTextIcon,
+  GaugeIcon,
+  LayersIcon,
+  LinkIcon,
+  PlayCircleIcon,
+  SparklesIcon,
+  UsersIcon,
+} from "lucide-react"
 import { Hero, type HeroProps } from "@/components/blocks/hero"
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
@@ -32,30 +44,80 @@ const metaColumns: HeroProps["metaColumns"] = [
   {
     title: "Source",
     items: [
-      { label: "Identifier", value: "digital_experience_analytics" },
-      { label: "Gateway", value: "Snowflake", icon: <DatabaseIcon className="size-3.5" /> },
+      {
+        label: "Identifier",
+        value: "digital_experience_analytics",
+        mono: true,
+      },
+      {
+        label: "Gateway",
+        value: "Snowflake",
+        icon: <DatabaseIcon className="size-3.5" />,
+      },
       { label: "Domain", value: "Marketing" },
     ],
   },
-  // ...Links, Governance columns
+  {
+    title: "Links",
+    items: [
+      {
+        value: "ecommerce-dp-repo",
+        icon: <LinkIcon className="text-muted-foreground size-3.5" />,
+      },
+      {
+        value: "4 Reference links",
+        icon: <FileTextIcon className="text-muted-foreground size-3.5" />,
+      },
+      { value: "Jira", icon: <LayersIcon className="size-3.5" /> },
+    ],
+  },
+  {
+    title: "Governance",
+    items: [
+      {
+        label: "Version",
+        value: <span className="text-primary underline">v0.12</span>,
+      },
+      { label: "Members", value: "5 owners" },
+    ],
+  },
 ]
 
 const quality: HeroProps["quality"] = {
+  title: "Data Quality",
   percentage: 85,
   passed: 6,
   failed: 2,
   dimensions: [
     { name: "Accuracy", status: "pass" },
+    { name: "Coverage", status: "pass" },
+    { name: "Completeness", status: "pass" },
     { name: "Timeliness", status: "warn" },
-    // ...
+    { name: "Conformity", status: "pass" },
+    { name: "Uniqueness", status: "pass" },
+    { name: "Consistency", status: "warn" },
+    { name: "Validity", status: "pass" },
   ],
   href: "/quality",
 }
 
 const jumpItems: HeroProps["jumpItems"] = [
-  { label: "Assets", icon: <GaugeIcon className="size-3.5" />, hasDropdown: true },
-  { label: "Quality" },
-  // ...
+  {
+    label: "Assets",
+    icon: <FileTextIcon className="size-3.5" />,
+    hasDropdown: true,
+  },
+  { label: "Quality", icon: <GaugeIcon className="size-3.5" /> },
+  { label: "Runs", icon: <PlayCircleIcon className="size-3.5" /> },
+  { label: "Metrics", icon: <BarChart3Icon className="size-3.5" /> },
+  { label: "Perspectives", icon: <LayersIcon className="size-3.5" /> },
+  { label: "Apps", icon: <AppWindowIcon className="size-3.5" /> },
+  { label: "Usage", icon: <UsersIcon className="size-3.5" /> },
+  {
+    label: "Activate",
+    icon: <SparklesIcon className="size-3.5" />,
+    hasDropdown: true,
+  },
 ]
 
 export function DataProductHero() {
@@ -65,7 +127,7 @@ export function DataProductHero() {
       title="E-Commerce & Digital Experience Analytics"
       subtitle="Conversion Rate"
       icon={<BoxIcon className="size-5" strokeWidth={1.5} />}
-      description="Our B2B e-commerce platform offers comprehensive analytics..."
+      description="Our B2B e-commerce platform offers comprehensive analytics that track website behaviour, monitor conversion funnels, and analyze cart abandonment."
       metaColumns={metaColumns}
       quality={quality}
       jumpItems={jumpItems}
@@ -73,6 +135,7 @@ export function DataProductHero() {
         <>
           <DropdownMenuItem>Open in workspace</DropdownMenuItem>
           <DropdownMenuItem>Query data</DropdownMenuItem>
+          <DropdownMenuItem>Share</DropdownMenuItem>
         </>
       }
     />
@@ -84,7 +147,6 @@ export function DataProductHero() {
 import { BoxIcon } from "lucide-react"
 import { Hero } from "@/components/blocks/hero"
 
-// Compact bar for scrolled / sticky page headers.
 export function StickyHero() {
   return (
     <div className="sticky top-0 z-30">
@@ -102,7 +164,6 @@ export function StickyHero() {
 import { BoxIcon } from "lucide-react"
 import { Hero } from "@/components/blocks/hero"
 
-// Internal page header — icon, title, subtitle, and actions only.
 export function InternalHero() {
   return (
     <Hero
@@ -116,14 +177,14 @@ export function InternalHero() {
 
   internalJump: `"use client"
 
-import { BoxIcon, GaugeIcon } from "lucide-react"
+import { BoxIcon, GaugeIcon, PlayCircleIcon, BarChart3Icon } from "lucide-react"
 import { Hero, type HeroProps } from "@/components/blocks/hero"
 
 const jumpItems: HeroProps["jumpItems"] = [
   { label: "Assets", icon: <GaugeIcon className="size-3.5" />, hasDropdown: true },
-  { label: "Quality" },
-  { label: "Runs" },
-  { label: "Metrics" },
+  { label: "Quality", icon: <GaugeIcon className="size-3.5" /> },
+  { label: "Runs", icon: <PlayCircleIcon className="size-3.5" /> },
+  { label: "Metrics", icon: <BarChart3Icon className="size-3.5" /> },
 ]
 
 export function InternalHeroWithNav() {

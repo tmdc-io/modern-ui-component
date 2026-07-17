@@ -4,7 +4,8 @@ pnpm add @tanstack/react-table
 npx shadcn@latest add tmdc-io/modern-ui-component/table
 npx shadcn@latest add tmdc-io/modern-ui-component/popover
 npx shadcn@latest add tmdc-io/modern-ui-component/checkbox
-npx shadcn@latest add tmdc-io/modern-ui-component/label`,
+npx shadcn@latest add tmdc-io/modern-ui-component/label
+npx shadcn@latest add tmdc-io/modern-ui-component/button`,
   full: `"use client"
 
 import * as React from "react"
@@ -23,7 +24,6 @@ import { FilterIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Popover,
@@ -42,6 +42,24 @@ import {
 } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
 
+type Status = "active" | "review" | "shipped"
+
+type Project = {
+  id: string
+  name: string
+  status: Status
+  owner: string
+}
+
+const data: Project[] = [
+  { id: "1", name: "Customer 360", status: "active", owner: "Analytics" },
+  { id: "2", name: "Billing Mart", status: "review", owner: "Finance" },
+  { id: "3", name: "Churn Model", status: "shipped", owner: "ML" },
+  { id: "4", name: "Fraud Scores", status: "active", owner: "Risk" },
+]
+
+const statuses: Status[] = ["active", "review", "shipped"]
+
 function ColumnSortIcon({
   direction,
 }: {
@@ -58,15 +76,6 @@ function ColumnSortIcon({
     </span>
   )
 }
-
-// ColumnHeader: label left, sort + filter icon buttons right
-// <div className="flex w-full items-center justify-between gap-2">
-//   <span>{label}</span>
-//   <div className="flex shrink-0 items-center">
-//     <ColumnSortButton />  // icon-only, stacked triangles
-//     <ColumnFilterButton />  // funnel icon opens Popover
-//   </div>
-// </div>
 
 function ColumnFilterButton({
   label,
@@ -94,7 +103,7 @@ function ColumnFilterButton({
         <PopoverHeader className="px-0 pt-0">
           <PopoverTitle className="text-sm">Filter {label}</PopoverTitle>
         </PopoverHeader>
-        <div className="pt-2">{children}</div>
+        <div className="space-y-2 pt-2">{children}</div>
       </PopoverContent>
     </Popover>
   )
@@ -123,24 +132,105 @@ function SortableColumnHeader<TData>({
   )
 }
 
-// Compose column headers with SortableColumnHeader + ColumnFilterButton.
-// Status filter example: checkbox multi-select in the popover.
-//
-// filterFn: (row, columnId, value) => {
-//   const selected = value as Status[] | undefined
-//   if (!selected?.length) return true
-//   return selected.includes(row.getValue(columnId) as Status)
-// }
-//
-// <ColumnFilterButton label="Status" active={selected.length > 0}>
-//   {statuses.map((status) => (
-//     <div key={status} className="flex items-center gap-2">
-//       <Checkbox checked={selected.includes(status)} onCheckedChange={...} />
-//       <Label className="capitalize">{status}</Label>
-//     </div>
-//   ))}
-// </ColumnFilterButton>
-//
-// Wire getSortedRowModel() and getFilteredRowModel() in useReactTable.
+const columns: ColumnDef<Project>[] = [
+  {
+    accessorKey: "name",
+    header: ({ column }) => (
+      <div className="flex w-full items-center justify-between gap-2">
+        <span>Project</span>
+        <SortableColumnHeader column={column} label="Project" />
+      </div>
+    ),
+  },
+  {
+    accessorKey: "status",
+    filterFn: (row, columnId, value) => {
+      const selected = value as Status[] | undefined
+      if (!selected?.length) return true
+      return selected.includes(row.getValue(columnId) as Status)
+    },
+    header: ({ column }) => {
+      const selected = (column.getFilterValue() as Status[] | undefined) ?? []
+      return (
+        <div className="flex w-full items-center justify-between gap-2">
+          <span>Status</span>
+          <div className="flex shrink-0 items-center">
+            <SortableColumnHeader column={column} label="Status" />
+            <ColumnFilterButton label="Status" active={selected.length > 0}>
+              {statuses.map((status) => (
+                <div key={status} className="flex items-center gap-2">
+                  <Checkbox
+                    id={\`status-\${status}\`}
+                    checked={selected.includes(status)}
+                    onCheckedChange={(checked) => {
+                      const next = checked
+                        ? [...selected, status]
+                        : selected.filter((item) => item !== status)
+                      column.setFilterValue(next.length ? next : undefined)
+                    }}
+                  />
+                  <Label htmlFor={\`status-\${status}\`} className="capitalize">
+                    {status}
+                  </Label>
+                </div>
+              ))}
+            </ColumnFilterButton>
+          </div>
+        </div>
+      )
+    },
+  },
+  { accessorKey: "owner", header: "Owner" },
+]
+
+export function TableSortFilterDemo() {
+  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
+
+  const table = useReactTable({
+    data,
+    columns,
+    state: { sorting, columnFilters },
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+  })
+
+  return (
+    <Table>
+      <TableHeader>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <TableHead key={header.id}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+              </TableHead>
+            ))}
+          </TableRow>
+        ))}
+      </TableHeader>
+      <TableBody>
+        {table.getRowModel().rows.map((row) => (
+          <TableRow key={row.id}>
+            {row.getVisibleCells().map((cell) => (
+              <TableCell key={cell.id}>
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  )
+}
 `,
 }

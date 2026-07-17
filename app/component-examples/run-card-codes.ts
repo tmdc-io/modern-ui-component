@@ -118,13 +118,17 @@ export function RunCardStack() {
 
 export function RunCardStatuses() {
   return (
-    <>
+    <div className="flex flex-col gap-3">
       <RunCard
         runId="#10011"
         plan="Plan #03"
         startedAt={new Date(Date.now() - 2 * 60 * 60 * 1000)}
         duration="—"
         status="running"
+        metrics={[
+          { label: "Models", value: "4" },
+          { label: "DQ", value: "8/12" },
+        ]}
       />
       <RunCard
         runId="#10012"
@@ -134,9 +138,27 @@ export function RunCardStatuses() {
         status="queued"
         metrics={[]}
       />
-      <RunCard runId="#10013" plan="Plan #05" timestamp="Jul 03" duration="2.1s" status="warning" />
-      <RunCard runId="#10014" plan="Plan #07" timestamp="Jul 04" duration="—" status="cancelled" />
-    </>
+      <RunCard
+        runId="#10013"
+        plan="Plan #05"
+        timestamp="Jul 03, 03:40 PM"
+        duration="2.1s"
+        status="warning"
+        metrics={[
+          { label: "Warning", value: "1", status: "error" },
+          { label: "Models", value: "6" },
+          { label: "DQ", value: "11/14" },
+        ]}
+      />
+      <RunCard
+        runId="#10014"
+        plan="Plan #07"
+        timestamp="Jul 04, 09:00 AM"
+        duration="—"
+        status="cancelled"
+        metrics={[]}
+      />
+    </div>
   )
 }`,
 
@@ -145,37 +167,93 @@ export function RunCardStatuses() {
 import * as React from "react"
 import { RunCard } from "@/components/blocks/run-card"
 
+const runs = [
+  {
+    runId: "#10010",
+    plan: "Plan #01",
+    timestamp: "Jul 01, 09:15 AM",
+    duration: "4.1s",
+    status: "success" as const,
+    metrics: [
+      { label: "Models", value: "7" },
+      { label: "DQ", value: "12/16" },
+    ],
+  },
+  {
+    runId: "#10009",
+    plan: "Plan #02",
+    timestamp: "Jul 02, 12:22 PM",
+    duration: "3.8s",
+    status: "error" as const,
+    metrics: [
+      { label: "Error", value: "3", status: "error" as const },
+      { label: "Models", value: "5" },
+      { label: "DQ", value: "13/17" },
+    ],
+  },
+  {
+    runId: "#10005",
+    plan: "Plan #06",
+    timestamp: "Jul 06, 06:11 PM",
+    duration: "3.6s",
+    status: "error" as const,
+    metrics: [
+      { label: "Error", value: "2", status: "error" as const },
+      { label: "Models", value: "5" },
+    ],
+  },
+]
+
 export function SelectableRunList() {
   const [selectedId, setSelectedId] = React.useState("#10010")
 
   return (
-    <RunCard
-      runId="#10010"
-      plan="Plan #01"
-      timestamp="Jul 01, 09:15 AM"
-      duration="4.1s"
-      selected={selectedId === "#10010"}
-      onSelect={() => setSelectedId("#10010")}
-    />
+    <div className="flex flex-col gap-3">
+      {runs.map((run) => (
+        <RunCard
+          key={run.runId}
+          {...run}
+          selected={selectedId === run.runId}
+          onSelect={() => setSelectedId(run.runId)}
+        />
+      ))}
+    </div>
   )
 }`,
 
-  metrics: `import { RunCard } from "@/components/blocks/run-card"
+  metrics: `"use client"
+
+import * as React from "react"
+import { RunCard } from "@/components/blocks/run-card"
 
 export function RunCardWithMetricActions() {
+  const [message, setMessage] = React.useState("Choose a metric")
+
   return (
-    <RunCard
-      runId="#10005"
-      plan="Plan #06"
-      timestamp="Jul 06, 06:11 PM"
-      duration="3.6s"
-      status="error"
-      onSelect={() => {}}
-      metrics={[
-        { label: "Error", value: "2", status: "error", onClick: () => {} },
-        { label: "Models", value: "5", href: "/models" },
-      ]}
-    />
+    <div className="flex flex-col items-center gap-3">
+      <RunCard
+        runId="#10005"
+        plan="Plan #06"
+        timestamp="Jul 06, 06:11 PM"
+        duration="3.6s"
+        status="error"
+        metrics={[
+          {
+            label: "Error",
+            value: "2",
+            status: "error",
+            onClick: () => setMessage("Showing errors"),
+          },
+          { label: "Models", value: "5", href: "/models" },
+          {
+            label: "DQ",
+            value: "12/16",
+            onClick: () => setMessage("Showing DQ checks"),
+          },
+        ]}
+      />
+      <p className="text-muted-foreground text-xs">{message}</p>
+    </div>
   )
 }`,
 
@@ -183,13 +261,29 @@ export function RunCardWithMetricActions() {
 
 export function CompactRunCard() {
   return (
-    <RunCard
-      runId="#10010"
-      plan="Plan #01"
-      timestamp="Jul 01, 09:15 AM"
-      duration="4.1s"
-      size="sm"
-    />
+    <div className="flex flex-col gap-3">
+      <RunCard
+        runId="#10010"
+        plan="Plan #01"
+        timestamp="Jul 01, 09:15 AM"
+        duration="4.1s"
+        metrics={[
+          { label: "Models", value: "7" },
+          { label: "DQ", value: "12/16" },
+        ]}
+      />
+      <RunCard
+        runId="#10010"
+        plan="Plan #01"
+        timestamp="Jul 01, 09:15 AM"
+        duration="4.1s"
+        size="sm"
+        metrics={[
+          { label: "Models", value: "7" },
+          { label: "DQ", value: "12/16" },
+        ]}
+      />
+    </div>
   )
 }`,
 
@@ -208,6 +302,7 @@ export function RunCardWithOverflow() {
         { label: "DQ", value: "48/52" },
         { label: "Assertions", value: "9" },
         { label: "Eval", value: "2100ms" },
+        { label: "Latency", value: "180ms" },
       ]}
     />
   )
@@ -216,7 +311,12 @@ export function RunCardWithOverflow() {
   skeleton: `import { RunCardSkeleton } from "@/components/blocks/run-card"
 
 export function RunCardLoading() {
-  return <RunCardSkeleton />
+  return (
+    <div className="flex flex-col gap-3">
+      <RunCardSkeleton />
+      <RunCardSkeleton size="sm" />
+    </div>
+  )
 }`,
 
   compose: `"use client"
@@ -225,20 +325,53 @@ import * as React from "react"
 import { RunCard } from "@/components/blocks/run-card"
 import { RunMetrics } from "@/components/blocks/run-metrics"
 
+const runs = [
+  {
+    runId: "#10010",
+    plan: "Plan #01",
+    timestamp: "Jul 01, 09:15 AM",
+    duration: "4.1s",
+    status: "success" as const,
+    metrics: [
+      { label: "Models", value: "7" },
+      { label: "DQ", value: "12/16" },
+    ],
+  },
+  {
+    runId: "#10009",
+    plan: "Plan #02",
+    timestamp: "Jul 02, 12:22 PM",
+    duration: "3.8s",
+    status: "error" as const,
+    metrics: [
+      { label: "Error", value: "3", status: "error" as const },
+      { label: "Models", value: "5" },
+      { label: "DQ", value: "13/17" },
+    ],
+  },
+]
+
 export function RunListWithMetrics() {
   const [selectedId, setSelectedId] = React.useState("#10010")
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
-      <RunCard
-        runId="#10010"
-        plan="Plan #01"
-        timestamp="Jul 01"
-        duration="4.1s"
-        selected={selectedId === "#10010"}
-        onSelect={() => setSelectedId("#10010")}
-      />
-      <RunMetrics columns={3} />
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
+        {runs.map((run) => (
+          <RunCard
+            key={run.runId}
+            {...run}
+            selected={selectedId === run.runId}
+            onSelect={() => setSelectedId(run.runId)}
+          />
+        ))}
+      </div>
+      <div className="min-w-0 flex-1 rounded-lg border bg-card p-4">
+        <p className="text-muted-foreground mb-3 text-xs">
+          Metrics for {selectedId}
+        </p>
+        <RunMetrics columns={3} />
+      </div>
     </div>
   )
 }`,

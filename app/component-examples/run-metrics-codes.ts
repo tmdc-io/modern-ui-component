@@ -21,10 +21,24 @@ type RunMetricsProps = {
 
   default: `"use client"
 
-import { RunMetrics } from "@/components/blocks/run-metrics"
+import { RunMetrics, type RunMetric } from "@/components/blocks/run-metrics"
+
+const metrics: RunMetric[] = [
+  { id: "wall", label: "WALL", value: "4.1s" },
+  { id: "models", label: "MODELS", value: "3" },
+  { id: "parallelism", label: "PARALLELISM", value: "0.54x" },
+  { id: "eval", label: "EVAL", value: "1363ms" },
+  {
+    id: "quality",
+    label: "QUALITY",
+    value: "14/18",
+    detail: { passed: 9, failed: 5 },
+  },
+  { id: "assertions", label: "ASSERTIONS", value: "3" },
+]
 
 export function RunSummaryMetrics() {
-  return <RunMetrics />
+  return <RunMetrics metrics={metrics} columns={3} />
 }`,
 
   custom: `"use client"

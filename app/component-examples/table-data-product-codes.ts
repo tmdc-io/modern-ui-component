@@ -45,6 +45,13 @@ const rows: DataProductRow[] = [
     description: "Comprehensive survey response analysis.",
     glossaryTerm: "Survey",
   },
+  {
+    id: "3",
+    title: "Revenue Attribution Pipeline",
+    description: "Maps campaign spend to closed-won opportunity value.",
+    glossaryTerm: "Revenue",
+    showQuality: true,
+  },
 ]
 
 export function DataProductCatalog() {
@@ -78,20 +85,23 @@ const rows: DataProductRow[] = [
     description: "Comprehensive survey response analysis.",
     glossaryTerm: "Survey",
   },
+  {
+    id: "revenue",
+    title: "Revenue Attribution Pipeline",
+    description: "Maps campaign spend to closed-won opportunity value.",
+    glossaryTerm: "Revenue",
+  },
 ]
 
-export function DataProductCatalog({ data }: { data: DataProductRow[] }) {
+export function DataProductCatalog() {
   return (
     <DataProductTable
-      rows={data}
+      rows={rows}
       enableSort={false}
       enableGlossaryFilter={false}
     />
   )
-}
-
-// Usage
-<DataProductCatalog data={rows} />`,
+}`,
 
   api: `"use client"
 
@@ -111,6 +121,12 @@ type CatalogApiProduct = {
   qualityAlert?: boolean
 }
 
+async function fetcher(url: string): Promise<CatalogApiProduct[]> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error("Failed to load catalog")
+  return response.json()
+}
+
 function mapCatalogApiToRows(products: CatalogApiProduct[]): DataProductRow[] {
   return products.map((product) => ({
     id: product.id,
@@ -122,7 +138,10 @@ function mapCatalogApiToRows(products: CatalogApiProduct[]): DataProductRow[] {
 }
 
 export function DataProductCatalogPage() {
-  const { data, isLoading } = useSWR<CatalogApiProduct[]>("/api/catalog/products", fetcher)
+  const { data, isLoading } = useSWR<CatalogApiProduct[]>(
+    "/api/catalog/products",
+    fetcher
+  )
   const rows = React.useMemo(
     () => (data ? mapCatalogApiToRows(data) : []),
     [data]
@@ -154,6 +173,13 @@ const rows: DataProductRow[] = [
     description: "Comprehensive survey response analysis.",
     glossaryTerm: "Survey",
   },
+  {
+    id: "3",
+    title: "Revenue Attribution Pipeline",
+    description: "Maps campaign spend to closed-won opportunity value.",
+    glossaryTerm: "Revenue",
+    showQuality: true,
+  },
 ]
 
 export function DataProductCatalogInteractive() {
@@ -174,44 +200,75 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
-export function DataProductCatalogSelectable({ rows }: { rows: DataProductRow[] }) {
-  const [selectedIds, setSelectedIds] = React.useState<string[]>([])
+const rows: DataProductRow[] = [
+  {
+    id: "1",
+    title: "Customer Intelligence & Segmentation",
+    description: "High engagement reflects a strong content strategy.",
+    glossaryTerm: "Customer Segmentation",
+    showQuality: true,
+  },
+  {
+    id: "2",
+    title: "Qualtrics Survey Analytics",
+    description: "Comprehensive survey response analysis.",
+    glossaryTerm: "Survey",
+  },
+  {
+    id: "3",
+    title: "Revenue Attribution Pipeline",
+    description: "Maps campaign spend to closed-won opportunity value.",
+    glossaryTerm: "Revenue",
+  },
+]
+
+export function DataProductCatalogSelectable() {
+  const [selectedIds, setSelectedIds] = React.useState<string[]>(["1"])
   const [hovered, setHovered] = React.useState<DataProductRow | null>(null)
 
   return (
-    <DataProductTable
-      rows={rows}
-      // click-to-select with row highlighting (controlled)
-      selectable
-      selectedIds={selectedIds}
-      onSelectionChange={setSelectedIds}
-      // single-select instead of multi: add multiSelect={false}
-      // fires on every row click, independent of selection
-      onRowClick={(row) => {
-        console.log("row clicked:", row.id)
-      }}
-      // fires with the hovered row, or null on mouse leave
-      onRowHover={(row) => setHovered(row)}
-    />
+    <div className="flex flex-col gap-3">
+      <DataProductTable
+        rows={rows}
+        selectable
+        selectedIds={selectedIds}
+        onSelectionChange={setSelectedIds}
+        onRowClick={(row) => console.log("row clicked:", row.id)}
+        onRowHover={(row) => setHovered(row)}
+      />
+      <p className="text-muted-foreground text-xs">
+        Selected: {selectedIds.join(", ") || "none"}
+        {hovered ? \` · Hovering: \${hovered.title}\` : ""}
+      </p>
+    </div>
   )
 }
 
-// Uncontrolled variant — let the table own selection state:
+// Uncontrolled variant:
 // <DataProductTable rows={rows} selectable defaultSelectedIds={["1"]} />`,
 
   rowMarkup: `import { AlertTriangleIcon, BoxIcon, FileTextIcon } from "lucide-react"
 import { TableCell, TableRow } from "@/components/ui/table"
-import type { DataProductRow } from "@/components/blocks/data-product-table"
+import {
+  DataProductDataRow,
+  type DataProductRow,
+} from "@/components/blocks/data-product-table"
 
-// Exported from the block for custom table layouts:
-import { DataProductDataRow } from "@/components/blocks/data-product-table"
+const sampleRow: DataProductRow = {
+  id: "1",
+  title: "Customer Intelligence & Segmentation",
+  description: "High engagement reflects a strong content strategy.",
+  glossaryTerm: "Customer Segmentation",
+  showQuality: true,
+}
 
-export function CustomCatalogRow({ row }: { row: DataProductRow }) {
+// Prefer the exported row when composing custom table shells:
+export function CustomCatalogRow({ row = sampleRow }: { row?: DataProductRow }) {
   return <DataProductDataRow row={row} />
 }
 
 // Or copy the cell markup directly:
-export function DataProductDataRow({ row }: { row: DataProductRow }) {
+export function ManualCatalogRow({ row = sampleRow }: { row?: DataProductRow }) {
   return (
     <TableRow className="border-border bg-transparent">
       <TableCell className="px-4 py-5 align-top">
@@ -221,7 +278,9 @@ export function DataProductDataRow({ row }: { row: DataProductRow }) {
           </div>
           <div className="min-w-0 space-y-1">
             <p className="text-sm font-semibold">{row.title}</p>
-            <p className="text-muted-foreground line-clamp-2 text-sm">{row.description}</p>
+            <p className="text-muted-foreground line-clamp-2 text-sm">
+              {row.description}
+            </p>
           </div>
         </div>
       </TableCell>
@@ -259,6 +318,12 @@ const rows: DataProductRow[] = [
     description: "High engagement reflects a strong content strategy.",
     glossaryTerm: "Customer Segmentation",
     showQuality: true,
+  },
+  {
+    id: "2",
+    title: "Qualtrics Survey Analytics",
+    description: "Comprehensive survey response analysis.",
+    glossaryTerm: "Survey",
   },
 ]
 
