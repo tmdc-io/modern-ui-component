@@ -1,8 +1,10 @@
 import {
   DataProductCardDefaultPreview,
+  DataProductCardDensityPreview,
   DataProductCardGridPreview,
   DataProductCardInteractivePreview,
   DataProductCardLastRunPreview,
+  DataProductCardSkeletonPreview,
 } from "@/app/component-examples/data-product-card-usage"
 import { dataProductCardCodes } from "@/app/component-examples/data-product-card-codes"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
@@ -70,6 +72,20 @@ export const dataProductCardPage: ComponentVariantPage = {
           code: dataProductCardCodes.props,
           docLink: { href: "#api-reference", label: "Props reference" },
         },
+        {
+          id: "density",
+          title: "Density",
+          description: 'Compact cards with size="sm".',
+          Preview: DataProductCardDensityPreview,
+          code: dataProductCardCodes.density,
+        },
+        {
+          id: "skeleton",
+          title: "Loading",
+          description: "DataProductCardSkeleton while catalog rows load.",
+          Preview: DataProductCardSkeletonPreview,
+          code: dataProductCardCodes.skeleton,
+        },
       ],
     },
   ],
@@ -94,6 +110,20 @@ export const dataProductCardPage: ComponentVariantPage = {
       description: "Multiple cards in a grid.",
       Preview: DataProductCardGridPreview,
       code: dataProductCardCodes.grid,
+    },
+    {
+      id: "density",
+      title: "Density",
+      description: "Default and compact sizes.",
+      Preview: DataProductCardDensityPreview,
+      code: dataProductCardCodes.density,
+    },
+    {
+      id: "skeleton",
+      title: "Loading",
+      description: "Skeleton placeholders.",
+      Preview: DataProductCardSkeletonPreview,
+      code: dataProductCardCodes.skeleton,
     },
   ],
 }

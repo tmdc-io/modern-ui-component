@@ -54,6 +54,8 @@ export type ComponentVariant = {
   tall?: boolean
   fitContent?: boolean
   codeOnly?: boolean
+  /** Show desktop / narrow viewport toggle above the preview canvas. */
+  responsivePreview?: boolean
 }
 
 export type ComponentVariantSection = {

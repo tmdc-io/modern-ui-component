@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "incremental": false
+  },
+  "include": [".drawer-check/**/*.tsx"]
+}

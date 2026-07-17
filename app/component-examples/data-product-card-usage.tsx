@@ -1,6 +1,9 @@
 "use client"
 
-import { DataProductCard } from "@/registry/default/blocks/data-product-card/data-product-card"
+import {
+  DataProductCard,
+  DataProductCardSkeleton,
+} from "@/registry/default/blocks/data-product-card/data-product-card"
 
 const patientJourneyCard = {
   title: "Patient Journey Analysis",
@@ -51,6 +54,24 @@ export function DataProductCardInteractivePreview() {
           // demo handler
         }}
       />
+    </div>
+  )
+}
+
+export function DataProductCardDensityPreview() {
+  return (
+    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+      <DataProductCard {...patientJourneyCard} />
+      <DataProductCard {...patientJourneyCard} size="sm" />
+    </div>
+  )
+}
+
+export function DataProductCardSkeletonPreview() {
+  return (
+    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+      <DataProductCardSkeleton />
+      <DataProductCardSkeleton size="sm" />
     </div>
   )
 }

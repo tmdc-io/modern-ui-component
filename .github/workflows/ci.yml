@@ -25,7 +25,21 @@ jobs:
 
       - run: pnpm typecheck
 
+      - run: pnpm docs:check-drawers
+
+      - run: pnpm docs:audit-a11y-blocks
+
       - run: pnpm docs:i18n:verify
+
+      - run: pnpm test
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: E2E axe (DataOS docs)
+        run: pnpm test:e2e:a11y
+        env:
+          CI: true
 
       - run: pnpm lint
 

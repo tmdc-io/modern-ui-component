@@ -24,7 +24,7 @@ export type Acknowledgement = {
   description: string
 }
 
-export const attributionGeneratedAt = "2026-06-11"
+export const attributionGeneratedAt = "2026-07-17"
 
 export const runtimeAttributionGroups: AttributionGroup[] = [
   {
@@ -113,6 +113,21 @@ export const runtimeAttributionGroups: AttributionGroup[] = [
         "description": "TypeScript-first schema declaration and validation library with static type inference",
         "role": "Schema validation",
         "category": "Forms & validation",
+        "kind": "runtime"
+      }
+    ]
+  },
+  {
+    "title": "Other",
+    "packages": [
+      {
+        "name": "@tanstack/react-query",
+        "version": "5.101.2",
+        "license": "MIT",
+        "homepage": "https://tanstack.com/query",
+        "description": "Hooks for managing, caching and syncing asynchronous and remote data in React",
+        "role": "Hooks for managing, caching and syncing asynchronous and remote data in React",
+        "category": "Other",
         "kind": "runtime"
       }
     ]
@@ -386,6 +401,111 @@ export const runtimeAttributionGroups: AttributionGroup[] = [
 
 export const developmentAttributionGroups: AttributionGroup[] = [
   {
+    "title": "Other",
+    "packages": [
+      {
+        "name": "@axe-core/playwright",
+        "version": "4.12.1",
+        "license": "MPL-2.0",
+        "homepage": "https://github.com/dequelabs/axe-core-npm",
+        "description": "Provides a method to inject and analyze web pages using axe",
+        "role": "Provides a method to inject and analyze web pages using axe",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@playwright/test",
+        "version": "1.61.1",
+        "license": "Apache-2.0",
+        "homepage": "https://playwright.dev",
+        "description": "A high-level API to automate web browsers",
+        "role": "A high-level API to automate web browsers",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@testing-library/jest-dom",
+        "version": "6.9.1",
+        "license": "MIT",
+        "homepage": "https://github.com/testing-library/jest-dom",
+        "description": "Custom jest matchers to test the state of the DOM",
+        "role": "Custom jest matchers to test the state of the DOM",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@testing-library/react",
+        "version": "16.3.2",
+        "license": "MIT",
+        "homepage": "https://github.com/testing-library/react-testing-library",
+        "description": "Simple and complete React DOM testing utilities that encourage good testing practices.",
+        "role": "Simple and complete React DOM testing utilities that encourage good testing practices.",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@testing-library/user-event",
+        "version": "14.6.1",
+        "license": "MIT",
+        "homepage": "https://github.com/testing-library/user-event",
+        "description": "Fire events the same way the user does",
+        "role": "Fire events the same way the user does",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@types/jest-axe",
+        "version": "3.5.9",
+        "license": "MIT",
+        "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jest-axe",
+        "description": "TypeScript definitions for jest-axe",
+        "role": "TypeScript definitions for jest-axe",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "@vitejs/plugin-react",
+        "version": "6.0.3",
+        "license": "MIT",
+        "homepage": "https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react",
+        "description": "The default Vite plugin for React projects",
+        "role": "The default Vite plugin for React projects",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "jest-axe",
+        "version": "10.0.0",
+        "license": "MIT",
+        "homepage": "https://github.com/nickcolley/jest-axe",
+        "description": "Custom Jest matcher for aXe for testing accessibility",
+        "role": "Custom Jest matcher for aXe for testing accessibility",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "jsdom",
+        "version": "29.1.1",
+        "license": "MIT",
+        "homepage": "https://github.com/+https://github.com/jsdom/jsdom",
+        "description": "A JavaScript implementation of many web standards",
+        "role": "A JavaScript implementation of many web standards",
+        "category": "Other",
+        "kind": "development"
+      },
+      {
+        "name": "vitest",
+        "version": "4.1.10",
+        "license": "MIT",
+        "homepage": "https://vitest.dev",
+        "description": "Next generation testing framework powered by Vite",
+        "role": "Next generation testing framework powered by Vite",
+        "category": "Other",
+        "kind": "development"
+      }
+    ]
+  },
+  {
     "title": "Development & tooling",
     "packages": [
       {
@@ -516,7 +636,7 @@ export const acknowledgements: Acknowledgement[] = [
 ]
 
 export const attributionStats = {
-  runtimeCount: 31,
-  developmentCount: 9,
-  totalCount: 40,
+  runtimeCount: 32,
+  developmentCount: 19,
+  totalCount: 51,
 }

@@ -432,6 +432,107 @@ export function FilteredStatusList() {
   )
 }`,
 
+  urlFilter: `"use client"
+
+import * as React from "react"
+import { PlanStatusCard } from "@/components/blocks/plan-status-card"
+
+type FilterKey = "all" | "breaking" | "errors" | "environment"
+
+const items = [
+  {
+    id: "users",
+    title: "b2b_saas.users",
+    filter: "breaking" as const,
+    typeLabel: "FULL",
+    badges: [
+      { label: "Breaking", tone: "error" as const },
+      { label: "Backfill", tone: "muted" as const },
+    ],
+  },
+  {
+    id: "enriched",
+    title: "b2b_saas.users_enriched",
+    filter: "errors" as const,
+    typeLabel: "FULL",
+    tone: "error" as const,
+    badges: [{ label: "Undefined table", tone: "error" as const }],
+  },
+  {
+    id: "env",
+    title: "Environment changes",
+    filter: "environment" as const,
+    badges: [] as { label: string; tone: "muted" }[],
+  },
+]
+
+const filters: { id: FilterKey; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "breaking", label: "Breaking" },
+  { id: "errors", label: "Errors" },
+  { id: "environment", label: "Environment" },
+]
+
+function readStatusFilter(): FilterKey {
+  const value = new URLSearchParams(window.location.search).get("status")
+  if (value === "breaking" || value === "errors" || value === "environment") {
+    return value
+  }
+  return "all"
+}
+
+export function UrlFilteredStatusList() {
+  const [filter, setFilter] = React.useState<FilterKey>(readStatusFilter)
+
+  React.useEffect(() => {
+    const onPopState = () => setFilter(readStatusFilter())
+    window.addEventListener("popstate", onPopState)
+    return () => window.removeEventListener("popstate", onPopState)
+  }, [])
+
+  const setFilterInUrl = (next: FilterKey) => {
+    setFilter(next)
+    const url = new URL(window.location.href)
+    if (next === "all") url.searchParams.delete("status")
+    else url.searchParams.set("status", next)
+    window.history.replaceState({}, "", url)
+  }
+
+  const visible = items.filter(
+    (item) => filter === "all" || item.filter === filter
+  )
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap gap-2">
+        {filters.map((chip) => (
+          <button
+            key={chip.id}
+            type="button"
+            className={
+              filter === chip.id
+                ? "border-dark-teal bg-teal-bg-2 text-dark-teal rounded-full border px-3 py-1 text-xs"
+                : "border-grey-8 text-black-secondary hover:bg-cream-bg-3 rounded-full border px-3 py-1 text-xs"
+            }
+            onClick={() => setFilterInUrl(chip.id)}
+          >
+            {chip.label}
+          </button>
+        ))}
+      </div>
+      {visible.map((item) => (
+        <PlanStatusCard
+          key={item.id}
+          title={item.title}
+          typeLabel={"typeLabel" in item ? item.typeLabel : undefined}
+          tone={"tone" in item ? item.tone : undefined}
+          badges={item.badges}
+        />
+      ))}
+    </div>
+  )
+}`,
+
   compose: `import { PlanCard } from "@/components/blocks/plan-card"
 import {
   PlanStatusCard,

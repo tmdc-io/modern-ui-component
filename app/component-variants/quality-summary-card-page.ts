@@ -1,7 +1,9 @@
 import {
   QualitySummaryCardDataDrivenPreview,
   QualitySummaryCardDefaultPreview,
+  QualitySummaryCardEmptyPreview,
   QualitySummaryCardMultiplePreview,
+  QualitySummaryCardSkeletonPreview,
   QualitySummaryCardSummaryPreview,
 } from "@/app/component-examples/quality-summary-card-usage"
 import { qualitySummaryCardCodes } from "@/app/component-examples/quality-summary-card-codes"
@@ -89,6 +91,20 @@ export const qualitySummaryCardPage: ComponentVariantPage = {
           code: qualitySummaryCardCodes.multiple,
           docLink: { href: "#api-reference", label: "Props reference" },
         },
+        {
+          id: "empty",
+          title: "5. Empty state",
+          description: "Pass dimensions={[]} to show an empty message.",
+          Preview: QualitySummaryCardEmptyPreview,
+          code: qualitySummaryCardCodes.empty,
+        },
+        {
+          id: "skeleton",
+          title: "6. Loading",
+          description: "QualitySummaryCardSkeleton while quality loads.",
+          Preview: QualitySummaryCardSkeletonPreview,
+          code: qualitySummaryCardCodes.skeleton,
+        },
       ],
     },
   ],
@@ -134,6 +150,20 @@ export const qualitySummaryCardPage: ComponentVariantPage = {
       description: "Render one card per dataset on the same page.",
       Preview: QualitySummaryCardMultiplePreview,
       code: qualitySummaryCardCodes.multiple,
+    },
+    {
+      id: "empty",
+      title: "Empty state",
+      description: "Empty dimensions message.",
+      Preview: QualitySummaryCardEmptyPreview,
+      code: qualitySummaryCardCodes.empty,
+    },
+    {
+      id: "skeleton",
+      title: "Loading",
+      description: "Skeleton placeholder.",
+      Preview: QualitySummaryCardSkeletonPreview,
+      code: qualitySummaryCardCodes.skeleton,
     },
   ],
 }

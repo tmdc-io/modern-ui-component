@@ -62,13 +62,19 @@ export const dataProductCardApi: ComponentApiDoc = {
         description: "Renders the card as a button when provided.",
       },
       {
+        prop: "size",
+        type: '"default" | "sm"',
+        default: '"default"',
+        description: "Card density. Use sm for compact catalog grids.",
+      },
+      {
         prop: "className",
         type: "string",
         description: "Additional classes on the card wrapper.",
       },
     ],
     footnote:
-      "Also exported: DataProductCardBadgePill. Badge colors use DataOS quality tokens (dataos-warn-bg, dataos-fail-bg).",
+      "Also exported: DataProductCardBadgePill, DataProductCardSkeleton. Badge colors use DataOS quality tokens (dataos-warn-bg, dataos-fail-bg).",
   },
   enhancements: [
     {
@@ -82,6 +88,10 @@ export const dataProductCardApi: ComponentApiDoc = {
     {
       enhancement: "Clickable",
       benefit: "Use href or onClick for navigation to product detail pages",
+    },
+    {
+      enhancement: "Skeleton + density",
+      benefit: "Loading and compact size match Plan/Run card patterns",
     },
   ],
 }

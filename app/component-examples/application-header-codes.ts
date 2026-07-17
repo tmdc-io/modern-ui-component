@@ -145,4 +145,30 @@ export function AppShell() {
     </div>
   )
 }`,
+
+  compose: `"use client"
+
+import * as React from "react"
+import { ApplicationHeader } from "@/components/blocks/application-header"
+import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
+
+export function DataOsAppShell() {
+  const [activeId, setActiveId] = React.useState("home")
+  const [collapsed, setCollapsed] = React.useState(false)
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <ApplicationHeader variant="l1" user={{ name: "Sara Fox", initials: "SF" }} />
+      <div className="flex min-h-0 flex-1">
+        <DataOsSidebar
+          activeId={activeId}
+          onActiveChange={setActiveId}
+          collapsed={collapsed}
+          onCollapsedChange={setCollapsed}
+        />
+        <main className="flex-1 p-6">{/* route content */}</main>
+      </div>
+    </div>
+  )
+}`,
 }

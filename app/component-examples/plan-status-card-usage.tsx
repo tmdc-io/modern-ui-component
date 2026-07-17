@@ -390,6 +390,89 @@ export function PlanStatusFilterPreview() {
   )
 }
 
+/** Syncs filter chip state with ?status= in the URL (demo using History API). */
+export function PlanStatusUrlFilterPreview() {
+  const filters: { id: FilterKey; label: string }[] = [
+    { id: "all", label: "All" },
+    { id: "breaking", label: "Breaking" },
+    { id: "errors", label: "Errors" },
+    { id: "environment", label: "Environment" },
+  ]
+
+  const readFilter = React.useCallback((): FilterKey => {
+    if (typeof window === "undefined") return "all"
+    const value = new URLSearchParams(window.location.search).get("status")
+    if (
+      value === "breaking" ||
+      value === "errors" ||
+      value === "environment"
+    ) {
+      return value
+    }
+    return "all"
+  }, [])
+
+  const [filter, setFilter] = React.useState<FilterKey>(readFilter)
+
+  React.useEffect(() => {
+    const onPopState = () => setFilter(readFilter())
+    window.addEventListener("popstate", onPopState)
+    return () => window.removeEventListener("popstate", onPopState)
+  }, [readFilter])
+
+  const setFilterInUrl = (next: FilterKey) => {
+    setFilter(next)
+    const url = new URL(window.location.href)
+    if (next === "all") url.searchParams.delete("status")
+    else url.searchParams.set("status", next)
+    window.history.replaceState({}, "", url)
+  }
+
+  const visible = filterItems.filter(
+    (item) => filter === "all" || item.filter === filter
+  )
+
+  return (
+    <PreviewShell hint='Filter is mirrored to ?status= in the URL (try Back/Forward).'>
+      <div className="flex w-full flex-col gap-3">
+        <p className="text-muted-foreground text-xs">
+          Current query:{" "}
+          <code className="bg-muted rounded px-1.5 py-0.5">
+            {filter === "all" ? "(none)" : `?status=${filter}`}
+          </code>
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {filters.map((chip) => (
+            <button
+              key={chip.id}
+              type="button"
+              className={
+                filter === chip.id
+                  ? "border-dark-teal bg-teal-bg-2 text-dark-teal rounded-full border px-3 py-1 text-xs"
+                  : "border-grey-8 text-black-secondary hover:bg-cream-bg-3 rounded-full border px-3 py-1 text-xs"
+              }
+              onClick={() => setFilterInUrl(chip.id)}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-col gap-3">
+          {visible.map((item) => (
+            <PlanStatusCard
+              key={item.id}
+              title={item.title}
+              typeLabel={item.id === "env" ? undefined : "FULL"}
+              tone={item.tone}
+              badges={item.badges}
+            />
+          ))}
+        </div>
+      </div>
+    </PreviewShell>
+  )
+}
+
 export function PlanStatusComposePreview() {
   return (
     <PreviewShell hint="Status cards nested inside an expanded Plan Card.">

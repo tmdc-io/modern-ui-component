@@ -14,6 +14,7 @@ import {
   PlanStatusSkeletonPreview,
   PlanStatusUndefinedCollapsedPreview,
   PlanStatusUndefinedExpandedPreview,
+  PlanStatusUrlFilterPreview,
 } from "@/app/component-examples/plan-status-card-usage"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
@@ -156,6 +157,15 @@ export const planStatusCardPage: ComponentVariantPage = {
           description: "Filter a stack by Breaking, Errors, or Environment.",
           Preview: PlanStatusFilterPreview,
           code: planStatusCardCodes.filter,
+          tall: true,
+        },
+        {
+          id: "url-filter",
+          title: "URL-driven filter",
+          description:
+            "Mirror the selected chip into ?status= so Back/Forward restores the filter.",
+          Preview: PlanStatusUrlFilterPreview,
+          code: planStatusCardCodes.urlFilter,
           tall: true,
         },
         {

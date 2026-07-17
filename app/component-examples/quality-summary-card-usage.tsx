@@ -1,6 +1,9 @@
 "use client"
 
-import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
+import {
+  QualitySummaryCard,
+  QualitySummaryCardSkeleton,
+} from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 
 const defaultDimensions = [
   { name: "Accuracy", status: "pass" as const },
@@ -98,6 +101,29 @@ export function QualitySummaryCardMultiplePreview() {
         dimensions={atRiskDimensions}
         href="/quality/rules/orders"
       />
+    </div>
+  )
+}
+
+export function QualitySummaryCardEmptyPreview() {
+  return (
+    <div className="flex w-full justify-center">
+      <QualitySummaryCard
+        title="Quality"
+        passed={0}
+        total={0}
+        updatedAt="—"
+        dimensions={[]}
+        emptyMessage="No quality dimensions yet."
+      />
+    </div>
+  )
+}
+
+export function QualitySummaryCardSkeletonPreview() {
+  return (
+    <div className="flex w-full justify-center">
+      <QualitySummaryCardSkeleton />
     </div>
   )
 }

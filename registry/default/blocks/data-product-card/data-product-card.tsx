@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
 export type DataProductCardBadgeStatus = "pass" | "warn" | "fail"
 
@@ -16,6 +17,8 @@ export type DataProductCardBadge = {
   label: string
   status: DataProductCardBadgeStatus
 }
+
+export type DataProductCardSize = "default" | "sm"
 
 export type DataProductCardProps = {
   title: string
@@ -27,6 +30,7 @@ export type DataProductCardProps = {
   badge?: DataProductCardBadge
   href?: string
   onClick?: () => void
+  size?: DataProductCardSize
   className?: string
 }
 
@@ -73,23 +77,31 @@ export function DataProductCard({
   badge,
   href,
   onClick,
+  size = "default",
   className,
 }: DataProductCardProps) {
   const interactive = Boolean(href || onClick)
+  const compact = size === "sm"
 
   const content = (
     <>
       <div className="flex items-start gap-3">
         <span
           className={cn(
-            "flex size-10 shrink-0 items-center justify-center rounded-lg",
+            "flex shrink-0 items-center justify-center rounded-lg",
+            compact ? "size-8" : "size-10",
             iconClassName
           )}
         >
           {icon}
         </span>
         <div className="min-w-0 flex-1">
-          <h3 className="text-base leading-snug font-semibold text-foreground">
+          <h3
+            className={cn(
+              "leading-snug font-semibold text-foreground",
+              compact ? "text-sm" : "text-base"
+            )}
+          >
             {title}
           </h3>
           {subtitle ? (
@@ -101,12 +113,17 @@ export function DataProductCard({
         </div>
       </div>
 
-      <p className="text-foreground mt-4 line-clamp-3 text-sm leading-relaxed">
+      <p
+        className={cn(
+          "text-foreground line-clamp-3 leading-relaxed",
+          compact ? "mt-3 text-xs" : "mt-4 text-sm"
+        )}
+      >
         {description}
       </p>
 
       {badge ? (
-        <div className="mt-4">
+        <div className={compact ? "mt-3" : "mt-4"}>
           <DataProductCardBadgePill badge={badge} />
         </div>
       ) : null}
@@ -114,7 +131,8 @@ export function DataProductCard({
   )
 
   const cardClassName = cn(
-    "bg-card flex w-full max-w-[22rem] flex-col rounded-xl border border-border/70 p-5 text-card-foreground shadow-sm",
+    "bg-card flex w-full max-w-[22rem] flex-col rounded-xl border border-border/70 text-card-foreground shadow-sm",
+    compact ? "p-4" : "p-5",
     interactive && "hover:border-border transition-colors",
     className
   )
@@ -140,4 +158,37 @@ export function DataProductCard({
   }
 
   return <article className={cardClassName}>{content}</article>
+}
+
+export type DataProductCardSkeletonProps = {
+  size?: DataProductCardSize
+  className?: string
+}
+
+export function DataProductCardSkeleton({
+  size = "default",
+  className,
+}: DataProductCardSkeletonProps) {
+  const compact = size === "sm"
+  return (
+    <div
+      className={cn(
+        "bg-card flex w-full max-w-[22rem] flex-col rounded-xl border border-border/70 shadow-sm",
+        compact ? "gap-3 p-4" : "gap-4 p-5",
+        className
+      )}
+      aria-busy="true"
+      aria-hidden
+    >
+      <div className="flex items-start gap-3">
+        <Skeleton className={cn("rounded-lg", compact ? "size-8" : "size-10")} />
+        <div className="flex flex-1 flex-col gap-2">
+          <Skeleton className={cn("h-4", compact ? "w-32" : "w-40")} />
+          <Skeleton className="h-3 w-24" />
+        </div>
+      </div>
+      <Skeleton className={cn("w-full", compact ? "h-10" : "h-14")} />
+      <Skeleton className="h-6 w-20 rounded-full" />
+    </div>
+  )
 }

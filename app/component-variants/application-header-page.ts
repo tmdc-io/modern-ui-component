@@ -4,6 +4,7 @@ import {
   ApplicationHeaderL2Preview,
   ApplicationHeaderTenantStatesPreview,
 } from "@/app/component-examples/application-header-usage"
+import { DataOsShellComposePreview } from "@/app/component-examples/dataos-shell-usage"
 import { applicationHeaderCodes } from "@/app/component-examples/application-header-codes"
 import type { ComponentVariantPage } from "@/app/component-variants/types"
 
@@ -60,6 +61,22 @@ export const applicationHeaderPage: ComponentVariantPage = {
           Preview: ApplicationHeaderTenantStatesPreview,
           code: applicationHeaderCodes.props,
           docLink: { href: "#api-reference", label: "Props reference" },
+        },
+      ],
+    },
+    {
+      id: "compose",
+      title: "Compose shell",
+      description: "Header + sidebar + main content for a full DataOS layout.",
+      variants: [
+        {
+          id: "shell",
+          title: "Application shell",
+          description:
+            "Stack Application Header above DataOs Sidebar and a main region.",
+          Preview: DataOsShellComposePreview,
+          code: applicationHeaderCodes.compose,
+          tall: true,
         },
       ],
     },

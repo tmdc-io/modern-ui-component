@@ -3,71 +3,17 @@
 import * as React from "react"
 
 import {
+  demoErrorPlan,
+  demoExpandedPlan,
+  demoHoverPlan,
+  demoRelatedRuns,
+  demoSuccessPlan,
+} from "@/app/component-examples/shared/dataos-demo-data"
+import {
   PlanCard,
   PlanCardSkeleton,
 } from "@/registry/default/blocks/plan-card/plan-card"
 import { RunCard } from "@/registry/default/blocks/run-card/run-card"
-
-const successPlan = {
-  planId: "#7",
-  version: "v0.1.3",
-  timestamp: "July 1, 08:15 AM",
-  duration: "4.1s",
-  status: "success" as const,
-  metrics: [
-    { label: "Changes", value: "3" },
-    { label: "Impacts", value: "7" },
-  ],
-}
-
-const hoverPlan = {
-  planId: "#10",
-  version: "v0.1.3",
-  timestamp: "July 1, 08:15 AM",
-  duration: "4.1s",
-  status: "success" as const,
-  metrics: [
-    { label: "Changes", value: "4" },
-    { label: "Impacts", value: "7" },
-  ],
-}
-
-const errorPlan = {
-  planId: "#8",
-  version: "v0.1.3",
-  timestamp: "July 5, 05:30 AM",
-  duration: "2.3s",
-  status: "error" as const,
-  metrics: [
-    { label: "Error", value: "2", status: "error" as const },
-    { label: "Changes", value: "2" },
-    { label: "Impacts", value: "7" },
-  ],
-}
-
-const expandedPlan = {
-  planId: "#9",
-  version: "v0.1.3",
-  timestamp: "July 1, 08:15 AM",
-  duration: "4.1s",
-  status: "success" as const,
-  metrics: [
-    { label: "Changes", value: "6" },
-    { label: "Impacts", value: "7" },
-  ],
-  detailMetrics: [
-    { label: "Modified", value: "2" },
-    { label: "Added", value: "2" },
-    { label: "Removed", value: "2" },
-    { label: "Impacts", value: "7" },
-    { label: "Backfills", value: "3" },
-  ],
-  detailStatuses: [
-    { label: "Environment statement", value: "changed" },
-    { label: "Requirements", value: "changed" },
-  ],
-  detailsHref: "#plan-details",
-}
 
 function PreviewShell({
   children,
@@ -89,7 +35,7 @@ function PreviewShell({
 export function PlanCardSuccessPreview() {
   return (
     <PreviewShell>
-      <PlanCard {...successPlan} />
+      <PlanCard {...demoSuccessPlan} />
     </PreviewShell>
   )
 }
@@ -97,7 +43,7 @@ export function PlanCardSuccessPreview() {
 export function PlanCardHoverPreview() {
   return (
     <PreviewShell hint="Hover the card to see the cream surface (cream-bg-3).">
-      <PlanCard {...hoverPlan} />
+      <PlanCard {...demoHoverPlan} />
     </PreviewShell>
   )
 }
@@ -105,7 +51,7 @@ export function PlanCardHoverPreview() {
 export function PlanCardSelectedPreview() {
   return (
     <PreviewShell hint="Selected cards keep the teal surface and dark teal border.">
-      <PlanCard {...hoverPlan} selected />
+      <PlanCard {...demoHoverPlan} selected />
     </PreviewShell>
   )
 }
@@ -113,7 +59,7 @@ export function PlanCardSelectedPreview() {
 export function PlanCardErrorPreview() {
   return (
     <PreviewShell>
-      <PlanCard {...errorPlan} />
+      <PlanCard {...demoErrorPlan} />
     </PreviewShell>
   )
 }
@@ -121,7 +67,7 @@ export function PlanCardErrorPreview() {
 export function PlanCardExpandedPreview() {
   return (
     <PreviewShell hint="Expanded by default. Use the chevron to collapse.">
-      <PlanCard {...expandedPlan} defaultExpanded />
+      <PlanCard {...demoExpandedPlan} defaultExpanded />
     </PreviewShell>
   )
 }
@@ -129,16 +75,16 @@ export function PlanCardExpandedPreview() {
 export function PlanCardStackPreview() {
   return (
     <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
-      <PlanCard {...successPlan} />
-      <PlanCard {...hoverPlan} />
-      <PlanCard {...errorPlan} />
+      <PlanCard {...demoSuccessPlan} />
+      <PlanCard {...demoHoverPlan} />
+      <PlanCard {...demoErrorPlan} />
     </div>
   )
 }
 
 export function PlanCardSelectablePreview() {
-  const plans = [successPlan, hoverPlan, errorPlan]
-  const [selectedId, setSelectedId] = React.useState(successPlan.planId)
+  const plans = [demoSuccessPlan, demoHoverPlan, demoErrorPlan]
+  const [selectedId, setSelectedId] = React.useState(demoSuccessPlan.planId)
 
   return (
     <PreviewShell hint="Click a card to select it. Selected cards use the teal surface and border.">
@@ -157,8 +103,8 @@ export function PlanCardSelectablePreview() {
 }
 
 export function PlanCardAccordionPreview() {
-  const plans = [expandedPlan, successPlan, errorPlan]
-  const [expandedId, setExpandedId] = React.useState(expandedPlan.planId)
+  const plans = [demoExpandedPlan, demoSuccessPlan, demoErrorPlan]
+  const [expandedId, setExpandedId] = React.useState(demoExpandedPlan.planId)
 
   return (
     <PreviewShell hint="Only one plan stays expanded at a time.">
@@ -184,7 +130,7 @@ export function PlanCardMetricActionsPreview() {
   return (
     <PreviewShell hint={message}>
       <PlanCard
-        {...errorPlan}
+        {...demoErrorPlan}
         metrics={[
           {
             label: "Error",
@@ -244,10 +190,10 @@ export function PlanCardStatusesPreview() {
 export function PlanCardDensityPreview() {
   return (
     <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
-      <PlanCard {...successPlan} />
-      <PlanCard {...successPlan} planId="#7-sm" size="sm" />
+      <PlanCard {...demoSuccessPlan} />
+      <PlanCard {...demoSuccessPlan} planId="#7-sm" size="sm" />
       <PlanCard
-        {...successPlan}
+        {...demoSuccessPlan}
         planId="#empty"
         size="sm"
         defaultExpanded
@@ -258,29 +204,21 @@ export function PlanCardDensityPreview() {
   )
 }
 
-const relatedRuns = {
-  "#7": [
-    { runId: "#10010", status: "success" as const, duration: "4.1s" },
-    { runId: "#10009", status: "error" as const, duration: "3.8s" },
-  ],
-  "#8": [{ runId: "#10008", status: "error" as const, duration: "2.3s" }],
-}
-
 export function PlanCardRunPairingPreview() {
   const [selectedPlan, setSelectedPlan] =
-    React.useState<keyof typeof relatedRuns>("#7")
+    React.useState<keyof typeof demoRelatedRuns>("#7")
 
   return (
     <div className="bg-muted/30 w-full rounded-lg p-4">
       <div className="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-3">
-          {[successPlan, errorPlan].map((plan) => (
+          {[demoSuccessPlan, demoErrorPlan].map((plan) => (
             <PlanCard
               key={plan.planId}
               {...plan}
               selected={selectedPlan === plan.planId}
               onSelect={() =>
-                setSelectedPlan(plan.planId as keyof typeof relatedRuns)
+                setSelectedPlan(plan.planId as keyof typeof demoRelatedRuns)
               }
             />
           ))}
@@ -290,7 +228,7 @@ export function PlanCardRunPairingPreview() {
             Runs for plan {selectedPlan}
           </p>
           <div className="flex flex-col gap-3">
-            {relatedRuns[selectedPlan].map((run) => (
+            {demoRelatedRuns[selectedPlan].map((run) => (
               <RunCard
                 key={run.runId}
                 runId={run.runId}

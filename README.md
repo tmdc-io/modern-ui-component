@@ -7,7 +7,7 @@ A shadcn-extended React UI component library distributed via the official [shadc
 
 ## What's included
 
-<!-- catalog-count:items -->157<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->21<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
+<!-- catalog-count:items -->159<!-- /catalog-count:items --> items across <!-- catalog-count:categories -->21<!-- /catalog-count:categories --> categories — foundation, primitives, charts, DataOS UI blocks, and auth blocks. Browse the full catalog on the docs site or list from the CLI:
 
 ```bash
 npx shadcn@latest list tmdc-io/modern-ui-component
@@ -194,6 +194,20 @@ pnpm build
 pnpm start
 ```
 
+## Quality & CI (maintainers)
+
+Before opening a PR:
+
+```bash
+pnpm typecheck
+pnpm docs:verify
+pnpm docs:audit-a11y-blocks
+pnpm test
+pnpm test:e2e:a11y
+```
+
+CI on `main` runs the same gates (typecheck, drawers, a11y audit, i18n, Vitest, lint, registry build, Playwright axe on DataOS docs, production build). Full checklist, visual baselines, and DataOS notes: [docs/QUALITY.md](docs/QUALITY.md). Agent/command reference: [AGENTS.md](AGENTS.md).
+
 ## Distribute to consumer projects
 
 | Guide | Purpose |
@@ -201,6 +215,8 @@ pnpm start
 | [docs/CONSUMER.md](docs/CONSUMER.md) | Single-app and monorepo setup |
 | [docs/GITHUB.md](docs/GITHUB.md) | Publish to GitHub Registry |
 | [docs/HOSTED.md](docs/HOSTED.md) | Deploy hosted `@modernui` namespace |
+| [docs/QUALITY.md](docs/QUALITY.md) | Maintainer quality gates and CI |
+| [docs/I18N.md](docs/I18N.md) | i18n consumer + maintainer scripts |
 
 ### GitHub Registry
 
@@ -247,7 +263,7 @@ lib/utils.ts             # cn() helper
 registry.json            # root catalog
 public/r/                # built registry JSON (generated)
 scripts/                 # registry sync, validation, and doc scaffolding
-docs/                    # consumer, GitHub, and hosted setup guides
+docs/                    # consumer, GitHub, hosted, i18n, and quality guides
 ```
 
 ## Based on

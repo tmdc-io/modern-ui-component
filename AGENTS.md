@@ -45,7 +45,14 @@ Run from the repository root.
 | `pnpm docs:scaffold-api` | Regenerate API reference stubs from registry source |
 | `pnpm docs:scaffold-api:force` | Overwrite curated API files too |
 | `pnpm docs:i18n` | Translate missing docs Spanish, then verify coverage + block key parity |
-| `pnpm docs:i18n:verify` | CI gate: docs coverage + block `en`/`es` key parity |
+| `pnpm docs:check-drawers` | Typecheck compilable code-drawer snippets (`*-codes.ts`) |
+| `pnpm docs:audit-a11y-blocks` | Heuristic a11y scan on `registry/default/blocks` |
+| `pnpm docs:verify` | Drawer check + i18n verify + registry validate |
+| `pnpm test` | Vitest (block interaction + jest-axe smoke tests) |
+| `pnpm test:e2e` | Playwright (axe + skipped visual unless `PLAYWRIGHT_VISUAL=1`) |
+| `pnpm test:e2e:a11y` | Playwright axe on DataOS docs pages (CI) |
+| `pnpm test:e2e:visual` | Playwright screenshot baselines (`PLAYWRIGHT_VISUAL=1`) |
+| `pnpm test:e2e:update` | Refresh visual screenshot baselines |
 | `pnpm docs:i18n-extract` | List docs strings missing Spanish (`scripts/docs-missing-en.json`) |
 | `pnpm docs:i18n-translate` | Auto-translate missing docs strings (MyMemory) and merge |
 | `pnpm docs:i18n-merge` | Rebuild `app/docs-copy-es.generated.ts` from batch JSON |
@@ -92,6 +99,10 @@ Optional: `DOCS_I18N_TRANSLATE_EMAIL=you@example.com` raises MyMemory quota.
 `--dry-run` / `--limit=20` on `docs:i18n-translate` for smoke tests.
 
 Code samples stay English on purpose. See [docs/I18N.md](docs/I18N.md) (maintainer section) for the full script table.
+
+## Quality gates
+
+Maintainer checklist (what CI runs, Playwright axe/visual, DataOS a11y notes): [docs/QUALITY.md](docs/QUALITY.md).
 
 ## Import paths
 

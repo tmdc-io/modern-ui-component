@@ -89,7 +89,20 @@ export const qualitySummaryCardApi: ComponentApiDoc = {
         type: "() => void",
         description: "Client-side footer click handler.",
       },
+      {
+        prop: "emptyMessage",
+        type: "string",
+        description:
+          "Message when dimensions is an empty array. Defaults to a localized empty copy.",
+      },
+      {
+        prop: "className",
+        type: "string",
+        description: "Additional classes on the card wrapper.",
+      },
     ],
+    footnote:
+      "Also exported: QualitySummaryCardSkeleton, deriveStatusLabel.",
   },
   enhancements: [
     {
@@ -111,6 +124,10 @@ export const qualitySummaryCardApi: ComponentApiDoc = {
     {
       enhancement: "`href` instead of `onViewAll`",
       benefit: "Footer link without a client-side handler",
+    },
+    {
+      enhancement: "Empty + skeleton",
+      benefit: "Empty dimensions message and QualitySummaryCardSkeleton",
     },
   ],
 }

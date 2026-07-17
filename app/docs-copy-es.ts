@@ -246,6 +246,29 @@ export const docsCopyEs: Record<string, string> = {
     "Renderiza una tarjeta por dataset en la misma página.",
   "Map over an array of quality summaries — each card gets its own title, score, dimensions, and href.":
     "Recorre un array de resúmenes de calidad — cada tarjeta tiene su título, puntuación, dimensiones y href.",
+  "5. Empty state": "5. Estado vacío",
+  "Pass dimensions={[]} to show an empty message.":
+    "Pasa dimensions={[]} para mostrar un mensaje vacío.",
+  "Empty dimensions message.": "Mensaje de dimensiones vacías.",
+  "6. Loading": "6. Carga",
+  "QualitySummaryCardSkeleton while quality loads.":
+    "QualitySummaryCardSkeleton mientras carga la calidad.",
+  "Skeleton placeholder.": "Marcador de esqueleto.",
+  "Message when dimensions is an empty array. Defaults to a localized empty copy.":
+    "Mensaje cuando dimensions es un array vacío. Por defecto usa copy localizado.",
+  "Also exported: QualitySummaryCardSkeleton, deriveStatusLabel.":
+    "También exportado: QualitySummaryCardSkeleton, deriveStatusLabel.",
+  "Empty + skeleton": "Vacío + esqueleto",
+  "Empty dimensions message and QualitySummaryCardSkeleton":
+    "Mensaje de dimensiones vacías y QualitySummaryCardSkeleton",
+  "Copy shown when metrics is an empty array. Defaults to localized empty text.":
+    "Texto mostrado cuando metrics es un array vacío. Por defecto usa copy localizado.",
+  "Copy shown when runs is an empty array. Defaults to localized empty text.":
+    "Texto mostrado cuando runs es un array vacío. Por defecto usa copy localizado.",
+  "Copy shown when runs or models is empty. Defaults to localized empty text.":
+    "Texto mostrado cuando runs o models está vacío. Por defecto usa copy localizado.",
+  "Exported types: RunMetric, RunMetricQualityDetail, RunMetricsProps. Also exported: RunMetricsSkeleton. Card surfaces use bg-dataos-surface for light and dark mode.":
+    "Tipos exportados: RunMetric, RunMetricQualityDetail, RunMetricsProps. También exportado: RunMetricsSkeleton. Las superficies usan bg-dataos-surface en claro y oscuro.",
   "Static data": "Datos estáticos",
   "Define a data object and spread it into the card.":
     "Define un objeto de datos y haz spread en la tarjeta.",
@@ -432,6 +455,20 @@ export const docsCopyEs: Record<string, string> = {
   "Clickable card": "Tarjeta clicable",
   "Wire onClick or href for navigation.":
     "Conecta onClick o href para navegación.",
+  Density: "Densidad",
+  'Compact cards with size="sm".': 'Tarjetas compactas con size="sm".',
+  "Default and compact sizes.": "Tamaños por defecto y compactos.",
+  Loading: "Carga",
+  "DataProductCardSkeleton while catalog rows load.":
+    "DataProductCardSkeleton mientras cargan las filas del catálogo.",
+  "Skeleton placeholders.": "Marcadores de esqueleto.",
+  "Card density. Use sm for compact catalog grids.":
+    "Densidad de tarjeta. Usa sm para grids de catálogo compactos.",
+  "Also exported: DataProductCardBadgePill, DataProductCardSkeleton. Badge colors use DataOS quality tokens (dataos-warn-bg, dataos-fail-bg).":
+    "También exportado: DataProductCardBadgePill, DataProductCardSkeleton. Los colores de badge usan tokens DataOS (dataos-warn-bg, dataos-fail-bg).",
+  "Skeleton + density": "Esqueleto + densidad",
+  "Loading and compact size match Plan/Run card patterns":
+    "Carga y tamaño compacto alineados con Plan/Run card",
   "Subtitle + quality warning badge.":
     "Subtítulo + badge de advertencia de calidad.",
   "Last run": "Última ejecución",
@@ -900,6 +937,12 @@ export const docsCopyEs: Record<string, string> = {
   "Controlled tenant": "Tenant controlado",
   "Wire tenantId and onTenantChange from your app shell.":
     "Conecta tenantId y onTenantChange desde el shell de tu app.",
+  "Compose shell": "Shell compuesto",
+  "Header + sidebar + main content for a full DataOS layout.":
+    "Encabezado + barra lateral + contenido principal para un layout DataOS completo.",
+  "Application shell": "Shell de aplicación",
+  "Stack Application Header above DataOs Sidebar and a main region.":
+    "Apila Application Header sobre DataOs Sidebar y una región principal.",
   "Level 1": "Level 1",
   "Expanded tenant switcher.": "Selector de tenant expandido.",
   "Level 2": "Level 2",
@@ -1289,6 +1332,9 @@ export const docsCopyEs: Record<string, string> = {
   "Control expanded and selected so only one status card stays open.":
     "Controla expanded y selected para mantener abierta una sola tarjeta de estado.",
   "Filter chips": "Chips de filtro",
+  "URL-driven filter": "Filtro impulsado por URL",
+  "Mirror the selected chip into ?status= so Back/Forward restores the filter.":
+    "Refleja el chip seleccionado en ?status= para que Atrás/Adelante restaure el filtro.",
   "Filter a stack by Breaking, Errors, or Environment.":
     "Filtra una pila por Breaking, Errors o Environment.",
   "Inside Plan Card": "Dentro de Plan Card",

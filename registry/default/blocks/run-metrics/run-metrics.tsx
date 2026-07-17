@@ -7,6 +7,7 @@ import {
   type Translations,
 } from "@/hooks/use-translation"
 import { cn } from "@/lib/utils"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 
 export type RunMetricQualityDetail = {
   passed: number
@@ -23,6 +24,7 @@ export type RunMetric = {
 export type RunMetricsProps = {
   metrics?: RunMetric[]
   columns?: 2 | 3 | 4
+  emptyMessage?: string
   className?: string
 }
 
@@ -38,6 +40,7 @@ export const runMetricsMessages = {
       eval: "EVAL",
       quality: "QUALITY",
       assertions: "ASSERTIONS",
+      noMetrics: "No metrics available.",
     },
   },
   es: {
@@ -51,6 +54,7 @@ export const runMetricsMessages = {
       eval: "EVAL",
       quality: "CALIDAD",
       assertions: "ASERCIONES",
+      noMetrics: "No hay métricas disponibles.",
     },
   },
 } satisfies Translations
@@ -128,13 +132,62 @@ function RunMetricCard({ metric }: { metric: RunMetric }) {
 export function RunMetrics({
   metrics = defaultMetrics,
   columns = 3,
+  emptyMessage,
   className,
 }: RunMetricsProps) {
+  const { t } = useTranslation(runMetricsMessages)
+
+  if (metrics.length === 0) {
+    return (
+      <section
+        className={cn(
+          "bg-dataos-surface text-muted-foreground flex min-h-[5.5rem] w-full items-center justify-center rounded-lg px-4 py-6 text-sm",
+          className
+        )}
+      >
+        {emptyMessage ?? t.noMetrics}
+      </section>
+    )
+  }
+
   return (
     <section className={cn("w-full min-w-0", className)}>
       <div className={cn("grid w-full gap-2 sm:gap-3", columnClass[columns])}>
         {metrics.map((metric) => (
           <RunMetricCard key={metric.id} metric={metric} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export type RunMetricsSkeletonProps = {
+  columns?: 2 | 3 | 4
+  count?: number
+  className?: string
+}
+
+export function RunMetricsSkeleton({
+  columns = 3,
+  count = 6,
+  className,
+}: RunMetricsSkeletonProps) {
+  return (
+    <section
+      className={cn("w-full min-w-0", className)}
+      aria-busy="true"
+      aria-hidden
+    >
+      <div className={cn("grid w-full gap-2 sm:gap-3", columnClass[columns])}>
+        {Array.from({ length: count }).map((_, index) => (
+          <div
+            key={index}
+            className="bg-dataos-surface flex min-h-[5.5rem] flex-col items-center justify-center gap-2 rounded-lg px-4 py-6 sm:min-h-[7.5rem]"
+          >
+            <Skeleton className="h-2.5 w-16" />
+            <Skeleton className="h-7 w-14" />
+            <Skeleton className="h-2.5 w-20" />
+          </div>
         ))}
       </div>
     </section>

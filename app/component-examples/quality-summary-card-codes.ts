@@ -86,7 +86,7 @@ export function QualityPanel() {
 
   api: `"use client"
 
-import useSWR from "swr"
+import { useQuery } from "@tanstack/react-query"
 import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -143,7 +143,10 @@ function mapApiToSummary(data: QualityApiResponse) {
 }
 
 export function QualityDashboard() {
-  const { data, isLoading } = useSWR("/api/quality/summary", fetcher)
+  const { data, isLoading } = useQuery({
+    queryKey: ["quality-summary"],
+    queryFn: () => fetcher("/api/quality/summary"),
+  })
 
   if (isLoading || !data) return <Skeleton className="h-64 w-80" />
 
@@ -175,10 +178,9 @@ const apiData = {
 
 const dimensions: QualityDimension[] = apiData.dimensions.map((d) => ({
   name: d.label,
-  status:
-    d.status === "FAIL" ? "fail" : d.status === "WARN" ? "warn" : "pass",
+  status: d.status === "WARN" ? "warn" : "pass",
   detail:
-    "issueCount" in d && d.issueCount && d.status !== "PASS"
+    "issueCount" in d && d.issueCount
       ? \`\${d.issueCount} issues\`
       : undefined,
 }))
@@ -286,5 +288,26 @@ export function FailedQualityCard() {
       href="/quality/rules/orders"
     />
   )
+}`,
+
+  empty: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
+
+export function EmptyQualityCard() {
+  return (
+    <QualitySummaryCard
+      title="Quality"
+      passed={0}
+      total={0}
+      updatedAt="—"
+      dimensions={[]}
+      emptyMessage="No quality dimensions yet."
+    />
+  )
+}`,
+
+  skeleton: `import { QualitySummaryCardSkeleton } from "@/components/blocks/quality-summary-card"
+
+export function QualityLoading() {
+  return <QualitySummaryCardSkeleton />
 }`,
 }

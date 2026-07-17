@@ -17,6 +17,7 @@ type DataProductCardProps = {
   badge?: DataProductCardBadge
   href?: string
   onClick?: () => void
+  size?: "default" | "sm"
   className?: string
 }`,
 
@@ -69,6 +70,39 @@ export function ProductGrid() {
       {products.map((product) => (
         <DataProductCard key={product.title} {...product} href="#" />
       ))}
+    </div>
+  )
+}`,
+
+  density: `import { DataProductCard } from "@/components/blocks/data-product-card"
+
+export function CompactProductCard() {
+  return (
+    <div className="flex flex-col gap-4">
+      <DataProductCard
+        title="Patient Journey Analysis"
+        subtitle="Treatment Adherence"
+        description="Tracks patient compliance with prescribed treatments."
+        badge={{ label: "Quality", status: "warn" }}
+      />
+      <DataProductCard
+        title="Patient Journey Analysis"
+        subtitle="Treatment Adherence"
+        description="Tracks patient compliance with prescribed treatments."
+        badge={{ label: "Quality", status: "warn" }}
+        size="sm"
+      />
+    </div>
+  )
+}`,
+
+  skeleton: `import { DataProductCardSkeleton } from "@/components/blocks/data-product-card"
+
+export function ProductCardLoading() {
+  return (
+    <div className="flex flex-col gap-4">
+      <DataProductCardSkeleton />
+      <DataProductCardSkeleton size="sm" />
     </div>
   )
 }`,

@@ -65,6 +65,12 @@ const models: ModelHealthModel[] = [
           "Row definitions with model name, row-level health %, and cells per run. Defaults to ten demo models.",
       },
       {
+        prop: "emptyMessage",
+        type: "string",
+        description:
+          "Copy shown when runs or models is empty. Defaults to localized empty text.",
+      },
+      {
         prop: "className",
         type: "string",
         description: "Additional classes on the outer section element.",

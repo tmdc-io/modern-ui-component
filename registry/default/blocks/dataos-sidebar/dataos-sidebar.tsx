@@ -243,6 +243,7 @@ function SidebarRow({
         ) : null}
         {locked ? (
           <span
+            role="img"
             className={cn(
               "flex size-6 items-center justify-center rounded opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100",
               active ? "text-primary-foreground/70" : "text-muted-foreground"

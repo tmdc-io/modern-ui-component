@@ -179,7 +179,10 @@ export function ComponentCodeDrawer({
                 <p className="text-muted-foreground mb-2 font-mono text-xs">
                   {file.path}
                 </p>
-                <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">
+                <pre
+                  tabIndex={0}
+                  className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed"
+                >
                   <code>{file.content}</code>
                 </pre>
               </div>

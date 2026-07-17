@@ -39,6 +39,7 @@ export type ModelHealthRunsProps = {
   title?: string
   runs?: ModelHealthRun[]
   models?: ModelHealthModel[]
+  emptyMessage?: string
   className?: string
 }
 
@@ -53,6 +54,7 @@ export const modelHealthRunsMessages = {
       notEvaluated: "Not evaluated",
       models: "Models",
       health: "Health",
+      noData: "No model health data yet.",
     },
   },
   es: {
@@ -65,6 +67,7 @@ export const modelHealthRunsMessages = {
       notEvaluated: "No evaluado",
       models: "Modelos",
       health: "Salud",
+      noData: "Aún no hay datos de salud del modelo.",
     },
   },
 } satisfies Translations
@@ -434,6 +437,7 @@ export function ModelHealthRuns({
   title,
   runs = defaultRuns,
   models = defaultModels,
+  emptyMessage,
   className,
 }: ModelHealthRunsProps) {
   const { t } = useTranslation(modelHealthRunsMessages)
@@ -466,9 +470,11 @@ export function ModelHealthRuns({
     return () => observer.disconnect()
   }, [])
 
+  const isEmpty = runs.length === 0 || models.length === 0
+
   const cellWidth = Math.max(
     MIN_CELL_WIDTH,
-    plotWidth / runs.length - COLUMN_GAP
+    isEmpty ? MIN_CELL_WIDTH : plotWidth / runs.length - COLUMN_GAP
   )
   const rowHeight = CELL_HEIGHT + ROW_GAP
 
@@ -495,6 +501,22 @@ export function ModelHealthRuns({
 
   const chartHeight =
     TOP_HEADER_HEIGHT + models.length * rowHeight + BOTTOM_MARGIN
+
+  if (isEmpty) {
+    return (
+      <section className={cn("bg-card w-full", className)}>
+        <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
+            {resolvedTitle}
+          </h3>
+          <ModelHealthLegend />
+        </div>
+        <p className="text-muted-foreground flex h-[12rem] items-center justify-center text-sm">
+          {emptyMessage ?? t.noData}
+        </p>
+      </section>
+    )
+  }
 
   return (
     <section className={cn("bg-card w-full overflow-x-auto", className)}>

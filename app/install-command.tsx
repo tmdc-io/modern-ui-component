@@ -15,13 +15,13 @@ function HighlightedAddCommand({ command }: { command: string }) {
     <>
       <span className="text-chart-2">{npx}</span>{" "}
       <span className="text-foreground">{cli}</span>{" "}
-      <span className="text-chart-4">{add}</span>{" "}
-      <span className="text-brand">{target}</span>
+      <span className="text-muted-foreground">{add}</span>{" "}
+      <span className="text-chart-2">{target}</span>
       {cwdFlag && cwdPath ? (
         <>
           {" "}
           <span className="text-muted-foreground">{cwdFlag}</span>{" "}
-          <span className="text-brand">{cwdPath}</span>
+          <span className="text-chart-2">{cwdPath}</span>
         </>
       ) : null}
     </>
@@ -42,13 +42,13 @@ function HighlightedListCommand({ command }: { command: string }) {
     <>
       <span className="text-chart-2">{npx}</span>{" "}
       <span className="text-foreground">{cli}</span>{" "}
-      <span className="text-chart-4">{list}</span>{" "}
-      <span className="text-brand">{target}</span>
+      <span className="text-muted-foreground">{list}</span>{" "}
+      <span className="text-chart-2">{target}</span>
       {cwdFlag && cwdPath ? (
         <>
           {" "}
           <span className="text-muted-foreground">{cwdFlag}</span>{" "}
-          <span className="text-brand">{cwdPath}</span>
+          <span className="text-chart-2">{cwdPath}</span>
         </>
       ) : null}
     </>
@@ -64,9 +64,9 @@ function HighlightedInitCommand({ command }: { command: string }) {
       <>
         <span className="text-chart-2">{withCwd[1]}</span>{" "}
         <span className="text-foreground">{withCwd[2]}</span>{" "}
-        <span className="text-chart-4">{withCwd[3]}</span>{" "}
+        <span className="text-muted-foreground">{withCwd[3]}</span>{" "}
         <span className="text-muted-foreground">{withCwd[4]}</span>{" "}
-        <span className="text-brand">{withCwd[5]}</span>
+        <span className="text-chart-2">{withCwd[5]}</span>
       </>
     )
   }
@@ -80,11 +80,11 @@ function HighlightedInitCommand({ command }: { command: string }) {
     <>
       <span className="text-chart-2">{match[1]}</span>{" "}
       <span className="text-foreground">{match[2]}</span>{" "}
-      <span className="text-chart-4">{match[3]}</span>
+      <span className="text-muted-foreground">{match[3]}</span>
       {match[4] ? (
         <>
           {" "}
-          <span className="text-chart-1">{match[4]}</span>
+          <span className="text-chart-2">{match[4]}</span>
         </>
       ) : null}
     </>

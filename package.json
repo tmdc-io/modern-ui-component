@@ -29,7 +29,16 @@
     "docs:i18n-merge": "node scripts/docs-i18n-merge.mjs",
     "docs:i18n-translate": "node scripts/docs-i18n-translate.mjs",
     "docs:i18n-check": "node scripts/docs-i18n-extract.mjs --check",
-    "docs:i18n-lint-blocks": "node scripts/lint-block-i18n.mjs"
+    "docs:i18n-lint-blocks": "node scripts/lint-block-i18n.mjs",
+    "docs:check-drawers": "node scripts/check-code-drawers.mjs",
+    "docs:audit-a11y-blocks": "node scripts/audit-a11y-blocks.mjs",
+    "docs:verify": "pnpm docs:check-drawers && pnpm docs:i18n:verify && pnpm registry:validate",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:a11y": "playwright test e2e/docs-a11y.spec.ts",
+    "test:e2e:visual": "PLAYWRIGHT_VISUAL=1 playwright test e2e/docs-visual.spec.ts",
+    "test:e2e:update": "PLAYWRIGHT_VISUAL=1 playwright test e2e/docs-visual.spec.ts --update-snapshots"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -66,15 +75,25 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/eslintrc": "^3.3.1",
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.1.11",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "^20.19.9",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "@vitejs/plugin-react": "^6.0.3",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
+    "jest-axe": "^10.0.0",
+    "jsdom": "^29.1.1",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.10"
   },
   "pnpm": {
     "overrides": {

@@ -106,7 +106,7 @@ export function DataProductCatalog() {
   api: `"use client"
 
 import * as React from "react"
-import useSWR from "swr"
+import { useQuery } from "@tanstack/react-query"
 import {
   DataProductTable,
   type DataProductRow,
@@ -138,10 +138,10 @@ function mapCatalogApiToRows(products: CatalogApiProduct[]): DataProductRow[] {
 }
 
 export function DataProductCatalogPage() {
-  const { data, isLoading } = useSWR<CatalogApiProduct[]>(
-    "/api/catalog/products",
-    fetcher
-  )
+  const { data, isLoading } = useQuery({
+    queryKey: ["catalog-products"],
+    queryFn: () => fetcher("/api/catalog/products"),
+  })
   const rows = React.useMemo(
     () => (data ? mapCatalogApiToRows(data) : []),
     [data]

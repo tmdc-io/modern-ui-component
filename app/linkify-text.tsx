@@ -7,7 +7,7 @@ const LINK_PATTERN =
 const TRAILING_PUNCTUATION = /[.,;:!?]+$/
 
 const linkClassName =
-  "text-primary font-medium underline underline-offset-4 hover:text-primary/80"
+  "text-[#007e7f] font-medium underline underline-offset-4 hover:text-[#006d6e] dark:text-primary dark:hover:text-primary/80"
 
 function splitHref(value: string) {
   const trailing = value.match(TRAILING_PUNCTUATION)

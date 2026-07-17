@@ -47,13 +47,19 @@ export const runMetricsApi: ComponentApiDoc = {
           "Target column count at md (3 cols) or xl (4 cols). Mobile uses 2 columns for 3/4 layouts; 2-column layout stacks to 1 below 28rem.",
       },
       {
+        prop: "emptyMessage",
+        type: "string",
+        description:
+          "Copy shown when metrics is an empty array. Defaults to localized empty text.",
+      },
+      {
         prop: "className",
         type: "string",
         description: "Additional classes on the outer section element.",
       },
     ],
     footnote:
-      "Exported types: RunMetric, RunMetricQualityDetail, RunMetricsProps. Card surfaces use bg-dataos-surface for light and dark mode.",
+      "Exported types: RunMetric, RunMetricQualityDetail, RunMetricsProps. Also exported: RunMetricsSkeleton. Card surfaces use bg-dataos-surface for light and dark mode.",
   },
   cssVariants: [
     {

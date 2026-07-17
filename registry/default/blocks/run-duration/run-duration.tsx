@@ -43,6 +43,7 @@ export type RunDurationProps = {
   selectedId?: string
   defaultSelectedId?: string
   onSelectedChange?: (id: string) => void
+  emptyMessage?: string
   className?: string
 }
 
@@ -55,6 +56,7 @@ export const runDurationMessages = {
       anomaly: "Anomaly",
       selected: "Selected",
       baseline: "Baseline",
+      noRuns: "No runs to chart yet.",
     },
   },
   es: {
@@ -65,6 +67,7 @@ export const runDurationMessages = {
       anomaly: "Anomalia",
       selected: "Seleccionado",
       baseline: "Linea base",
+      noRuns: "Aún no hay ejecuciones para graficar.",
     },
   },
 } satisfies Translations
@@ -200,6 +203,7 @@ export function RunDuration({
   selectedId,
   defaultSelectedId = "r10",
   onSelectedChange,
+  emptyMessage,
   className,
 }: RunDurationProps) {
   const { t } = useTranslation(runDurationMessages)
@@ -207,6 +211,22 @@ export function RunDuration({
   const [internalSelectedId, setInternalSelectedId] = React.useState(defaultSelectedId)
   const resolvedSelectedId = isControlled ? selectedId : internalSelectedId
   const resolvedTitle = title ?? t.title
+
+  if (runs.length === 0) {
+    return (
+      <section className={cn("bg-card w-full", className)}>
+        <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
+            {resolvedTitle}
+          </h3>
+          <RunDurationLegend />
+        </div>
+        <p className="text-muted-foreground flex h-[12rem] items-center justify-center text-sm">
+          {emptyMessage ?? t.noRuns}
+        </p>
+      </section>
+    )
+  }
 
   const resolvedRuns = runs.map((run) => ({
     ...run,

@@ -17,6 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/default/ui/card"
+import { Skeleton } from "@/registry/default/ui/skeleton"
 import {
   useTranslation,
   type Translations,
@@ -51,6 +52,9 @@ export type QualitySummaryCardProps = {
   dimensions?: QualityDimension[]
   href?: string
   onViewAll?: () => void
+  /** When true with empty dimensions, show an empty message instead of defaults. */
+  emptyMessage?: string
+  className?: string
 }
 
 export const qualitySummaryCardMessages = {
@@ -66,6 +70,7 @@ export const qualitySummaryCardMessages = {
       dimensions: "dimensions",
       viewAllPrefix: "View all",
       viewAllSuffix: "quality rules",
+      noDimensions: "No quality dimensions yet.",
     },
   },
   es: {
@@ -80,6 +85,7 @@ export const qualitySummaryCardMessages = {
       dimensions: "dimensiones",
       viewAllPrefix: "Ver las",
       viewAllSuffix: "reglas de calidad",
+      noDimensions: "Aún no hay dimensiones de calidad.",
     },
   },
 } satisfies Translations
@@ -145,18 +151,29 @@ function resolveCardProps({
   dimensions,
   fallbackTitle,
   statusLabels,
-}: ResolveCardPropsArgs) {
-  const resolvedDimensions = dimensions ?? summary?.dimensions ?? defaultDimensions
-  const resolvedPassed = passed ?? summary?.passed ?? 47
-  const resolvedTotal = total ?? summary?.total ?? 100
+  allowEmpty,
+}: ResolveCardPropsArgs & { allowEmpty?: boolean }) {
+  const hasExplicitDimensions =
+    dimensions !== undefined || summary?.dimensions !== undefined
+  const resolvedDimensions = hasExplicitDimensions
+    ? (dimensions ?? summary?.dimensions ?? [])
+    : allowEmpty
+      ? []
+      : defaultDimensions
+  const resolvedPassed = passed ?? summary?.passed ?? (hasExplicitDimensions ? 0 : 47)
+  const resolvedTotal = total ?? summary?.total ?? (hasExplicitDimensions ? 0 : 100)
   const resolvedTitle = title ?? summary?.title ?? fallbackTitle
-  const resolvedUpdatedAt = updatedAt ?? summary?.updatedAt ?? "3m ago"
+  const resolvedUpdatedAt = updatedAt ?? summary?.updatedAt ?? (hasExplicitDimensions ? "—" : "3m ago")
   const resolvedDimensionCount = dimensionCount ?? resolvedDimensions.length
   const resolvedStatusLabel =
     statusLabel ??
     summary?.statusLabel ??
-    deriveStatusLabel(resolvedDimensions, statusLabels)
-  const badgeVariant = deriveBadgeVariant(resolvedDimensions)
+    (resolvedDimensions.length
+      ? deriveStatusLabel(resolvedDimensions, statusLabels)
+      : statusLabels.healthy)
+  const badgeVariant = resolvedDimensions.length
+    ? deriveBadgeVariant(resolvedDimensions)
+    : ("success" as const)
 
   return {
     title: resolvedTitle,
@@ -208,7 +225,7 @@ const footerLinkClass =
 
 export function QualitySummaryCard(props: QualitySummaryCardProps) {
   const { t } = useTranslation(qualitySummaryCardMessages)
-  const { href, onViewAll } = props
+  const { href, onViewAll, emptyMessage, className } = props
   const {
     title,
     statusLabel,
@@ -226,10 +243,16 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
       atRisk: t.atRisk,
       healthy: t.healthy,
     },
+    allowEmpty: emptyMessage !== undefined || props.dimensions !== undefined,
   })
 
   return (
-    <Card className="w-full max-w-[22rem] gap-0 border border-border/60 bg-dataos-surface py-5 text-card-foreground shadow-sm">
+    <Card
+      className={cn(
+        "w-full max-w-[22rem] gap-0 border border-border/60 bg-dataos-surface py-5 text-card-foreground shadow-sm",
+        className
+      )}
+    >
       <CardHeader className="grid-rows-1 items-center gap-0 px-5 pb-4">
         <CardTitle className="flex items-center gap-2 text-[15px] font-medium text-foreground">
           <AwardIcon className="size-4 stroke-[1.75] text-muted-foreground" />
@@ -262,37 +285,43 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
       </CardContent>
 
       <CardContent className="px-5 pb-5 pt-0">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-3.5">
-          {dimensions.map((dimension) => (
-            <div
-              key={dimension.name}
-              className={
-                dimension.detail
-                  ? "flex gap-3"
-                  : "flex items-center gap-3"
-              }
-            >
-              <div className="flex h-[18px] shrink-0 items-center">
-                <StatusIcon status={dimension.status} />
+        {dimensions.length === 0 ? (
+          <p className="text-muted-foreground text-[13px]">
+            {emptyMessage ?? t.noDimensions}
+          </p>
+        ) : (
+          <div className="grid grid-cols-2 gap-x-8 gap-y-3.5">
+            {dimensions.map((dimension) => (
+              <div
+                key={dimension.name}
+                className={
+                  dimension.detail
+                    ? "flex gap-3"
+                    : "flex items-center gap-3"
+                }
+              >
+                <div className="flex h-[18px] shrink-0 items-center">
+                  <StatusIcon status={dimension.status} />
+                </div>
+                <div className="min-w-0">
+                  <p className={labelLineClass}>{dimension.name}</p>
+                  {dimension.detail ? (
+                    <p
+                      className={cn(
+                        "mt-0.5 text-[11px] leading-none",
+                        dimension.status === "fail"
+                          ? "text-dataos-fail-fg"
+                          : "text-dataos-warn-fg"
+                      )}
+                    >
+                      {dimension.detail}
+                    </p>
+                  ) : null}
+                </div>
               </div>
-              <div className="min-w-0">
-                <p className={labelLineClass}>{dimension.name}</p>
-                {dimension.detail ? (
-                  <p
-                    className={cn(
-                      "mt-0.5 text-[11px] leading-none",
-                      dimension.status === "fail"
-                        ? "text-dataos-fail-fg"
-                        : "text-dataos-warn-fg"
-                    )}
-                  >
-                    {dimension.detail}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </CardContent>
 
       <CardFooter className="border-t border-border/80 px-5 pt-4 pb-0">
@@ -313,5 +342,40 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
         )}
       </CardFooter>
     </Card>
+  )
+}
+
+export type QualitySummaryCardSkeletonProps = {
+  className?: string
+}
+
+export function QualitySummaryCardSkeleton({
+  className,
+}: QualitySummaryCardSkeletonProps) {
+  return (
+    <div
+      className={cn(
+        "bg-dataos-surface flex w-full max-w-[22rem] flex-col gap-4 rounded-xl border border-border/60 p-5 shadow-sm",
+        className
+      )}
+      aria-busy="true"
+      aria-hidden
+    >
+      <div className="flex items-center justify-between gap-3">
+        <Skeleton className="h-4 w-24" />
+        <Skeleton className="h-5 w-16 rounded-full" />
+      </div>
+      <Skeleton className="h-8 w-32" />
+      <Skeleton className="h-3 w-40" />
+      <div className="grid grid-cols-2 gap-3">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <Skeleton className="size-4 rounded" />
+            <Skeleton className="h-3 w-16" />
+          </div>
+        ))}
+      </div>
+      <Skeleton className="mt-2 h-3 w-36" />
+    </div>
   )
 }

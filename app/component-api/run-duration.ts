@@ -88,6 +88,12 @@ export const runDurationApi: ComponentApiDoc = {
         description: "Fires when a bar is clicked with the run id.",
       },
       {
+        prop: "emptyMessage",
+        type: "string",
+        description:
+          "Copy shown when runs is an empty array. Defaults to localized empty text.",
+      },
+      {
         prop: "className",
         type: "string",
         description: "Additional classes on the outer section element.",

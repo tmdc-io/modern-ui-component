@@ -2,49 +2,17 @@
 
 import * as React from "react"
 
+import {
+  demoErrorRun,
+  demoHoverRun,
+  demoRuns,
+  demoSuccessRun,
+} from "@/app/component-examples/shared/dataos-demo-data"
 import { RunMetrics } from "@/registry/default/blocks/run-metrics/run-metrics"
 import {
   RunCard,
   RunCardSkeleton,
 } from "@/registry/default/blocks/run-card/run-card"
-
-const successRun = {
-  runId: "#10010",
-  plan: "Plan #01",
-  timestamp: "Jul 01, 09:15 AM",
-  duration: "4.1s",
-  status: "success" as const,
-  metrics: [
-    { label: "Models", value: "7" },
-    { label: "DQ", value: "12/16" },
-  ],
-}
-
-const hoverRun = {
-  runId: "#10009",
-  plan: "Plan #02",
-  timestamp: "Jul 02, 12:22 PM",
-  duration: "3.8s",
-  status: "error" as const,
-  metrics: [
-    { label: "Error", value: "3", status: "error" as const },
-    { label: "Models", value: "5" },
-    { label: "DQ", value: "13/17" },
-  ],
-}
-
-const errorRun = {
-  runId: "#10005",
-  plan: "Plan #06",
-  timestamp: "Jul 06, 06:11 PM",
-  duration: "3.6s",
-  status: "error" as const,
-  metrics: [
-    { label: "Error", value: "2", status: "error" as const },
-    { label: "Models", value: "5" },
-    { label: "DQ", value: "12/16" },
-  ],
-}
 
 function PreviewShell({
   children,
@@ -66,7 +34,7 @@ function PreviewShell({
 export function RunCardSuccessPreview() {
   return (
     <PreviewShell>
-      <RunCard {...successRun} />
+      <RunCard {...demoSuccessRun} />
     </PreviewShell>
   )
 }
@@ -75,7 +43,7 @@ export function RunCardSuccessPreview() {
 export function RunCardHoverPreview() {
   return (
     <PreviewShell hint="Hover the card to see the cream surface (cream-bg-3).">
-      <RunCard {...hoverRun} />
+      <RunCard {...demoHoverRun} />
     </PreviewShell>
   )
 }
@@ -83,7 +51,7 @@ export function RunCardHoverPreview() {
 export function RunCardSelectedPreview() {
   return (
     <PreviewShell hint="Selected cards keep the teal surface and dark teal border.">
-      <RunCard {...successRun} selected />
+      <RunCard {...demoSuccessRun} selected />
     </PreviewShell>
   )
 }
@@ -91,7 +59,7 @@ export function RunCardSelectedPreview() {
 export function RunCardErrorPreview() {
   return (
     <PreviewShell>
-      <RunCard {...errorRun} />
+      <RunCard {...demoErrorRun} />
     </PreviewShell>
   )
 }
@@ -99,9 +67,9 @@ export function RunCardErrorPreview() {
 export function RunCardStackPreview() {
   return (
     <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
-      <RunCard {...successRun} />
-      <RunCard {...hoverRun} />
-      <RunCard {...errorRun} />
+      <RunCard {...demoSuccessRun} />
+      <RunCard {...demoHoverRun} />
+      <RunCard {...demoErrorRun} />
     </div>
   )
 }
@@ -146,8 +114,8 @@ export function RunCardStatusesPreview() {
 }
 
 export function RunCardSelectablePreview() {
-  const runs = [successRun, hoverRun, errorRun]
-  const [selectedId, setSelectedId] = React.useState(successRun.runId)
+  const runs = [demoSuccessRun, demoHoverRun, demoErrorRun]
+  const [selectedId, setSelectedId] = React.useState(demoSuccessRun.runId)
 
   return (
     <PreviewShell hint="Click a card to select it. Selected cards use the teal surface and border.">
@@ -169,7 +137,7 @@ export function RunCardMetricLinksPreview() {
   return (
     <PreviewShell hint="Metric chips with onClick do not activate the card.">
       <RunCard
-        {...errorRun}
+        {...demoErrorRun}
         onSelect={() => {}}
         selected
         metrics={[
@@ -190,8 +158,8 @@ export function RunCardMetricLinksPreview() {
 export function RunCardDensityPreview() {
   return (
     <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
-      <RunCard {...successRun} size="default" />
-      <RunCard {...successRun} runId="#10010-sm" size="sm" />
+      <RunCard {...demoSuccessRun} size="default" />
+      <RunCard {...demoSuccessRun} runId="#10010-sm" size="sm" />
     </div>
   )
 }
@@ -227,40 +195,19 @@ export function RunCardSkeletonPreview() {
   )
 }
 
-const composeRuns = [
-  {
-    runId: "#10010",
-    plan: "Plan #01",
-    timestamp: "Jul 01, 09:15 AM",
-    duration: "4.1s",
-    status: "success" as const,
-  },
-  {
-    runId: "#10009",
-    plan: "Plan #02",
-    timestamp: "Jul 02, 12:22 PM",
-    duration: "3.8s",
-    status: "error" as const,
-  },
-]
-
 export function RunCardComposePreview() {
-  const [selectedId, setSelectedId] = React.useState("#10010")
+  const [selectedId, setSelectedId] = React.useState(demoSuccessRun.runId)
 
   return (
     <div className="bg-muted/30 w-full rounded-lg p-4">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 lg:flex-row lg:items-start">
         <div className="flex w-full shrink-0 flex-col gap-3 lg:max-w-xs">
-          {composeRuns.map((run) => (
+          {demoRuns.map((run) => (
             <RunCard
               key={run.runId}
               {...run}
               selected={selectedId === run.runId}
               onSelect={() => setSelectedId(run.runId)}
-              metrics={[
-                { label: "Models", value: run.status === "success" ? "7" : "5" },
-                { label: "DQ", value: "12/16" },
-              ]}
             />
           ))}
         </div>

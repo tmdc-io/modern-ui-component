@@ -97,7 +97,7 @@ const runs = [
     duration: "3.8s",
     status: "error" as const,
     metrics: [
-      { label: "Error", value: "3", status: "error" },
+      { label: "Error", value: "3", status: "error" as const },
       { label: "Models", value: "5" },
       { label: "DQ", value: "13/17" },
     ],

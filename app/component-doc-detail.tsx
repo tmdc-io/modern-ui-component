@@ -28,6 +28,7 @@ import { docsMessages } from "@/app/docs-messages"
 import { InstallCommand } from "@/app/install-command"
 import { LinkifyText } from "@/app/linkify-text"
 import { VariantPreviewCanvas } from "@/app/variant-preview-canvas"
+import { PreviewViewportFrame } from "@/app/preview-viewport-frame"
 import { useTranslation } from "@/hooks/use-translation"
 import { Button } from "@/registry/default/ui/button"
 
@@ -75,6 +76,22 @@ function isPopoverPreviewPage(componentName: string) {
   return POPOVER_PREVIEW_PAGES.has(componentName)
 }
 
+const DATAOS_RESPONSIVE_PAGES = new Set([
+  "quality-summary-card",
+  "data-product-table",
+  "data-product-card",
+  "hero",
+  "dataos-sidebar",
+  "application-header",
+  "plan-card",
+  "plan-status-card",
+  "run-card",
+  "models-table",
+  "model-health-runs",
+  "run-duration",
+  "run-metrics",
+])
+
 function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant) {
   const layoutPage = page.name === "layout"
   return {
@@ -93,6 +110,9 @@ function getPreviewOptions(page: ComponentVariantPage, variant: ComponentVariant
     popoverPreview: isPopoverPreviewPage(page.name),
     /** Layout demos fill the card edge-to-edge (Ant Design style). */
     flushPreview: layoutPage,
+    responsivePreview:
+      variant.responsivePreview ??
+      (DATAOS_RESPONSIVE_PAGES.has(page.name) && !variant.codeOnly),
   }
 }
 
@@ -117,7 +137,7 @@ function DocLinks({ links }: { links: DocLink[] }) {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
+            className="text-[#007e7f] dark:text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-[#006d6e] dark:hover:text-primary/80"
           >
             {label}
             <ArrowRightIcon className="size-3.5" />
@@ -126,7 +146,7 @@ function DocLinks({ links }: { links: DocLink[] }) {
           <Link
             key={link.href}
             href={link.href}
-            className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
+            className="text-[#007e7f] dark:text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-[#006d6e] dark:hover:text-primary/80"
           >
             {label}
             <ArrowRightIcon className="size-3.5" />
@@ -206,10 +226,16 @@ function UsageSection({ page }: { page: ComponentVariantPage }) {
           {t["detail.codeSamplesNote"]}
         </p>
       </div>
-      <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">
+      <pre
+        tabIndex={0}
+        className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed"
+      >
         <code className="font-mono">{page.usage.import}</code>
       </pre>
-      <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">
+      <pre
+        tabIndex={0}
+        className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed"
+      >
         <code className="font-mono">{page.usage.example}</code>
       </pre>
     </section>
@@ -277,17 +303,34 @@ function VariantExample({
         </div>
       ) : null}
       {variant.Preview && !variant.codeOnly ? (
-        <VariantPreviewCanvas
-          Preview={variant.Preview}
-          tall={hero || previewOptions.tall}
-          fitContent={previewOptions.fitContent}
-          blockLayout={previewOptions.blockLayout}
-          containSidebar={previewOptions.containSidebar}
-          popoverPreview={previewOptions.popoverPreview}
-          flushPreview={previewOptions.flushPreview}
-        />
+        previewOptions.responsivePreview ? (
+          <PreviewViewportFrame>
+            <VariantPreviewCanvas
+              Preview={variant.Preview}
+              tall={hero || previewOptions.tall}
+              fitContent={previewOptions.fitContent}
+              blockLayout={previewOptions.blockLayout}
+              containSidebar={previewOptions.containSidebar}
+              popoverPreview={previewOptions.popoverPreview}
+              flushPreview={previewOptions.flushPreview}
+            />
+          </PreviewViewportFrame>
+        ) : (
+          <VariantPreviewCanvas
+            Preview={variant.Preview}
+            tall={hero || previewOptions.tall}
+            fitContent={previewOptions.fitContent}
+            blockLayout={previewOptions.blockLayout}
+            containSidebar={previewOptions.containSidebar}
+            popoverPreview={previewOptions.popoverPreview}
+            flushPreview={previewOptions.flushPreview}
+          />
+        )
       ) : variant.code && variant.codeOnly ? (
-        <pre className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed">
+        <pre
+          tabIndex={0}
+          className="bg-muted/50 overflow-x-auto rounded-lg border p-4 text-xs leading-relaxed"
+        >
           <code className="font-mono">{variant.code}</code>
         </pre>
       ) : null}
@@ -452,13 +495,12 @@ export function ComponentDocDetail({ name }: { name: string }) {
 
   return (
     <ComponentRegistryLayout activeName={page.name} variantDetail>
-      <DocPageHeader page={page} />
-
-      <div className="flex w-full flex-col gap-12 pb-16">
+      <main className="flex w-full flex-col gap-12 pb-16">
+        <DocPageHeader page={page} />
         <UsageSection page={page} />
         <ExamplesSection page={page} onViewCode={handleViewCode} />
         <ApiReferenceSection page={page} />
-      </div>
+      </main>
 
       <ComponentCodeDrawer
         variant={codeTarget}
