@@ -160,7 +160,7 @@ function SidebarRow({
     active
       ? "bg-primary text-primary-foreground hover:bg-primary/90"
       : "text-foreground hover:bg-teal-bg-2",
-    !collapsed && showPin && (pinned ? "pr-14" : "pr-9")
+    !collapsed && showPin && (pinned ? "pe-14" : "pe-9")
   )
 
   const iconWrap = (
@@ -229,7 +229,7 @@ function SidebarRow({
       onDragEnd={onDragEnd}
     >
       {navButton}
-      <div className="absolute inset-y-0 right-1.5 flex items-center gap-0.5">
+      <div className="absolute inset-y-0 end-1.5 flex items-center gap-0.5">
         {pinned ? (
           <span
             className={cn(
@@ -419,7 +419,7 @@ export function DataOsSidebar({
     <TooltipProvider delayDuration={0}>
       <aside
           className={cn(
-          "bg-cream-bg-1 text-foreground flex h-full min-h-[32rem] flex-col border-r border-grey-8/80 transition-[width] duration-200",
+          "bg-cream-bg-1 text-foreground flex h-full min-h-[32rem] flex-col border-e border-grey-8/80 transition-[width] duration-200",
           resolvedCollapsed ? "w-14" : "w-56",
           className
         )}

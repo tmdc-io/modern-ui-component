@@ -38,9 +38,9 @@ export function DataProductCardLastRunPreview() {
 
 export function DataProductCardGridPreview() {
   return (
-    <div className="bg-muted/30 grid w-full gap-4 rounded-lg p-6 sm:grid-cols-2">
-      <DataProductCard {...patientJourneyCard} />
-      <DataProductCard {...financialRiskCard} />
+    <div className="@container bg-muted/30 grid w-full gap-4 rounded-lg p-6 @md:grid-cols-2">
+      <DataProductCard className="max-w-none" {...patientJourneyCard} />
+      <DataProductCard className="max-w-none" {...financialRiskCard} />
     </div>
   )
 }

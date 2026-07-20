@@ -98,7 +98,7 @@ export function DataProductCard({
         <div className="min-w-0 flex-1">
           <h3
             className={cn(
-              "leading-snug font-semibold text-foreground",
+              "leading-snug font-semibold break-words text-foreground",
               compact ? "text-sm" : "text-base"
             )}
           >
@@ -131,7 +131,7 @@ export function DataProductCard({
   )
 
   const cardClassName = cn(
-    "bg-card flex w-full max-w-[22rem] flex-col rounded-xl border border-border/70 text-card-foreground shadow-sm",
+    "bg-card flex w-full min-w-0 max-w-[22rem] flex-col rounded-xl border border-border/70 text-card-foreground shadow-sm",
     compact ? "p-4" : "p-5",
     interactive && "hover:border-border transition-colors",
     className
@@ -173,7 +173,7 @@ export function DataProductCardSkeleton({
   return (
     <div
       className={cn(
-        "bg-card flex w-full max-w-[22rem] flex-col rounded-xl border border-border/70 shadow-sm",
+        "bg-card flex w-full min-w-0 max-w-[22rem] flex-col rounded-xl border border-border/70 shadow-sm",
         compact ? "gap-3 p-4" : "gap-4 p-5",
         className
       )}

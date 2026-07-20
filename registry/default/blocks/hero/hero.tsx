@@ -182,7 +182,7 @@ function HeroActions({
   const buttonSize = size === "sm" ? "sm" : "default"
 
   return (
-    <div className="flex shrink-0 items-center gap-2">
+    <div className="flex shrink-0 flex-wrap items-center gap-2">
       <Button
         variant="outline"
         size={buttonSize}
@@ -191,7 +191,8 @@ function HeroActions({
       >
         {following ? t.following : resolvedFollowLabel}
       </Button>
-      <div className="flex items-center">
+      {/* Keep label → chevron order in both LTR and RTL. */}
+      <div className="flex items-center" dir="ltr">
         <Button
           size={buttonSize}
           className="rounded-r-none"
@@ -244,10 +245,10 @@ function HeroTitleBlock({
     <div className="min-w-0 space-y-1">
       <h1
         className={cn(
-          "text-foreground truncate tracking-tight",
+          "text-foreground tracking-tight",
           size === "sm"
-            ? "text-sm font-medium"
-            : "font-serif text-[26px] font-bold"
+            ? "truncate text-sm font-medium"
+            : "font-serif text-[22px] font-bold break-words @md:text-[26px]"
         )}
       >
         {title}
@@ -289,7 +290,7 @@ function HeroDescription({
 
 function HeroMetaColumns({ columns }: { columns: HeroMetaColumn[] }) {
   return (
-    <div className="border-grey-8 grid gap-8 border-b pb-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="border-grey-8 grid gap-8 border-b pb-5 @sm:grid-cols-2 @lg:grid-cols-3">
       {columns.map((column) => (
         <div key={column.title} className="space-y-3">
           <p className="text-muted-foreground text-[11px] font-medium tracking-[0.08em] uppercase">
@@ -300,11 +301,14 @@ function HeroMetaColumns({ columns }: { columns: HeroMetaColumn[] }) {
               item.label ? (
                 <div
                   key={`${column.title}-${index}`}
-                  className="flex items-center text-sm leading-snug"
+                  className="flex items-center gap-1.5 text-sm leading-snug"
                 >
                   <dt className="text-muted-foreground w-[4.75rem] shrink-0">
-                    {item.label}:
+                    {item.label}
                   </dt>
+                  <span className="text-muted-foreground shrink-0" aria-hidden>
+                    :
+                  </span>
                   <dd className="text-foreground flex min-w-0 items-center gap-1.5 font-normal">
                     {item.icon ? (
                       <span className="flex size-4 shrink-0 items-center justify-center">
@@ -313,7 +317,10 @@ function HeroMetaColumns({ columns }: { columns: HeroMetaColumn[] }) {
                     ) : null}
                     {typeof item.value === "string" ? (
                       <span
-                        className={cn(item.mono && "font-mono text-[13px]")}
+                        className={cn(
+                          "min-w-0 truncate",
+                          item.mono && "font-mono text-[13px] break-all"
+                        )}
                       >
                         {item.value}
                       </span>
@@ -356,7 +363,7 @@ export function HeroMemberStack({
 
   return (
     <div className="flex items-center gap-2">
-      <div className="flex -space-x-1.5">
+      <div className="flex -space-x-1.5 rtl:space-x-reverse">
         {visible.map((member) => (
           <Avatar
             key={member.name}
@@ -445,7 +452,13 @@ function HeroQualityDonut({ percentage }: { percentage: number }) {
   )
 }
 
-export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
+export function HeroQualityCard({
+  quality,
+  className,
+}: {
+  quality: HeroQuality
+  className?: string
+}) {
   const { t } = useTranslation(heroMessages)
   const {
     title,
@@ -459,10 +472,15 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
   const resolvedTitle = title ?? t.dataQuality
 
   return (
-    <div className="border-grey-8 bg-card flex w-full max-w-[20rem] flex-col gap-4 rounded-xl border p-4 shadow-sm">
+    <div
+      className={cn(
+        "border-grey-8 bg-card flex w-full max-w-[20rem] flex-col gap-4 rounded-xl border p-4 shadow-sm",
+        className
+      )}
+    >
       <div className="flex items-center gap-3">
         <HeroQualityDonut percentage={percentage} />
-        <div className="space-y-0.5">
+        <div className="min-w-0 space-y-0.5">
           <p className="text-foreground text-sm font-semibold">{resolvedTitle}</p>
           <p className="text-xs font-medium">
             <span className="text-dataos-success-fg">
@@ -475,14 +493,14 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-x-8 gap-y-2.5">
+      <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 @sm:gap-x-8">
         {dimensions.map((dimension) => (
           <div
             key={dimension.name}
-            className="flex items-center gap-2 text-[13px] leading-none"
+            className="flex min-w-0 items-center gap-2 text-[13px] leading-none"
           >
             <QualityStatusIcon status={dimension.status} />
-            <span className="text-foreground">{dimension.name}</span>
+            <span className="text-foreground truncate">{dimension.name}</span>
           </div>
         ))}
       </div>
@@ -492,7 +510,7 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
             href={href}
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            {t.knowMore} <ArrowRightIcon className="size-3.5" />
+            {t.knowMore} <ArrowRightIcon className="size-3.5 rtl:rotate-180" />
           </a>
         ) : (
           <button
@@ -500,7 +518,7 @@ export function HeroQualityCard({ quality }: { quality: HeroQuality }) {
             onClick={onKnowMore}
             className="text-primary inline-flex items-center gap-1 text-sm font-medium hover:text-primary/80"
           >
-            {t.knowMore} <ArrowRightIcon className="size-3.5" />
+            {t.knowMore} <ArrowRightIcon className="size-3.5 rtl:rotate-180" />
           </button>
         )}
       </div>
@@ -512,7 +530,7 @@ export function HeroJumpBar({ items }: { items: HeroJumpItem[] }) {
   const { t } = useTranslation(heroMessages)
   return (
     <div className="border-grey-8 flex flex-wrap items-center gap-1 border-t pt-3">
-      <span className="text-muted-foreground mr-1 text-xs">{t.jumpTo}</span>
+      <span className="text-muted-foreground me-1 text-xs">{t.jumpTo}</span>
       {items.map((item) => (
         <button
           key={item.label}
@@ -564,7 +582,7 @@ export function Hero({
     return (
       <div
         className={cn(
-          "border-grey-8 bg-dataos-surface flex items-center justify-between gap-4 border-b px-5 py-2.5",
+          "@container border-grey-8 bg-dataos-surface flex flex-col gap-3 border-b px-5 py-2.5 @md:flex-row @md:items-center @md:justify-between @md:gap-4",
           className
         )}
       >
@@ -586,7 +604,7 @@ export function Hero({
   }
 
   const isFull = variant === "full"
-  const showQuality = isFull && quality
+  const showQuality = isFull && Boolean(quality)
   const showMeta = isFull && metaColumns && metaColumns.length > 0
 
   const hasBody = (description && showDescription) || showMeta
@@ -594,13 +612,13 @@ export function Hero({
   return (
     <div
       className={cn(
-        "flex w-full flex-col gap-4 px-5 py-4",
+        "@container flex w-full flex-col gap-4 px-5 py-4",
         isFull ? "bg-background" : "bg-dataos-surface",
         className
       )}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex min-w-0 items-center gap-3">
+      <div className="flex flex-col gap-3 @md:flex-row @md:items-start @md:justify-between @md:gap-4">
+        <div className="flex min-w-0 items-start gap-3">
           <HeroIconTile icon={icon} />
           <HeroTitleBlock
             title={title}
@@ -619,7 +637,7 @@ export function Hero({
       </div>
 
       {hasBody || showQuality ? (
-        <div className="flex items-start gap-6">
+        <div className="flex flex-col gap-5 @lg:flex-row @lg:items-start @lg:gap-6">
           <div className="flex min-w-0 flex-1 flex-col gap-5">
             {description && showDescription ? (
               <HeroDescription
@@ -632,9 +650,12 @@ export function Hero({
             {showMeta ? <HeroMetaColumns columns={metaColumns} /> : null}
           </div>
 
-          {showQuality ? (
-            <div className="hidden shrink-0 lg:block">
-              <HeroQualityCard quality={quality} />
+          {showQuality && quality ? (
+            <div className="w-full shrink-0 @lg:w-auto">
+              <HeroQualityCard
+                quality={quality}
+                className="mx-auto max-w-none @sm:mx-0 @lg:max-w-[20rem]"
+              />
             </div>
           ) : null}
         </div>

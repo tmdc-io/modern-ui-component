@@ -246,47 +246,59 @@ export function RunDuration({
   }
 
   return (
-    <section className={cn("bg-card w-full", className)}>
-      <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <section className={cn("@container bg-card w-full", className)}>
+      <div className="mb-5 flex flex-col gap-4 @sm:flex-row @sm:items-start @sm:justify-between">
         <h3 className="text-muted-foreground text-[11px] font-semibold tracking-[0.16em] uppercase">
           {resolvedTitle}
         </h3>
         <RunDurationLegend />
       </div>
 
-      <ChartContainer config={chartConfig} className="h-[18rem] w-full">
-        <BarChart
-          accessibilityLayer
-          data={resolvedRuns}
-          margin={{ top: 24, right: 8, left: 0, bottom: 28 }}
-          barCategoryGap="22%"
+      <div className="w-full overflow-x-auto">
+        <ChartContainer
+          config={chartConfig}
+          className="h-[18rem] min-w-[36rem] w-full"
         >
-          <CartesianGrid vertical={false} strokeDasharray="4 4" className="stroke-border/70" />
-          <XAxis
-            dataKey="id"
-            tickLine={false}
-            axisLine={false}
-            interval={0}
-            tick={<RunDurationTick runs={resolvedRuns} />}
-            height={48}
-          />
-          <YAxis
-            tickLine={false}
-            axisLine={false}
-            width={28}
-            domain={[0, 100]}
-            ticks={[0, 20, 40, 60, 80, 100]}
-            className="text-muted-foreground text-[11px]"
-          />
-          {selectedRun ? (
-            <ReferenceArea
-              x1={selectedRun.id}
-              x2={selectedRun.id}
-              fill="var(--run-duration-selection)"
-              fillOpacity={0.12}
-              strokeOpacity={0}
+          <BarChart
+            accessibilityLayer
+            data={resolvedRuns}
+            margin={{ top: 24, right: 8, left: 0, bottom: 28 }}
+            barCategoryGap="22%"
+          >
+            <CartesianGrid vertical={false} strokeDasharray="4 4" className="stroke-border/70" />
+            <XAxis
+              dataKey="id"
+              tickLine={false}
+              axisLine={false}
+              interval={0}
+              tick={<RunDurationTick runs={resolvedRuns} />}
+              height={48}
             />
-          ) : null}
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              width={28}
+              domain={[0, 100]}
+              ticks={[0, 20, 40, 60, 80, 100]}
+              className="text-muted-foreground text-[11px]"
+            />
+            {selectedRun ? (
+              <>
+                <ReferenceLine
+                  y={selectedRun.duration}
+                  stroke="var(--run-duration-selection)"
+                  strokeDasharray="4 4"
+                  strokeWidth={1.5}
+                />
+                <ReferenceArea
+                  x1={selectedRun.id}
+                  x2={selectedRun.id}
+                  fill="var(--run-duration-selection)"
+                  fillOpacity={0.12}
+                  strokeOpacity={0}
+                />
+              </>
+            ) : null}
           <ReferenceLine
             y={baseline}
             stroke="var(--run-duration-baseline)"
@@ -339,6 +351,7 @@ export function RunDuration({
           </Bar>
         </BarChart>
       </ChartContainer>
+      </div>
     </section>
   )
 }

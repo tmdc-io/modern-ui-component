@@ -6,6 +6,7 @@ import { CheckIcon, ChevronDownIcon } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/default/ui/avatar"
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -191,32 +192,100 @@ function TenantSwitcher({
   )
 }
 
+function BreadcrumbCrumb({
+  item,
+  isCurrent,
+  className,
+}: {
+  item: ApplicationHeaderBreadcrumb
+  isCurrent: boolean
+  className?: string
+}) {
+  if (isCurrent || !item.href) {
+    return (
+      <BreadcrumbPage className={cn("truncate text-sm font-normal", className)}>
+        {item.label}
+      </BreadcrumbPage>
+    )
+  }
+
+  return (
+    <BreadcrumbLink
+      href={item.href}
+      className={cn("truncate text-sm font-normal", className)}
+    >
+      {item.label}
+    </BreadcrumbLink>
+  )
+}
+
 function ApplicationHeaderBreadcrumbs({
   items,
 }: {
   items: ApplicationHeaderBreadcrumb[]
 }) {
+  if (items.length === 0) return null
+
+  const lastIndex = items.length - 1
+  const ancestors = items.slice(0, lastIndex)
+  const current = items[lastIndex]
+
   return (
-    <Breadcrumb className="min-w-0">
-      <BreadcrumbList className="flex-nowrap">
+    <Breadcrumb className="min-w-0 flex-1">
+      {/* Narrow: keep a single row — ancestors collapse into a dropdown. */}
+      <BreadcrumbList className="flex-nowrap gap-1.5 @md/header:hidden">
+        {ancestors.length > 0 ? (
+          <>
+            <BreadcrumbItem>
+              <DropdownMenu>
+                <DropdownMenuTrigger
+                  className="text-muted-foreground hover:text-foreground flex size-7 items-center justify-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+                  aria-label="Show parent pages"
+                >
+                  <BreadcrumbEllipsis className="size-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="min-w-48">
+                  {ancestors.map((item, index) => (
+                    <DropdownMenuItem
+                      key={`${item.label}-${index}`}
+                      asChild={Boolean(item.href)}
+                      disabled={!item.href}
+                    >
+                      {item.href ? (
+                        <a href={item.href}>{item.label}</a>
+                      ) : (
+                        item.label
+                      )}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+          </>
+        ) : null}
+        <BreadcrumbItem className="min-w-0">
+          <BreadcrumbCrumb
+            item={current}
+            isCurrent
+            className="max-w-[12rem]"
+          />
+        </BreadcrumbItem>
+      </BreadcrumbList>
+
+      {/* Wider header: full trail on one row. */}
+      <BreadcrumbList className="hidden flex-nowrap @md/header:flex">
         {items.map((item, index) => {
-          const isLast = index === items.length - 1
+          const isLast = index === lastIndex
           return (
             <React.Fragment key={`${item.label}-${index}`}>
               {index > 0 ? <BreadcrumbSeparator /> : null}
               <BreadcrumbItem className="min-w-0">
-                {isLast || !item.href ? (
-                  <BreadcrumbPage className="max-w-[14rem] truncate text-sm font-normal">
-                    {item.label}
-                  </BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink
-                    href={item.href}
-                    className="max-w-[14rem] truncate text-sm font-normal"
-                  >
-                    {item.label}
-                  </BreadcrumbLink>
-                )}
+                <BreadcrumbCrumb
+                  item={item}
+                  isCurrent={isLast}
+                  className="max-w-[10rem] @lg/header:max-w-[14rem]"
+                />
               </BreadcrumbItem>
             </React.Fragment>
           )
@@ -256,7 +325,7 @@ export function ApplicationHeader({
   return (
     <header
       className={cn(
-        "bg-background text-foreground flex h-14 items-center justify-between gap-4 border-b border-border px-4",
+        "@container/header bg-background text-foreground flex min-h-14 flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-border px-4 py-2",
         className
       )}
     >

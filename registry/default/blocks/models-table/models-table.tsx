@@ -364,7 +364,7 @@ function ColumnSortIcon({
 function HeaderDivider() {
   return (
     <span
-      className="bg-border pointer-events-none absolute top-1/2 left-0 h-4 w-px -translate-y-1/2"
+            className="bg-border pointer-events-none absolute top-1/2 start-0 h-4 w-px -translate-y-1/2"
       aria-hidden
     />
   )
@@ -510,7 +510,7 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
   const viewMoreLabel = detail.viewMoreLabel ?? t.viewMore
 
   return (
-    <div className="px-3 pb-5 pl-10 sm:px-4 sm:pl-11">
+    <div className="px-3 pb-5 ps-10 sm:px-4 sm:ps-11">
       <div className="mb-3">
         <span className="border-dataos-fail-fg text-dataos-fail-fg inline-flex rounded border bg-white px-2 py-0.5 text-xs font-medium dark:bg-transparent">
           {detail.errorType}
@@ -520,12 +520,12 @@ function ErrorExpansionPanel({ detail }: { detail: ModelTableErrorDetail }) {
         <button
           type="button"
           onClick={handleCopy}
-          className="text-muted-foreground hover:text-foreground absolute top-3 right-3 inline-flex size-7 items-center justify-center rounded-sm transition-colors"
+          className="text-muted-foreground hover:text-foreground absolute top-3 end-3 inline-flex size-7 items-center justify-center rounded-sm transition-colors"
           aria-label={t.copyError}
         >
           <CopyIcon className="size-3.5" />
         </button>
-        <p className="text-foreground pr-9 font-mono text-xs leading-relaxed whitespace-pre-wrap">
+        <p className="text-foreground pe-9 font-mono text-xs leading-relaxed whitespace-pre-wrap">
           {detail.message}
         </p>
         {showViewMore ? (
@@ -559,7 +559,7 @@ function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
   const { t } = useTranslation(modelsTableMessages)
   return (
     <div className="w-full bg-cream-bg-3">
-      <table className="w-full table-fixed text-left text-sm">
+      <table className="w-full table-fixed text-start text-sm">
         <colgroup>
           <col className="w-[33%]" />
           <col className="w-[46%]" />
@@ -568,7 +568,7 @@ function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
         </colgroup>
         <thead>
           <tr className="border-b border-border">
-            <th className="text-muted-foreground h-9 pl-10 text-xs font-medium">
+            <th className="text-muted-foreground h-9 ps-10 text-xs font-medium">
               {t.columnColumn}
             </th>
             <th className="text-muted-foreground relative h-9 px-3 text-xs font-medium sm:px-4">
@@ -593,7 +593,7 @@ function QualityExpansionPanel({ rules }: { rules: ModelTableQualityRule[] }) {
                 key={rule.id}
                 className="border-b border-border/70 last:border-0"
               >
-                <td className="px-3 py-3 pl-10">
+                <td className="px-3 py-3 ps-10">
                   <div className="flex min-w-0 items-center gap-2">
                     <span className="inline-flex size-4 shrink-0 items-center justify-center">
                       <TableIcon className="text-muted-foreground size-3.5" />
@@ -684,7 +684,7 @@ function ModelTableDataRow({
         className={cn(
           "relative whitespace-normal px-3 py-4 align-middle sm:px-4",
           row.hasError &&
-            "before:bg-destructive before:absolute before:inset-y-0 before:left-0 before:w-0.5"
+            "before:bg-destructive before:absolute before:inset-y-0 before:start-0 before:w-0.5"
         )}
       >
         <div className="flex min-w-0 items-start gap-2">
@@ -766,7 +766,7 @@ function ModelTableExpandedRow({
         className={cn(
           "relative !bg-cream-bg-3 p-0",
           row.hasError &&
-            "before:bg-destructive before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-0.5"
+            "before:bg-destructive before:absolute before:inset-y-0 before:start-0 before:z-10 before:w-0.5"
         )}
       >
         <div className="bg-cream-bg-3">
@@ -920,12 +920,12 @@ export function ModelsTable({
         </h3>
         {enableSearch ? (
           <div className="relative w-full sm:max-w-[15rem]">
-            <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-[#8c8c8c]" />
+            <SearchIcon className="pointer-events-none absolute top-1/2 start-3 size-4 -translate-y-1/2 text-[#8c8c8c]" />
             <Input
               value={resolvedSearch}
               onChange={(event) => handleSearchChange(event.target.value)}
               placeholder={resolvedSearchPlaceholder}
-              className="h-9 rounded-full border border-black/10 bg-white pl-9 text-sm text-[#242422] shadow-sm placeholder:text-[#8c8c8c] dark:border-transparent dark:bg-white dark:text-[#242422]"
+              className="h-9 rounded-full border border-black/10 bg-white ps-9 text-sm text-[#242422] shadow-sm placeholder:text-[#8c8c8c] dark:border-transparent dark:bg-white dark:text-[#242422]"
             />
           </div>
         ) : null}

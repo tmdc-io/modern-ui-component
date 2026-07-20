@@ -66,9 +66,14 @@ const products = [
 
 export function ProductGrid() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="@container grid gap-4 @md:grid-cols-2">
       {products.map((product) => (
-        <DataProductCard key={product.title} {...product} href="#" />
+        <DataProductCard
+          key={product.title}
+          className="max-w-none"
+          {...product}
+          href="#"
+        />
       ))}
     </div>
   )

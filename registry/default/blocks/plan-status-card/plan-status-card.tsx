@@ -232,7 +232,7 @@ export function PlanStatusCard({
       <button
         type="button"
         className={cn(
-          "flex w-full items-center gap-3 text-left outline-none transition-colors",
+          "flex w-full flex-wrap items-center gap-x-3 gap-y-2 text-start outline-none transition-colors",
           size === "sm" ? "px-3 py-2.5" : "px-4 py-3",
           !selected && "hover:bg-cream-bg-3 focus-visible:bg-cream-bg-3",
           selected &&
@@ -273,7 +273,7 @@ export function PlanStatusCard({
             {typeLabel}
           </span>
         ) : null}
-        <span className="ml-auto flex shrink-0 items-center gap-2">
+        <span className="ms-auto flex min-w-0 flex-wrap items-center justify-end gap-2">
           {badges.map((badge) => (
             <span
               key={`${badge.label}-${badge.tone ?? "default"}`}
@@ -373,10 +373,10 @@ export function PlanStatusDiff({
               >
                 {showLineNumbers ? (
                   <>
-                    <span className="text-black-tertiary w-10 shrink-0 select-none px-2 py-0.5 text-right opacity-70">
+                    <span className="text-black-tertiary w-10 shrink-0 select-none px-2 py-0.5 text-end opacity-70">
                       {line.oldLine ?? ""}
                     </span>
-                    <span className="text-black-tertiary w-10 shrink-0 select-none px-2 py-0.5 text-right opacity-70">
+                    <span className="text-black-tertiary w-10 shrink-0 select-none px-2 py-0.5 text-end opacity-70">
                       {line.newLine ?? ""}
                     </span>
                   </>
@@ -501,7 +501,7 @@ export function PlanStatusCardSkeleton({
       <Skeleton className={cn("rounded", size === "sm" ? "size-3.5" : "size-4")} />
       <Skeleton className={cn("h-3", size === "sm" ? "w-32" : "w-40")} />
       <Skeleton className="h-5 w-10 rounded" />
-      <div className="ml-auto flex gap-2">
+      <div className="ms-auto flex gap-2">
         <Skeleton className="h-5 w-16 rounded" />
         <Skeleton className="h-5 w-14 rounded" />
         <Skeleton className="size-4" />

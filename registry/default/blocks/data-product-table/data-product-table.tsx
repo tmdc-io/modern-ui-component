@@ -160,7 +160,7 @@ function DataProductInteractiveHeader({
         </TableHead>
         <TableHead className="text-foreground relative h-11 px-4 font-bold">
           <span
-            className="bg-border pointer-events-none absolute top-1/2 left-0 h-4 w-px -translate-y-1/2"
+            className="bg-border pointer-events-none absolute top-1/2 start-0 h-4 w-px -translate-y-1/2"
             aria-hidden
           />
           <div className="flex w-full items-center justify-between gap-2">
@@ -214,7 +214,7 @@ export function DataProductStaticHeader() {
         </TableHead>
         <TableHead className="text-foreground relative h-11 px-4 font-bold">
           <span
-            className="bg-border pointer-events-none absolute top-1/2 left-0 h-4 w-px -translate-y-1/2"
+            className="bg-border pointer-events-none absolute top-1/2 start-0 h-4 w-px -translate-y-1/2"
             aria-hidden
           />
           {t.glossaryTerm}
@@ -227,9 +227,9 @@ export function DataProductStaticHeader() {
 
 function GlossaryPill({ label }: { label: string }) {
   return (
-    <span className="border-grey-8 text-foreground inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs">
+    <span className="border-grey-8 text-foreground inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs">
       <FileTextIcon className="text-muted-foreground size-3.5 shrink-0" />
-      {label}
+      <span className="truncate">{label}</span>
     </span>
   )
 }
@@ -286,7 +286,7 @@ export function DataProductDataRow({
         selected && "bg-teal-bg-2/70 hover:bg-teal-bg-2/70"
       )}
     >
-      <TableCell className="px-4 py-5 align-top">
+      <TableCell className="whitespace-normal px-4 py-5 align-top">
         <div className="flex gap-3">
           <div className="border-teal-bg-1 bg-teal-bg-2 flex size-10 shrink-0 items-center justify-center rounded-lg border">
             <BoxIcon
@@ -295,7 +295,7 @@ export function DataProductDataRow({
             />
           </div>
           <div className="min-w-0 space-y-1">
-            <p className="text-foreground text-sm leading-snug font-semibold">
+            <p className="text-foreground text-sm leading-snug font-semibold break-words">
               {row.title}
             </p>
             <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
@@ -304,10 +304,10 @@ export function DataProductDataRow({
           </div>
         </div>
       </TableCell>
-      <TableCell className="px-4 py-5 align-middle">
+      <TableCell className="max-w-[10rem] whitespace-normal px-4 py-5 align-middle">
         {row.glossaryTerm ? <GlossaryPill label={row.glossaryTerm} /> : null}
       </TableCell>
-      <TableCell className="px-4 py-5 text-right align-middle">
+      <TableCell className="whitespace-normal px-4 py-5 text-end align-middle">
         {row.showQuality ? <QualityBadge /> : null}
       </TableCell>
     </TableRow>
@@ -430,7 +430,7 @@ export function DataProductTable({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-grey-8",
+        "@container overflow-x-auto rounded-lg border border-grey-8",
         className
       )}
     >

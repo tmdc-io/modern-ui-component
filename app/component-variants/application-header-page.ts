@@ -36,7 +36,7 @@ export const applicationHeaderPage: ComponentVariantPage = {
       title: "Level 2 — Breadcrumbs",
       description:
         "Badge-only tenant trigger with breadcrumb trail and user avatar.",
-      body: "Use variant=\"l2\" on nested pages. The tenant switcher collapses to the initials badge; breadcrumbs fill the center area. Long labels truncate with ellipsis.",
+      body: "Use variant=\"l2\" on nested pages. The tenant switcher collapses to the initials badge; breadcrumbs fill the center. On narrow widths, parent crumbs collapse into an ellipsis dropdown so the header stays one row.",
       variants: [
         {
           id: "l2",

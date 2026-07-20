@@ -265,7 +265,7 @@ export function HeroFullPreview() {
   const follow = useFollow()
   const demo = useHeroDemoContent()
   return (
-    <div className="border-grey-8 w-full overflow-hidden rounded-lg border">
+    <div className="border-grey-8 w-full overflow-x-auto rounded-lg border">
       <Hero
         title={demo.title}
         subtitle={demo.subtitle}

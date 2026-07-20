@@ -529,7 +529,7 @@ export function ModelHealthRuns({
 
       <div className="relative min-w-[52rem]" ref={chartRef}>
         <div
-          className="pointer-events-none absolute right-0 flex flex-col items-center text-center"
+          className="pointer-events-none absolute end-0 flex flex-col items-center text-center"
           style={{ width: RIGHT_MARGIN }}
         >
           <span

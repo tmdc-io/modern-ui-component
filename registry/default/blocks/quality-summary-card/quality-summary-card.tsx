@@ -221,7 +221,7 @@ function StatusIcon({ status }: { status: DimensionStatus }) {
 }
 
 const footerLinkClass =
-  "inline-flex items-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary/80"
+  "inline-flex max-w-full flex-wrap items-center justify-center gap-1 text-[13px] font-medium text-primary transition-colors hover:text-primary/80"
 
 export function QualitySummaryCard(props: QualitySummaryCardProps) {
   const { t } = useTranslation(qualitySummaryCardMessages)
@@ -290,21 +290,21 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
             {emptyMessage ?? t.noDimensions}
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-x-8 gap-y-3.5">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3.5">
             {dimensions.map((dimension) => (
               <div
                 key={dimension.name}
                 className={
                   dimension.detail
-                    ? "flex gap-3"
-                    : "flex items-center gap-3"
+                    ? "flex min-w-0 gap-3"
+                    : "flex min-w-0 items-center gap-3"
                 }
               >
                 <div className="flex h-[18px] shrink-0 items-center">
                   <StatusIcon status={dimension.status} />
                 </div>
                 <div className="min-w-0">
-                  <p className={labelLineClass}>{dimension.name}</p>
+                  <p className={cn(labelLineClass, "truncate")}>{dimension.name}</p>
                   {dimension.detail ? (
                     <p
                       className={cn(
@@ -328,7 +328,7 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
         {href ? (
           <a href={href} className={footerLinkClass}>
             {t.viewAllPrefix} {passed} {t.viewAllSuffix}
-            <ArrowRightIcon className="size-3.5" />
+            <ArrowRightIcon className="size-3.5 rtl:rotate-180" />
           </a>
         ) : (
           <button
@@ -337,7 +337,7 @@ export function QualitySummaryCard(props: QualitySummaryCardProps) {
             onClick={onViewAll}
           >
             {t.viewAllPrefix} {passed} {t.viewAllSuffix}
-            <ArrowRightIcon className="size-3.5" />
+            <ArrowRightIcon className="size-3.5 rtl:rotate-180" />
           </button>
         )}
       </CardFooter>

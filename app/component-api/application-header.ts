@@ -7,6 +7,7 @@ export const applicationHeaderApi: ComponentApiDoc = {
     "Tenant dropdown with colored initials badges and checkmark on the active tenant.",
     "Pastel tenant color palette for sandbox environments (PR, CT, DE, QA, SE).",
     "Truncated breadcrumb labels for long page titles.",
+    "Narrow headers collapse parent crumbs into an ellipsis dropdown.",
   ],
   usage: {
     import: 'import { ApplicationHeader } from "@/components/blocks/application-header"',

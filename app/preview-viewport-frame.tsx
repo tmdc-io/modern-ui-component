@@ -81,7 +81,7 @@ export function PreviewViewportFrame({
       ) : null}
       <div
         className={cn(
-          "mx-auto w-full transition-[max-width]",
+          "@container/preview mx-auto w-full overflow-x-auto transition-[max-width]",
           viewport === "narrow" ? "max-w-sm" : "max-w-full"
         )}
         dir={rtl ? "rtl" : "ltr"}

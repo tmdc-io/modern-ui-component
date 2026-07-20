@@ -74,9 +74,9 @@ const defaultMetrics: RunMetric[] = [
 ]
 
 const columnClass = {
-  2: "grid-cols-1 min-[28rem]:grid-cols-2",
-  3: "grid-cols-2 md:grid-cols-3",
-  4: "grid-cols-2 md:grid-cols-3 xl:grid-cols-4",
+  2: "grid-cols-1 @md:grid-cols-2",
+  3: "grid-cols-1 @md:grid-cols-2 @lg:grid-cols-3",
+  4: "grid-cols-1 @md:grid-cols-2 @lg:grid-cols-3 @xl:grid-cols-4",
 } as const
 
 function MetricDetail({ detail }: { detail: string | RunMetricQualityDetail }) {
@@ -151,7 +151,7 @@ export function RunMetrics({
   }
 
   return (
-    <section className={cn("w-full min-w-0", className)}>
+    <section className={cn("@container w-full min-w-0", className)}>
       <div className={cn("grid w-full gap-2 sm:gap-3", columnClass[columns])}>
         {metrics.map((metric) => (
           <RunMetricCard key={metric.id} metric={metric} />
@@ -174,7 +174,7 @@ export function RunMetricsSkeleton({
 }: RunMetricsSkeletonProps) {
   return (
     <section
-      className={cn("w-full min-w-0", className)}
+      className={cn("@container w-full min-w-0", className)}
       aria-busy="true"
       aria-hidden
     >

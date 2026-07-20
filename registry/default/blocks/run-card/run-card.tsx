@@ -305,7 +305,7 @@ export function RunCard({
         </div>
         <p
           className={cn(
-            "text-black-tertiary min-w-0 shrink truncate text-right leading-none",
+            "text-black-tertiary min-w-0 shrink truncate text-end leading-none",
             size === "sm" ? "max-w-[40%] text-[11px]" : "max-w-[45%] text-xs"
           )}
           title={plan}
