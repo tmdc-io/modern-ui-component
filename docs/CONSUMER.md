@@ -13,7 +13,7 @@ Prerequisite: a React app with Tailwind already set up (for example `create-next
 npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir=false --import-alias "@/*"
 cd my-app
 
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y
 npx shadcn@latest add @modernui/button -y
 npx shadcn@latest add @modernui/login-form -y   # example block
 ```
@@ -78,7 +78,7 @@ npx shadcn@latest add tmdc-io/modern-ui-component/button#v1.0.0
 After the registry is deployed, either run ModernUI `init` (recommended) or register the namespace once:
 
 ```bash
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json
 ```
 
 Then install components:
@@ -139,9 +139,9 @@ No `apps/` or `packages/` yet. Scaffold first, then ModernUI init and add.
 
 ```bash
 npx shadcn@latest init --monorepo
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y -c packages/ui
 npx shadcn@latest init -y -c apps/web
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json -c apps/web
 npx shadcn@latest add @modernui/button -y -c packages/ui
 npx shadcn@latest add @modernui/login-form -y -c apps/web
 ```
@@ -166,9 +166,9 @@ Skip `init --monorepo`. Point `-c` at your existing UI package and apps. The sha
 4. **Add** primitives and optional app blocks
 
 ```bash
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y -c packages/ui
 npx shadcn@latest init -y -c apps/web
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json -c apps/web
 npx shadcn@latest add @modernui/button -y -c packages/ui
 npx shadcn@latest add @modernui/login-form -y -c apps/web   # optional
 npx shadcn@latest add @modernui/i18n -y -c packages/ui      # optional

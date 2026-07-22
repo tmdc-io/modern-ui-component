@@ -9,12 +9,12 @@ Deploy this Next.js app to serve built registry JSON from `public/r/`. Consumers
 3. Build command: `pnpm build` (runs `registry:build` + README/attributions sync + `next build`)
 4. Install command: `pnpm install`
 5. Output: default Next.js output (no static export)
-6. Deploy and note the URL, e.g. `https://modernui-registry.vercel.app`
+6. Deploy and note the URL, e.g. `https://modern-ui-component.vercel.app`
 7. Confirm artifacts:
-   - Docs site: `https://modernui-registry.vercel.app`
-   - Bootstrap base: `https://modernui-registry.vercel.app/r/init.json`
-   - Registry item: `https://modernui-registry.vercel.app/r/button.json`
-   - Catalog index: `https://modernui-registry.vercel.app/r/registry.json`
+   - Docs site: `https://modern-ui-component.vercel.app`
+   - Bootstrap base: `https://modern-ui-component.vercel.app/r/init.json`
+   - Registry item: `https://modern-ui-component.vercel.app/r/button.json`
+   - Catalog index: `https://modern-ui-component.vercel.app/r/registry.json`
 
 Custom domain (optional): add it in the Vercel project → Domains, then use that host in the registry URL below.
 
@@ -24,7 +24,7 @@ Prerequisite: a React app with Tailwind (e.g. `create-next-app --tailwind`). The
 
 ```bash
 # 1) ModernUI base — components.json, @modernui registry, theme, utils, core npm deps
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y
 
 # 2) Add any component (npm deps install automatically)
 npx shadcn@latest add @modernui/button -y
@@ -40,7 +40,7 @@ npx shadcn@latest add tmdc-io/modern-ui-component/button -y
 What `init` does for you:
 
 - Writes / merges `components.json` (aliases, Tailwind CSS path, icon library; `style` is `new-york` so the CLI can resolve bare `registryDependencies` from the official shadcn index)
-- Registers `@modernui` → `https://modernui-registry.vercel.app/r/{name}.json`
+- Registers `@modernui` → `https://modern-ui-component.vercel.app/r/{name}.json`
 - Installs npm packages listed on the base (`clsx`, `tailwind-merge`, `tw-animate-css`, `lucide-react`, …)
 - Writes **theme** (`app/globals.css`) and **utils** (`lib/utils.ts`) from files embedded in the `init` item (self-contained; no separate theme/utils fetch)
 
@@ -61,7 +61,7 @@ The official CLI also auto-runs a generic `init` when you `add` without `compone
 ### Register the namespace only
 
 ```bash
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json
 ```
 
 ### Or edit `components.json`
@@ -69,7 +69,7 @@ npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/
 ```json
 {
   "registries": {
-    "@modernui": "https://modernui-registry.vercel.app/r/{name}.json"
+    "@modernui": "https://modern-ui-component.vercel.app/r/{name}.json"
   }
 }
 ```
@@ -88,7 +88,7 @@ npx shadcn@latest add @modernui/login-form
 ### Direct JSON URL (no namespace)
 
 ```bash
-npx shadcn@latest add https://modernui-registry.vercel.app/r/button.json
+npx shadcn@latest add https://modern-ui-component.vercel.app/r/button.json
 ```
 
 ## Local development

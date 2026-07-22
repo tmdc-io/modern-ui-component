@@ -2,7 +2,7 @@
 export const REGISTRY_NAMESPACE = "tmdc-io/modern-ui-component"
 
 /** Hosted registry JSON base (requires Vercel deploy + @modernui in components.json). */
-export const HOSTED_REGISTRY_BASE = "https://modernui-registry.vercel.app/r"
+export const HOSTED_REGISTRY_BASE = "https://modern-ui-component.vercel.app/r"
 
 const MODERNUI_NS = "@modernui"
 

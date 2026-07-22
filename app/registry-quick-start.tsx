@@ -30,7 +30,7 @@ import { Badge } from "@/registry/default/ui/badge"
 import { Button } from "@/registry/default/ui/button"
 import { cn } from "@/lib/utils"
 
-const HOSTED_BASE = "https://modernui-registry.vercel.app"
+const HOSTED_BASE = "https://modern-ui-component.vercel.app"
 const HOSTED_REGISTRY = `${HOSTED_REGISTRY_BASE}/{name}.json`
 
 const CREATE_NEXT_APP_CMD = `npx create-next-app@latest my-app --typescript --tailwind --eslint --app --import-alias "@/*"

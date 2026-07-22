@@ -46,7 +46,7 @@
       "hooks": "@/hooks"
     },
     "registries": {
-      "@modernui": "https://modernui-registry.vercel.app/r/{name}.json"
+      "@modernui": "https://modern-ui-component.vercel.app/r/{name}.json"
     }
   }
 }

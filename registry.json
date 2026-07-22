@@ -77,7 +77,7 @@
           "hooks": "@/hooks"
         },
         "registries": {
-          "@modernui": "https://modernui-registry.vercel.app/r/{name}.json"
+          "@modernui": "https://modern-ui-component.vercel.app/r/{name}.json"
         }
       },
       "docs": "ModernUI is ready. Add components with: npx shadcn@latest add @modernui/button -y"

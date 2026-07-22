@@ -103,7 +103,7 @@ export const docsMessages = {
       "quickStart.vercelStep4Desc":
         "Skip the namespace and add a single item by full URL when you only need one file.",
       "quickStart.vercelNote":
-        "Base URL: https://modernui-registry.vercel.app — JSON at /r/{name}.json including /r/init.json. Maintainers deploying this docs app: see the Hosted guide.",
+        "Base URL: https://modern-ui-component.vercel.app — JSON at /r/{name}.json including /r/init.json. Maintainers deploying this docs app: see the Hosted guide.",
       "cat.foundation": "Foundation",
       "cat.actions": "Actions",
       "cat.forms": "Forms",
@@ -246,7 +246,7 @@ export const docsMessages = {
       "quickStart.vercelStep4Desc":
         "Omite el namespace y agrega un solo ítem por URL completa cuando solo necesitas un archivo.",
       "quickStart.vercelNote":
-        "URL base: https://modernui-registry.vercel.app — JSON en /r/{name}.json incluyendo /r/init.json. Mantenedores que despliegan esta app de docs: consulta la guía Hosted.",
+        "URL base: https://modern-ui-component.vercel.app — JSON en /r/{name}.json incluyendo /r/init.json. Mantenedores que despliegan esta app de docs: consulta la guía Hosted.",
       "cat.foundation": "Fundamentos",
       "cat.actions": "Acciones",
       "cat.forms": "Formularios",

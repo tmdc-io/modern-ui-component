@@ -5,7 +5,7 @@ const UI_DIR = "registry/default/ui"
 const ROOT = process.cwd()
 
 const REGISTRY_GITHUB = "tmdc-io/modern-ui-component"
-const HOSTED_REGISTRY_BASE = "https://modernui-registry.vercel.app/r"
+const HOSTED_REGISTRY_BASE = "https://modern-ui-component.vercel.app/r"
 
 const NPM_IMPORTS = {
   "radix-ui": "radix-ui",

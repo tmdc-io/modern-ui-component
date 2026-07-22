@@ -45,7 +45,7 @@ Install ModernUI components into any React project that supports shadcn/ui (Next
 ## Fully automated (recommended)
 
 \`\`\`bash
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y
 npx shadcn@latest add @modernui/button -y
 npx shadcn@latest add tmdc-io/modern-ui-component/project-setup   # optional conventions
 \`\`\`
@@ -82,9 +82,9 @@ npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 
 \`\`\`bash
 npx shadcn@latest init --monorepo
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y -c packages/ui
 npx shadcn@latest init -y -c apps/web
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json -c apps/web
 npx shadcn@latest add @modernui/button -y -c packages/ui
 npx shadcn@latest add @modernui/login-form -y -c apps/web
 \`\`\`
@@ -92,9 +92,9 @@ npx shadcn@latest add @modernui/login-form -y -c apps/web
 **B · Existing** — skip scaffold; substitute your workspace paths:
 
 \`\`\`bash
-npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init https://modern-ui-component.vercel.app/r/init.json -y -c packages/ui
 npx shadcn@latest init -y -c apps/web
-npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest registry add @modernui=https://modern-ui-component.vercel.app/r/{name}.json -c apps/web
 npx shadcn@latest add @modernui/button -y -c packages/ui
 npx shadcn@latest add @modernui/login-form -y -c apps/web
 \`\`\`
