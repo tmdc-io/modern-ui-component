@@ -25,3 +25,4 @@ export function SeparatorMenuPreview() {
   )
 }
 
+export default SeparatorMenuPreview

@@ -12,3 +12,4 @@ export function LabelDemoPreview() {
   )
 }
 
+export default LabelDemoPreview

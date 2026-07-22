@@ -70,3 +70,4 @@ export function SidebarGroupActionPreview() {
   )
 }
 
+export default SidebarGroupActionPreview

@@ -20,3 +20,4 @@ export function InputBadgePreview() {
   )
 }
 
+export default InputBadgePreview

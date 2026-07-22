@@ -66,3 +66,4 @@ export function BadgeRtlPreview() {
   )
 }
 
+export default BadgeRtlPreview

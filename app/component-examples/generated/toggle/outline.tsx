@@ -10,3 +10,4 @@ export function ToggleOutlinePreview() {
   )
 }
 
+export default ToggleOutlinePreview

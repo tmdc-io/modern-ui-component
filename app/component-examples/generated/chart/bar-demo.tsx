@@ -35,3 +35,4 @@ export function ChartBarDemoPreview() {
   )
 }
 
+export default ChartBarDemoPreview

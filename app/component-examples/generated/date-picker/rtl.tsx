@@ -96,3 +96,4 @@ export function DatePickerRtlPreview() {
   )
 }
 
+export default DatePickerRtlPreview

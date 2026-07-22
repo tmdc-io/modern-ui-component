@@ -149,3 +149,4 @@ export function InputGroupTextareaExamplesPreview() {
   )
 }
 
+export default InputGroupTextareaExamplesPreview

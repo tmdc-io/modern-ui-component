@@ -31,3 +31,4 @@ export function CarouselSpacingPreview() {
   )
 }
 
+export default CarouselSpacingPreview

@@ -20,3 +20,4 @@ export function SpinnerButtonPreview() {
   )
 }
 
+export default SpinnerButtonPreview

@@ -16,3 +16,4 @@ export function CheckboxDemoPreview() {
   )
 }
 
+export default CheckboxDemoPreview

@@ -15,3 +15,4 @@ export function ProgressDemoPreview() {
   return <Progress value={progress} className="w-[60%]" />
 }
 
+export default ProgressDemoPreview

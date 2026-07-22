@@ -15,3 +15,4 @@ export function AspectRatioDemoPreview() {
   )
 }
 
+export default AspectRatioDemoPreview

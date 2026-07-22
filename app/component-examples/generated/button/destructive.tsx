@@ -4,3 +4,4 @@ export function ButtonDestructivePreview() {
   return <Button variant="destructive">Destructive</Button>
 }
 
+export default ButtonDestructivePreview

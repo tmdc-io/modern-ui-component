@@ -41,3 +41,4 @@ export function DatePickerDemoPreview() {
   )
 }
 
+export default DatePickerDemoPreview

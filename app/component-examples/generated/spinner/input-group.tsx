@@ -32,3 +32,4 @@ export function SpinnerInputGroupPreview() {
   )
 }
 
+export default SpinnerInputGroupPreview

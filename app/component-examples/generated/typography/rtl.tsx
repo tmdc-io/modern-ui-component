@@ -218,3 +218,4 @@ export function TypographyRtlPreview() {
   )
 }
 
+export default TypographyRtlPreview

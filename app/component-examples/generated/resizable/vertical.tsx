@@ -25,3 +25,4 @@ export function ResizableVerticalPreview() {
   )
 }
 
+export default ResizableVerticalPreview

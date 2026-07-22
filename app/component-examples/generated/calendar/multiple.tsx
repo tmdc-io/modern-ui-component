@@ -11,3 +11,4 @@ export function CalendarMultiplePreview() {
   )
 }
 
+export default CalendarMultiplePreview

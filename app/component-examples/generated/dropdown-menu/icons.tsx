@@ -38,3 +38,4 @@ export function DropdownMenuIconsPreview() {
   )
 }
 
+export default DropdownMenuIconsPreview

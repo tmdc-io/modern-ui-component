@@ -40,3 +40,4 @@ export function FieldSelectPreview() {
   )
 }
 
+export default FieldSelectPreview

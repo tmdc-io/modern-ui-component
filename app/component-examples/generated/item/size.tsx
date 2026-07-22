@@ -44,3 +44,4 @@ export function ItemSizePreview() {
   )
 }
 
+export default ItemSizePreview

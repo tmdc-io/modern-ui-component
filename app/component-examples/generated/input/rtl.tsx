@@ -57,3 +57,4 @@ export function InputRtlPreview() {
   )
 }
 
+export default InputRtlPreview

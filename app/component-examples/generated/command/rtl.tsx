@@ -108,3 +108,4 @@ export function CommandRtlPreview() {
   )
 }
 
+export default CommandRtlPreview

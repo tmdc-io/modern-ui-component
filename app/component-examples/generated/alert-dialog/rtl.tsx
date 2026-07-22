@@ -124,3 +124,4 @@ export function AlertDialogRtlPreview() {
   )
 }
 
+export default AlertDialogRtlPreview

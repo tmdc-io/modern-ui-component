@@ -61,3 +61,4 @@ export function SidebarGroupCollapsiblePreview() {
   )
 }
 
+export default SidebarGroupCollapsiblePreview

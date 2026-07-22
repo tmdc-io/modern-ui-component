@@ -35,3 +35,4 @@ export function ComboboxAutoHighlightPreview() {
   )
 }
 
+export default ComboboxAutoHighlightPreview

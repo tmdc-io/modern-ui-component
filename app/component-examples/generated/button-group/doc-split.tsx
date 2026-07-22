@@ -12,3 +12,4 @@ export function ButtonGroupDocSplitPreview() {
     </ButtonGroup>
   )
 }
+export default ButtonGroupDocSplitPreview

@@ -21,3 +21,4 @@ export function CheckboxWithTextPreview() {
   )
 }
 
+export default CheckboxWithTextPreview

@@ -43,3 +43,4 @@ export function AccordionMultiplePreview() {
   )
 }
 
+export default AccordionMultiplePreview

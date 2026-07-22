@@ -66,3 +66,4 @@ export function ContextMenuDemoPreview() {
   )
 }
 
+export default ContextMenuDemoPreview

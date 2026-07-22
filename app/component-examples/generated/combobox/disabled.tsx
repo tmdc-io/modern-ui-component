@@ -35,3 +35,4 @@ export function ComboboxDisabledPreview() {
   )
 }
 
+export default ComboboxDisabledPreview

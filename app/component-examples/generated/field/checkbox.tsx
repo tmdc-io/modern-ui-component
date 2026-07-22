@@ -77,3 +77,4 @@ export function FieldCheckboxPreview() {
   )
 }
 
+export default FieldCheckboxPreview

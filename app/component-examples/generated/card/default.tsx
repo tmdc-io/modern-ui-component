@@ -77,3 +77,4 @@ export function CardDemoPreview({ className, ...props }: CardProps) {
   )
 }
 
+export default CardDemoPreview

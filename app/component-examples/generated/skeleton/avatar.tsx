@@ -12,3 +12,4 @@ export function SkeletonAvatarPreview() {
   )
 }
 
+export default SkeletonAvatarPreview

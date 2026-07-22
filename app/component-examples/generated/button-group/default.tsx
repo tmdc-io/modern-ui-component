@@ -103,3 +103,4 @@ export function ButtonGroupDemoPreview() {
   )
 }
 
+export default ButtonGroupDemoPreview

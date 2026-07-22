@@ -37,3 +37,4 @@ export function SkeletonRtlPreview() {
   )
 }
 
+export default SkeletonRtlPreview

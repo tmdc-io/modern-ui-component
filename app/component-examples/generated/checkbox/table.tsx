@@ -107,3 +107,4 @@ export function CheckboxTablePreview() {
   )
 }
 
+export default CheckboxTablePreview

@@ -23,3 +23,4 @@ export function EmptyDocWithActionPreview() {
     </Empty>
   )
 }
+export default EmptyDocWithActionPreview

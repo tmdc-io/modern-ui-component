@@ -157,3 +157,4 @@ export function TabsRtlPreview() {
   )
 }
 
+export default TabsRtlPreview

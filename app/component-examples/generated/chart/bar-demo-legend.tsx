@@ -52,3 +52,4 @@ export function ChartBarDemoLegendPreview() {
   )
 }
 
+export default ChartBarDemoLegendPreview

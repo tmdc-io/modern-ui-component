@@ -38,3 +38,4 @@ export function SwitchChoiceCardPreview() {
   )
 }
 
+export default SwitchChoiceCardPreview

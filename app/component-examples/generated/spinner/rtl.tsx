@@ -61,3 +61,4 @@ export function SpinnerRtlPreview() {
   )
 }
 
+export default SpinnerRtlPreview

@@ -47,3 +47,4 @@ export function ContextMenuIconsPreview() {
   )
 }
 
+export default ContextMenuIconsPreview

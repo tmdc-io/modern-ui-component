@@ -54,3 +54,4 @@ export function TextareaRtlPreview() {
   )
 }
 
+export default TextareaRtlPreview

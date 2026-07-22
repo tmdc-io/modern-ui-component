@@ -46,3 +46,4 @@ export function ButtonGroupSizePreview() {
   )
 }
 
+export default ButtonGroupSizePreview

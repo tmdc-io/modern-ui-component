@@ -21,3 +21,4 @@ export function ToggleGroupSinglePreview() {
   )
 }
 
+export default ToggleGroupSinglePreview

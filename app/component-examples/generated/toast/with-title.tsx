@@ -21,3 +21,4 @@ export function ToastWithTitlePreview() {
   )
 }
 
+export default ToastWithTitlePreview

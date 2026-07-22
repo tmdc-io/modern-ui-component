@@ -25,3 +25,4 @@ export function ResizableHandlePreview() {
   )
 }
 
+export default ResizableHandlePreview

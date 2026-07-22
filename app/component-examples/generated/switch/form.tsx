@@ -96,3 +96,4 @@ export function SwitchFormPreview() {
   )
 }
 
+export default SwitchFormPreview

@@ -31,3 +31,4 @@ export function PaginationSimplePreview() {
   )
 }
 
+export default PaginationSimplePreview

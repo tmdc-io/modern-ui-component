@@ -52,3 +52,4 @@ export function ScrollAreaHorizontalDemoPreview() {
   )
 }
 
+export default ScrollAreaHorizontalDemoPreview

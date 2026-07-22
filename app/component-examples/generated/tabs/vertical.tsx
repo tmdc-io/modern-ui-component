@@ -12,3 +12,4 @@ export function TabsVerticalPreview() {
   )
 }
 
+export default TabsVerticalPreview

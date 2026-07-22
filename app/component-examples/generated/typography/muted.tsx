@@ -4,3 +4,4 @@ export function TypographyMutedPreview() {
   )
 }
 
+export default TypographyMutedPreview

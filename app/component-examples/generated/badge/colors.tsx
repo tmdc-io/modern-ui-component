@@ -22,3 +22,4 @@ export function BadgeColorsPreview() {
   )
 }
 
+export default BadgeColorsPreview

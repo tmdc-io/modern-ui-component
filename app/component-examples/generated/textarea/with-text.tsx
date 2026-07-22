@@ -13,3 +13,4 @@ export function TextareaWithTextPreview() {
   )
 }
 
+export default TextareaWithTextPreview

@@ -61,3 +61,4 @@ export function DropdownMenuCheckboxesIconsPreview() {
   )
 }
 
+export default DropdownMenuCheckboxesIconsPreview

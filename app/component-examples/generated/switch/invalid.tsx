@@ -22,3 +22,4 @@ export function SwitchInvalidPreview() {
   )
 }
 
+export default SwitchInvalidPreview

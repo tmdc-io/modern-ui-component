@@ -36,3 +36,4 @@ export function KbdTooltipPreview() {
   )
 }
 
+export default KbdTooltipPreview

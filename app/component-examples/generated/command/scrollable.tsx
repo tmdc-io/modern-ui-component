@@ -157,3 +157,4 @@ export function CommandScrollablePreview() {
   )
 }
 
+export default CommandScrollablePreview

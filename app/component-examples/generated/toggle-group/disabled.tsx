@@ -21,3 +21,4 @@ export function ToggleGroupDisabledPreview() {
   )
 }
 
+export default ToggleGroupDisabledPreview

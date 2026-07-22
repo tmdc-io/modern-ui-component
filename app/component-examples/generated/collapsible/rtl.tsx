@@ -91,3 +91,4 @@ export function CollapsibleRtlPreview() {
   )
 }
 
+export default CollapsibleRtlPreview

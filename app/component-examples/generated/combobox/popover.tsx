@@ -90,3 +90,4 @@ export function ComboboxPopoverPreview() {
   )
 }
 
+export default ComboboxPopoverPreview

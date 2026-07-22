@@ -10,3 +10,4 @@ export function ToggleDemoPreview() {
   )
 }
 
+export default ToggleDemoPreview

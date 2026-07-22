@@ -10,3 +10,4 @@ export function ButtonWithIconPreview() {
   )
 }
 
+export default ButtonWithIconPreview

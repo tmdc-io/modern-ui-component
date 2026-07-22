@@ -24,3 +24,4 @@ export function TooltipSidesPreview() {
   )
 }
 
+export default TooltipSidesPreview

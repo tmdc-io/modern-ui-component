@@ -14,3 +14,4 @@ export function CheckboxBasicPreview() {
   )
 }
 
+export default CheckboxBasicPreview

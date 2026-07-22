@@ -85,3 +85,4 @@ export function AvatarRtlPreview() {
   )
 }
 
+export default AvatarRtlPreview

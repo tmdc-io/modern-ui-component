@@ -59,3 +59,4 @@ export function InputOtpRtlPreview() {
   )
 }
 
+export default InputOtpRtlPreview

@@ -38,3 +38,4 @@ export function CommandBasicPreview() {
   )
 }
 
+export default CommandBasicPreview

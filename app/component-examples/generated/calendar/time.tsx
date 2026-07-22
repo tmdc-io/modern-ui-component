@@ -65,3 +65,4 @@ export function CalendarTimePreview() {
   )
 }
 
+export default CalendarTimePreview

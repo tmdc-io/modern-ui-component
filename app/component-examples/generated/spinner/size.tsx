@@ -11,3 +11,4 @@ export function SpinnerSizePreview() {
   )
 }
 
+export default SpinnerSizePreview

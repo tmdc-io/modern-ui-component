@@ -38,3 +38,4 @@ export function BreadcrumbEllipsisPreview() {
   )
 }
 
+export default BreadcrumbEllipsisPreview

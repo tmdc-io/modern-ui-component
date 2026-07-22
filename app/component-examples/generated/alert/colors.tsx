@@ -19,3 +19,4 @@ export function AlertColorsPreview() {
   )
 }
 
+export default AlertColorsPreview

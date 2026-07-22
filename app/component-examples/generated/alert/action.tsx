@@ -22,3 +22,4 @@ export function AlertActionPreview() {
   )
 }
 
+export default AlertActionPreview

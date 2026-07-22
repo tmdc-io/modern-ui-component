@@ -43,3 +43,4 @@ export function TypographyTablePreview() {
   )
 }
 
+export default TypographyTablePreview

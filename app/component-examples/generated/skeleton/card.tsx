@@ -12,3 +12,4 @@ export function SkeletonCardPreview() {
   )
 }
 
+export default SkeletonCardPreview

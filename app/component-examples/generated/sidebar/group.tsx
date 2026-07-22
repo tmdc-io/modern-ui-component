@@ -44,3 +44,4 @@ export function SidebarGroupPreview() {
   )
 }
 
+export default SidebarGroupPreview

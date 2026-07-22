@@ -55,3 +55,4 @@ export function DialogCloseButtonPreview() {
   )
 }
 
+export default DialogCloseButtonPreview

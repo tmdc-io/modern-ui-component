@@ -18,3 +18,4 @@ export function EmptyDocDemoPreview() {
     </Empty>
   )
 }
+export default EmptyDocDemoPreview

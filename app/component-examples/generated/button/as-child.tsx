@@ -10,3 +10,4 @@ export function ButtonAsChildPreview() {
   )
 }
 
+export default ButtonAsChildPreview

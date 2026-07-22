@@ -11,3 +11,4 @@ export function ItemDocMutedPreview() {
     </Item>
   )
 }
+export default ItemDocMutedPreview

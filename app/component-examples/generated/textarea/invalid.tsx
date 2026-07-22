@@ -19,3 +19,4 @@ export function TextareaInvalidPreview() {
   )
 }
 
+export default TextareaInvalidPreview

@@ -21,3 +21,4 @@ export function ToggleGroupDemoPreview() {
   )
 }
 
+export default ToggleGroupDemoPreview

@@ -28,3 +28,4 @@ export function ToggleGroupSpacingPreview() {
   )
 }
 
+export default ToggleGroupSpacingPreview

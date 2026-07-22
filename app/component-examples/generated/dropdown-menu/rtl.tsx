@@ -240,3 +240,4 @@ export function DropdownMenuRtlPreview() {
   )
 }
 
+export default DropdownMenuRtlPreview

@@ -86,3 +86,4 @@ export function TableDemoPreview() {
   )
 }
 
+export default TableDemoPreview

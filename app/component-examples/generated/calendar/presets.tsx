@@ -57,3 +57,4 @@ export function CalendarPresetsPreview() {
   )
 }
 
+export default CalendarPresetsPreview

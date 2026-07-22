@@ -50,3 +50,4 @@ export function FormDocDemoPreview() {
     </Form>
   )
 }
+export default FormDocDemoPreview

@@ -50,3 +50,4 @@ export function CalendarCustomDaysPreview() {
   )
 }
 
+export default CalendarCustomDaysPreview

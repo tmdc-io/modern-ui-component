@@ -81,3 +81,4 @@ export function HoverCardRtlPreview() {
   )
 }
 
+export default HoverCardRtlPreview

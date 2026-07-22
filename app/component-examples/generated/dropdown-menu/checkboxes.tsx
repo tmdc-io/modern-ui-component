@@ -50,3 +50,4 @@ export function DropdownMenuCheckboxesPreview() {
   )
 }
 
+export default DropdownMenuCheckboxesPreview

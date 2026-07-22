@@ -10,3 +10,4 @@ export function InputDocFieldPreview() {
     </Field>
   )
 }
+export default InputDocFieldPreview

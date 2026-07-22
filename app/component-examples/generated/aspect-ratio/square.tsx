@@ -17,3 +17,4 @@ export function AspectRatioSquarePreview() {
   )
 }
 
+export default AspectRatioSquarePreview

@@ -6,3 +6,4 @@ export function TypographyH1Preview() {
   )
 }
 
+export default TypographyH1Preview

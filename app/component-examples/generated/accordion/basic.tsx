@@ -44,3 +44,4 @@ export function AccordionBasicPreview() {
   )
 }
 
+export default AccordionBasicPreview

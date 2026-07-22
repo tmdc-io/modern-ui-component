@@ -81,3 +81,4 @@ export function AlertRtlPreview() {
   )
 }
 
+export default AlertRtlPreview

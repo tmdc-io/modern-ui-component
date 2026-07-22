@@ -40,3 +40,4 @@ export function EmptyCardPreview() {
   )
 }
 
+export default EmptyCardPreview

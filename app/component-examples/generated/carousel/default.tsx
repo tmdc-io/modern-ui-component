@@ -31,3 +31,4 @@ export function CarouselDemoPreview() {
   )
 }
 
+export default CarouselDemoPreview

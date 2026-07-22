@@ -2,7 +2,7 @@ import { BadgeCheck, BookmarkIcon } from "lucide-react"
 
 import { Badge } from "@/registry/default/ui/badge"
 
-export function BadgeIconPreview() {
+export function BadgeIconVariantPreview() {
   return (
     <div className="flex flex-wrap gap-2">
       <Badge variant="secondary">
@@ -17,3 +17,4 @@ export function BadgeIconPreview() {
   )
 }
 
+export default BadgeIconVariantPreview

@@ -51,3 +51,4 @@ export function ContextMenuRadioPreview() {
   )
 }
 
+export default ContextMenuRadioPreview

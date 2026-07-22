@@ -17,3 +17,4 @@ export function AvatarBasicPreview() {
   )
 }
 
+export default AvatarBasicPreview

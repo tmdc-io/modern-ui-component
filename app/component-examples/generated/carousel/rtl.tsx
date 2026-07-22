@@ -76,3 +76,4 @@ export function CarouselRtlPreview() {
   )
 }
 
+export default CarouselRtlPreview

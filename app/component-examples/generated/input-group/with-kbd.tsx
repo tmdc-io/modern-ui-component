@@ -131,3 +131,4 @@ export function InputGroupWithKbdPreview() {
   )
 }
 
+export default InputGroupWithKbdPreview

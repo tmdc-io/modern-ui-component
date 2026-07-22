@@ -38,3 +38,4 @@ export function AccordionDemoPreview() {
   )
 }
 
+export default AccordionDemoPreview

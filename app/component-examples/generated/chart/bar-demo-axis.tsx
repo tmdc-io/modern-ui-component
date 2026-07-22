@@ -43,3 +43,4 @@ export function ChartBarDemoAxisPreview() {
   )
 }
 
+export default ChartBarDemoAxisPreview

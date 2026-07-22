@@ -55,3 +55,4 @@ export function ButtonGroupPopoverPreview() {
   )
 }
 
+export default ButtonGroupPopoverPreview

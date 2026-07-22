@@ -64,3 +64,4 @@ export function DrawerSidesPreview() {
   )
 }
 
+export default DrawerSidesPreview

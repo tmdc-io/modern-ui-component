@@ -73,3 +73,4 @@ export function CheckboxGroupPreview() {
   )
 }
 
+export default CheckboxGroupPreview

@@ -38,3 +38,4 @@ export function RadioGroupInvalidPreview() {
   )
 }
 
+export default RadioGroupInvalidPreview

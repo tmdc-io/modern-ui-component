@@ -48,3 +48,4 @@ export function DropdownMenuRadioIconsPreview() {
   )
 }
 
+export default DropdownMenuRadioIconsPreview

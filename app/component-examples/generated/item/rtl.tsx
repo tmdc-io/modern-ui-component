@@ -80,3 +80,4 @@ export function ItemRtlPreview() {
   )
 }
 
+export default ItemRtlPreview

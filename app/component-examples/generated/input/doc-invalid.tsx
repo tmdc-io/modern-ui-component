@@ -10,3 +10,4 @@ export function InputDocInvalidPreview() {
     </Field>
   )
 }
+export default InputDocInvalidPreview

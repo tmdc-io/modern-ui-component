@@ -19,3 +19,4 @@ export function ItemDocDemoPreview() {
     </Item>
   )
 }
+export default ItemDocDemoPreview

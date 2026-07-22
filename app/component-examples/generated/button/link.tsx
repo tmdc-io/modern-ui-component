@@ -4,3 +4,4 @@ export function ButtonLinkPreview() {
   return <Button variant="link">Link</Button>
 }
 
+export default ButtonLinkPreview

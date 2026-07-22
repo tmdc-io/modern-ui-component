@@ -75,3 +75,4 @@ export function ComboboxGroupsPreview() {
   )
 }
 
+export default ComboboxGroupsPreview

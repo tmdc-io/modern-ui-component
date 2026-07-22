@@ -19,3 +19,4 @@ export function TabsIconsPreview() {
   )
 }
 
+export default TabsIconsPreview

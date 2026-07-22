@@ -18,3 +18,4 @@ export function InputGroupDocTextareaPreview() {
     </InputGroup>
   )
 }
+export default InputGroupDocTextareaPreview

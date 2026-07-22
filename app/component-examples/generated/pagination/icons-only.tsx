@@ -48,3 +48,4 @@ export function PaginationIconsOnlyPreview() {
   )
 }
 
+export default PaginationIconsOnlyPreview

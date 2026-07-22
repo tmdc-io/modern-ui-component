@@ -104,3 +104,4 @@ export function BreadcrumbRtlPreview() {
   )
 }
 
+export default BreadcrumbRtlPreview

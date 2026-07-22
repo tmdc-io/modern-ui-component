@@ -38,3 +38,4 @@ export function FieldRadioPreview() {
   )
 }
 
+export default FieldRadioPreview

@@ -33,3 +33,4 @@ export function BreadcrumbSeparatorPreview() {
   )
 }
 
+export default BreadcrumbSeparatorPreview

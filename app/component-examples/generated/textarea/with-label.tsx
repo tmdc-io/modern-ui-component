@@ -10,3 +10,4 @@ export function TextareaWithLabelPreview() {
   )
 }
 
+export default TextareaWithLabelPreview

@@ -33,3 +33,4 @@ export function EmptyBackgroundPreview() {
   )
 }
 
+export default EmptyBackgroundPreview

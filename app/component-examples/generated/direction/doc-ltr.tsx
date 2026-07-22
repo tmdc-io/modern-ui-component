@@ -7,3 +7,4 @@ export function DirectionDocLtrPreview() {
     </DirectionProvider>
   )
 }
+export default DirectionDocLtrPreview

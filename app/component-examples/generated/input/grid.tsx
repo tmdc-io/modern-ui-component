@@ -16,3 +16,4 @@ export function InputGridPreview() {
   )
 }
 
+export default InputGridPreview

@@ -30,3 +30,4 @@ export function InputGroupInlineEndPreview() {
   )
 }
 
+export default InputGroupInlineEndPreview

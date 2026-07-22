@@ -84,3 +84,4 @@ export function EmptyRtlPreview() {
   )
 }
 
+export default EmptyRtlPreview

@@ -72,3 +72,4 @@ export function CheckboxFormSinglePreview() {
   )
 }
 
+export default CheckboxFormSinglePreview

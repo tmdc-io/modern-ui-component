@@ -15,3 +15,4 @@ export function SliderDemoPreview({ className, ...props }: SliderProps) {
   )
 }
 
+export default SliderDemoPreview

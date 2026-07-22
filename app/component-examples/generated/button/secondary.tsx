@@ -4,3 +4,4 @@ export function ButtonSecondaryPreview() {
   return <Button variant="secondary">Secondary</Button>
 }
 
+export default ButtonSecondaryPreview

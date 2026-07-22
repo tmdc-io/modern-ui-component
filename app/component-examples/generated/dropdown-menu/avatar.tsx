@@ -51,3 +51,4 @@ export function DropdownMenuAvatarPreview() {
   )
 }
 
+export default DropdownMenuAvatarPreview

@@ -22,3 +22,4 @@ export function ProgressControlledPreview() {
   )
 }
 
+export default ProgressControlledPreview

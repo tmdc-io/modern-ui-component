@@ -10,7 +10,7 @@ import {
   ItemTitle,
 } from "@/registry/default/ui/item"
 
-export function ItemIconPreview() {
+export function ItemIconVariantPreview() {
   return (
     <div className="flex w-full max-w-lg flex-col gap-6">
       <Item variant="outline">
@@ -33,3 +33,4 @@ export function ItemIconPreview() {
   )
 }
 
+export default ItemIconVariantPreview

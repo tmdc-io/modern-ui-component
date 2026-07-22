@@ -38,3 +38,4 @@ export function RadioGroupDescriptionPreview() {
   )
 }
 
+export default RadioGroupDescriptionPreview

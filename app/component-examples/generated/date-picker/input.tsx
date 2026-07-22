@@ -105,3 +105,4 @@ export function DatePickerInputPreview() {
   )
 }
 
+export default DatePickerInputPreview

@@ -41,3 +41,4 @@ export function ItemLinkPreview() {
   )
 }
 
+export default ItemLinkPreview

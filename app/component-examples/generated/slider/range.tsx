@@ -11,3 +11,4 @@ export function SliderRangePreview() {
   )
 }
 
+export default SliderRangePreview

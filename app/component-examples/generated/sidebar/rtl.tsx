@@ -173,7 +173,7 @@ export function SidebarRtlPreview() {
 }
 
 function AppSidebarWithProvider() {
-  const { language, setLanguage, dir } = useTranslation(translations)
+  const { language, setLanguage, dir } = useTranslation(translations, "ar")
 
   return (
     <DirectionProvider dir={dir}>
@@ -190,7 +190,7 @@ function AppSidebarWithProvider() {
 }
 
 function AppSidebar() {
-  const { dir, t } = useTranslation(translations)
+  const { dir, t } = useTranslation(translations, "ar")
 
   const navMain = [
     {
@@ -500,3 +500,4 @@ function SidebarContentInner({
   )
 }
 
+export default SidebarRtlPreview

@@ -20,3 +20,4 @@ export function ButtonGroupDocSizePreview() {
     </div>
   )
 }
+export default ButtonGroupDocSizePreview

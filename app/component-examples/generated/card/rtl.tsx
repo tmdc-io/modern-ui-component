@@ -115,3 +115,4 @@ export function CardRtlPreview() {
   )
 }
 
+export default CardRtlPreview

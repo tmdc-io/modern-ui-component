@@ -35,3 +35,4 @@ export function FieldFieldsetPreview() {
   )
 }
 
+export default FieldFieldsetPreview

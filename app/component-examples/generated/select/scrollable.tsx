@@ -74,3 +74,4 @@ export function SelectScrollablePreview() {
   )
 }
 
+export default SelectScrollablePreview

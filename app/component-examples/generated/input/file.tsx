@@ -10,3 +10,4 @@ export function InputFilePreview() {
   )
 }
 
+export default InputFilePreview

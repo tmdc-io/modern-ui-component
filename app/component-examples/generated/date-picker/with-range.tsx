@@ -63,3 +63,4 @@ export function DatePickerWithRangePreview({
   )
 }
 
+export default DatePickerWithRangePreview

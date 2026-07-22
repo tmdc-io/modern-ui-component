@@ -41,3 +41,4 @@ export function InputGroupBasicPreview() {
   )
 }
 
+export default InputGroupBasicPreview

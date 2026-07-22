@@ -50,3 +50,4 @@ export function AspectRatioRtlPreview() {
   )
 }
 
+export default AspectRatioRtlPreview

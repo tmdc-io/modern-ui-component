@@ -21,3 +21,4 @@ export function InputFieldPreview() {
   )
 }
 
+export default InputFieldPreview

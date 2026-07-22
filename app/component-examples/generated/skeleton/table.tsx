@@ -14,3 +14,4 @@ export function SkeletonTablePreview() {
   )
 }
 
+export default SkeletonTablePreview

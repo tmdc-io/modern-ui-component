@@ -25,3 +25,4 @@ export function CalendarWeekNumbersPreview() {
   )
 }
 
+export default CalendarWeekNumbersPreview

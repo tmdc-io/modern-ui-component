@@ -11,3 +11,4 @@ export function ButtonLoadingPreview() {
   )
 }
 
+export default ButtonLoadingPreview

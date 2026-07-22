@@ -75,3 +75,4 @@ export function ContextMenuGroupsPreview() {
   )
 }
 
+export default ContextMenuGroupsPreview

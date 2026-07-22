@@ -428,3 +428,4 @@ export function DataTableRtlPreview() {
   )
 }
 
+export default DataTableRtlPreview

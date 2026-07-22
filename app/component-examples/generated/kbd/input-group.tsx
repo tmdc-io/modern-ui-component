@@ -24,3 +24,4 @@ export function KbdInputGroupPreview() {
   )
 }
 
+export default KbdInputGroupPreview

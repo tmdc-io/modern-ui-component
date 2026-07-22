@@ -4,3 +4,4 @@ export function ButtonGhostPreview() {
   return <Button variant="ghost">Ghost</Button>
 }
 
+export default ButtonGhostPreview

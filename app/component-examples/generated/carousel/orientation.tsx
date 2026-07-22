@@ -37,3 +37,4 @@ export function CarouselOrientationPreview() {
   )
 }
 
+export default CarouselOrientationPreview

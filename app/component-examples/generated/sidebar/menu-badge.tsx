@@ -80,3 +80,4 @@ export function SidebarMenuBadgePreview() {
   )
 }
 
+export default SidebarMenuBadgePreview

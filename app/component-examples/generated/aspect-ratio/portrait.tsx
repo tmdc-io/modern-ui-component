@@ -17,3 +17,4 @@ export function AspectRatioPortraitPreview() {
   )
 }
 
+export default AspectRatioPortraitPreview

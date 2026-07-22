@@ -73,3 +73,4 @@ export function TabsDemoPreview() {
   )
 }
 
+export default TabsDemoPreview

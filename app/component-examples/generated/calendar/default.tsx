@@ -17,3 +17,4 @@ export function CalendarDemoPreview() {
   )
 }
 
+export default CalendarDemoPreview

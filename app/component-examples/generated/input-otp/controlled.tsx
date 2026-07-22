@@ -38,3 +38,4 @@ export function InputOtpControlledPreview() {
   )
 }
 
+export default InputOtpControlledPreview

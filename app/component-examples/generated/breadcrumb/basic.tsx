@@ -27,3 +27,4 @@ export function BreadcrumbBasicPreview() {
   )
 }
 
+export default BreadcrumbBasicPreview

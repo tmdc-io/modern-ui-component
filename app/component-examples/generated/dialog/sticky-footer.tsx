@@ -47,3 +47,4 @@ export function DialogStickyFooterPreview() {
   )
 }
 
+export default DialogStickyFooterPreview

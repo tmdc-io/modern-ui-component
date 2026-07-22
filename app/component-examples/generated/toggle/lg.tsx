@@ -10,3 +10,4 @@ export function ToggleLgPreview() {
   )
 }
 
+export default ToggleLgPreview

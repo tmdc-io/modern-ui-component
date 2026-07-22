@@ -22,3 +22,4 @@ export function TooltipDisabledPreview() {
   )
 }
 
+export default TooltipDisabledPreview

@@ -15,3 +15,4 @@ export function TextareaFieldPreview() {
   )
 }
 
+export default TextareaFieldPreview

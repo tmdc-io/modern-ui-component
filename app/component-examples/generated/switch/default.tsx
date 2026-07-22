@@ -10,3 +10,4 @@ export function SwitchDemoPreview() {
   )
 }
 
+export default SwitchDemoPreview

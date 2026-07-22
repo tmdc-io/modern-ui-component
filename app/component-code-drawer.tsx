@@ -54,8 +54,6 @@ export function ComponentCodeDrawer({
   const [error, setError] = React.useState<string | null>(null)
   const [copied, setCopied] = React.useState(false)
 
-  const isVariantMode = Boolean(variant)
-
   React.useEffect(() => {
     if (!open) {
       return

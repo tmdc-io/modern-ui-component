@@ -12,3 +12,4 @@ export function KbdButtonPreview() {
   )
 }
 
+export default KbdButtonPreview

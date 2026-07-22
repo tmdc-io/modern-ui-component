@@ -10,3 +10,4 @@ export function FieldSwitchPreview() {
   )
 }
 
+export default FieldSwitchPreview

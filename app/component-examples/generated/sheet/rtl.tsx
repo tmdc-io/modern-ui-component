@@ -97,3 +97,4 @@ export function SheetRtlPreview() {
   )
 }
 
+export default SheetRtlPreview

@@ -167,3 +167,4 @@ export function InputGroupWithTooltipPreview() {
   return <InputGroupWithTooltipDemo country={country} setCountry={setCountry} />
 }
 
+export default InputGroupWithTooltipPreview

@@ -93,3 +93,4 @@ export function AccordionRtlPreview() {
   )
 }
 
+export default AccordionRtlPreview

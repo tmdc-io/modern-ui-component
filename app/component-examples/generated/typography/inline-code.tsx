@@ -6,3 +6,4 @@ export function TypographyInlineCodePreview() {
   )
 }
 
+export default TypographyInlineCodePreview

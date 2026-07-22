@@ -196,3 +196,4 @@ export function SidebarMenuCollapsiblePreview() {
   )
 }
 
+export default SidebarMenuCollapsiblePreview

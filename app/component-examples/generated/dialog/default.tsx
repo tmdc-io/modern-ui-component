@@ -46,3 +46,4 @@ export function DialogDemoPreview() {
   )
 }
 
+export default DialogDemoPreview

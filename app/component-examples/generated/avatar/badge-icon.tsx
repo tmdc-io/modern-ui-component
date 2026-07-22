@@ -19,3 +19,4 @@ export function AvatarBadgeIconPreview() {
   )
 }
 
+export default AvatarBadgeIconPreview

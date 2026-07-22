@@ -10,3 +10,4 @@ export function InputWithButtonPreview() {
   )
 }
 
+export default InputWithButtonPreview

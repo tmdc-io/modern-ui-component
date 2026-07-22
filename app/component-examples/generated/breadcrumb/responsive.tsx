@@ -133,3 +133,4 @@ export function BreadcrumbResponsivePreview() {
   )
 }
 
+export default BreadcrumbResponsivePreview

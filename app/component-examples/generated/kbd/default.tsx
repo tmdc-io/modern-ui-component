@@ -18,3 +18,4 @@ export function KbdDemoPreview() {
   )
 }
 
+export default KbdDemoPreview

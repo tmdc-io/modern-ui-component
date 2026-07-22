@@ -10,3 +10,4 @@ export function SwitchDisabledPreview() {
   )
 }
 
+export default SwitchDisabledPreview

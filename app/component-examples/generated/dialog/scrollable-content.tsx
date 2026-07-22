@@ -39,3 +39,4 @@ export function DialogScrollableContentPreview() {
   )
 }
 
+export default DialogScrollableContentPreview

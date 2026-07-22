@@ -42,3 +42,4 @@ export function PopoverAlignmentsPreview() {
   )
 }
 
+export default PopoverAlignmentsPreview

@@ -27,3 +27,4 @@ export function DialogNoCloseButtonPreview() {
   )
 }
 
+export default DialogNoCloseButtonPreview

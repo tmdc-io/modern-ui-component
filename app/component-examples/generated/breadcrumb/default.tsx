@@ -48,3 +48,4 @@ export function BreadcrumbDemoPreview() {
   )
 }
 
+export default BreadcrumbDemoPreview

@@ -39,3 +39,4 @@ export function AvatarDropdownPreview() {
   )
 }
 
+export default AvatarDropdownPreview

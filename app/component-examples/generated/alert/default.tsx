@@ -18,3 +18,4 @@ export function AlertDemoPreview() {
   )
 }
 
+export default AlertDemoPreview

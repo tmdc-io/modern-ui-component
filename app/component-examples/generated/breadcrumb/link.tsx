@@ -33,3 +33,4 @@ export function BreadcrumbLinkPreview() {
   )
 }
 
+export default BreadcrumbLinkPreview

@@ -29,3 +29,4 @@ export function CheckboxDescriptionPreview() {
   )
 }
 
+export default CheckboxDescriptionPreview

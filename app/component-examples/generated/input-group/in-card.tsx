@@ -78,3 +78,4 @@ export function InputGroupInCardPreview() {
   )
 }
 
+export default InputGroupInCardPreview

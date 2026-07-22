@@ -42,3 +42,4 @@ export function HoverCardDemoPreview() {
   )
 }
 
+export default HoverCardDemoPreview

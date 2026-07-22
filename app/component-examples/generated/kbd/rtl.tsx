@@ -43,3 +43,4 @@ export function KbdRtlPreview() {
   )
 }
 
+export default KbdRtlPreview

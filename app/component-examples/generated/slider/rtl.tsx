@@ -37,3 +37,4 @@ export function SliderRtlPreview() {
   )
 }
 
+export default SliderRtlPreview

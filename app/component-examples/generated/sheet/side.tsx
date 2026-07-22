@@ -59,3 +59,4 @@ export function SheetSidePreview() {
   )
 }
 
+export default SheetSidePreview

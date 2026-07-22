@@ -17,9 +17,9 @@ export function UtilsOverviewPreview() {
         <code className="text-foreground text-xs">className</code> overrides.
       </p>
       <div className="bg-muted/50 flex flex-col gap-2 rounded-md border p-3 font-mono text-xs">
-        <span className="text-muted-foreground">// Installed to</span>
+        <span className="text-muted-foreground">{"// Installed to"}</span>
         <span>lib/utils.ts</span>
-        <span className="text-muted-foreground">// Import as</span>
+        <span className="text-muted-foreground">{"// Import as"}</span>
         <span>import {"{ cn }"} from &quot;@/lib/utils&quot;</span>
       </div>
     </div>

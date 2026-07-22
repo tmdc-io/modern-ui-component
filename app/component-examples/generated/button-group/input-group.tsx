@@ -57,3 +57,4 @@ export function ButtonGroupInputGroupPreview() {
   )
 }
 
+export default ButtonGroupInputGroupPreview

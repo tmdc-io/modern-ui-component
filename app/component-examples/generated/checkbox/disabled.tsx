@@ -14,3 +14,4 @@ export function CheckboxDisabledPreview() {
   )
 }
 
+export default CheckboxDisabledPreview

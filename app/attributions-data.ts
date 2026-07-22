@@ -24,7 +24,7 @@ export type Acknowledgement = {
   description: string
 }
 
-export const attributionGeneratedAt = "2026-07-17"
+export const attributionGeneratedAt = "2026-07-22"
 
 export const runtimeAttributionGroups: AttributionGroup[] = [
   {

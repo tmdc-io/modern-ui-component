@@ -86,3 +86,4 @@ export function TableFooterPreview() {
   )
 }
 
+export default TableFooterPreview

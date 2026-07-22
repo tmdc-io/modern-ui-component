@@ -26,3 +26,4 @@ export function InputGroupInlineStartPreview() {
   )
 }
 
+export default InputGroupInlineStartPreview

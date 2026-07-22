@@ -22,3 +22,4 @@ export function SwitchDescriptionPreview() {
   )
 }
 
+export default SwitchDescriptionPreview

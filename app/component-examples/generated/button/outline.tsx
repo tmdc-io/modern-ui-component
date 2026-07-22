@@ -4,3 +4,4 @@ export function ButtonOutlinePreview() {
   return <Button variant="outline">Outline</Button>
 }
 
+export default ButtonOutlinePreview

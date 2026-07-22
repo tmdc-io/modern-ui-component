@@ -20,3 +20,4 @@ export function SonnerDescriptionPreview() {
   )
 }
 
+export default SonnerDescriptionPreview

@@ -36,3 +36,4 @@ export function ChartBarDemoGridPreview() {
   )
 }
 
+export default ChartBarDemoGridPreview

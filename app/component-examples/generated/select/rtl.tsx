@@ -114,3 +114,4 @@ export function SelectRtlPreview() {
   )
 }
 
+export default SelectRtlPreview

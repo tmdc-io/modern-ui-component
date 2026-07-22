@@ -45,3 +45,4 @@ export function DatePickerDobPreview() {
   )
 }
 
+export default DatePickerDobPreview

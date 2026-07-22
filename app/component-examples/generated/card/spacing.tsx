@@ -118,3 +118,4 @@ export function CardSpacingPreview() {
   )
 }
 
+export default CardSpacingPreview

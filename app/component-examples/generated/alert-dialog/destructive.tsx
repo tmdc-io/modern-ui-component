@@ -40,3 +40,4 @@ export function AlertDialogDestructivePreview() {
   )
 }
 
+export default AlertDialogDestructivePreview

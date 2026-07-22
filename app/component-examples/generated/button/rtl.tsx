@@ -60,3 +60,4 @@ export function ButtonRtlPreview() {
   )
 }
 
+export default ButtonRtlPreview

@@ -45,3 +45,4 @@ export function InputGroupTextPreview() {
   )
 }
 
+export default InputGroupTextPreview

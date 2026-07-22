@@ -65,7 +65,7 @@ export function I18nOverviewPreview() {
         sites.
       </p>
       <div className="bg-muted/50 flex flex-col gap-2 rounded-md border p-3 font-mono text-xs">
-        <span className="text-muted-foreground">// Installed to</span>
+        <span className="text-muted-foreground">{"// Installed to"}</span>
         <span>hooks/use-translation.tsx</span>
         <span>components/ui/language-selector.tsx</span>
       </div>

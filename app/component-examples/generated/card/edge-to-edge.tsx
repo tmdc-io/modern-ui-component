@@ -46,3 +46,4 @@ export function CardEdgeToEdgePreview() {
   )
 }
 
+export default CardEdgeToEdgePreview

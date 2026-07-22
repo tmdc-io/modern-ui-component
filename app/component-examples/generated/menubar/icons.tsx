@@ -56,3 +56,4 @@ export function MenubarIconsPreview() {
   )
 }
 
+export default MenubarIconsPreview

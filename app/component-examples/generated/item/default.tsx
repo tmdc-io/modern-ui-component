@@ -43,3 +43,4 @@ export function ItemDemoPreview() {
   )
 }
 
+export default ItemDemoPreview

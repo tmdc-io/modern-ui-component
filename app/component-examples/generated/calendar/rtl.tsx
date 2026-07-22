@@ -48,3 +48,4 @@ export function CalendarRtlPreview() {
   )
 }
 
+export default CalendarRtlPreview

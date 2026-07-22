@@ -93,3 +93,4 @@ export function ComboboxDemoPreview() {
   )
 }
 
+export default ComboboxDemoPreview

@@ -73,3 +73,4 @@ export function CollapsibleSettingsPreview() {
   )
 }
 
+export default CollapsibleSettingsPreview

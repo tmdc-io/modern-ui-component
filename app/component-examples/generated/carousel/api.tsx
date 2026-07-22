@@ -54,3 +54,4 @@ export function CarouselApiPreview() {
   )
 }
 
+export default CarouselApiPreview

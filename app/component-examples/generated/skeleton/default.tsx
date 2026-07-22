@@ -12,3 +12,4 @@ export function SkeletonDemoPreview() {
   )
 }
 
+export default SkeletonDemoPreview

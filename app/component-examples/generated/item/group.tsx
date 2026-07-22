@@ -62,3 +62,4 @@ export function ItemGroupPreview() {
   )
 }
 
+export default ItemGroupPreview

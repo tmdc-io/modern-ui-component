@@ -45,3 +45,4 @@ export function InputGroupSpinnerPreview() {
   )
 }
 
+export default InputGroupSpinnerPreview

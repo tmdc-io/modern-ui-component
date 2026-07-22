@@ -16,3 +16,4 @@ export function ToggleSizesPreview() {
   )
 }
 
+export default ToggleSizesPreview

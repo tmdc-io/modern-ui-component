@@ -50,3 +50,4 @@ export function ContextMenuShortcutsPreview() {
   )
 }
 
+export default ContextMenuShortcutsPreview

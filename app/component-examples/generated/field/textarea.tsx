@@ -27,3 +27,4 @@ export function FieldTextareaPreview() {
   )
 }
 
+export default FieldTextareaPreview

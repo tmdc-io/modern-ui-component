@@ -69,3 +69,4 @@ export function ToggleGroupFontWeightSelectorPreview() {
   )
 }
 
+export default ToggleGroupFontWeightSelectorPreview

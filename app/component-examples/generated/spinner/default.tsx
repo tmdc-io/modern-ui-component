@@ -24,3 +24,4 @@ export function SpinnerDemoPreview() {
   )
 }
 
+export default SpinnerDemoPreview

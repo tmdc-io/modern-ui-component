@@ -42,3 +42,4 @@ export function PopoverFormPreview() {
   )
 }
 
+export default PopoverFormPreview

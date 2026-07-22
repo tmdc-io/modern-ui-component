@@ -40,3 +40,4 @@ export function FieldResponsivePreview() {
   )
 }
 
+export default FieldResponsivePreview

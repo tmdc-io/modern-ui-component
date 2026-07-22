@@ -29,3 +29,4 @@ export function AvatarGroupCountPreview() {
   )
 }
 
+export default AvatarGroupCountPreview

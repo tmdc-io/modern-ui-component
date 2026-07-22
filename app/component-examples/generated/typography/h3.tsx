@@ -6,3 +6,4 @@ export function TypographyH3Preview() {
   )
 }
 
+export default TypographyH3Preview

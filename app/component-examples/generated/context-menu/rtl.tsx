@@ -179,3 +179,4 @@ export function ContextMenuRtlPreview() {
   )
 }
 
+export default ContextMenuRtlPreview

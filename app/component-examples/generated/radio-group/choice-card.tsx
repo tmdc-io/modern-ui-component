@@ -45,3 +45,4 @@ export function RadioGroupChoiceCardPreview() {
   )
 }
 
+export default RadioGroupChoiceCardPreview

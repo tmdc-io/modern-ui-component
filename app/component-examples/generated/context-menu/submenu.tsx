@@ -56,3 +56,4 @@ export function ContextMenuSubmenuPreview() {
   )
 }
 
+export default ContextMenuSubmenuPreview

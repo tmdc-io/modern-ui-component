@@ -42,3 +42,4 @@ export function EmptyInputGroupPreview() {
   )
 }
 
+export default EmptyInputGroupPreview

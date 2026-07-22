@@ -26,3 +26,4 @@ export function ToggleGroupVerticalPreview() {
   )
 }
 
+export default ToggleGroupVerticalPreview

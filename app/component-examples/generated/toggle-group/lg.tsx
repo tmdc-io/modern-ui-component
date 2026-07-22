@@ -21,3 +21,4 @@ export function ToggleGroupLgPreview() {
   )
 }
 
+export default ToggleGroupLgPreview

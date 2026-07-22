@@ -18,3 +18,4 @@ export function CheckboxInvalidPreview() {
   )
 }
 
+export default CheckboxInvalidPreview

@@ -25,3 +25,4 @@ export function InputInputGroupPreview() {
   )
 }
 
+export default InputInputGroupPreview

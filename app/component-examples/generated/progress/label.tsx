@@ -13,3 +13,4 @@ export function ProgressLabelPreview() {
   )
 }
 
+export default ProgressLabelPreview

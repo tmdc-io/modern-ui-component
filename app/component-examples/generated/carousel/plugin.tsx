@@ -43,3 +43,4 @@ export function CarouselPluginPreview() {
   )
 }
 
+export default CarouselPluginPreview

@@ -60,3 +60,4 @@ export function ProgressRtlPreview() {
   )
 }
 
+export default ProgressRtlPreview

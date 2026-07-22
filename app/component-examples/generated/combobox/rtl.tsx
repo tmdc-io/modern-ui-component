@@ -132,3 +132,4 @@ export function ComboboxRtlPreview() {
   )
 }
 
+export default ComboboxRtlPreview

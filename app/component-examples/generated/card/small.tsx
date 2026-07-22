@@ -32,3 +32,4 @@ export function CardSmallPreview() {
   )
 }
 
+export default CardSmallPreview

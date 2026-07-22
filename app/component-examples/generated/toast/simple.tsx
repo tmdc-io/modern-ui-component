@@ -20,3 +20,4 @@ export function ToastSimplePreview() {
   )
 }
 
+export default ToastSimplePreview

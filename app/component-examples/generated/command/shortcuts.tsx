@@ -52,3 +52,4 @@ export function CommandShortcutsPreview() {
   )
 }
 
+export default CommandShortcutsPreview

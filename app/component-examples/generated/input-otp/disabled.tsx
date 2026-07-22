@@ -23,3 +23,4 @@ export function InputOtpDisabledPreview() {
   )
 }
 
+export default InputOtpDisabledPreview

@@ -18,3 +18,4 @@ export function ButtonGroupSeparatorPreview() {
   )
 }
 
+export default ButtonGroupSeparatorPreview

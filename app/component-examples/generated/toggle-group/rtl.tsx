@@ -54,3 +54,4 @@ export function ToggleGroupRtlPreview() {
   )
 }
 
+export default ToggleGroupRtlPreview

@@ -21,3 +21,4 @@ export function SpinnerCustomPreview() {
   )
 }
 
+export default SpinnerCustomPreview

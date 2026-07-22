@@ -65,3 +65,4 @@ export function TooltipRtlPreview() {
   )
 }
 
+export default TooltipRtlPreview

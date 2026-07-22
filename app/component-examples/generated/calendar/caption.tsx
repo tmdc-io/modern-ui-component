@@ -12,3 +12,4 @@ export function CalendarCaptionPreview() {
   )
 }
 
+export default CalendarCaptionPreview

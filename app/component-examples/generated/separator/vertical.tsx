@@ -12,3 +12,4 @@ export function SeparatorVerticalPreview() {
   )
 }
 
+export default SeparatorVerticalPreview

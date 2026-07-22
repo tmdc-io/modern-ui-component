@@ -21,3 +21,4 @@ export function SeparatorDemoPreview() {
   )
 }
 
+export default SeparatorDemoPreview

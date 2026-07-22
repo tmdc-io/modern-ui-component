@@ -38,3 +38,4 @@ export function ToggleGroupSizesPreview() {
   )
 }
 
+export default ToggleGroupSizesPreview

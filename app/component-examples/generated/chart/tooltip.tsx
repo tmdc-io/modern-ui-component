@@ -213,3 +213,4 @@ function TooltipDemo({
   )
 }
 
+export default ChartTooltipPreview

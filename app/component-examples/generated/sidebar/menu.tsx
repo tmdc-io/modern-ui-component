@@ -70,3 +70,4 @@ export function SidebarMenuPreview() {
   )
 }
 
+export default SidebarMenuPreview

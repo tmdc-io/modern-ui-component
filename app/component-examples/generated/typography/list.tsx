@@ -8,3 +8,4 @@ export function TypographyListPreview() {
   )
 }
 
+export default TypographyListPreview

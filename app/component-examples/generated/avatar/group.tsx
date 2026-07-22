@@ -27,3 +27,4 @@ export function AvatarGroupPreview() {
   )
 }
 
+export default AvatarGroupPreview

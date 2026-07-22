@@ -13,3 +13,4 @@ export function TabsDisabledPreview() {
   )
 }
 
+export default TabsDisabledPreview

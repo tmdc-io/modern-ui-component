@@ -10,3 +10,4 @@ export function FieldDocInvalidPreview() {
     </Field>
   )
 }
+export default FieldDocInvalidPreview

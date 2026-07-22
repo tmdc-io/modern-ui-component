@@ -36,3 +36,4 @@ export function CalendarBookedDatesPreview() {
   )
 }
 
+export default CalendarBookedDatesPreview

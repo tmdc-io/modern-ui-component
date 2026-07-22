@@ -167,3 +167,4 @@ export function ButtonGroupRtlPreview() {
   )
 }
 
+export default ButtonGroupRtlPreview

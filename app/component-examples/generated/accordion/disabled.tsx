@@ -35,3 +35,4 @@ export function AccordionDisabledPreview() {
   )
 }
 
+export default AccordionDisabledPreview

@@ -6,7 +6,7 @@ import {
   InputGroupInput,
 } from "@/registry/default/ui/input-group"
 
-export function InputGroupIconPreview() {
+export function InputGroupIconVariantPreview() {
   return (
     <div className="grid w-full max-w-sm gap-6">
       <InputGroup>
@@ -41,3 +41,4 @@ export function InputGroupIconPreview() {
   )
 }
 
+export default InputGroupIconVariantPreview

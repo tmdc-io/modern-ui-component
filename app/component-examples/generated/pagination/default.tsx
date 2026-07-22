@@ -37,3 +37,4 @@ export function PaginationDemoPreview() {
   )
 }
 
+export default PaginationDemoPreview

@@ -12,3 +12,4 @@ export function ButtonRoundedPreview() {
   )
 }
 
+export default ButtonRoundedPreview

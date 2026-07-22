@@ -25,3 +25,4 @@ export function ToastDemoPreview() {
   )
 }
 
+export default ToastDemoPreview

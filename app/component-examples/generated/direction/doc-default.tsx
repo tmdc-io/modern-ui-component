@@ -7,3 +7,4 @@ export function DirectionDocDemoPreview() {
     </DirectionProvider>
   )
 }
+export default DirectionDocDemoPreview

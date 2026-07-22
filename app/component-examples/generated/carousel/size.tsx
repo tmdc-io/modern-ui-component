@@ -36,3 +36,4 @@ export function CarouselSizePreview() {
   )
 }
 
+export default CarouselSizePreview

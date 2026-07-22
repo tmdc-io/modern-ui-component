@@ -21,3 +21,4 @@ export function ToggleGroupSmPreview() {
   )
 }
 
+export default ToggleGroupSmPreview

@@ -10,3 +10,4 @@ export function ButtonGroupDocOrientationPreview() {
     </ButtonGroup>
   )
 }
+export default ButtonGroupDocOrientationPreview

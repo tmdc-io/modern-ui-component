@@ -31,3 +31,4 @@ export function DropdownMenuBasicPreview() {
   )
 }
 
+export default DropdownMenuBasicPreview

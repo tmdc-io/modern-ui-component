@@ -14,3 +14,4 @@ export function NativeSelectDisabledPreview() {
   )
 }
 
+export default NativeSelectDisabledPreview

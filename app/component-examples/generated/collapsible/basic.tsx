@@ -31,3 +31,4 @@ export function CollapsibleBasicPreview() {
   )
 }
 
+export default CollapsibleBasicPreview

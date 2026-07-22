@@ -41,3 +41,4 @@ export function DatePickerBasicPreview() {
   )
 }
 
+export default DatePickerBasicPreview

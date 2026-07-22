@@ -23,3 +23,4 @@ export function SonnerDemoPreview() {
   )
 }
 
+export default SonnerDemoPreview

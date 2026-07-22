@@ -57,3 +57,4 @@ export function AccordionCardPreview() {
   )
 }
 
+export default AccordionCardPreview

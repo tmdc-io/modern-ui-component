@@ -30,3 +30,4 @@ export function SpinnerEmptyPreview() {
   )
 }
 
+export default SpinnerEmptyPreview

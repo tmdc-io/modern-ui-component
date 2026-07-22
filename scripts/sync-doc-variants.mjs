@@ -63,7 +63,7 @@ async function writeDocVariants() {
       await mkdir(variantDir, { recursive: true })
 
       const fileId = `doc-${variant.id}`
-      await writeFile(path.join(variantDir, `${fileId}.tsx`), `${previewSource}\n`)
+      await writeFile(path.join(variantDir, `${fileId}.tsx`), `${previewSource}\nexport default ${previewName}\n`)
       await writeFile(
         path.join(variantDir, `${fileId}.code.ts`),
         `export const ${codeExportName} = ${JSON.stringify(consumerCode)}\n`

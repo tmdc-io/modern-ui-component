@@ -64,3 +64,4 @@ export function DatePickerWithPresetsPreview() {
   )
 }
 
+export default DatePickerWithPresetsPreview

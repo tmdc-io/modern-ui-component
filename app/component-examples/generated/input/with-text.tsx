@@ -11,3 +11,4 @@ export function InputWithTextPreview() {
   )
 }
 
+export default InputWithTextPreview

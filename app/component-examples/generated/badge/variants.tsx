@@ -12,3 +12,4 @@ export function BadgeVariantsPreview() {
   )
 }
 
+export default BadgeVariantsPreview

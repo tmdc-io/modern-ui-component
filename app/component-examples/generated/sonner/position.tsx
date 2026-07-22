@@ -59,3 +59,4 @@ export function SonnerPositionPreview() {
   )
 }
 
+export default SonnerPositionPreview

@@ -8,3 +8,4 @@ export function NativeSelectDocDisabledPreview() {
     </NativeSelect>
   )
 }
+export default NativeSelectDocDisabledPreview

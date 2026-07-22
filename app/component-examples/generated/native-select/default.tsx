@@ -15,3 +15,4 @@ export function NativeSelectDemoPreview() {
   )
 }
 
+export default NativeSelectDemoPreview

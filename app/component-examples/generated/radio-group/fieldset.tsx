@@ -38,3 +38,4 @@ export function RadioGroupFieldsetPreview() {
   )
 }
 
+export default RadioGroupFieldsetPreview

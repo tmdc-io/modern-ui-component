@@ -52,7 +52,7 @@ async function fetchUsers({
 }) {
   await new Promise((resolve) => setTimeout(resolve, 500))
 
-  let rows = [...ALL_USERS]
+  const rows = [...ALL_USERS]
 
   if (sorting[0]) {
     const { id, desc } = sorting[0]

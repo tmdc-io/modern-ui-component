@@ -74,3 +74,4 @@ export function PopoverRtlPreview() {
   )
 }
 
+export default PopoverRtlPreview

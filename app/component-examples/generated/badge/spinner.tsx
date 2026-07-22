@@ -16,3 +16,4 @@ export function BadgeSpinnerPreview() {
   )
 }
 
+export default BadgeSpinnerPreview

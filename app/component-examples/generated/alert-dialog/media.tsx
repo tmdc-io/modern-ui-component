@@ -39,3 +39,4 @@ export function AlertDialogMediaPreview() {
   )
 }
 
+export default AlertDialogMediaPreview

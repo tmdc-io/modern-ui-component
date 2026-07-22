@@ -59,3 +59,4 @@ export function SelectAlignItemPreview() {
   )
 }
 
+export default SelectAlignItemPreview

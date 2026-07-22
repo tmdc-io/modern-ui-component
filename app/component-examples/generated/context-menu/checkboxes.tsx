@@ -32,3 +32,4 @@ export function ContextMenuCheckboxesPreview() {
   )
 }
 
+export default ContextMenuCheckboxesPreview

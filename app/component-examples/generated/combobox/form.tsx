@@ -140,3 +140,4 @@ export function ComboboxFormPreview() {
   )
 }
 
+export default ComboboxFormPreview

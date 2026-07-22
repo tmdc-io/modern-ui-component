@@ -1,1 +1,0 @@
-export const ButtonIconCode = "import { ChevronRight } from \"lucide-react\"\n\nimport { Button } from \"@/registry/default/ui/button\"\n\nexport function ButtonIcon() {\n  return (\n    <Button variant=\"outline\" size=\"icon\">\n      <ChevronRight />\n    </Button>\n  )\n}\n"

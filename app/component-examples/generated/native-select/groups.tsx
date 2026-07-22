@@ -37,3 +37,4 @@ export function NativeSelectGroupsPreview() {
   )
 }
 
+export default NativeSelectGroupsPreview

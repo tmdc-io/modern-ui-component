@@ -65,3 +65,4 @@ export function SidebarFooterPreview() {
   )
 }
 
+export default SidebarFooterPreview

@@ -74,8 +74,8 @@ import { BadgeColorsPreview } from "@/app/component-examples/generated/badge/col
 import { BadgeColorsCode } from "@/app/component-examples/generated/badge/colors.code"
 import { BadgeDestructivePreview } from "@/app/component-examples/generated/badge/destructive"
 import { BadgeDestructiveCode } from "@/app/component-examples/generated/badge/destructive.code"
-import { BadgeIconPreview } from "@/app/component-examples/generated/badge/icon"
-import { BadgeIconCode } from "@/app/component-examples/generated/badge/icon.code"
+import { BadgeIconVariantPreview } from "@/app/component-examples/generated/badge/icon-variant"
+import { BadgeIconVariantCode } from "@/app/component-examples/generated/badge/icon-variant.code"
 import { BadgeLinkPreview } from "@/app/component-examples/generated/badge/link"
 import { BadgeLinkCode } from "@/app/component-examples/generated/badge/link.code"
 import { BadgeOutlinePreview } from "@/app/component-examples/generated/badge/outline"
@@ -112,8 +112,8 @@ import { ButtonDestructivePreview } from "@/app/component-examples/generated/but
 import { ButtonDestructiveCode } from "@/app/component-examples/generated/button/destructive.code"
 import { ButtonGhostPreview } from "@/app/component-examples/generated/button/ghost"
 import { ButtonGhostCode } from "@/app/component-examples/generated/button/ghost.code"
-import { ButtonIconPreview } from "@/app/component-examples/generated/button/icon"
-import { ButtonIconCode } from "@/app/component-examples/generated/button/icon.code"
+import { ButtonIconVariantPreview } from "@/app/component-examples/generated/button/icon-variant"
+import { ButtonIconVariantCode } from "@/app/component-examples/generated/button/icon-variant.code"
 import { ButtonLinkPreview } from "@/app/component-examples/generated/button/link"
 import { ButtonLinkCode } from "@/app/component-examples/generated/button/link.code"
 import { ButtonLoadingPreview } from "@/app/component-examples/generated/button/loading"
@@ -540,8 +540,8 @@ import { InputGroupButtonGroupPreview } from "@/app/component-examples/generated
 import { InputGroupButtonGroupCode } from "@/app/component-examples/generated/input-group/button-group.code"
 import { InputGroupDropdownPreview } from "@/app/component-examples/generated/input-group/dropdown"
 import { InputGroupDropdownCode } from "@/app/component-examples/generated/input-group/dropdown.code"
-import { InputGroupIconPreview } from "@/app/component-examples/generated/input-group/icon"
-import { InputGroupIconCode } from "@/app/component-examples/generated/input-group/icon.code"
+import { InputGroupIconVariantPreview } from "@/app/component-examples/generated/input-group/icon-variant"
+import { InputGroupIconVariantCode } from "@/app/component-examples/generated/input-group/icon-variant.code"
 import { InputGroupInCardPreview } from "@/app/component-examples/generated/input-group/in-card"
 import { InputGroupInCardCode } from "@/app/component-examples/generated/input-group/in-card.code"
 import { InputGroupInlineEndPreview } from "@/app/component-examples/generated/input-group/inline-end"
@@ -600,8 +600,8 @@ import { ItemGroupPreview } from "@/app/component-examples/generated/item/group"
 import { ItemGroupCode } from "@/app/component-examples/generated/item/group.code"
 import { ItemHeaderPreview } from "@/app/component-examples/generated/item/header"
 import { ItemHeaderCode } from "@/app/component-examples/generated/item/header.code"
-import { ItemIconPreview } from "@/app/component-examples/generated/item/icon"
-import { ItemIconCode } from "@/app/component-examples/generated/item/icon.code"
+import { ItemIconVariantPreview } from "@/app/component-examples/generated/item/icon-variant"
+import { ItemIconVariantCode } from "@/app/component-examples/generated/item/icon-variant.code"
 import { ItemImagePreview } from "@/app/component-examples/generated/item/image"
 import { ItemImageCode } from "@/app/component-examples/generated/item/image.code"
 import { ItemLinkPreview } from "@/app/component-examples/generated/item/link"
@@ -876,12 +876,12 @@ import { TableDemoPreview } from "@/app/component-examples/generated/table/defau
 import { TableDemoCode } from "@/app/component-examples/generated/table/default.code"
 import { TableActionsPreview } from "@/app/component-examples/generated/table/actions"
 import { TableActionsCode } from "@/app/component-examples/generated/table/actions.code"
+import { TableBorderlessPreview } from "@/app/component-examples/table-borderless"
+import { TableBorderlessCode } from "@/app/component-examples/table-borderless.code"
 import { TableFooterPreview } from "@/app/component-examples/generated/table/footer"
 import { TableFooterCode } from "@/app/component-examples/generated/table/footer.code"
 import { TableRtlPreview } from "@/app/component-examples/generated/table/rtl"
 import { TableRtlCode } from "@/app/component-examples/generated/table/rtl.code"
-import { TableBorderlessPreview } from "@/app/component-examples/generated/table/borderless"
-import { TableBorderlessCode } from "@/app/component-examples/generated/table/borderless.code"
 import { TabsDemoPreview } from "@/app/component-examples/generated/tabs/default"
 import { TabsDemoCode } from "@/app/component-examples/generated/tabs/default.code"
 import { TabsDisabledPreview } from "@/app/component-examples/generated/tabs/disabled"
@@ -1313,11 +1313,11 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         code: BadgeDestructiveCode,
       },
       {
-        id: "icon",
-        title: "Icon",
-        description: "Icon example from shadcn docs.",
-        Preview: BadgeIconPreview,
-        code: BadgeIconCode,
+        id: "icon-variant",
+        title: "Icon Variant",
+        description: "Icon Variant example from shadcn docs.",
+        Preview: BadgeIconVariantPreview,
+        code: BadgeIconVariantCode,
       },
       {
         id: "link",
@@ -1462,11 +1462,11 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         code: ButtonGhostCode,
       },
       {
-        id: "icon",
+        id: "icon-variant",
         title: "Icon",
         description: "shadcn button example.",
-        Preview: ButtonIconPreview,
-        code: ButtonIconCode,
+        Preview: ButtonIconVariantPreview,
+        code: ButtonIconVariantCode,
       },
       {
         id: "link",
@@ -2441,7 +2441,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
   "data-table": {
     name: "data-table",
     title: "Data Table",
-    description: "Sortable, filterable, paginated tables powered by TanStack Table.",
+    description: "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling.",
     install: "npx shadcn@latest add tmdc-io/modern-ui-component/data-table",
     variants: [
       {
@@ -3112,11 +3112,11 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         code: InputGroupDropdownCode,
       },
       {
-        id: "icon",
-        title: "Icon",
-        description: "Icon example from shadcn docs.",
-        Preview: InputGroupIconPreview,
-        code: InputGroupIconCode,
+        id: "icon-variant",
+        title: "Icon Variant",
+        description: "Icon Variant example from shadcn docs.",
+        Preview: InputGroupIconVariantPreview,
+        code: InputGroupIconVariantCode,
       },
       {
         id: "in-card",
@@ -3338,11 +3338,11 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         code: ItemHeaderCode,
       },
       {
-        id: "icon",
-        title: "Icon",
-        description: "Icon example from shadcn docs.",
-        Preview: ItemIconPreview,
-        code: ItemIconCode,
+        id: "icon-variant",
+        title: "Icon Variant",
+        description: "Icon Variant example from shadcn docs.",
+        Preview: ItemIconVariantPreview,
+        code: ItemIconVariantCode,
       },
       {
         id: "image",
@@ -4472,19 +4472,18 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
         code: TableActionsCode,
       },
       {
+        id: "borderless",
+        title: "Borderless",
+        description: "Remove row dividers with border-0 classes; compare bordered and borderless layouts.",
+        Preview: TableBorderlessPreview,
+        code: TableBorderlessCode,
+      },
+      {
         id: "footer",
         title: "Footer",
         description: "Footer example from shadcn docs.",
         Preview: TableFooterPreview,
         code: TableFooterCode,
-      },
-      {
-        id: "borderless",
-        title: "Borderless",
-        description:
-          "Remove row dividers with border-0 classes; compare bordered and borderless layouts.",
-        Preview: TableBorderlessPreview,
-        code: TableBorderlessCode,
       },
       {
         id: "rtl",

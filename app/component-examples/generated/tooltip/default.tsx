@@ -21,3 +21,4 @@ export function TooltipDemoPreview() {
   )
 }
 
+export default TooltipDemoPreview

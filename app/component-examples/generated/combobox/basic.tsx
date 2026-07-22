@@ -35,3 +35,4 @@ export function ComboboxBasicPreview() {
   )
 }
 
+export default ComboboxBasicPreview

@@ -7,3 +7,4 @@ export function TypographyBlockquotePreview() {
   )
 }
 
+export default TypographyBlockquotePreview

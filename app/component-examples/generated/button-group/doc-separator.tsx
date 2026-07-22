@@ -10,3 +10,4 @@ export function ButtonGroupDocSeparatorPreview() {
     </ButtonGroup>
   )
 }
+export default ButtonGroupDocSeparatorPreview

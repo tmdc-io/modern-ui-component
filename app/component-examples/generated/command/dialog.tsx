@@ -79,3 +79,4 @@ export function CommandDialogPreview() {
   )
 }
 
+export default CommandDialogPreview

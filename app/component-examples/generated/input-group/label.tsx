@@ -49,3 +49,4 @@ export function InputGroupLabelPreview() {
   )
 }
 
+export default InputGroupLabelPreview

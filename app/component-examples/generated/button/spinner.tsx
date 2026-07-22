@@ -16,3 +16,4 @@ export function ButtonSpinnerPreview() {
   )
 }
 
+export default ButtonSpinnerPreview

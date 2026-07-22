@@ -59,3 +59,4 @@ export function DatePickerRangePreview() {
   )
 }
 
+export default DatePickerRangePreview

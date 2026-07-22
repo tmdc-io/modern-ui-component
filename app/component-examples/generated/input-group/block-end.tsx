@@ -48,3 +48,4 @@ export function InputGroupBlockEndPreview() {
   )
 }
 
+export default InputGroupBlockEndPreview

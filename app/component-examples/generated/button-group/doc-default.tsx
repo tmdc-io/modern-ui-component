@@ -98,3 +98,4 @@ export function ButtonGroupDocDemoPreview() {
     </ButtonGroup>
   )
 }
+export default ButtonGroupDocDemoPreview

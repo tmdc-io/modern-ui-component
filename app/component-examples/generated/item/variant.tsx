@@ -48,3 +48,4 @@ export function ItemVariantPreview() {
   )
 }
 
+export default ItemVariantPreview

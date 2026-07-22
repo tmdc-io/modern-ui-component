@@ -10,3 +10,4 @@ export function TextareaButtonPreview() {
   )
 }
 
+export default TextareaButtonPreview

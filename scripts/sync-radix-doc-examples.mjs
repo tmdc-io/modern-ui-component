@@ -66,9 +66,11 @@ function parseExampleFile(fileName, uiNamesByLength) {
 
   for (const componentName of uiNamesByLength) {
     if (base.startsWith(`${componentName}-`) && base.length > componentName.length + 1) {
+      const rawVariantId = base.slice(componentName.length + 1)
+      const variantId = rawVariantId === "icon" ? "icon-variant" : rawVariantId
       return {
         componentName,
-        variantId: base.slice(componentName.length + 1),
+        variantId,
       }
     }
   }
@@ -259,7 +261,7 @@ async function syncRadixDocExamples({
 
     const variantDir = path.join(GENERATED_DIR, componentName)
     await mkdir(variantDir, { recursive: true })
-    await writeFile(path.join(variantDir, `${variantId}.tsx`), `${previewSource}\n`)
+    await writeFile(path.join(variantDir, `${variantId}.tsx`), `${previewSource}\nexport default ${previewName}\n`)
     await writeFile(
       path.join(variantDir, `${variantId}.code.ts`),
       `export const ${codeExportName} = ${JSON.stringify(consumerCode)}\n`

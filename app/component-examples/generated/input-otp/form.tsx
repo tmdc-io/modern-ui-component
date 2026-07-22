@@ -81,3 +81,4 @@ export function InputOtpFormPreview() {
   )
 }
 
+export default InputOtpFormPreview

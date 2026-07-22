@@ -4,3 +4,4 @@ export function InputBasicPreview() {
   return <Input placeholder="Enter text" />
 }
 
+export default InputBasicPreview

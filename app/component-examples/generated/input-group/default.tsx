@@ -18,3 +18,4 @@ export function InputGroupDemoPreview() {
   )
 }
 
+export default InputGroupDemoPreview

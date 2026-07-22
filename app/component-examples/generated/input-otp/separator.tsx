@@ -28,3 +28,4 @@ export function InputOtpSeparatorPreview() {
   )
 }
 
+export default InputOtpSeparatorPreview

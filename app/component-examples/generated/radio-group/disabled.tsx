@@ -26,3 +26,4 @@ export function RadioGroupDisabledPreview() {
   )
 }
 
+export default RadioGroupDisabledPreview

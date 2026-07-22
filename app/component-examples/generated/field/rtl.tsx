@@ -292,3 +292,4 @@ export function FieldRtlPreview() {
   )
 }
 
+export default FieldRtlPreview

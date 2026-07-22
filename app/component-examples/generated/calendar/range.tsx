@@ -31,3 +31,4 @@ export function CalendarRangePreview() {
   )
 }
 
+export default CalendarRangePreview

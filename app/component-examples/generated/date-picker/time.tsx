@@ -61,3 +61,4 @@ export function DatePickerTimePreview() {
   )
 }
 
+export default DatePickerTimePreview

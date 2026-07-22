@@ -23,3 +23,4 @@ export function ToastWithActionPreview() {
   )
 }
 
+export default ToastWithActionPreview

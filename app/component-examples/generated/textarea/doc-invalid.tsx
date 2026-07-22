@@ -10,3 +10,4 @@ export function TextareaDocInvalidPreview() {
     </Field>
   )
 }
+export default TextareaDocInvalidPreview

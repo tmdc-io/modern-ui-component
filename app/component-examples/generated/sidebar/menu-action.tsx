@@ -96,3 +96,4 @@ export function SidebarMenuActionPreview() {
   )
 }
 
+export default SidebarMenuActionPreview

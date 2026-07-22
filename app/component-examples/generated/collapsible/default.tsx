@@ -45,3 +45,4 @@ export function CollapsibleDemoPreview() {
   )
 }
 
+export default CollapsibleDemoPreview

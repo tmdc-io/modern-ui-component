@@ -39,3 +39,4 @@ export function ButtonSizePreview() {
   )
 }
 
+export default ButtonSizePreview

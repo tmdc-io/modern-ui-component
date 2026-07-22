@@ -39,3 +39,4 @@ export function ButtonGroupNestedPreview() {
   )
 }
 
+export default ButtonGroupNestedPreview

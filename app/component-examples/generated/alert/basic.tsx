@@ -19,3 +19,4 @@ export function AlertBasicPreview() {
   )
 }
 
+export default AlertBasicPreview

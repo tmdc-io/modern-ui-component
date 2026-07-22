@@ -10,3 +10,4 @@ export function TextareaDocFieldPreview() {
     </Field>
   )
 }
+export default TextareaDocFieldPreview

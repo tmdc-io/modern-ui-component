@@ -9,3 +9,4 @@ export function NativeSelectDocDemoPreview() {
     </NativeSelect>
   )
 }
+export default NativeSelectDocDemoPreview

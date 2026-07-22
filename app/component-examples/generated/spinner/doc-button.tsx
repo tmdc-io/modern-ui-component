@@ -15,3 +15,4 @@ export function SpinnerDocButtonPreview() {
     </div>
   )
 }
+export default SpinnerDocButtonPreview

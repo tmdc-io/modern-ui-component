@@ -15,3 +15,4 @@ export function AvatarBadgePreview() {
   )
 }
 
+export default AvatarBadgePreview

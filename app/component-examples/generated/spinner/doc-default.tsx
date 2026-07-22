@@ -9,3 +9,4 @@ export function SpinnerDocDemoPreview() {
     </Item>
   )
 }
+export default SpinnerDocDemoPreview

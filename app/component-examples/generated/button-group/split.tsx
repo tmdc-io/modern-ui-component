@@ -18,3 +18,4 @@ export function ButtonGroupSplitPreview() {
   )
 }
 
+export default ButtonGroupSplitPreview

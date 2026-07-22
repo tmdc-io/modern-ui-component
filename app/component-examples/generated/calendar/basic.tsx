@@ -6,3 +6,4 @@ export function CalendarBasicPreview() {
   return <Calendar mode="single" className="rounded-lg border" />
 }
 
+export default CalendarBasicPreview

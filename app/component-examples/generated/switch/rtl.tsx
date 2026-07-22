@@ -56,3 +56,4 @@ export function SwitchRtlPreview() {
   )
 }
 
+export default SwitchRtlPreview

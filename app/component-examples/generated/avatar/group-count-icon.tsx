@@ -33,3 +33,4 @@ export function AvatarGroupCountIconPreview() {
   )
 }
 
+export default AvatarGroupCountIconPreview

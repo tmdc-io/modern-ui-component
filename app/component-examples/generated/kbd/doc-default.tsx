@@ -8,3 +8,4 @@ export function KbdDocDemoPreview() {
     </div>
   )
 }
+export default KbdDocDemoPreview

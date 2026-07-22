@@ -7,3 +7,5 @@ import { BlockPreviewFrame } from "@/app/variant-preview-canvas"
 export function Sidebar03Preview() {
   return <BlockPreviewFrame Block={BlockExample} />
 }
+
+export default Sidebar03Preview

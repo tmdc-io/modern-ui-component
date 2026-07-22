@@ -61,3 +61,4 @@ export function ButtonGroupSelectPreview() {
   )
 }
 
+export default ButtonGroupSelectPreview

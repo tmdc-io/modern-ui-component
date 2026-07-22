@@ -60,3 +60,4 @@ export function SonnerTypesPreview() {
   )
 }
 
+export default SonnerTypesPreview

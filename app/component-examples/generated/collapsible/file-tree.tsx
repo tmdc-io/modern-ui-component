@@ -119,3 +119,4 @@ export function CollapsibleFileTreePreview() {
   )
 }
 
+export default CollapsibleFileTreePreview

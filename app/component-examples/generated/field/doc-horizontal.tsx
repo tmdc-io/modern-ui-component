@@ -11,3 +11,4 @@ export function FieldDocHorizontalPreview() {
     </Field>
   )
 }
+export default FieldDocHorizontalPreview

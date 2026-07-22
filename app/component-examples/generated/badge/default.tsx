@@ -4,3 +4,4 @@ export function BadgeDemoPreview() {
   return <Badge>Badge</Badge>
 }
 
+export default BadgeDemoPreview

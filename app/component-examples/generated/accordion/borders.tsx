@@ -48,3 +48,4 @@ export function AccordionBordersPreview() {
   )
 }
 
+export default AccordionBordersPreview

@@ -30,3 +30,4 @@ export function InputGroupButtonGroupPreview() {
   )
 }
 
+export default InputGroupButtonGroupPreview

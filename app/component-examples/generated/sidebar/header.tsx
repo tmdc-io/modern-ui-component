@@ -55,3 +55,4 @@ export function SidebarHeaderPreview() {
   )
 }
 
+export default SidebarHeaderPreview

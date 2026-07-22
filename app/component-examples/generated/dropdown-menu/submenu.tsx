@@ -54,3 +54,4 @@ export function DropdownMenuSubmenuPreview() {
   )
 }
 
+export default DropdownMenuSubmenuPreview

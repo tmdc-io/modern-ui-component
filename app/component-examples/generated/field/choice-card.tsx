@@ -47,3 +47,4 @@ export function FieldChoiceCardPreview() {
   )
 }
 
+export default FieldChoiceCardPreview

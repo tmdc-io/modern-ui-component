@@ -53,3 +53,4 @@ export function SeparatorRtlPreview() {
   )
 }
 
+export default SeparatorRtlPreview

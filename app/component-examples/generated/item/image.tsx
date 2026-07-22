@@ -64,3 +64,4 @@ export function ItemImagePreview() {
   )
 }
 
+export default ItemImagePreview

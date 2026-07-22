@@ -135,3 +135,4 @@ export function DrawerDemoPreview() {
   )
 }
 
+export default DrawerDemoPreview

@@ -23,3 +23,4 @@ export function TooltipKeyboardPreview() {
   )
 }
 
+export default TooltipKeyboardPreview

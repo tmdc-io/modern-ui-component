@@ -7,3 +7,5 @@ import { BlockPreviewFrame } from "@/app/variant-preview-canvas"
 export function Calendar29Preview() {
   return <BlockPreviewFrame Block={BlockExample} />
 }
+
+export default Calendar29Preview

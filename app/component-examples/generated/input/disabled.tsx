@@ -4,3 +4,4 @@ export function InputDisabledPreview() {
   return <Input disabled type="email" placeholder="Email" />
 }
 
+export default InputDisabledPreview

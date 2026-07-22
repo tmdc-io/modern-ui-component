@@ -23,3 +23,4 @@ export function InputOtpDemoPreview() {
   )
 }
 
+export default InputOtpDemoPreview

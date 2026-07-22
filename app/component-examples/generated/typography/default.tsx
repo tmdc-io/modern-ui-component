@@ -118,3 +118,4 @@ export function TypographyDemoPreview() {
   )
 }
 
+export default TypographyDemoPreview

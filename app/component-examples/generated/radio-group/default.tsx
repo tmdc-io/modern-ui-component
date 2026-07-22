@@ -20,3 +20,4 @@ export function RadioGroupDemoPreview() {
   )
 }
 
+export default RadioGroupDemoPreview

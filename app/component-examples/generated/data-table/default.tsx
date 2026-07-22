@@ -311,3 +311,4 @@ export function DataTableDemoPreview() {
   )
 }
 
+export default DataTableDemoPreview

@@ -99,3 +99,4 @@ export function CalendarFormPreview() {
   )
 }
 
+export default CalendarFormPreview

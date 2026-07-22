@@ -43,3 +43,4 @@ export function ContextMenuDestructivePreview() {
   )
 }
 
+export default ContextMenuDestructivePreview

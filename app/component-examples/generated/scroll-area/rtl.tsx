@@ -52,3 +52,4 @@ export function ScrollAreaRtlPreview() {
   )
 }
 
+export default ScrollAreaRtlPreview

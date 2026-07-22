@@ -16,3 +16,4 @@ export function SkeletonFormPreview() {
   )
 }
 
+export default SkeletonFormPreview

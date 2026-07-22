@@ -118,3 +118,4 @@ export function InputGroupRtlPreview() {
   )
 }
 
+export default InputGroupRtlPreview

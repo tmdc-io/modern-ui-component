@@ -59,3 +59,4 @@ export function ComboboxMultiplePreview() {
   )
 }
 
+export default ComboboxMultiplePreview

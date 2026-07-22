@@ -34,3 +34,4 @@ export function SelectGroupsPreview() {
   )
 }
 
+export default SelectGroupsPreview

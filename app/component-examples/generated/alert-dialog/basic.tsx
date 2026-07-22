@@ -34,3 +34,4 @@ export function AlertDialogBasicPreview() {
   )
 }
 
+export default AlertDialogBasicPreview

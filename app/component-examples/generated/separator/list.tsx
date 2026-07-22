@@ -21,3 +21,4 @@ export function SeparatorListPreview() {
   )
 }
 
+export default SeparatorListPreview

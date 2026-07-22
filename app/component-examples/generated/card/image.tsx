@@ -35,3 +35,4 @@ export function CardImagePreview() {
   )
 }
 
+export default CardImagePreview

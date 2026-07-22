@@ -44,7 +44,7 @@ const EXTRA_VARIANTS = new Map([
           "Remove row dividers with border-0 classes; compare bordered and borderless layouts.",
         previewName: "TableBorderlessPreview",
         codeExportName: "TableBorderlessCode",
-        importPath: "@/app/component-examples/generated/table/borderless",
+        importPath: "@/app/component-examples/table-borderless",
       },
     ],
   ],
@@ -75,14 +75,17 @@ function toExportName(name) {
 
 function toVariantId(componentName, itemName, kind) {
   if (kind === "block") {
-    return itemName.slice(componentName.length + 1)
+    const rawBlockId = itemName.slice(componentName.length + 1)
+    return rawBlockId === "icon" ? "icon-variant" : rawBlockId
   }
   if (itemName === `${componentName}-demo`) return "default"
-  return itemName.slice(componentName.length + 1)
+  const rawId = itemName.slice(componentName.length + 1)
+  return rawId === "icon" ? "icon-variant" : rawId
 }
 
 function toVariantTitle(variantId, kind) {
   if (variantId === "default") return "Default"
+  if (variantId === "icon-variant") return "Icon"
   if (kind === "block" && /^\d+$/.test(variantId)) return `Example ${variantId}`
   return variantId
     .split("-")
@@ -443,7 +446,7 @@ async function writeExampleVariant(componentName, itemMeta, kind) {
   const variantDir = path.join(GENERATED_DIR, componentName)
   await mkdir(variantDir, { recursive: true })
 
-  await writeFile(path.join(variantDir, `${variantId}.tsx`), `${previewSource}\n`)
+  await writeFile(path.join(variantDir, `${variantId}.tsx`), `${previewSource}\nexport default ${previewName}\n`)
   await writeFile(
     path.join(variantDir, `${variantId}.code.ts`),
     `export const ${codeExportName} = ${JSON.stringify(consumerCode)}\n`
@@ -516,6 +519,8 @@ import { BlockPreviewFrame } from "@/app/variant-preview-canvas"
 export function ${previewName}() {
   return <BlockPreviewFrame Block={BlockExample} />
 }
+
+export default ${previewName}
 `
 
   const variantDir = path.join(GENERATED_DIR, componentName)

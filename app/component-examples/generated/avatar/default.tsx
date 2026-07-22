@@ -13,3 +13,4 @@ export function AvatarDemoPreview() {
   )
 }
 
+export default AvatarDemoPreview

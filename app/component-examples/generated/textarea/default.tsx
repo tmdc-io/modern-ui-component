@@ -4,3 +4,4 @@ export function TextareaDemoPreview() {
   return <Textarea placeholder="Type your message here." />
 }
 
+export default TextareaDemoPreview

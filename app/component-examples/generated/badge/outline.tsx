@@ -4,3 +4,4 @@ export function BadgeOutlinePreview() {
   return <Badge variant="outline">Outline</Badge>
 }
 
+export default BadgeOutlinePreview

@@ -4,3 +4,4 @@ export function TypographySmallPreview() {
   )
 }
 
+export default TypographySmallPreview

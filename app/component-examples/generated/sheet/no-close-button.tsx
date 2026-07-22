@@ -27,3 +27,4 @@ export function SheetNoCloseButtonPreview() {
   )
 }
 
+export default SheetNoCloseButtonPreview

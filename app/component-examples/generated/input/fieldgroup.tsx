@@ -35,3 +35,4 @@ export function InputFieldgroupPreview() {
   )
 }
 
+export default InputFieldgroupPreview

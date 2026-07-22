@@ -4,3 +4,4 @@ export function ButtonDemoPreview() {
   return <Button>Button</Button>
 }
 
+export default ButtonDemoPreview

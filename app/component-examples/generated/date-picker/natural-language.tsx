@@ -100,3 +100,4 @@ export function DatePickerNaturalLanguagePreview() {
   )
 }
 
+export default DatePickerNaturalLanguagePreview

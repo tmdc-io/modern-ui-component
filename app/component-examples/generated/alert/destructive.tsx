@@ -18,3 +18,4 @@ export function AlertDestructivePreview() {
   )
 }
 
+export default AlertDestructivePreview

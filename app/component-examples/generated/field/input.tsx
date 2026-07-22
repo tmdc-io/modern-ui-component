@@ -30,3 +30,4 @@ export function FieldInputPreview() {
   )
 }
 
+export default FieldInputPreview

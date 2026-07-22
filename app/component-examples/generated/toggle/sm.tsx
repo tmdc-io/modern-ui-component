@@ -10,3 +10,4 @@ export function ToggleSmPreview() {
   )
 }
 
+export default ToggleSmPreview

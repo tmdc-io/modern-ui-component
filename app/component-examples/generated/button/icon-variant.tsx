@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react"
 
 import { Button } from "@/registry/default/ui/button"
 
-export function ButtonIconPreview() {
+export function ButtonIconVariantPreview() {
   return (
     <Button variant="outline" size="icon">
       <ChevronRight />
@@ -10,3 +10,4 @@ export function ButtonIconPreview() {
   )
 }
 
+export default ButtonIconVariantPreview

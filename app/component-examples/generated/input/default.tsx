@@ -4,3 +4,4 @@ export function InputDemoPreview() {
   return <Input type="email" placeholder="Email" />
 }
 
+export default InputDemoPreview

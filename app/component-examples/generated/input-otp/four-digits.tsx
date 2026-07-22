@@ -21,3 +21,4 @@ export function InputOtpFourDigitsPreview() {
   )
 }
 
+export default InputOtpFourDigitsPreview

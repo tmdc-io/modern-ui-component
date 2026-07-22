@@ -58,3 +58,4 @@ export function CardWithFormPreview() {
   )
 }
 
+export default CardWithFormPreview

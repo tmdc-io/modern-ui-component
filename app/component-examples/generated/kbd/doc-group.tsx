@@ -7,3 +7,4 @@ export function KbdDocGroupPreview() {
     </p>
   )
 }
+export default KbdDocGroupPreview

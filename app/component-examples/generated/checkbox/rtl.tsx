@@ -95,3 +95,4 @@ export function CheckboxRtlPreview() {
   )
 }
 
+export default CheckboxRtlPreview

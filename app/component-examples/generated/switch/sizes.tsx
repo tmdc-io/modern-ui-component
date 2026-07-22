@@ -16,3 +16,4 @@ export function SwitchSizesPreview() {
   )
 }
 
+export default SwitchSizesPreview

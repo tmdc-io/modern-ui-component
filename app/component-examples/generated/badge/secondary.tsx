@@ -4,3 +4,4 @@ export function BadgeSecondaryPreview() {
   return <Badge variant="secondary">Secondary</Badge>
 }
 
+export default BadgeSecondaryPreview

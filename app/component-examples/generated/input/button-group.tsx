@@ -15,3 +15,4 @@ export function InputButtonGroupPreview() {
   )
 }
 
+export default InputButtonGroupPreview

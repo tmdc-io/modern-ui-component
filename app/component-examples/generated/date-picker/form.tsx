@@ -99,3 +99,4 @@ export function DatePickerFormPreview() {
   )
 }
 
+export default DatePickerFormPreview

@@ -56,3 +56,4 @@ export function EmptyAvatarGroupPreview() {
   )
 }
 
+export default EmptyAvatarGroupPreview

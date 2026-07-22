@@ -150,3 +150,4 @@ export function TableRtlPreview() {
   )
 }
 
+export default TableRtlPreview

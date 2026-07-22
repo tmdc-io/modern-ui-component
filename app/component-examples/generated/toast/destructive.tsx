@@ -24,3 +24,4 @@ export function ToastDestructivePreview() {
   )
 }
 
+export default ToastDestructivePreview

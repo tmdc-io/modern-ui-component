@@ -11,3 +11,4 @@ export function ToggleTextPreview() {
   )
 }
 
+export default ToggleTextPreview

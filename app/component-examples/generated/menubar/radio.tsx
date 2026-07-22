@@ -46,3 +46,4 @@ export function MenubarRadioPreview() {
   )
 }
 
+export default MenubarRadioPreview

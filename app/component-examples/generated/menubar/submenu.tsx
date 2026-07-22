@@ -59,3 +59,4 @@ export function MenubarSubmenuPreview() {
   )
 }
 
+export default MenubarSubmenuPreview

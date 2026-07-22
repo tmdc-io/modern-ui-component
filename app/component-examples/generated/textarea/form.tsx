@@ -73,3 +73,4 @@ export function TextareaFormPreview() {
   )
 }
 
+export default TextareaFormPreview

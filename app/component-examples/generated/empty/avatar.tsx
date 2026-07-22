@@ -39,3 +39,4 @@ export function EmptyAvatarPreview() {
   )
 }
 
+export default EmptyAvatarPreview

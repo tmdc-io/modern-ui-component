@@ -10,3 +10,4 @@ export function SpinnerDocSizePreview() {
     </div>
   )
 }
+export default SpinnerDocSizePreview

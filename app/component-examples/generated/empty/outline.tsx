@@ -31,3 +31,4 @@ export function EmptyOutlinePreview() {
   )
 }
 
+export default EmptyOutlinePreview

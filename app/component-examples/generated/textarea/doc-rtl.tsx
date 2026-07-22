@@ -19,3 +19,4 @@ export function TextareaDocRtlPreview() {
     </Field>
   )
 }
+export default TextareaDocRtlPreview

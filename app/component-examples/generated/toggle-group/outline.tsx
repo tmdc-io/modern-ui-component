@@ -21,3 +21,4 @@ export function ToggleGroupOutlinePreview() {
   )
 }
 
+export default ToggleGroupOutlinePreview

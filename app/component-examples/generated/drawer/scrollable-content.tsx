@@ -48,3 +48,4 @@ export function DrawerScrollableContentPreview() {
   )
 }
 
+export default DrawerScrollableContentPreview

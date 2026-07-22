@@ -52,3 +52,4 @@ export function FieldGroupPreview() {
   )
 }
 
+export default FieldGroupPreview

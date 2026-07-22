@@ -101,3 +101,4 @@ export function ComboboxDropdownMenuPreview() {
   )
 }
 
+export default ComboboxDropdownMenuPreview

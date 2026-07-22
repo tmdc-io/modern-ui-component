@@ -99,3 +99,4 @@ export function TableActionsPreview() {
   )
 }
 
+export default TableActionsPreview

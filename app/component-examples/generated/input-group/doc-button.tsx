@@ -10,3 +10,4 @@ export function InputGroupDocButtonPreview() {
     </InputGroup>
   )
 }
+export default InputGroupDocButtonPreview

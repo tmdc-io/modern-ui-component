@@ -21,3 +21,4 @@ export function SliderVerticalPreview() {
   )
 }
 
+export default SliderVerticalPreview

@@ -79,3 +79,4 @@ export function ItemAvatarPreview() {
   )
 }
 
+export default ItemAvatarPreview

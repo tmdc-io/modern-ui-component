@@ -125,3 +125,4 @@ export function InputGroupWithAddonsPreview() {
   )
 }
 
+export default InputGroupWithAddonsPreview

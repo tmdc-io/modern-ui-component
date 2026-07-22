@@ -10,3 +10,4 @@ export function InputWithLabelPreview() {
   )
 }
 
+export default InputWithLabelPreview

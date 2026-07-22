@@ -35,3 +35,4 @@ export function ResizableDemoPreview() {
   )
 }
 
+export default ResizableDemoPreview
