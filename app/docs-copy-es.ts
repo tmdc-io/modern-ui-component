@@ -4,6 +4,11 @@ import { docsCopyEsGenerated } from "@/app/docs-copy-es.generated"
 export const docsCopyEs: Record<string, string> = {
   // Shared API table
   "Component Props": "Props del componente",
+  "Icon Variant": "Variante con icono",
+  "Icon Variant example from shadcn docs.": "Ejemplo de variante con icono de la documentación de shadcn.",
+  "Narrow headers collapse parent crumbs into an ellipsis dropdown.": "Los encabezados estrechos colapsan las migas de pan padre en un menú desplegable con puntos suspensivos.",
+  "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling.": "Tablas ordenables, filtrables y paginadas, con desplazamiento de filas opcional mediante TanStack Virtual.",
+  "Use variant=\"l2\" on nested pages. The tenant switcher collapses to the initials badge; breadcrumbs fill the center. On narrow widths, parent crumbs collapse into an ellipsis dropdown so the header stays one row.": "Usa variant=\"l2\" en páginas anidadas. El selector de inquilino se colapsa a la insignia de iniciales; las migas de pan llenan el centro. En anchos estrechos, las migas de pan padre se colapsan en un menú desplegable con puntos suspensivos para que el encabezado se mantenga en una sola fila.",
 
   // ── Hero page ──────────────────────────────────────────────
   "DataOS data product hero header with quality card, metadata columns, jump navigation, and follow / explore actions.":

@@ -1,23 +1,7 @@
 [
-  "5. Empty state",
-  "6. Loading",
-  "Also exported: DataProductCardBadgePill, DataProductCardSkeleton. Badge colors use DataOS quality tokens (dataos-warn-bg, dataos-fail-bg).",
-  "Also exported: QualitySummaryCardSkeleton, deriveStatusLabel.",
-  "Card density. Use sm for compact catalog grids.",
-  "Copy shown when metrics is an empty array. Defaults to localized empty text.",
-  "Copy shown when runs is an empty array. Defaults to localized empty text.",
-  "Copy shown when runs or models is empty. Defaults to localized empty text.",
-  "DataProductCardSkeleton while catalog rows load.",
-  "Default and compact sizes.",
-  "Empty + skeleton",
-  "Empty dimensions message and QualitySummaryCardSkeleton",
-  "Empty dimensions message.",
-  "Exported types: RunMetric, RunMetricQualityDetail, RunMetricsProps. Also exported: RunMetricsSkeleton. Card surfaces use bg-dataos-surface for light and dark mode.",
-  "Loading and compact size match Plan/Run card patterns",
-  "Message when dimensions is an empty array. Defaults to a localized empty copy.",
-  "Pass dimensions={[]} to show an empty message.",
-  "QualitySummaryCardSkeleton while quality loads.",
-  "Skeleton + density",
-  "Skeleton placeholder.",
-  "Skeleton placeholders."
+  "Icon Variant",
+  "Icon Variant example from shadcn docs.",
+  "Narrow headers collapse parent crumbs into an ellipsis dropdown.",
+  "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling.",
+  "Use variant=\"l2\" on nested pages. The tenant switcher collapses to the initials badge; breadcrumbs fill the center. On narrow widths, parent crumbs collapse into an ellipsis dropdown so the header stays one row."
 ]
