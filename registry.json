@@ -34,6 +34,55 @@
       ]
     },
     {
+      "name": "init",
+      "type": "registry:base",
+      "extends": "none",
+      "title": "ModernUI Init",
+      "description": "Bootstrap ModernUI in one command: components.json, @modernui registry, theme, utils, and core npm dependencies.",
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "radix-ui",
+        "tailwind-merge",
+        "tw-animate-css"
+      ],
+      "files": [
+        {
+          "path": "registry/default/theme/globals.css",
+          "type": "registry:theme",
+          "target": "app/globals.css"
+        },
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ],
+      "config": {
+        "style": "new-york",
+        "rsc": true,
+        "tsx": true,
+        "iconLibrary": "lucide",
+        "tailwind": {
+          "baseColor": "neutral",
+          "css": "app/globals.css",
+          "cssVariables": true
+        },
+        "aliases": {
+          "components": "@/components",
+          "utils": "@/lib/utils",
+          "ui": "@/components/ui",
+          "lib": "@/lib",
+          "hooks": "@/hooks"
+        },
+        "registries": {
+          "@modernui": "https://modernui-registry.vercel.app/r/{name}.json"
+        }
+      },
+      "docs": "ModernUI is ready. Add components with: npx shadcn@latest add @modernui/button -y"
+    },
+    {
       "name": "i18n",
       "type": "registry:ui",
       "title": "i18n",
@@ -1304,8 +1353,15 @@
       "type": "registry:block",
       "title": "Run Card",
       "description": "Pipeline run summary card with status variants, selection, metrics, and loading states.",
-      "dependencies": ["date-fns", "lucide-react"],
-      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "i18n",
+        "skeleton",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/run-card/run-card.tsx",
@@ -1318,8 +1374,15 @@
       "type": "registry:block",
       "title": "Plan Card",
       "description": "Plan summary card with success, hover, error, and expandable change/impact details.",
-      "dependencies": ["date-fns", "lucide-react"],
-      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "i18n",
+        "skeleton",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/plan-card/plan-card.tsx",
@@ -1332,8 +1395,14 @@
       "type": "registry:block",
       "title": "Plan Status Card",
       "description": "Expandable plan feature status card for SQL diffs, impacts, errors, and environment changes.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["i18n", "skeleton", "utils"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "i18n",
+        "skeleton",
+        "utils"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/plan-status-card/plan-status-card.tsx",
@@ -1346,8 +1415,13 @@
       "type": "registry:block",
       "title": "Run Duration",
       "description": "Run duration bar chart with normal, anomaly, selected states, and baseline.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["chart", "i18n"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "chart",
+        "i18n"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/run-duration/run-duration.tsx",
@@ -1379,7 +1453,9 @@
       "type": "registry:block",
       "title": "Run Metrics",
       "description": "Pipeline run metrics grid with serif values and optional quality breakdown.",
-      "registryDependencies": ["i18n"],
+      "registryDependencies": [
+        "i18n"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/run-metrics/run-metrics.tsx",
@@ -1392,8 +1468,15 @@
       "type": "registry:block",
       "title": "Models Table",
       "description": "Pipeline models table with kind/type pills, runtime bars, row counts, and status indicators.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["dropdown-menu", "input", "table", "i18n"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "dropdown-menu",
+        "input",
+        "table",
+        "i18n"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/models-table/models-table.tsx",
@@ -2756,8 +2839,13 @@
       "type": "registry:block",
       "title": "Sparkline Chart Line",
       "description": "Compact line sparkline for KPI cards and table cells.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-sparkline-line/chart-sparkline-line.tsx",
@@ -2770,8 +2858,13 @@
       "type": "registry:block",
       "title": "Sparkline Chart Area",
       "description": "Filled area sparkline for compact trend visualization.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-sparkline-area/chart-sparkline-area.tsx",
@@ -2784,8 +2877,13 @@
       "type": "registry:block",
       "title": "Histogram Chart Default",
       "description": "Distribution chart with zero-gap bars for binned data.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-histogram-default/chart-histogram-default.tsx",
@@ -2798,8 +2896,13 @@
       "type": "registry:block",
       "title": "Histogram Chart Minimal",
       "description": "Axis-free histogram with rounded bars and active bin highlight.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-histogram-minimal/chart-histogram-minimal.tsx",
@@ -2812,8 +2915,14 @@
       "type": "registry:block",
       "title": "Histogram Chart Nav",
       "description": "Paginated histogram with previous and next bin navigation.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart", "button"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart",
+        "button"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-histogram-nav/chart-histogram-nav.tsx",
@@ -2826,8 +2935,13 @@
       "type": "registry:block",
       "title": "Scatter Chart Default",
       "description": "Correlation chart with optional bubble sizing via ZAxis.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-scatter-default/chart-scatter-default.tsx",
@@ -2840,8 +2954,13 @@
       "type": "registry:block",
       "title": "Composed Chart Default",
       "description": "Bar and line series combined on dual axes.",
-      "dependencies": ["recharts"],
-      "registryDependencies": ["card", "chart"],
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "card",
+        "chart"
+      ],
       "files": [
         {
           "path": "registry/default/blocks/chart-composed-default/chart-composed-default.tsx",

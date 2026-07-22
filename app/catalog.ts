@@ -33,6 +33,11 @@ export const catalog: CatalogCategory[] = [
     title: "Foundation",
     items: [
       item(
+        "init",
+        "Init",
+        "One-command ModernUI bootstrap — components.json, @modernui registry, theme, utils, and core npm deps."
+      ),
+      item(
         "project-setup",
         "Project Setup",
         "Install AGENTS.md and docs/modernui-setup.md — conventions for contributors and a step-by-step consumer install guide."

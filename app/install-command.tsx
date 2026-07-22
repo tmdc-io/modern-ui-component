@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 
 const ADD_COMMAND_RE =
-  /^(npx)\s+(shadcn@latest)\s+(add)\s+([^\s]+)(?:\s+(-c)\s+(.+))?$/
+  /^(npx)\s+(shadcn@latest)\s+(add)\s+([^\s]+)(?:\s+(-y|--yes))?(?:\s+(-c)\s+(.+))?$/
 
 function HighlightedAddCommand({ command }: { command: string }) {
   const match = command.match(ADD_COMMAND_RE)
@@ -9,7 +9,7 @@ function HighlightedAddCommand({ command }: { command: string }) {
     return <span className="text-foreground">{command}</span>
   }
 
-  const [, npx, cli, add, target, cwdFlag, cwdPath] = match
+  const [, npx, cli, add, target, yesFlag, cwdFlag, cwdPath] = match
 
   return (
     <>
@@ -17,6 +17,12 @@ function HighlightedAddCommand({ command }: { command: string }) {
       <span className="text-foreground">{cli}</span>{" "}
       <span className="text-muted-foreground">{add}</span>{" "}
       <span className="text-chart-2">{target}</span>
+      {yesFlag ? (
+        <>
+          {" "}
+          <span className="text-muted-foreground">{yesFlag}</span>
+        </>
+      ) : null}
       {cwdFlag && cwdPath ? (
         <>
           {" "}
@@ -56,17 +62,52 @@ function HighlightedListCommand({ command }: { command: string }) {
 }
 
 function HighlightedInitCommand({ command }: { command: string }) {
-  const withCwd = command.match(
-    /^(npx)\s+(shadcn@latest)\s+(init)\s+(-c)\s+(.+)$/
+  // init <url|github/item> [-y] [-c <workspace>]
+  const withTarget = command.match(
+    /^(npx)\s+(shadcn@latest)\s+(init)\s+(\S+)(?:\s+(-y|--yes))?(?:\s+(-c)\s+(\S+))?$/
   )
-  if (withCwd) {
+  if (withTarget && withTarget[4] !== "-c" && withTarget[4] !== "-y" && withTarget[4] !== "--yes") {
     return (
       <>
-        <span className="text-chart-2">{withCwd[1]}</span>{" "}
-        <span className="text-foreground">{withCwd[2]}</span>{" "}
-        <span className="text-muted-foreground">{withCwd[3]}</span>{" "}
-        <span className="text-muted-foreground">{withCwd[4]}</span>{" "}
-        <span className="text-chart-2">{withCwd[5]}</span>
+        <span className="text-chart-2">{withTarget[1]}</span>{" "}
+        <span className="text-foreground">{withTarget[2]}</span>{" "}
+        <span className="text-muted-foreground">{withTarget[3]}</span>{" "}
+        <span className="text-chart-2">{withTarget[4]}</span>
+        {withTarget[5] ? (
+          <>
+            {" "}
+            <span className="text-muted-foreground">{withTarget[5]}</span>
+          </>
+        ) : null}
+        {withTarget[6] && withTarget[7] ? (
+          <>
+            {" "}
+            <span className="text-muted-foreground">{withTarget[6]}</span>{" "}
+            <span className="text-chart-2">{withTarget[7]}</span>
+          </>
+        ) : null}
+      </>
+    )
+  }
+
+  // init -y -c <workspace>  |  init -c <workspace>
+  const withFlags = command.match(
+    /^(npx)\s+(shadcn@latest)\s+(init)(?:\s+(-y|--yes))?\s+(-c)\s+(\S+)$/
+  )
+  if (withFlags) {
+    return (
+      <>
+        <span className="text-chart-2">{withFlags[1]}</span>{" "}
+        <span className="text-foreground">{withFlags[2]}</span>{" "}
+        <span className="text-muted-foreground">{withFlags[3]}</span>
+        {withFlags[4] ? (
+          <>
+            {" "}
+            <span className="text-muted-foreground">{withFlags[4]}</span>
+          </>
+        ) : null}{" "}
+        <span className="text-muted-foreground">{withFlags[5]}</span>{" "}
+        <span className="text-chart-2">{withFlags[6]}</span>
       </>
     )
   }
@@ -91,12 +132,44 @@ function HighlightedInitCommand({ command }: { command: string }) {
   )
 }
 
+function HighlightedRegistryCommand({ command }: { command: string }) {
+  const match = command.match(
+    /^(npx)\s+(shadcn@latest)\s+(registry)\s+(add)\s+(\S+)(?:\s+(-c)\s+(\S+))?$/
+  )
+  if (!match) {
+    return <span className="text-foreground">{command}</span>
+  }
+
+  const [, npx, cli, registry, add, target, cwdFlag, cwdPath] = match
+
+  return (
+    <>
+      <span className="text-chart-2">{npx}</span>{" "}
+      <span className="text-foreground">{cli}</span>{" "}
+      <span className="text-muted-foreground">{registry}</span>{" "}
+      <span className="text-muted-foreground">{add}</span>{" "}
+      <span className="text-chart-2">{target}</span>
+      {cwdFlag && cwdPath ? (
+        <>
+          {" "}
+          <span className="text-muted-foreground">{cwdFlag}</span>{" "}
+          <span className="text-chart-2">{cwdPath}</span>
+        </>
+      ) : null}
+    </>
+  )
+}
+
 function HighlightedLine({ line }: { line: string }) {
   const trimmed = line.trim()
   if (!trimmed) return null
 
   if (trimmed.includes(" shadcn@latest list ")) {
     return <HighlightedListCommand command={trimmed} />
+  }
+
+  if (trimmed.includes(" shadcn@latest registry ")) {
+    return <HighlightedRegistryCommand command={trimmed} />
   }
 
   if (trimmed.includes(" shadcn@latest init")) {

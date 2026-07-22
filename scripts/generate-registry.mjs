@@ -4,6 +4,9 @@ import path from "node:path"
 const UI_DIR = "registry/default/ui"
 const ROOT = process.cwd()
 
+const REGISTRY_GITHUB = "tmdc-io/modern-ui-component"
+const HOSTED_REGISTRY_BASE = "https://modernui-registry.vercel.app/r"
+
 const NPM_IMPORTS = {
   "radix-ui": "radix-ui",
   "lucide-react": "lucide-react",
@@ -95,6 +98,57 @@ async function main() {
           target: "lib/utils.ts",
         },
       ],
+    },
+    {
+      name: "init",
+      type: "registry:base",
+      extends: "none",
+      title: "ModernUI Init",
+      description:
+        "Bootstrap ModernUI in one command: components.json, @modernui registry, theme, utils, and core npm dependencies.",
+      dependencies: [
+        "class-variance-authority",
+        "clsx",
+        "lucide-react",
+        "radix-ui",
+        "tailwind-merge",
+        "tw-animate-css",
+      ],
+      // Embed foundation files so init is self-contained (no remote theme/utils fetch).
+      files: [
+        {
+          path: "registry/default/theme/globals.css",
+          type: "registry:theme",
+          target: "app/globals.css",
+        },
+        {
+          path: "lib/utils.ts",
+          type: "registry:lib",
+          target: "lib/utils.ts",
+        },
+      ],
+      config: {
+        style: "new-york",
+        rsc: true,
+        tsx: true,
+        iconLibrary: "lucide",
+        tailwind: {
+          baseColor: "neutral",
+          css: "app/globals.css",
+          cssVariables: true,
+        },
+        aliases: {
+          components: "@/components",
+          utils: "@/lib/utils",
+          ui: "@/components/ui",
+          lib: "@/lib",
+          hooks: "@/hooks",
+        },
+        registries: {
+          "@modernui": `${HOSTED_REGISTRY_BASE}/{name}.json`,
+        },
+      },
+      docs: "ModernUI is ready. Add components with: npx shadcn@latest add @modernui/button -y",
     },
     {
       name: "i18n",

@@ -39,31 +39,71 @@ export const docsMessages = {
       "sidebar.quickStart": "Quick Start",
       "sidebar.monorepo": "Monorepo Installation",
       "quickStart.badge": "Component Registry",
-      "quickStart.title": "Quick start",
+      "quickStart.title": "Quick Start",
       "quickStart.intro":
-        "Install ModernUI into any shadcn-compatible React app. Copy a command, run it, own the source.",
+        "Two single-app paths below (fresh or existing), plus GitHub and monorepo. Copy a command, run it, own the source.",
+      "quickStart.badgePaths": "fresh · existing · monorepo",
       "quickStart.copyAll": "Copy all",
       "quickStart.copy": "Copy",
       "quickStart.copied": "Copied",
       "quickStart.viewInRegistry": "View in registry",
-      "quickStart.stepInitTitle": "Initialize shadcn",
+      "quickStart.pathFreshTitle": "A · Fresh / new app",
+      "quickStart.pathFreshBadge": "greenfield",
+      "quickStart.pathFreshDesc":
+        "No app yet. Scaffold Next.js + Tailwind, then ModernUI init and add a component.",
+      "quickStart.pathExistingTitle": "B · Existing app",
+      "quickStart.pathExistingBadge": "skip scaffold",
+      "quickStart.pathExistingDesc":
+        "You already have a React app with Tailwind. Skip create-next-app; run ModernUI init then add.",
+      "quickStart.stepScaffoldTitle": "Scaffold the app",
+      "quickStart.stepScaffoldDesc":
+        "Creates a Next.js App Router project with TypeScript and Tailwind. Required before ModernUI init.",
+      "quickStart.stepInitTitle": "Initialize ModernUI",
       "quickStart.stepInitDesc":
-        "Run once in your React project. Configures components.json and Tailwind paths.",
-      "quickStart.stepSetupTitle": "Project setup",
-      "quickStart.stepSetupDesc":
-        "Adds AGENTS.md and docs/modernui-setup.md — team conventions and install guide.",
-      "quickStart.stepFoundationTitle": "Theme & utils",
-      "quickStart.stepFoundationDesc":
-        "Design tokens and the cn() helper. Optional i18n after utils. Required before any UI primitive.",
+        "Writes components.json, registers @modernui, installs theme + utils and core npm deps. Use -y to skip prompts.",
       "quickStart.stepComponentTitle": "Add a component",
       "quickStart.stepComponentDesc":
-        "Install source you own. Swap button for any primitive, block, or chart.",
+        "Install source you own. Swap button for any primitive, block, or chart. npm deps install automatically.",
+      "quickStart.stepOptionalTitle": "Optional extras",
+      "quickStart.stepOptionalDesc":
+        "project-setup adds AGENTS.md + docs guide; i18n adds LanguageProvider for blocks with copy.",
+      "quickStart.githubTitle": "GitHub registry",
+      "quickStart.githubDesc":
+        "No Vercel deploy required. Works for existing apps; add create-next-app first for a fresh project.",
+      "quickStart.githubFreshHint": "Fresh app via GitHub:",
+      "quickStart.monorepoTitle": "Monorepo",
+      "quickStart.monorepoDesc":
+        "Shared UI package + app workspaces. Full A/B steps live in Monorepo installation.",
+      "quickStart.monorepoLink": "Full guide",
+      "quickStart.monorepoExistingLabel": "B · Existing monorepo",
+      "quickStart.monorepoFreshLabel": "A · Fresh / new monorepo",
       "quickStart.footer":
         "Browse components below or press ⌘K to search. Guides:",
       "quickStart.guideConsumer": "Consumer setup",
       "quickStart.guideI18n": "i18n usage",
       "quickStart.guideGithub": "GitHub Registry",
       "quickStart.guideHosted": "Hosted @modernui",
+      "quickStart.guideVercel": "Hosted on Vercel",
+      "quickStart.vercelTitle": "Manual / partial setup",
+      "quickStart.vercelIntro":
+        "Prefer path A or B above. Use these only when you already have a plain shadcn init, need a one-off URL, or manage registries by hand.",
+      "quickStart.vercelAutoTitle": "Recommended — fully automated",
+      "quickStart.vercelAutoDesc":
+        "One init + one add. Creates components.json with @modernui, installs theme/utils and npm packages, then adds Button.",
+      "quickStart.vercelStep1Title": "Register namespace only",
+      "quickStart.vercelStep1Desc":
+        "If you already ran a plain shadcn init, register @modernui without re-running ModernUI init.",
+      "quickStart.vercelStep2Title": "Or edit components.json",
+      "quickStart.vercelStep2Desc":
+        "If you manage config by hand, add the registries entry with the {name} placeholder.",
+      "quickStart.vercelStep3Title": "Manual — theme, utils, then component",
+      "quickStart.vercelStep3Desc":
+        "Skip ModernUI init only if foundation is already installed. Prefer path A or B above.",
+      "quickStart.vercelStep4Title": "Direct JSON URL (optional)",
+      "quickStart.vercelStep4Desc":
+        "Skip the namespace and add a single item by full URL when you only need one file.",
+      "quickStart.vercelNote":
+        "Base URL: https://modernui-registry.vercel.app — JSON at /r/{name}.json including /r/init.json. Maintainers deploying this docs app: see the Hosted guide.",
       "cat.foundation": "Foundation",
       "cat.actions": "Actions",
       "cat.forms": "Forms",
@@ -144,29 +184,69 @@ export const docsMessages = {
       "quickStart.badge": "Registro de componentes",
       "quickStart.title": "Inicio rápido",
       "quickStart.intro":
-        "Instala ModernUI en cualquier app React compatible con shadcn. Copia un comando, ejecútalo y sé dueño del código.",
+        "Dos rutas para app única abajo (nueva o existente), más GitHub y monorepo. Copia un comando, ejecútalo y sé dueño del código.",
+      "quickStart.badgePaths": "nueva · existente · monorepo",
       "quickStart.copyAll": "Copiar todo",
       "quickStart.copy": "Copiar",
       "quickStart.copied": "Copiado",
       "quickStart.viewInRegistry": "Ver en el registro",
-      "quickStart.stepInitTitle": "Inicializar shadcn",
+      "quickStart.pathFreshTitle": "A · App nueva",
+      "quickStart.pathFreshBadge": "desde cero",
+      "quickStart.pathFreshDesc":
+        "Aún no hay app. Crea Next.js + Tailwind, luego init de ModernUI y agrega un componente.",
+      "quickStart.pathExistingTitle": "B · App existente",
+      "quickStart.pathExistingBadge": "sin scaffold",
+      "quickStart.pathExistingDesc":
+        "Ya tienes una app React con Tailwind. Omite create-next-app; ejecuta init de ModernUI y luego add.",
+      "quickStart.stepScaffoldTitle": "Crear la app",
+      "quickStart.stepScaffoldDesc":
+        "Crea un proyecto Next.js App Router con TypeScript y Tailwind. Obligatorio antes del init de ModernUI.",
+      "quickStart.stepInitTitle": "Inicializar ModernUI",
       "quickStart.stepInitDesc":
-        "Ejecuta una vez en tu proyecto React. Configura components.json y las rutas de Tailwind.",
-      "quickStart.stepSetupTitle": "Configuración del proyecto",
-      "quickStart.stepSetupDesc":
-        "Agrega AGENTS.md y docs/modernui-setup.md — convenciones del equipo y guía de instalación.",
-      "quickStart.stepFoundationTitle": "Tema y utilidades",
-      "quickStart.stepFoundationDesc":
-        "Tokens de diseño y el helper cn(). i18n opcional después de utils. Requerido antes de cualquier primitiva UI.",
+        "Escribe components.json, registra @modernui, instala theme + utils y deps npm. Usa -y para omitir confirmaciones.",
       "quickStart.stepComponentTitle": "Agregar un componente",
       "quickStart.stepComponentDesc":
-        "Instala código que te pertenece. Cambia button por cualquier primitiva, bloque o gráfico.",
+        "Instala código que te pertenece. Cambia button por cualquier primitiva, bloque o gráfico. Las deps npm se instalan solas.",
+      "quickStart.stepOptionalTitle": "Extras opcionales",
+      "quickStart.stepOptionalDesc":
+        "project-setup agrega AGENTS.md + guía; i18n agrega LanguageProvider para bloques con textos.",
+      "quickStart.githubTitle": "Registro de GitHub",
+      "quickStart.githubDesc":
+        "No requiere deploy en Vercel. Sirve para apps existentes; agrega create-next-app primero si es un proyecto nuevo.",
+      "quickStart.githubFreshHint": "App nueva vía GitHub:",
+      "quickStart.monorepoTitle": "Monorepo",
+      "quickStart.monorepoDesc":
+        "Paquete UI compartido + workspaces de apps. Los pasos A/B completos están en Instalación monorepo.",
+      "quickStart.monorepoLink": "Guía completa",
+      "quickStart.monorepoExistingLabel": "B · Monorepo existente",
+      "quickStart.monorepoFreshLabel": "A · Monorepo nuevo",
       "quickStart.footer":
         "Explora los componentes abajo o pulsa ⌘K para buscar. Guías:",
       "quickStart.guideConsumer": "Configuración del consumidor",
       "quickStart.guideI18n": "Uso de i18n",
       "quickStart.guideGithub": "Registro de GitHub",
       "quickStart.guideHosted": "Hosted @modernui",
+      "quickStart.guideVercel": "Alojado en Vercel",
+      "quickStart.vercelTitle": "Configuración manual / parcial",
+      "quickStart.vercelIntro":
+        "Prefiere la ruta A o B arriba. Usa esto solo si ya tienes un init shadcn genérico, necesitas una URL puntual o gestionas registries a mano.",
+      "quickStart.vercelAutoTitle": "Recomendado — totalmente automatizado",
+      "quickStart.vercelAutoDesc":
+        "Un init + un add. Crea components.json con @modernui, instala theme/utils y paquetes npm, luego agrega Button.",
+      "quickStart.vercelStep1Title": "Solo registrar el namespace",
+      "quickStart.vercelStep1Desc":
+        "Si ya corriste un shadcn init normal, registra @modernui sin volver a ejecutar el init de ModernUI.",
+      "quickStart.vercelStep2Title": "O edita components.json",
+      "quickStart.vercelStep2Desc":
+        "Si gestionas la config a mano, agrega la entrada registries con el placeholder {name}.",
+      "quickStart.vercelStep3Title": "Manual — theme, utils y luego el componente",
+      "quickStart.vercelStep3Desc":
+        "Omite el init de ModernUI solo si la base ya está instalada. Prefiere la ruta A o B arriba.",
+      "quickStart.vercelStep4Title": "URL JSON directa (opcional)",
+      "quickStart.vercelStep4Desc":
+        "Omite el namespace y agrega un solo ítem por URL completa cuando solo necesitas un archivo.",
+      "quickStart.vercelNote":
+        "URL base: https://modernui-registry.vercel.app — JSON en /r/{name}.json incluyendo /r/init.json. Mantenedores que despliegan esta app de docs: consulta la guía Hosted.",
       "cat.foundation": "Fundamentos",
       "cat.actions": "Acciones",
       "cat.forms": "Formularios",

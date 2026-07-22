@@ -59,17 +59,37 @@ Recommended order: **theme → utils → i18n (optional) → primitives → bloc
 
 ### Monorepo
 
-Install shared primitives into `packages/ui` and app-specific blocks into `apps/web`. Use `-c` on every command when running from the repo root:
+Substitute `packages/ui` / `apps/web` for your workspace paths. Use `-c` from the repo root.
+
+**A · Fresh / new monorepo**
 
 ```bash
 npx shadcn@latest init --monorepo
-npx shadcn@latest init -c packages/ui
-npx shadcn@latest init -c apps/web
-npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/i18n -c packages/ui   # optional
-npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/login-form -y -c apps/web
+```
+
+**B · Existing monorepo** (skip scaffold)
+
+```bash
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/i18n -y -c packages/ui   # optional
+npx shadcn@latest add @modernui/login-form -y -c apps/web
+```
+
+GitHub fallback (either path, no Vercel):
+
+```bash
+npx shadcn@latest init tmdc-io/modern-ui-component/init -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest add tmdc-io/modern-ui-component/button -y -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -y -c apps/web
 ```
 
 Import theme CSS in the app layout: `import "@workspace/ui/globals.css"`.

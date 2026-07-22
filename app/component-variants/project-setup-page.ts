@@ -40,9 +40,9 @@ export const projectSetupVariantPage: ComponentVariantPage = {
       id: "monorepo",
       title: "Monorepo",
       description:
-        "Install theme, utils, and primitives into packages/ui; app blocks into apps/web.",
+        "A · Fresh (scaffold first) and B · Existing (skip scaffold) monorepo install paths.",
       Preview: ProjectSetupMonorepoPreview,
-      code: monorepoCodes.fullBootstrap,
+      code: `${monorepoCodes.fullBootstrap}\n\n# Existing (skip scaffold):\n${monorepoCodes.existingBootstrap}`,
       tall: true,
     },
   ],

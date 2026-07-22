@@ -2,17 +2,46 @@
 
 Install ModernUI components into any React project that supports shadcn/ui (Next.js, Vite, etc.).
 
-## Prerequisites
+## Fully automated (recommended)
 
-Your project must have shadcn/ui initialized:
+Prerequisite: a React app with Tailwind already set up (for example `create-next-app` with Tailwind). Then bootstrap the ModernUI base and add components. The CLI writes `components.json`, registers `@modernui`, installs core npm packages, and embeds theme + utils from the `init` item.
+
+### Hosted (Vercel)
 
 ```bash
-npx shadcn@latest init
+# Optional: scaffold if you do not have an app yet
+npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir=false --import-alias "@/*"
+cd my-app
+
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y
+npx shadcn@latest add @modernui/button -y
+npx shadcn@latest add @modernui/login-form -y   # example block
 ```
 
-## Option A: GitHub Registry (recommended to start)
+### GitHub registry
 
 ```bash
+npx shadcn@latest init tmdc-io/modern-ui-component/init -y
+npx shadcn@latest add tmdc-io/modern-ui-component/button -y
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -y
+```
+
+Optional after init:
+
+```bash
+npx shadcn@latest add tmdc-io/modern-ui-component/i18n
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
+```
+
+> **Note:** Plain `npx shadcn@latest init` (without the ModernUI `init` item) only sets up generic shadcn. It will **not** install ModernUI theme tokens or register `@modernui`.
+
+## Option A: GitHub — step by step (manual)
+
+If you prefer not to use the ModernUI `init` base:
+
+```bash
+npx shadcn@latest init -y
+
 # Install foundation first
 npx shadcn@latest add tmdc-io/modern-ui-component/theme
 npx shadcn@latest add tmdc-io/modern-ui-component/utils
@@ -44,25 +73,28 @@ npx shadcn@latest view tmdc-io/modern-ui-component/button
 npx shadcn@latest add tmdc-io/modern-ui-component/button#v1.0.0
 ```
 
-## Option B: Hosted namespace
+## Option B: Hosted namespace (manual)
 
-After the registry is deployed, register the namespace once per project:
+After the registry is deployed, either run ModernUI `init` (recommended) or register the namespace once:
 
 ```bash
-npx shadcn@latest registry add @modernui=https://your-registry-url.com/r/{name}.json
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json
 ```
 
 Then install components:
 
 ```bash
 npx shadcn@latest add @modernui/theme
+npx shadcn@latest add @modernui/utils
 npx shadcn@latest add @modernui/button
 npx shadcn@latest add @modernui/login-form
 ```
 
+Full deploy + consumer detail: [HOSTED.md](./HOSTED.md).
+
 ## Install order
 
-Always install in this order for new projects:
+For **new** projects prefer **ModernUI `init`** (theme + utils included). Otherwise:
 
 1. `theme` — CSS variables and base styles
 2. `utils` — `cn()` helper
@@ -74,17 +106,19 @@ Always install in this order for new projects:
 
 Use a shared UI package for primitives and theme. Keep app-only blocks in the app workspace.
 
+Substitute `packages/ui` and `apps/web` below for your real workspace paths. Run every command from the **monorepo root** with `-c <workspace>`.
+
 ### Typical layout
 
 ```txt
 my-monorepo/
 ├── apps/
-│   └── web/                 # Next.js app
+│   └── web/                 # Next.js app  →  -c apps/web
 │       ├── app/
 │       ├── components/      # app-only blocks
 │       └── components.json
 ├── packages/
-│   └── ui/                  # shared ModernUI primitives
+│   └── ui/                  # shared ModernUI  →  -c packages/ui
 │       ├── src/
 │       │   ├── components/ui/
 │       │   ├── lib/utils.ts
@@ -94,37 +128,73 @@ my-monorepo/
 └── package.json
 ```
 
-### Process
+### A · Fresh / new monorepo
 
-1. **Scaffold** — `npx shadcn@latest init --monorepo` creates `apps/web` and `packages/ui`.
-2. **Init each workspace** — every folder that receives components needs its own `components.json`:
-   ```bash
-   npx shadcn@latest init -c packages/ui
-   npx shadcn@latest init -c apps/web
-   ```
-3. **Install foundation in `packages/ui`** — theme and utils must live in the shared package:
-   ```bash
-   npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
-   npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
-   npx shadcn@latest add tmdc-io/modern-ui-component/i18n -c packages/ui   # optional
-   ```
-4. **Add primitives to `packages/ui`**:
-   ```bash
-   npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
-   npx shadcn@latest add tmdc-io/modern-ui-component/input -c packages/ui
-   ```
-5. **Add app blocks to `apps/web`** (optional):
-   ```bash
-   npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
-   ```
+No `apps/` or `packages/` yet. Scaffold first, then ModernUI init and add.
+
+1. **Scaffold** — creates `apps/web` and `packages/ui`
+2. **Init ModernUI** in `packages/ui` (theme + utils + `@modernui`)
+3. **Init the app** and register `@modernui` (do not re-run ModernUI init in the app)
+4. **Add** primitives to `packages/ui` and optional blocks to `apps/web`
+
+```bash
+npx shadcn@latest init --monorepo
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/login-form -y -c apps/web
+```
+
+GitHub (no Vercel):
+
+```bash
+npx shadcn@latest init --monorepo
+npx shadcn@latest init tmdc-io/modern-ui-component/init -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest add tmdc-io/modern-ui-component/button -y -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -y -c apps/web
+```
+
+### B · Existing monorepo
+
+Skip `init --monorepo`. Point `-c` at your existing UI package and apps. The shared UI package needs Tailwind and a CSS file the CLI can update.
+
+1. **Init ModernUI** in the shared UI package only
+2. **Init / register** the app (`registry add` only if `components.json` already exists)
+3. **Point** app `ui` / `utils` aliases at the shared package
+4. **Add** primitives and optional app blocks
+
+```bash
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/login-form -y -c apps/web   # optional
+npx shadcn@latest add @modernui/i18n -y -c packages/ui      # optional
+```
+
+GitHub (no Vercel):
+
+```bash
+npx shadcn@latest init tmdc-io/modern-ui-component/init -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest add tmdc-io/modern-ui-component/button -y -c packages/ui
+npx shadcn@latest add tmdc-io/modern-ui-component/login-form -y -c apps/web
+```
+
+If the app already has `components.json`, skip its `init` and only add the `@modernui` registry (or edit `registries` by hand). Still point `ui` / `utils` at the shared package so you do not duplicate theme or `cn()`.
 
 ### Rules
 
+- **A** uses `init --monorepo` first; **B** never does — only change `-c` paths.
 - Use the **same** `style`, `baseColor`, and `iconLibrary` in every `components.json`.
+- Run **ModernUI `init` only in the shared UI package** — theme and utils live there once.
 - Point the app `utils` alias to `@workspace/ui/lib/utils` — do not install utils twice.
 - Import theme CSS once in the app: `import "@workspace/ui/globals.css"` in `app/layout.tsx`.
+- Register `@modernui` in both workspaces (or use GitHub item paths for every `add`).
 - Expose `packages/ui` through `package.json` `exports` so apps can import `@workspace/ui/components/ui/button`.
-- Always pass **`-c <workspace>`** when running `add` from the monorepo root.
+- Always pass **`-c <workspace>`** when running `init` / `add` from the monorepo root.
 
 ### Example `packages/ui/package.json` exports
 
@@ -153,7 +223,8 @@ import { Button } from "@workspace/ui/components/ui/button"
 ### Discover components from a workspace
 
 ```bash
-npx shadcn@latest list tmdc-io/modern-ui-component -c packages/ui
+npx shadcn@latest list @modernui -c packages/ui
+# or: npx shadcn@latest list tmdc-io/modern-ui-component -c packages/ui
 ```
 
 See the [shadcn monorepo docs](https://ui.shadcn.com/docs/monorepo) for package-import aliases and Tailwind v4 notes.

@@ -105,18 +105,23 @@ export function ProjectSetupMonorepoPreview() {
   return (
     <div className="flex w-full max-w-2xl flex-col gap-6 text-left text-sm">
       <p className="text-muted-foreground leading-relaxed">
-        In a pnpm/turbo monorepo, install shared primitives into{" "}
-        <code className="text-foreground text-xs">packages/ui</code> and
-        app-specific blocks into{" "}
-        <code className="text-foreground text-xs">apps/web</code>. Use{" "}
-        <code className="text-foreground text-xs">-c &lt;workspace&gt;</code> on
-        every CLI command when running from the repo root.
+        Two install paths:{" "}
+        <strong className="text-foreground font-medium">A · Fresh / new</strong>{" "}
+        (scaffold first) and{" "}
+        <strong className="text-foreground font-medium">B · Existing</strong>{" "}
+        (skip <code className="text-foreground text-xs">init --monorepo</code>).
+        Substitute <code className="text-foreground text-xs">packages/ui</code> /{" "}
+        <code className="text-foreground text-xs">apps/web</code> for your paths.
       </p>
       <MonorepoStructurePreview />
       <MonorepoProcessPreview />
       <div className="flex flex-col gap-2">
-        <p className="font-medium">Bootstrap commands</p>
+        <p className="font-medium">A · Fresh / new monorepo</p>
         <InstallCommand command={monorepoCodes.fullBootstrap} />
+      </div>
+      <div className="flex flex-col gap-2">
+        <p className="font-medium">B · Existing monorepo</p>
+        <InstallCommand command={monorepoCodes.existingBootstrap} />
       </div>
     </div>
   )

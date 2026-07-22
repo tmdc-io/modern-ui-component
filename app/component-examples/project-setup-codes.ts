@@ -42,18 +42,18 @@ See README.md for the full command reference.
 
 Install ModernUI components into any React project that supports shadcn/ui (Next.js, Vite, etc.).
 
-## Prerequisites
-
-Your project must have shadcn/ui initialized:
+## Fully automated (recommended)
 
 \`\`\`bash
-npx shadcn@latest init
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y
+npx shadcn@latest add @modernui/button -y
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup   # optional conventions
 \`\`\`
 
-## Option A: GitHub Registry (recommended to start)
+## Option A: GitHub Registry (manual)
 
 \`\`\`bash
-# Install foundation first
+# Install foundation first (or use ModernUI init above)
 npx shadcn@latest add tmdc-io/modern-ui-component/theme
 npx shadcn@latest add tmdc-io/modern-ui-component/utils
 
@@ -72,22 +72,31 @@ npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
 
 ## Install order
 
-1. \`theme\` — CSS variables and base styles
-2. \`utils\` — \`cn()\` helper
-3. Primitives (\`button\`, \`input\`, \`card\`, \`dialog\`, etc.)
-4. Blocks (\`login-form\`, etc.)
+1. ModernUI \`init\` (theme + utils + \`@modernui\`) — or \`theme\` then \`utils\` manually
+2. Primitives (\`button\`, \`input\`, \`card\`, \`dialog\`, etc.)
+3. Blocks (\`login-form\`, etc.)
 
 ## Monorepo
 
-Scaffold with \`npx shadcn@latest init --monorepo\`, then init each workspace and install shared primitives into \`packages/ui\`:
+**A · Fresh / new** — scaffold, then ModernUI init and add:
 
 \`\`\`bash
-npx shadcn@latest init -c packages/ui
-npx shadcn@latest init -c apps/web
-npx shadcn@latest add tmdc-io/modern-ui-component/theme -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/utils -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/button -c packages/ui
-npx shadcn@latest add tmdc-io/modern-ui-component/login-form -c apps/web
+npx shadcn@latest init --monorepo
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/login-form -y -c apps/web
+\`\`\`
+
+**B · Existing** — skip scaffold; substitute your workspace paths:
+
+\`\`\`bash
+npx shadcn@latest init https://modernui-registry.vercel.app/r/init.json -y -c packages/ui
+npx shadcn@latest init -y -c apps/web
+npx shadcn@latest registry add @modernui=https://modernui-registry.vercel.app/r/{name}.json -c apps/web
+npx shadcn@latest add @modernui/button -y -c packages/ui
+npx shadcn@latest add @modernui/login-form -y -c apps/web
 \`\`\`
 
 Import in the app: \`import "@workspace/ui/globals.css"\` and \`import { Button } from "@workspace/ui/components/ui/button"\`.
@@ -96,3 +105,4 @@ Import in the app: \`import "@workspace/ui/globals.css"\` and \`import { Button 
 
 Files are copied directly into your project. You own and can edit every file — there is no opaque npm dependency for components.`,
 } as const
+

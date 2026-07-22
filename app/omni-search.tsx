@@ -465,7 +465,7 @@ function OmniSearchDialog({
             />
           </CommandItem>
           <CommandItem
-            value="Monorepo installation pnpm turbo workspaces"
+            value="Monorepo Installation pnpm turbo workspaces"
             keywords={["monorepo", "pnpm", "turbo"]}
             onSelect={() => navigateToSection(MONOREPO_SECTION_ID)}
           >

@@ -1,5 +1,6 @@
 /** Spanish display titles for catalog items. English comes from catalog.ts. */
 export const catalogItemTitlesEs: Record<string, string> = {
+  init: "Inicialización",
   "project-setup": "Configuración del proyecto",
   theme: "Tema",
   utils: "Utilidades",
