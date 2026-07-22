@@ -261,7 +261,7 @@ ${entries}
 
 function buildChartCatalogFile(categories) {
   const install = (name) =>
-    `npx shadcn@latest add tmdc-io/modern-ui-component/${name}`
+    `npx shadcn@latest add @modernui/${name}\nnpx shadcn@latest add tmdc-io/modern-ui-component/${name}`
 
   const sections = categories
     .map((category) => {

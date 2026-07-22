@@ -1,4 +1,8 @@
 import { chartCatalogCategories } from "@/app/chart-catalog"
+import {
+  registryAddCommands,
+  registryInitCommands,
+} from "@/app/registry-install"
 
 export type CatalogItem = {
   name: string
@@ -14,7 +18,7 @@ export type CatalogCategory = {
 }
 
 const install = (name: string) =>
-  `npx shadcn@latest add tmdc-io/modern-ui-component/${name}`
+  name === "init" ? registryInitCommands("-y") : registryAddCommands(name)
 
 const item = (
   name: string,

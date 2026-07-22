@@ -1,3 +1,4 @@
+import { expandRegistryInstallCommand } from "@/app/registry-install"
 import { cn } from "@/lib/utils"
 
 const ADD_COMMAND_RE =
@@ -186,11 +187,16 @@ function HighlightedLine({ line }: { line: string }) {
 export function InstallCommand({
   command,
   className,
+  /** When false, skip @modernui + GitHub expansion (multi-step guides). */
+  expand = true,
 }: {
   command: string
   className?: string
+  expand?: boolean
 }) {
-  const lines = command.split("\n")
+  const lines = (expand ? expandRegistryInstallCommand(command) : command).split(
+    "\n"
+  )
 
   return (
     <pre

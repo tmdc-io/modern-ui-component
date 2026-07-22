@@ -1,5 +1,13 @@
-export const REGISTRY_NAMESPACE = "tmdc-io/modern-ui-component"
-export const HOSTED_REGISTRY_BASE = "https://modernui-registry.vercel.app/r"
+export {
+  HOSTED_REGISTRY_BASE,
+  REGISTRY_NAMESPACE,
+} from "@/app/registry-install"
+
+import {
+  HOSTED_REGISTRY_BASE,
+  REGISTRY_NAMESPACE,
+} from "@/app/registry-install"
+
 export const HOSTED_INIT = `${HOSTED_REGISTRY_BASE}/init.json`
 export const GITHUB_INIT = `${REGISTRY_NAMESPACE}/init`
 
