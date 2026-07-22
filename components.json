@@ -19,6 +19,6 @@
   },
   "iconLibrary": "lucide",
   "registries": {
-    "@modernui": "https://modernui-registry.vercel.app/r/{name}.json"
+    "@modernui": "http://localhost:3000/r/{name}.json"
   }
 }
