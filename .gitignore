@@ -45,4 +45,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .drawer-check/
+vercel.log
 
