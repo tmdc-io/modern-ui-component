@@ -1,5 +1,7 @@
 export const tableExpandableCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/table
+  install: `npx shadcn@latest add @modernui/table
+npx shadcn@latest add tmdc-io/modern-ui-component/table
+npx shadcn@latest add @modernui/button
 npx shadcn@latest add tmdc-io/modern-ui-component/button`,
   full: `"use client"
 

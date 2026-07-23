@@ -1,5 +1,6 @@
 export const modelsTableCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/models-table`,
+  install: `npx shadcn@latest add @modernui/models-table
+npx shadcn@latest add tmdc-io/modern-ui-component/models-table`,
 
   props: `type ModelTableStatus = "fail" | "warn" | "pass" | "none"
 

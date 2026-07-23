@@ -1,10 +1,15 @@
 export const tableSortFilterCodes = {
   install: `# https://tanstack.com/table/latest
 pnpm add @tanstack/react-table
+npx shadcn@latest add @modernui/table
 npx shadcn@latest add tmdc-io/modern-ui-component/table
+npx shadcn@latest add @modernui/popover
 npx shadcn@latest add tmdc-io/modern-ui-component/popover
+npx shadcn@latest add @modernui/checkbox
 npx shadcn@latest add tmdc-io/modern-ui-component/checkbox
+npx shadcn@latest add @modernui/label
 npx shadcn@latest add tmdc-io/modern-ui-component/label
+npx shadcn@latest add @modernui/button
 npx shadcn@latest add tmdc-io/modern-ui-component/button`,
   full: `"use client"
 

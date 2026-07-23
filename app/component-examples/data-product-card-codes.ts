@@ -1,5 +1,6 @@
 export const dataProductCardCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/data-product-card`,
+  install: `npx shadcn@latest add @modernui/data-product-card
+npx shadcn@latest add tmdc-io/modern-ui-component/data-product-card`,
 
   props: `type DataProductCardBadgeStatus = "pass" | "warn" | "fail"
 

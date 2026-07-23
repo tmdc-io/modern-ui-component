@@ -17,6 +17,7 @@ import {
   monorepoCodes,
   REGISTRY_NAMESPACE,
 } from "@/app/component-examples/monorepo-codes"
+import { HOSTED_REGISTRY_ORIGIN } from "@/lib/registry-constants"
 import { docsMessages } from "@/app/docs-messages"
 import { GITHUB_DOCS } from "@/app/github-link"
 import { InstallCommand } from "@/app/install-command"
@@ -30,7 +31,7 @@ import { Badge } from "@/registry/default/ui/badge"
 import { Button } from "@/registry/default/ui/button"
 import { cn } from "@/lib/utils"
 
-const HOSTED_BASE = "https://modern-ui-component.vercel.app"
+const HOSTED_BASE = HOSTED_REGISTRY_ORIGIN
 const HOSTED_REGISTRY = `${HOSTED_REGISTRY_BASE}/{name}.json`
 
 const CREATE_NEXT_APP_CMD = `npx create-next-app@latest my-app --typescript --tailwind --eslint --app --import-alias "@/*"
@@ -156,7 +157,7 @@ function ProcessStep({
             </p>
           </div>
           <div className="flex items-start justify-between gap-2">
-            <InstallCommand command={command} className="min-w-0 flex-1" />
+            <InstallCommand expand={false} command={command} className="min-w-0 flex-1" />
             <CopyCommandButton text={command} />
           </div>
         </div>
@@ -253,7 +254,7 @@ export function RegistryQuickStart() {
               className="shrink-0 border bg-background"
             />
           </div>
-          <InstallCommand command={FRESH_APP_BOOTSTRAP} />
+          <InstallCommand expand={false} command={FRESH_APP_BOOTSTRAP} />
           <ol className="flex flex-col gap-4">
             <ProcessStep
               index={1}
@@ -301,7 +302,7 @@ export function RegistryQuickStart() {
               className="shrink-0 border bg-background"
             />
           </div>
-          <InstallCommand command={EXISTING_APP_BOOTSTRAP} />
+          <InstallCommand expand={false} command={EXISTING_APP_BOOTSTRAP} />
           <ol className="flex flex-col gap-4">
             <ProcessStep
               index={1}
@@ -344,11 +345,11 @@ export function RegistryQuickStart() {
             </div>
             <CopyCommandButton text={GITHUB_EXISTING_BOOTSTRAP} />
           </div>
-          <InstallCommand command={GITHUB_EXISTING_BOOTSTRAP} />
+          <InstallCommand expand={false} command={GITHUB_EXISTING_BOOTSTRAP} />
           <p className="text-muted-foreground text-xs leading-relaxed">
             {t["quickStart.githubFreshHint"]}
           </p>
-          <InstallCommand command={GITHUB_FRESH_BOOTSTRAP} />
+          <InstallCommand expand={false} command={GITHUB_FRESH_BOOTSTRAP} />
         </div>
 
         <div className="bg-card space-y-3 p-5 sm:p-6">
@@ -373,11 +374,11 @@ export function RegistryQuickStart() {
           <p className="text-muted-foreground text-xs font-medium">
             {t["quickStart.monorepoExistingLabel"]}
           </p>
-          <InstallCommand command={monorepoCodes.existingBootstrap} />
+          <InstallCommand expand={false} command={monorepoCodes.existingBootstrap} />
           <p className="text-muted-foreground text-xs font-medium">
             {t["quickStart.monorepoFreshLabel"]}
           </p>
-          <InstallCommand command={monorepoCodes.fullBootstrap} />
+          <InstallCommand expand={false} command={monorepoCodes.fullBootstrap} />
         </div>
       </div>
 

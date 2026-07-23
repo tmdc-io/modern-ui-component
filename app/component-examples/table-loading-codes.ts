@@ -1,5 +1,7 @@
 export const tableLoadingCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/table
+  install: `npx shadcn@latest add @modernui/table
+npx shadcn@latest add tmdc-io/modern-ui-component/table
+npx shadcn@latest add @modernui/skeleton
 npx shadcn@latest add tmdc-io/modern-ui-component/skeleton`,
   full: `import { Skeleton } from "@/components/ui/skeleton"
 import {

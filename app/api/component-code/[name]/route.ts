@@ -3,13 +3,13 @@ import { NextResponse } from "next/server"
 import { getRegistryComponentCode } from "@/lib/registry-code"
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ name: string }> }
 ) {
   const { name } = await params
 
   try {
-    const result = await getRegistryComponentCode(name)
+    const result = await getRegistryComponentCode(name, request.url)
     if (!result) {
       return NextResponse.json({ error: "Component not found" }, { status: 404 })
     }

@@ -1,5 +1,6 @@
 export const i18nCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/i18n`,
+  install: `npx shadcn@latest add @modernui/i18n
+npx shadcn@latest add tmdc-io/modern-ui-component/i18n`,
 
   provider: `import {
   LanguageProvider,

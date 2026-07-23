@@ -1,5 +1,6 @@
 export const layoutCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/layout`,
+  install: `npx shadcn@latest add @modernui/layout
+npx shadcn@latest add tmdc-io/modern-ui-component/layout`,
 
   basic: `import {
   Layout,

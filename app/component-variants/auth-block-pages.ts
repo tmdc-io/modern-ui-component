@@ -25,7 +25,8 @@ export const LoginVariantPage: ComponentVariantPage = {
   name: "login",
   title: "Login",
   description: "Authentication layouts and login form blocks.",
-  install: "npx shadcn@latest add login-01",
+  install:
+    "npx shadcn@latest add @modernui/login-form\nnpx shadcn@latest add tmdc-io/modern-ui-component/login-form",
   variants: [
     {
       id: "01",
@@ -68,8 +69,10 @@ export const LoginVariantPage: ComponentVariantPage = {
 export const SignupVariantPage: ComponentVariantPage = {
   name: "signup",
   title: "Signup",
-  description: "Registration layouts and signup form blocks.",
-  install: "npx shadcn@latest add signup-01",
+  description:
+    "Registration layout demos. Install login-form for the shared form block; signup layouts are examples only.",
+  install:
+    "npx shadcn@latest add @modernui/login-form\nnpx shadcn@latest add tmdc-io/modern-ui-component/login-form",
   variants: [
     {
       id: "01",

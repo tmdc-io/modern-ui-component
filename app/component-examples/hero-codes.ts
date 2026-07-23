@@ -1,5 +1,6 @@
 export const heroCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/hero`,
+  install: `npx shadcn@latest add @modernui/hero
+npx shadcn@latest add tmdc-io/modern-ui-component/hero`,
 
   props: `type HeroVariant = "full" | "internal" | "sticky"
 

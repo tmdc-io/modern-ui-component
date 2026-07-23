@@ -1,5 +1,6 @@
 export const runCardCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/run-card`,
+  install: `npx shadcn@latest add @modernui/run-card
+npx shadcn@latest add tmdc-io/modern-ui-component/run-card`,
 
   success: `import { RunCard } from "@/components/blocks/run-card"
 

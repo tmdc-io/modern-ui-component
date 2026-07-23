@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Ensure /api/component-code can read built registry JSON on Vercel.
+  outputFileTracingIncludes: {
+    "/api/component-code/[name]": ["./public/r/**/*"],
+  },
   async rewrites() {
     return {
       beforeFiles: [

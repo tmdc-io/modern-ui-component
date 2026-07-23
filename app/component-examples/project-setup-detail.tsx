@@ -41,9 +41,11 @@ export function ProjectSetupOverviewPreview() {
           <TerminalIcon className="size-4" />
           Install command
         </div>
-        <code className="bg-muted block rounded-md border px-3 py-2 text-xs">
-          npx shadcn@latest add tmdc-io/modern-ui-component/project-setup
-        </code>
+        <InstallCommand
+          expand={false}
+          command={`npx shadcn@latest add @modernui/project-setup
+npx shadcn@latest add tmdc-io/modern-ui-component/project-setup`}
+        />
       </div>
 
       <div className="flex flex-col gap-3">
@@ -117,11 +119,11 @@ export function ProjectSetupMonorepoPreview() {
       <MonorepoProcessPreview />
       <div className="flex flex-col gap-2">
         <p className="font-medium">A · Fresh / new monorepo</p>
-        <InstallCommand command={monorepoCodes.fullBootstrap} />
+        <InstallCommand expand={false} command={monorepoCodes.fullBootstrap} />
       </div>
       <div className="flex flex-col gap-2">
         <p className="font-medium">B · Existing monorepo</p>
-        <InstallCommand command={monorepoCodes.existingBootstrap} />
+        <InstallCommand expand={false} command={monorepoCodes.existingBootstrap} />
       </div>
     </div>
   )

@@ -17,7 +17,7 @@ export const docVariantSupplements: Record<string, ComponentVariantPage> = {
     name: "textarea",
     title: "Textarea",
     description: "ModernUI Textarea component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/textarea",
+    install: "npx shadcn@latest add @modernui/textarea\nnpx shadcn@latest add tmdc-io/modern-ui-component/textarea",
     variants: [
       {
         id: "field",
@@ -46,7 +46,7 @@ export const docVariantSupplements: Record<string, ComponentVariantPage> = {
     name: "input",
     title: "Input",
     description: "ModernUI Input component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/input",
+    install: "npx shadcn@latest add @modernui/input\nnpx shadcn@latest add tmdc-io/modern-ui-component/input",
     variants: [
       {
         id: "field",

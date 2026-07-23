@@ -60,7 +60,7 @@ npx shadcn@latest add ${REGISTRY_NAMESPACE}/card -y -c packages/ui`,
     "utils": "@workspace/ui/lib/utils"
   },
   "registries": {
-    "@modernui": "https://modern-ui-component.vercel.app/r/{name}.json"
+    "@modernui": "${HOSTED_REGISTRY_BASE}/{name}.json"
   }
 }`,
 
@@ -85,7 +85,7 @@ npx shadcn@latest add ${REGISTRY_NAMESPACE}/card -y -c packages/ui`,
     "utils": "@workspace/ui/lib/utils"
   },
   "registries": {
-    "@modernui": "https://modern-ui-component.vercel.app/r/{name}.json"
+    "@modernui": "${HOSTED_REGISTRY_BASE}/{name}.json"
   }
 }`,
 

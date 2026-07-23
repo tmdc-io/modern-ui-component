@@ -1,5 +1,6 @@
 export const runMetricsCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/run-metrics`,
+  install: `npx shadcn@latest add @modernui/run-metrics
+npx shadcn@latest add tmdc-io/modern-ui-component/run-metrics`,
 
   props: `type RunMetricQualityDetail = {
   passed: number

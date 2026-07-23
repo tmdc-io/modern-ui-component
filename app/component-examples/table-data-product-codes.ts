@@ -1,5 +1,6 @@
 export const tableDataProductCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/data-product-table`,
+  install: `npx shadcn@latest add @modernui/data-product-table
+npx shadcn@latest add tmdc-io/modern-ui-component/data-product-table`,
 
   props: `type DataProductRow = {
   id: string

@@ -1,5 +1,7 @@
 export const tableSelectionCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/table
+  install: `npx shadcn@latest add @modernui/table
+npx shadcn@latest add tmdc-io/modern-ui-component/table
+npx shadcn@latest add @modernui/checkbox
 npx shadcn@latest add tmdc-io/modern-ui-component/checkbox`,
   full: `"use client"
 

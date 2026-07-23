@@ -1,5 +1,6 @@
 export const utilsCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/utils`,
+  install: `npx shadcn@latest add @modernui/utils
+npx shadcn@latest add tmdc-io/modern-ui-component/utils`,
 
   source: `import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"

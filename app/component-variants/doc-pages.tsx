@@ -61,7 +61,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "button-group",
     title: "Button Group",
     description: "ModernUI Button Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/button-group",
+    install: "npx shadcn@latest add @modernui/button-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/button-group",
     variants: [
       {
         id: "default",
@@ -111,7 +111,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "direction",
     title: "Direction",
     description: "ModernUI Direction component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/direction",
+    install: "npx shadcn@latest add @modernui/direction\nnpx shadcn@latest add tmdc-io/modern-ui-component/direction",
     variants: [
       {
         id: "default",
@@ -133,7 +133,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "empty",
     title: "Empty",
     description: "ModernUI Empty component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/empty",
+    install: "npx shadcn@latest add @modernui/empty\nnpx shadcn@latest add tmdc-io/modern-ui-component/empty",
     variants: [
       {
         id: "default",
@@ -155,7 +155,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "field",
     title: "Field",
     description: "ModernUI Field component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/field",
+    install: "npx shadcn@latest add @modernui/field\nnpx shadcn@latest add tmdc-io/modern-ui-component/field",
     variants: [
       {
         id: "default",
@@ -184,7 +184,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "form",
     title: "Form",
     description: "ModernUI Form component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/form",
+    install: "npx shadcn@latest add @modernui/form\nnpx shadcn@latest add tmdc-io/modern-ui-component/form",
     variants: [
       {
         id: "default",
@@ -199,7 +199,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "input-group",
     title: "Input Group",
     description: "ModernUI Input Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/input-group",
+    install: "npx shadcn@latest add @modernui/input-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/input-group",
     variants: [
       {
         id: "default",
@@ -228,7 +228,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "item",
     title: "Item",
     description: "ModernUI Item component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/item",
+    install: "npx shadcn@latest add @modernui/item\nnpx shadcn@latest add tmdc-io/modern-ui-component/item",
     variants: [
       {
         id: "default",
@@ -250,7 +250,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "kbd",
     title: "Kbd",
     description: "ModernUI Kbd component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/kbd",
+    install: "npx shadcn@latest add @modernui/kbd\nnpx shadcn@latest add tmdc-io/modern-ui-component/kbd",
     variants: [
       {
         id: "default",
@@ -272,7 +272,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "native-select",
     title: "Native Select",
     description: "ModernUI Native Select component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/native-select",
+    install: "npx shadcn@latest add @modernui/native-select\nnpx shadcn@latest add tmdc-io/modern-ui-component/native-select",
     variants: [
       {
         id: "default",
@@ -294,7 +294,7 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
     name: "spinner",
     title: "Spinner",
     description: "ModernUI Spinner component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/spinner",
+    install: "npx shadcn@latest add @modernui/spinner\nnpx shadcn@latest add tmdc-io/modern-ui-component/spinner",
     variants: [
       {
         id: "default",

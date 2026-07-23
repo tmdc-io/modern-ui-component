@@ -154,11 +154,17 @@ export function ${previewName}() {
     id: variantId,
     title: `Example ${variantId}`,
     description: item.description ?? `shadcn ${blockName} block.`,
-    install: `npx shadcn@latest add ${blockName}`,
     previewName,
     codeExportName,
     importPath: `@/app/component-examples/generated/${pageConfig.name}/${variantId}`,
   }
+}
+
+function modernuiLoginFormInstall() {
+  return [
+    "npx shadcn@latest add @modernui/login-form",
+    "npx shadcn@latest add tmdc-io/modern-ui-component/login-form",
+  ].join("\n")
 }
 
 async function writeAuthBlockPages(pages) {
@@ -173,11 +179,17 @@ async function writeAuthBlockPages(pages) {
 
   const exports = pages
     .map(
-      (page) => `export const ${toExportName(page.name)}VariantPage: ComponentVariantPage = {
+      (page) => {
+        const description =
+          page.name === "signup"
+            ? "Registration layout demos. Install login-form for the shared form block; signup layouts are examples only."
+            : page.description
+        const install = modernuiLoginFormInstall()
+        return `export const ${toExportName(page.name)}VariantPage: ComponentVariantPage = {
   name: ${JSON.stringify(page.name)},
   title: ${JSON.stringify(page.title)},
-  description: ${JSON.stringify(page.description)},
-  install: ${JSON.stringify(`npx shadcn@latest add ${page.name}-01`)},
+  description: ${JSON.stringify(description)},
+  install: ${JSON.stringify(install)},
   variants: [
 ${page.variants
   .map(
@@ -192,6 +204,7 @@ ${page.variants
   .join("\n")}
   ],
 }`
+      }
     )
     .join("\n\n")
 

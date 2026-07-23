@@ -6,6 +6,8 @@ import { CheckIcon, CodeIcon, CopyIcon } from "lucide-react"
 
 import type { CatalogItem } from "@/app/catalog"
 import { docsMessages } from "@/app/docs-messages"
+import { InstallCommand } from "@/app/install-command"
+import { expandRegistryInstallCommand } from "@/app/registry-install"
 import { useTranslation } from "@/hooks/use-translation"
 import { Button } from "@/registry/default/ui/button"
 import {
@@ -77,12 +79,34 @@ export function ComponentCodeDrawer({
     setData(null)
     setCopied(false)
 
-    fetch(`/api/component-code/${item.name}`)
+    fetch(`/r/${item.name}.json`)
       .then(async (response) => {
         if (!response.ok) {
-          throw new Error("Could not load source code")
+          // Fallback for older deploys / local edge cases
+          const api = await fetch(`/api/component-code/${item.name}`)
+          if (!api.ok) throw new Error("Could not load source code")
+          return api.json() as Promise<RegistryCodeResponse>
         }
-        return response.json() as Promise<RegistryCodeResponse>
+        const json = (await response.json()) as {
+          name: string
+          title?: string
+          description?: string
+          files?: { path?: string; content?: string }[]
+        }
+        const files = (json.files ?? [])
+          .filter(
+            (file): file is { path: string; content: string } =>
+              Boolean(file.path && typeof file.content === "string")
+          )
+          .map((file) => ({ path: file.path, content: file.content }))
+        if (!files.length) throw new Error("Could not load source code")
+        return {
+          name: json.name,
+          title: json.title ?? json.name,
+          description: json.description ?? "",
+          install: item.install,
+          files,
+        } satisfies RegistryCodeResponse
       })
       .then((result) => {
         if (!cancelled) setData(result)
@@ -117,7 +141,9 @@ export function ComponentCodeDrawer({
 
   const title = variant?.title ?? item?.title ?? "Source code"
   const description = variant?.description ?? item?.description
-  const install = variant?.install ?? item?.install
+  const install = expandRegistryInstallCommand(
+    variant?.install ?? item?.install ?? data?.install ?? ""
+  ) || undefined
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -152,9 +178,9 @@ export function ComponentCodeDrawer({
             </Button>
           </div>
           {install ? (
-            <code className="text-muted-foreground mt-3 block break-all text-xs">
-              {install}
-            </code>
+            <div className="mt-3">
+              <InstallCommand command={install} expand={false} />
+            </div>
           ) : null}
         </SheetHeader>
 

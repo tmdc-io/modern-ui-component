@@ -1,5 +1,6 @@
 export const runDurationCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/run-duration`,
+  install: `npx shadcn@latest add @modernui/run-duration
+npx shadcn@latest add tmdc-io/modern-ui-component/run-duration`,
 
   props: `type RunDurationStatus = "normal" | "anomaly" | "selected"
 

@@ -1,5 +1,6 @@
 export const dataosSidebarCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/dataos-sidebar`,
+  install: `npx shadcn@latest add @modernui/dataos-sidebar
+npx shadcn@latest add tmdc-io/modern-ui-component/dataos-sidebar`,
 
   props: `type DataOsSidebarItem = {
   id: string

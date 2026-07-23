@@ -1,5 +1,6 @@
 export const planStatusCardCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/plan-status-card`,
+  install: `npx shadcn@latest add @modernui/plan-status-card
+npx shadcn@latest add tmdc-io/modern-ui-component/plan-status-card`,
 
   breakingCollapsed: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 

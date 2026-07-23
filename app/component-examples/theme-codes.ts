@@ -1,5 +1,6 @@
 export const themeCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/theme`,
+  install: `npx shadcn@latest add @modernui/theme
+npx shadcn@latest add tmdc-io/modern-ui-component/theme`,
 
   import: `// app/globals.css
 @import "tailwindcss";

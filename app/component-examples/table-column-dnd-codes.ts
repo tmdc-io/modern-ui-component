@@ -1,6 +1,7 @@
 export const tableColumnDndCodes = {
   install: `# https://tanstack.com/table/latest
 pnpm add @tanstack/react-table
+npx shadcn@latest add @modernui/table
 npx shadcn@latest add tmdc-io/modern-ui-component/table`,
   full: `"use client"
 

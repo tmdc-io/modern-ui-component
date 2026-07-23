@@ -1,5 +1,6 @@
 export const modelHealthRunsCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/model-health-runs`,
+  install: `npx shadcn@latest add @modernui/model-health-runs
+npx shadcn@latest add tmdc-io/modern-ui-component/model-health-runs`,
 
   props: `type ModelHealthStatus = "healthy" | "quality" | "failed" | "none"
 

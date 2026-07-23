@@ -1,16 +1,20 @@
-/** GitHub shadcn registry path (works without a hosted deploy). */
-export const REGISTRY_NAMESPACE = "tmdc-io/modern-ui-component"
+import {
+  HOSTED_REGISTRY_BASE,
+  HOSTED_REGISTRY_ORIGIN,
+  REGISTRY_NAMESPACE,
+} from "@/lib/registry-constants"
 
-/** Hosted registry JSON base (requires Vercel deploy + @modernui in components.json). */
-export const HOSTED_REGISTRY_BASE = "https://modern-ui-component.vercel.app/r"
-
-const MODERNUI_NS = "@modernui"
+export {
+  HOSTED_REGISTRY_BASE,
+  HOSTED_REGISTRY_ORIGIN,
+  REGISTRY_NAMESPACE,
+}
 
 /** Dual add commands: @modernui first, then GitHub. */
 export function registryAddCommands(name: string, flags = ""): string {
   const suffix = flags.trim() ? ` ${flags.trim()}` : ""
   return [
-    `npx shadcn@latest add ${MODERNUI_NS}/${name}${suffix}`,
+    `npx shadcn@latest add @modernui/${name}${suffix}`,
     `npx shadcn@latest add ${REGISTRY_NAMESPACE}/${name}${suffix}`,
   ].join("\n")
 }
@@ -57,13 +61,13 @@ export function expandRegistryInstallCommand(command: string): string {
     if (addMatch) {
       const [, prefix, target, rest] = addMatch
       let name: string | null = null
-      if (target.startsWith(`${MODERNUI_NS}/`)) {
-        name = target.slice(MODERNUI_NS.length + 1)
+      if (target.startsWith("@modernui/")) {
+        name = target.slice("@modernui/".length)
       } else if (target.startsWith(`${REGISTRY_NAMESPACE}/`)) {
         name = target.slice(REGISTRY_NAMESPACE.length + 1)
       }
       if (name) {
-        push(`${prefix} ${MODERNUI_NS}/${name}${rest}`)
+        push(`${prefix} @modernui/${name}${rest}`)
         push(`${prefix} ${REGISTRY_NAMESPACE}/${name}${rest}`)
         continue
       }

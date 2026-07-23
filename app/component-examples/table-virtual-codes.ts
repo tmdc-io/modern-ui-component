@@ -1,6 +1,7 @@
 export const tableVirtualCodes = {
   install: `# https://tanstack.com/table/latest
 pnpm add @tanstack/react-table @tanstack/react-virtual
+npx shadcn@latest add @modernui/table
 npx shadcn@latest add tmdc-io/modern-ui-component/table`,
 
   full: `"use client"

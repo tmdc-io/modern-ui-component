@@ -130,6 +130,7 @@ function ProcessSteps({
               </div>
               <div className="flex items-start justify-between gap-2">
                 <InstallCommand
+                  expand={false}
                   command={step.command}
                   className="min-w-0 flex-1"
                 />
@@ -187,7 +188,7 @@ export function MonorepoProcessPreview() {
 export function MonorepoCommandsPreview() {
   return (
     <div className="flex w-full flex-col gap-3">
-      <InstallCommand command={monorepoCodes.listComponents} />
+      <InstallCommand expand={false} command={monorepoCodes.listComponents} />
       <p className="text-muted-foreground text-xs">
         Discover components from the shared UI workspace before installing.
       </p>
@@ -242,7 +243,7 @@ export function RegistryMonorepoGuide() {
               className="shrink-0 border bg-background"
             />
           </div>
-          <InstallCommand command={monorepoCodes.fullBootstrap} />
+          <InstallCommand expand={false} command={monorepoCodes.fullBootstrap} />
           <ProcessSteps steps={NEW_MONOREPO_STEPS} />
         </div>
 
@@ -266,7 +267,7 @@ export function RegistryMonorepoGuide() {
               className="shrink-0 border bg-background"
             />
           </div>
-          <InstallCommand command={monorepoCodes.existingBootstrap} />
+          <InstallCommand expand={false} command={monorepoCodes.existingBootstrap} />
           <ProcessSteps steps={EXISTING_MONOREPO_STEPS} />
         </div>
       </div>
@@ -294,16 +295,16 @@ export function RegistryMonorepoGuide() {
 
         <div className="bg-card space-y-4 p-5 sm:p-6">
           <h3 className="text-sm font-medium">Shared UI package exports</h3>
-          <InstallCommand command={monorepoCodes.packageExports} />
+          <InstallCommand expand={false} command={monorepoCodes.packageExports} />
           <h3 className="text-sm font-medium">Import from the app</h3>
-          <InstallCommand command={monorepoCodes.importInApp} />
+          <InstallCommand expand={false} command={monorepoCodes.importInApp} />
         </div>
       </div>
 
       <div className="grid gap-px border-t bg-border lg:grid-cols-2">
         <div className="bg-card space-y-3 p-5 sm:p-6">
           <h3 className="text-sm font-medium">packages/ui components.json</h3>
-          <InstallCommand command={monorepoCodes.componentsJsonUi} />
+          <InstallCommand expand={false} command={monorepoCodes.componentsJsonUi} />
         </div>
         <div className="bg-card space-y-3 p-5 sm:p-6">
           <h3 className="text-sm font-medium">apps/web components.json</h3>
@@ -313,7 +314,7 @@ export function RegistryMonorepoGuide() {
             utils aliases. App-only files stay under{" "}
             <code className="text-foreground">@/components</code>.
           </p>
-          <InstallCommand command={monorepoCodes.componentsJsonApp} />
+          <InstallCommand expand={false} command={monorepoCodes.componentsJsonApp} />
         </div>
       </div>
 

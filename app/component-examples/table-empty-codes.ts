@@ -1,5 +1,7 @@
 export const tableEmptyCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/table
+  install: `npx shadcn@latest add @modernui/table
+npx shadcn@latest add tmdc-io/modern-ui-component/table
+npx shadcn@latest add @modernui/input
 npx shadcn@latest add tmdc-io/modern-ui-component/input`,
   full: `"use client"
 

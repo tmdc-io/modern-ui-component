@@ -1011,7 +1011,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "accordion",
     title: "Accordion",
     description: "ModernUI Accordion component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/accordion",
+    install: "npx shadcn@latest add @modernui/accordion\nnpx shadcn@latest add tmdc-io/modern-ui-component/accordion",
     variants: [
       {
         id: "default",
@@ -1068,7 +1068,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "alert",
     title: "Alert",
     description: "ModernUI Alert component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/alert",
+    install: "npx shadcn@latest add @modernui/alert\nnpx shadcn@latest add tmdc-io/modern-ui-component/alert",
     variants: [
       {
         id: "default",
@@ -1118,7 +1118,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "alert-dialog",
     title: "Alert Dialog",
     description: "ModernUI Alert Dialog component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/alert-dialog",
+    install: "npx shadcn@latest add @modernui/alert-dialog\nnpx shadcn@latest add tmdc-io/modern-ui-component/alert-dialog",
     variants: [
       {
         id: "default",
@@ -1175,7 +1175,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "aspect-ratio",
     title: "Aspect Ratio",
     description: "ModernUI Aspect Ratio component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/aspect-ratio",
+    install: "npx shadcn@latest add @modernui/aspect-ratio\nnpx shadcn@latest add tmdc-io/modern-ui-component/aspect-ratio",
     variants: [
       {
         id: "default",
@@ -1211,7 +1211,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "avatar",
     title: "Avatar",
     description: "ModernUI Avatar component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/avatar",
+    install: "npx shadcn@latest add @modernui/avatar\nnpx shadcn@latest add tmdc-io/modern-ui-component/avatar",
     variants: [
       {
         id: "default",
@@ -1289,7 +1289,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "badge",
     title: "Badge",
     description: "ModernUI Badge component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/badge",
+    install: "npx shadcn@latest add @modernui/badge\nnpx shadcn@latest add tmdc-io/modern-ui-component/badge",
     variants: [
       {
         id: "default",
@@ -1367,7 +1367,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "breadcrumb",
     title: "Breadcrumb",
     description: "ModernUI Breadcrumb component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/breadcrumb",
+    install: "npx shadcn@latest add @modernui/breadcrumb\nnpx shadcn@latest add tmdc-io/modern-ui-component/breadcrumb",
     variants: [
       {
         id: "default",
@@ -1431,7 +1431,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "button",
     title: "Button",
     description: "ModernUI Button component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/button",
+    install: "npx shadcn@latest add @modernui/button\nnpx shadcn@latest add tmdc-io/modern-ui-component/button",
     variants: [
       {
         id: "default",
@@ -1537,7 +1537,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "button-group",
     title: "Button Group",
     description: "ModernUI Button Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/button-group",
+    install: "npx shadcn@latest add @modernui/button-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/button-group",
     variants: [
       {
         id: "default",
@@ -1629,7 +1629,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "calendar",
     title: "Calendar",
     description: "Date picker calendar built on React DayPicker — doc examples and 32 block layouts.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/calendar",
+    install: "npx shadcn@latest add @modernui/calendar\nnpx shadcn@latest add tmdc-io/modern-ui-component/calendar",
     variants: [
       {
         id: "default",
@@ -1945,7 +1945,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "card",
     title: "Card",
     description: "ModernUI Card component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/card",
+    install: "npx shadcn@latest add @modernui/card\nnpx shadcn@latest add tmdc-io/modern-ui-component/card",
     variants: [
       {
         id: "default",
@@ -2002,7 +2002,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "carousel",
     title: "Carousel",
     description: "ModernUI Carousel component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/carousel",
+    install: "npx shadcn@latest add @modernui/carousel\nnpx shadcn@latest add tmdc-io/modern-ui-component/carousel",
     variants: [
       {
         id: "default",
@@ -2066,7 +2066,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "checkbox",
     title: "Checkbox",
     description: "ModernUI Checkbox component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/checkbox",
+    install: "npx shadcn@latest add @modernui/checkbox\nnpx shadcn@latest add tmdc-io/modern-ui-component/checkbox",
     variants: [
       {
         id: "default",
@@ -2151,7 +2151,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "collapsible",
     title: "Collapsible",
     description: "ModernUI Collapsible component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/collapsible",
+    install: "npx shadcn@latest add @modernui/collapsible\nnpx shadcn@latest add tmdc-io/modern-ui-component/collapsible",
     variants: [
       {
         id: "default",
@@ -2194,7 +2194,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "combobox",
     title: "Combobox",
     description: "ModernUI Combobox component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/combobox",
+    install: "npx shadcn@latest add @modernui/combobox\nnpx shadcn@latest add tmdc-io/modern-ui-component/combobox",
     variants: [
       {
         id: "default",
@@ -2307,7 +2307,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "command",
     title: "Command",
     description: "ModernUI Command component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/command",
+    install: "npx shadcn@latest add @modernui/command\nnpx shadcn@latest add tmdc-io/modern-ui-component/command",
     variants: [
       {
         id: "default",
@@ -2364,7 +2364,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "context-menu",
     title: "Context Menu",
     description: "ModernUI Context Menu component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/context-menu",
+    install: "npx shadcn@latest add @modernui/context-menu\nnpx shadcn@latest add tmdc-io/modern-ui-component/context-menu",
     variants: [
       {
         id: "default",
@@ -2442,7 +2442,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "data-table",
     title: "Data Table",
     description: "Sortable, filterable, paginated tables — with optional TanStack Virtual row scrolling.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/data-table",
+    install: "npx shadcn@latest add @modernui/data-table\nnpx shadcn@latest add tmdc-io/modern-ui-component/data-table",
     variants: [
       {
         id: "default",
@@ -2464,7 +2464,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "date-picker",
     title: "Date Picker",
     description: "Date selection popover built with Calendar and Popover.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/date-picker",
+    install: "npx shadcn@latest add @modernui/date-picker\nnpx shadcn@latest add tmdc-io/modern-ui-component/date-picker",
     variants: [
       {
         id: "default",
@@ -2549,7 +2549,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "dialog",
     title: "Dialog",
     description: "ModernUI Dialog component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/dialog",
+    install: "npx shadcn@latest add @modernui/dialog\nnpx shadcn@latest add tmdc-io/modern-ui-component/dialog",
     variants: [
       {
         id: "default",
@@ -2599,7 +2599,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "drawer",
     title: "Drawer",
     description: "ModernUI Drawer component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/drawer",
+    install: "npx shadcn@latest add @modernui/drawer\nnpx shadcn@latest add tmdc-io/modern-ui-component/drawer",
     variants: [
       {
         id: "default",
@@ -2642,7 +2642,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "dropdown-menu",
     title: "Dropdown Menu",
     description: "ModernUI Dropdown Menu component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/dropdown-menu",
+    install: "npx shadcn@latest add @modernui/dropdown-menu\nnpx shadcn@latest add tmdc-io/modern-ui-component/dropdown-menu",
     variants: [
       {
         id: "default",
@@ -2741,7 +2741,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "empty",
     title: "Empty",
     description: "ModernUI Empty component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/empty",
+    install: "npx shadcn@latest add @modernui/empty\nnpx shadcn@latest add tmdc-io/modern-ui-component/empty",
     variants: [
       {
         id: "default",
@@ -2805,7 +2805,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "field",
     title: "Field",
     description: "ModernUI Field component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/field",
+    install: "npx shadcn@latest add @modernui/field\nnpx shadcn@latest add tmdc-io/modern-ui-component/field",
     variants: [
       {
         id: "default",
@@ -2904,7 +2904,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "hover-card",
     title: "Hover Card",
     description: "ModernUI Hover Card component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/hover-card",
+    install: "npx shadcn@latest add @modernui/hover-card\nnpx shadcn@latest add tmdc-io/modern-ui-component/hover-card",
     variants: [
       {
         id: "default",
@@ -2933,7 +2933,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "input",
     title: "Input",
     description: "ModernUI Input component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/input",
+    install: "npx shadcn@latest add @modernui/input\nnpx shadcn@latest add tmdc-io/modern-ui-component/input",
     variants: [
       {
         id: "default",
@@ -3067,7 +3067,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "input-group",
     title: "Input Group",
     description: "ModernUI Input Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/input-group",
+    install: "npx shadcn@latest add @modernui/input-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/input-group",
     variants: [
       {
         id: "default",
@@ -3222,7 +3222,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "input-otp",
     title: "Input Otp",
     description: "ModernUI Input Otp component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/input-otp",
+    install: "npx shadcn@latest add @modernui/input-otp\nnpx shadcn@latest add tmdc-io/modern-ui-component/input-otp",
     variants: [
       {
         id: "default",
@@ -3300,7 +3300,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "item",
     title: "Item",
     description: "ModernUI Item component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/item",
+    install: "npx shadcn@latest add @modernui/item\nnpx shadcn@latest add tmdc-io/modern-ui-component/item",
     variants: [
       {
         id: "default",
@@ -3385,7 +3385,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "kbd",
     title: "Kbd",
     description: "ModernUI Kbd component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/kbd",
+    install: "npx shadcn@latest add @modernui/kbd\nnpx shadcn@latest add tmdc-io/modern-ui-component/kbd",
     variants: [
       {
         id: "default",
@@ -3435,7 +3435,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "label",
     title: "Label",
     description: "ModernUI Label component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/label",
+    install: "npx shadcn@latest add @modernui/label\nnpx shadcn@latest add tmdc-io/modern-ui-component/label",
     variants: [
       {
         id: "default",
@@ -3457,7 +3457,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "menubar",
     title: "Menubar",
     description: "ModernUI Menubar component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/menubar",
+    install: "npx shadcn@latest add @modernui/menubar\nnpx shadcn@latest add tmdc-io/modern-ui-component/menubar",
     variants: [
       {
         id: "default",
@@ -3507,7 +3507,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "native-select",
     title: "Native Select",
     description: "ModernUI Native Select component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/native-select",
+    install: "npx shadcn@latest add @modernui/native-select\nnpx shadcn@latest add tmdc-io/modern-ui-component/native-select",
     variants: [
       {
         id: "default",
@@ -3550,7 +3550,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "navigation-menu",
     title: "Navigation Menu",
     description: "ModernUI Navigation Menu component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/navigation-menu",
+    install: "npx shadcn@latest add @modernui/navigation-menu\nnpx shadcn@latest add tmdc-io/modern-ui-component/navigation-menu",
     variants: [
       {
         id: "default",
@@ -3572,7 +3572,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "pagination",
     title: "Pagination",
     description: "ModernUI Pagination component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/pagination",
+    install: "npx shadcn@latest add @modernui/pagination\nnpx shadcn@latest add tmdc-io/modern-ui-component/pagination",
     variants: [
       {
         id: "default",
@@ -3601,7 +3601,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "popover",
     title: "Popover",
     description: "ModernUI Popover component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/popover",
+    install: "npx shadcn@latest add @modernui/popover\nnpx shadcn@latest add tmdc-io/modern-ui-component/popover",
     variants: [
       {
         id: "default",
@@ -3644,7 +3644,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "progress",
     title: "Progress",
     description: "ModernUI Progress component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/progress",
+    install: "npx shadcn@latest add @modernui/progress\nnpx shadcn@latest add tmdc-io/modern-ui-component/progress",
     variants: [
       {
         id: "default",
@@ -3680,7 +3680,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "radio-group",
     title: "Radio Group",
     description: "ModernUI Radio Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/radio-group",
+    install: "npx shadcn@latest add @modernui/radio-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/radio-group",
     variants: [
       {
         id: "default",
@@ -3744,7 +3744,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "resizable",
     title: "Resizable",
     description: "ModernUI Resizable component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/resizable",
+    install: "npx shadcn@latest add @modernui/resizable\nnpx shadcn@latest add tmdc-io/modern-ui-component/resizable",
     variants: [
       {
         id: "default",
@@ -3787,7 +3787,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "scroll-area",
     title: "Scroll Area",
     description: "ModernUI Scroll Area component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/scroll-area",
+    install: "npx shadcn@latest add @modernui/scroll-area\nnpx shadcn@latest add tmdc-io/modern-ui-component/scroll-area",
     variants: [
       {
         id: "default",
@@ -3816,7 +3816,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "select",
     title: "Select",
     description: "ModernUI Select component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/select",
+    install: "npx shadcn@latest add @modernui/select\nnpx shadcn@latest add tmdc-io/modern-ui-component/select",
     variants: [
       {
         id: "default",
@@ -3880,7 +3880,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "separator",
     title: "Separator",
     description: "ModernUI Separator component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/separator",
+    install: "npx shadcn@latest add @modernui/separator\nnpx shadcn@latest add tmdc-io/modern-ui-component/separator",
     variants: [
       {
         id: "default",
@@ -3923,7 +3923,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "sheet",
     title: "Sheet",
     description: "ModernUI Sheet component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/sheet",
+    install: "npx shadcn@latest add @modernui/sheet\nnpx shadcn@latest add tmdc-io/modern-ui-component/sheet",
     variants: [
       {
         id: "default",
@@ -3959,7 +3959,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "sidebar",
     title: "Sidebar",
     description: "ModernUI Sidebar component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/sidebar",
+    install: "npx shadcn@latest add @modernui/sidebar\nnpx shadcn@latest add tmdc-io/modern-ui-component/sidebar",
     variants: [
       {
         id: "default",
@@ -4177,7 +4177,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "skeleton",
     title: "Skeleton",
     description: "ModernUI Skeleton component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/skeleton",
+    install: "npx shadcn@latest add @modernui/skeleton\nnpx shadcn@latest add tmdc-io/modern-ui-component/skeleton",
     variants: [
       {
         id: "default",
@@ -4234,7 +4234,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "slider",
     title: "Slider",
     description: "ModernUI Slider component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/slider",
+    install: "npx shadcn@latest add @modernui/slider\nnpx shadcn@latest add tmdc-io/modern-ui-component/slider",
     variants: [
       {
         id: "default",
@@ -4291,7 +4291,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "sonner",
     title: "Sonner",
     description: "ModernUI Sonner component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/sonner",
+    install: "npx shadcn@latest add @modernui/sonner\nnpx shadcn@latest add tmdc-io/modern-ui-component/sonner",
     variants: [
       {
         id: "default",
@@ -4327,7 +4327,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "spinner",
     title: "Spinner",
     description: "ModernUI Spinner component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/spinner",
+    install: "npx shadcn@latest add @modernui/spinner\nnpx shadcn@latest add tmdc-io/modern-ui-component/spinner",
     variants: [
       {
         id: "default",
@@ -4391,7 +4391,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "switch",
     title: "Switch",
     description: "ModernUI Switch component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/switch",
+    install: "npx shadcn@latest add @modernui/switch\nnpx shadcn@latest add tmdc-io/modern-ui-component/switch",
     variants: [
       {
         id: "default",
@@ -4455,7 +4455,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "table",
     title: "Table",
     description: "ModernUI Table component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/table",
+    install: "npx shadcn@latest add @modernui/table\nnpx shadcn@latest add tmdc-io/modern-ui-component/table",
     variants: [
       {
         id: "default",
@@ -4498,7 +4498,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "tabs",
     title: "Tabs",
     description: "ModernUI Tabs component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/tabs",
+    install: "npx shadcn@latest add @modernui/tabs\nnpx shadcn@latest add tmdc-io/modern-ui-component/tabs",
     variants: [
       {
         id: "default",
@@ -4548,7 +4548,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "textarea",
     title: "Textarea",
     description: "ModernUI Textarea component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/textarea",
+    install: "npx shadcn@latest add @modernui/textarea\nnpx shadcn@latest add tmdc-io/modern-ui-component/textarea",
     variants: [
       {
         id: "default",
@@ -4626,7 +4626,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "toast",
     title: "Toast",
     description: "ModernUI Toast component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/toast",
+    install: "npx shadcn@latest add @modernui/toast\nnpx shadcn@latest add tmdc-io/modern-ui-component/toast",
     variants: [
       {
         id: "default",
@@ -4669,7 +4669,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "toggle",
     title: "Toggle",
     description: "ModernUI Toggle component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/toggle",
+    install: "npx shadcn@latest add @modernui/toggle\nnpx shadcn@latest add tmdc-io/modern-ui-component/toggle",
     variants: [
       {
         id: "default",
@@ -4740,7 +4740,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "toggle-group",
     title: "Toggle Group",
     description: "ModernUI Toggle Group component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/toggle-group",
+    install: "npx shadcn@latest add @modernui/toggle-group\nnpx shadcn@latest add tmdc-io/modern-ui-component/toggle-group",
     variants: [
       {
         id: "default",
@@ -4825,7 +4825,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "tooltip",
     title: "Tooltip",
     description: "ModernUI Tooltip component.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/tooltip",
+    install: "npx shadcn@latest add @modernui/tooltip\nnpx shadcn@latest add tmdc-io/modern-ui-component/tooltip",
     variants: [
       {
         id: "default",
@@ -4868,7 +4868,7 @@ export const generatedVariantPages: Record<string, ComponentVariantPage> = {
     name: "typography",
     title: "Typography",
     description: "Styled text elements for headings, paragraphs, lists, and inline code.",
-    install: "npx shadcn@latest add tmdc-io/modern-ui-component/typography",
+    install: "npx shadcn@latest add @modernui/typography\nnpx shadcn@latest add tmdc-io/modern-ui-component/typography",
     variants: [
       {
         id: "default",

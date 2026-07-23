@@ -273,8 +273,20 @@ export const catalog: CatalogCategory[] = [
     id: "blocks",
     title: "Blocks",
     items: [
-      item("login", "Login", "Authentication layouts and login form blocks."),
-      item("signup", "Signup", "Registration layouts and signup form blocks."),
+      {
+        name: "login",
+        title: "Login",
+        description: "Authentication layouts and login form blocks.",
+        // Docs page only — install the real block:
+        install: "",
+      },
+      {
+        name: "signup",
+        title: "Signup",
+        description:
+          "Registration layout demos. Install login-form for the shared form block; signup layouts are examples only.",
+        install: "",
+      },
       item(
         "login-form",
         "Login Form",

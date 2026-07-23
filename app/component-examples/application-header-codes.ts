@@ -1,5 +1,6 @@
 export const applicationHeaderCodes = {
-  install: `npx shadcn@latest add tmdc-io/modern-ui-component/application-header`,
+  install: `npx shadcn@latest add @modernui/application-header
+npx shadcn@latest add tmdc-io/modern-ui-component/application-header`,
 
   props: `type ApplicationHeaderTenant = {
   id: string
