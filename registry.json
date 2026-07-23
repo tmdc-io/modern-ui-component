@@ -1217,7 +1217,7 @@
         "input",
         "label",
         "card",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1239,7 +1239,7 @@
         "button",
         "card",
         "separator",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1260,7 +1260,7 @@
         "input",
         "popover",
         "table",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1297,7 +1297,7 @@
         "avatar",
         "button",
         "dropdown-menu",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1358,7 +1358,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "i18n",
+        "@modernui/i18n",
         "skeleton",
         "utils"
       ],
@@ -1379,7 +1379,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "i18n",
+        "@modernui/i18n",
         "skeleton",
         "utils"
       ],
@@ -1399,7 +1399,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "i18n",
+        "@modernui/i18n",
         "skeleton",
         "utils"
       ],
@@ -1420,7 +1420,7 @@
       ],
       "registryDependencies": [
         "chart",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1439,7 +1439,7 @@
       ],
       "registryDependencies": [
         "chart",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1454,7 +1454,7 @@
       "title": "Run Metrics",
       "description": "Pipeline run metrics grid with serif values and optional quality breakdown.",
       "registryDependencies": [
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {
@@ -1475,7 +1475,7 @@
         "dropdown-menu",
         "input",
         "table",
-        "i18n"
+        "@modernui/i18n"
       ],
       "files": [
         {

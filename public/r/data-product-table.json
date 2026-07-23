@@ -10,7 +10,7 @@
     "input",
     "popover",
     "table",
-    "i18n"
+    "@modernui/i18n"
   ],
   "files": [
     {
