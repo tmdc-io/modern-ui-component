@@ -2,29 +2,38 @@ export const dataosSidebarCodes = {
   install: `npx shadcn@latest add @modernui/dataos-sidebar
 npx shadcn@latest add tmdc-io/modern-ui-component/dataos-sidebar`,
 
-  props: `type DataOsSidebarItem = {
+  props: `/**
+ * DataOsSidebar types
+ * -------------------
+ * Navigation: items + footerItems (icons required).
+ * Pinning: enablePinning (default true), maxPinned (default 3).
+ *   Data Products uses pinLocked — always pinned, cannot unpin.
+ * Collapse: defaultCollapsed / collapsed + onCollapsedChange.
+ * Active: defaultActiveId / activeId + onActiveChange (teal active row).
+ */
+type DataOsSidebarItem = {
   id: string
   label: string
   icon: React.ReactNode
   href?: string
   onSelect?: () => void
   pinnable?: boolean
-  pinLocked?: boolean           // always pinned; cannot be unpinned
+  pinLocked?: boolean
 }
 
 type DataOsSidebarProps = {
   activeId?: string
-  defaultActiveId?: string        // default "home"
+  defaultActiveId?: string
   onActiveChange?: (id: string) => void
   collapsed?: boolean
   defaultCollapsed?: boolean
   onCollapsedChange?: (collapsed: boolean) => void
   items?: DataOsSidebarItem[]
   footerItems?: DataOsSidebarItem[]
-  enablePinning?: boolean         // default true
-  maxPinned?: number              // default 3
-  pinnedIds?: string[]            // controlled pinned order
-  defaultPinnedIds?: string[]     // default ["data-products"]
+  enablePinning?: boolean
+  maxPinned?: number
+  pinnedIds?: string[]
+  defaultPinnedIds?: string[]
   onPinnedChange?: (ids: string[]) => void
   className?: string
 }`,
@@ -33,6 +42,13 @@ type DataOsSidebarProps = {
 
 import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
 
+/**
+ * Expanded shell rail
+ * -------------------
+ * Full wordmark, labeled nav groups, dividers, and footer actions.
+ * defaultActiveId="home" paints the teal active state on Home.
+ * Omit items to use the built-in DataOS navigation set.
+ */
 export function AppShell() {
   return (
     <div className="flex min-h-[28rem] overflow-hidden rounded-lg border">
@@ -51,7 +67,13 @@ export function AppShell() {
 
 import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
 
-export function AppShell() {
+/**
+ * Collapsed icon rail
+ * -------------------
+ * defaultCollapsed starts in icon-only mode. Users can expand via the
+ * footer Close panel / open control. Tooltips show labels while collapsed.
+ */
+export function CollapsedAppShell() {
   return (
     <div className="flex min-h-[28rem] overflow-hidden rounded-lg border">
       <DataOsSidebar defaultActiveId="home" defaultCollapsed />
@@ -68,9 +90,16 @@ export function AppShell() {
   controlled: `"use client"
 
 import * as React from "react"
+
 import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
 
-export function AppShell() {
+/**
+ * Controlled active + collapse
+ * ----------------------------
+ * Wire activeId / collapsed from the app shell so the main region and
+ * URL stay in sync. onActiveChange fires when a nav row is selected.
+ */
+export function ControlledAppShell() {
   const [collapsed, setCollapsed] = React.useState(false)
   const [activeId, setActiveId] = React.useState("home")
 
@@ -95,8 +124,17 @@ export function AppShell() {
   pinned: `"use client"
 
 import * as React from "react"
+
 import { DataOsSidebar } from "@/components/blocks/dataos-sidebar"
 
+/**
+ * Pin & reorder
+ * -------------
+ * - Data Products is pinLocked (always pinned; cannot unpin)
+ * - Users may pin up to maxPinned (default 3) including locked pins
+ * - Hover a row to reveal the pin control; drag pinned rows to reorder
+ * - Persist pinnedIds (localStorage shown) across reloads
+ */
 const STORAGE_KEY = "dataos.pinned"
 
 function readPinnedIds() {
@@ -113,9 +151,7 @@ function readPinnedIds() {
   }
 }
 
-// Data Products is pinned by default (pinLocked) and cannot be unpinned.
-// Users can pin two more apps (max 3 total). Persist pinnedIds across reloads.
-export function AppShell() {
+export function PinnedAppsShell() {
   const [pinnedIds, setPinnedIds] = React.useState<string[]>(readPinnedIds)
 
   return (

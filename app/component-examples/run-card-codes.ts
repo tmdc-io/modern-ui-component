@@ -4,6 +4,11 @@ npx shadcn@latest add tmdc-io/modern-ui-component/run-card`,
 
   success: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Successful run
+ * --------------
+ * status="success" with Models and DQ summary metrics.
+ */
 export function SuccessRunCard() {
   return (
     <RunCard
@@ -22,6 +27,11 @@ export function SuccessRunCard() {
 
   hover: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Hover surface
+ * -------------
+ * Error run card — cream-bg-3 hover applies on pointer over.
+ */
 export function HoverableRunCard() {
   return (
     <RunCard
@@ -41,6 +51,11 @@ export function HoverableRunCard() {
 
   selected: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Selected run
+ * ------------
+ * selected applies teal surface and dark-teal border for active list item.
+ */
 export function SelectedRunCard() {
   return (
     <RunCard
@@ -60,6 +75,11 @@ export function SelectedRunCard() {
 
   error: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Failed run
+ * ----------
+ * status="error" with Error metric (status="error") plus Models and DQ.
+ */
 export function ErrorRunCard() {
   return (
     <RunCard
@@ -79,6 +99,11 @@ export function ErrorRunCard() {
 
   stack: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Run list stack
+ * --------------
+ * Map runs array and render success + error cards in a vertical list.
+ */
 const runs = [
   {
     runId: "#10010",
@@ -117,6 +142,11 @@ export function RunCardStack() {
 
   statuses: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Extended statuses
+ * -----------------
+ * running (startedAt), queued, warning, and cancelled run variants.
+ */
 export function RunCardStatuses() {
   return (
     <div className="flex flex-col gap-3">
@@ -168,6 +198,11 @@ export function RunCardStatuses() {
 import * as React from "react"
 import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Controlled selection
+ * --------------------
+ * selected + onSelect for a run list; cards expose aria-pressed when selectable.
+ */
 const runs = [
   {
     runId: "#10010",
@@ -227,6 +262,11 @@ export function SelectableRunList() {
 import * as React from "react"
 import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Clickable metrics
+ * -----------------
+ * Per-metric onClick or href on Error, Models, and DQ without selecting the card.
+ */
 export function RunCardWithMetricActions() {
   const [message, setMessage] = React.useState("Choose a metric")
 
@@ -260,6 +300,11 @@ export function RunCardWithMetricActions() {
 
   density: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Compact density
+ * ---------------
+ * size="sm" for tighter run rows in dense history panels.
+ */
 export function CompactRunCard() {
   return (
     <div className="flex flex-col gap-3">
@@ -290,6 +335,11 @@ export function CompactRunCard() {
 
   overflow: `import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Metric overflow
+ * ---------------
+ * Long plan names truncate; maxVisibleMetrics caps visible summary chips.
+ */
 export function RunCardWithOverflow() {
   return (
     <RunCard
@@ -311,6 +361,11 @@ export function RunCardWithOverflow() {
 
   skeleton: `import { RunCardSkeleton } from "@/components/blocks/run-card"
 
+/**
+ * Loading skeleton
+ * ----------------
+ * RunCardSkeleton placeholders while run data loads.
+ */
 export function RunCardLoading() {
   return (
     <div className="flex flex-col gap-3">
@@ -326,6 +381,11 @@ import * as React from "react"
 import { RunCard } from "@/components/blocks/run-card"
 import { RunMetrics } from "@/components/blocks/run-metrics"
 
+/**
+ * Run list with metrics
+ * ---------------------
+ * Select a run from the list and show RunMetrics beside it.
+ */
 const runs = [
   {
     runId: "#10010",

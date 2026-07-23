@@ -35,6 +35,12 @@ type QualitySummaryCardProps = {
   summary: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualitySummary } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Single summary prop
+ * -------------------
+ * Pass one QualitySummary object — the card derives badge state,
+ * dimension count, and statusLabel from dimensions automatically.
+ */
 const apiResponse: QualitySummary = {
   title: "Quality",
   passed: 47,
@@ -63,6 +69,12 @@ export function QualityPanel() {
 
   static: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Static props
+ * ------------
+ * Flat props (passed, total, dimensions) without a summary wrapper.
+ * Use when quality metrics are known at build time.
+ */
 export function QualityPanel() {
   return (
     <QualitySummaryCard
@@ -92,6 +104,12 @@ import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 import { Skeleton } from "@/components/ui/skeleton"
 
+/**
+ * API-driven quality card
+ * -----------------------
+ * Fetch quality data, map API fields into QualitySummary, and show
+ * QualitySummaryCardSkeleton while loading.
+ */
 type QualityApiResponse = {
   rulesPassed: number
   rulesTotal: number
@@ -162,6 +180,12 @@ export function QualityDashboard() {
   derived: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Derived values
+ * --------------
+ * Map API dimensions into QualityDimension[] and pass flat props.
+ * Omit statusLabel and dimensionCount — the card derives them.
+ */
 const apiData = {
   rulesPassed: 47,
   rulesTotal: 100,
@@ -201,6 +225,12 @@ export function QualitySummary() {
   multiple: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 import type { QualityDimension } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Multiple cards per dataset
+ * --------------------------
+ * Render one QualitySummaryCard per dataset in a responsive grid.
+ * Each card gets its own title, score, dimensions, and href.
+ */
 const healthy: QualityDimension[] = [
   { name: "Accuracy", status: "pass" },
   { name: "Completeness", status: "pass" },
@@ -262,11 +292,13 @@ export function QualityGrid() {
 
   enhancements: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 
-// Auto statusLabel: "Healthy" | "At Risk" | "Failed" from dimension statuses
-// Auto dimensionCount: dimensions.length
-// status "fail": destructive badge + row styling
-// href: server-friendly footer link
-
+/**
+ * Auto statusLabel
+ * ----------------
+ * statusLabel derives as "Healthy" | "At Risk" | "Failed" from dimension
+ * statuses. dimensionCount defaults to dimensions.length.
+ * status "fail" uses destructive badge + row styling; href is server-friendly.
+ */
 export function FailedQualityCard() {
   return (
     <QualitySummaryCard
@@ -293,6 +325,11 @@ export function FailedQualityCard() {
 
   empty: `import { QualitySummaryCard } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Empty state
+ * -----------
+ * Pass dimensions={[]} and emptyMessage when no quality rules exist yet.
+ */
 export function EmptyQualityCard() {
   return (
     <QualitySummaryCard
@@ -308,6 +345,11 @@ export function EmptyQualityCard() {
 
   skeleton: `import { QualitySummaryCardSkeleton } from "@/components/blocks/quality-summary-card"
 
+/**
+ * Loading skeleton
+ * ----------------
+ * QualitySummaryCardSkeleton placeholder while quality data loads.
+ */
 export function QualityLoading() {
   return <QualitySummaryCardSkeleton />
 }`,

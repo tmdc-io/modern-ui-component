@@ -235,6 +235,416 @@ export default function DirectionLtr() {
 }`,
     },
   ],
+  "tree-view": [
+    {
+      id: "default",
+      title: "Default",
+      description: "Expandable hierarchical list with nested items.",
+      source: `"use client"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "1",
+    name: "Item 1",
+    children: [
+      {
+        id: "2",
+        name: "Item 1.1",
+        children: [
+          { id: "3", name: "Item 1.1.1" },
+          { id: "4", name: "Item 1.1.2" },
+        ],
+      },
+      { id: "5", name: "Item 1.2 (disabled)", disabled: true },
+    ],
+  },
+  { id: "6", name: "Item 2" },
+]
+
+export default function TreeViewDemo() {
+  return <TreeView data={data} className="w-full max-w-sm" />
+}`,
+    },
+    {
+      id: "nested",
+      title: "Deep Nested",
+      description: "Five levels of nested folders and files, expanded by default.",
+      source: `"use client"
+
+import {
+  FileIcon,
+  FolderIcon,
+  FolderOpenIcon,
+} from "lucide-react"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "workspace",
+    name: "workspace",
+    icon: FolderIcon,
+    openIcon: FolderOpenIcon,
+    children: [
+      {
+        id: "apps",
+        name: "apps",
+        icon: FolderIcon,
+        openIcon: FolderOpenIcon,
+        children: [
+          {
+            id: "web",
+            name: "web",
+            icon: FolderIcon,
+            openIcon: FolderOpenIcon,
+            children: [
+              {
+                id: "src",
+                name: "src",
+                icon: FolderIcon,
+                openIcon: FolderOpenIcon,
+                children: [
+                  {
+                    id: "features",
+                    name: "features",
+                    icon: FolderIcon,
+                    openIcon: FolderOpenIcon,
+                    children: [
+                      { id: "dashboard", name: "dashboard.tsx", icon: FileIcon },
+                      { id: "settings", name: "settings.tsx", icon: FileIcon },
+                    ],
+                  },
+                  { id: "app", name: "app.tsx", icon: FileIcon },
+                ],
+              },
+              { id: "package-web", name: "package.json", icon: FileIcon },
+            ],
+          },
+          {
+            id: "api",
+            name: "api",
+            icon: FolderIcon,
+            openIcon: FolderOpenIcon,
+            children: [
+              {
+                id: "routes",
+                name: "routes",
+                icon: FolderIcon,
+                openIcon: FolderOpenIcon,
+                children: [
+                  {
+                    id: "v1",
+                    name: "v1",
+                    icon: FolderIcon,
+                    openIcon: FolderOpenIcon,
+                    children: [
+                      { id: "users", name: "users.ts", icon: FileIcon },
+                      { id: "auth", name: "auth.ts", icon: FileIcon },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "packages",
+        name: "packages",
+        icon: FolderIcon,
+        openIcon: FolderOpenIcon,
+        children: [
+          {
+            id: "ui",
+            name: "ui",
+            icon: FolderIcon,
+            openIcon: FolderOpenIcon,
+            children: [
+              {
+                id: "components",
+                name: "components",
+                icon: FolderIcon,
+                openIcon: FolderOpenIcon,
+                children: [
+                  {
+                    id: "primitives",
+                    name: "primitives",
+                    icon: FolderIcon,
+                    openIcon: FolderOpenIcon,
+                    children: [
+                      { id: "button", name: "button.tsx", icon: FileIcon },
+                      { id: "tree-view", name: "tree-view.tsx", icon: FileIcon },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]
+
+export default function TreeViewNested() {
+  return (
+    <TreeView
+      data={data}
+      className="w-full max-w-md"
+      expandAll
+      initialSelectedItemId="tree-view"
+      defaultNodeIcon={FolderIcon}
+      defaultLeafIcon={FileIcon}
+    />
+  )
+}`,
+    },
+    {
+      id: "icons",
+      title: "Icons",
+      description: "Default node and leaf icons for the tree.",
+      source: `"use client"
+
+import { FileIcon, FolderIcon } from "lucide-react"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "src",
+    name: "src",
+    children: [
+      {
+        id: "components",
+        name: "components",
+        children: [
+          { id: "button", name: "button.tsx" },
+          { id: "tree-view", name: "tree-view.tsx" },
+        ],
+      },
+      { id: "lib", name: "lib", children: [{ id: "utils", name: "utils.ts" }] },
+    ],
+  },
+  { id: "readme", name: "README.md" },
+]
+
+export default function TreeViewIcons() {
+  return (
+    <TreeView
+      data={data}
+      className="w-full max-w-sm"
+      expandAll
+      defaultNodeIcon={FolderIcon}
+      defaultLeafIcon={FileIcon}
+      initialSelectedItemId="button"
+    />
+  )
+}`,
+    },
+    {
+      id: "selected",
+      title: "Selected",
+      description: "Open the path to a pre-selected item.",
+      source: `"use client"
+
+import * as React from "react"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "docs",
+    name: "Docs",
+    children: [
+      {
+        id: "guides",
+        name: "Guides",
+        children: [
+          { id: "install", name: "Installation" },
+          { id: "theming", name: "Theming" },
+        ],
+      },
+      { id: "api", name: "API Reference" },
+    ],
+  },
+]
+
+export default function TreeViewSelected() {
+  const [selected, setSelected] = React.useState<TreeDataItem>()
+
+  return (
+    <div className="w-full max-w-sm space-y-3">
+      <TreeView
+        data={data}
+        initialSelectedItemId="install"
+        onSelectChange={setSelected}
+      />
+      <p className="text-muted-foreground text-sm">
+        Selected: {selected?.name ?? "Installation"}
+      </p>
+    </div>
+  )
+}`,
+    },
+    {
+      id: "actions",
+      title: "Actions",
+      description: "Hover or select a row to reveal action buttons.",
+      source: `"use client"
+
+import { MoreHorizontalIcon, PlusIcon } from "lucide-react"
+
+import { Button } from "${ui}/button"
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "team",
+    name: "Engineering",
+    actions: (
+      <Button size="icon-sm" variant="ghost" className="size-6">
+        <PlusIcon className="size-3.5" />
+      </Button>
+    ),
+    children: [
+      {
+        id: "frontend",
+        name: "Frontend",
+        actions: (
+          <Button size="icon-sm" variant="ghost" className="size-6">
+            <MoreHorizontalIcon className="size-3.5" />
+          </Button>
+        ),
+        children: [
+          { id: "alice", name: "Alice Chen" },
+          { id: "bob", name: "Bob Patel" },
+        ],
+      },
+      {
+        id: "backend",
+        name: "Backend",
+        children: [
+          { id: "cara", name: "Cara Ruiz" },
+          { id: "dan", name: "Dan Kim", disabled: true },
+        ],
+      },
+    ],
+  },
+]
+
+export default function TreeViewActions() {
+  return <TreeView data={data} className="w-full max-w-sm" expandAll />
+}`,
+    },
+    {
+      id: "disabled",
+      title: "Disabled",
+      description: "Mix of interactive and disabled tree items.",
+      source: `"use client"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "active",
+    name: "Active projects",
+    children: [
+      { id: "alpha", name: "Project Alpha" },
+      { id: "beta", name: "Project Beta (archived)", disabled: true },
+    ],
+  },
+  {
+    id: "locked",
+    name: "Restricted (disabled)",
+    disabled: true,
+    children: [{ id: "secret", name: "Confidential" }],
+  },
+  { id: "draft", name: "Draft notes", disabled: true },
+]
+
+export default function TreeViewDisabled() {
+  return (
+    <TreeView
+      data={data}
+      className="w-full max-w-sm"
+      expandAll
+      initialSelectedItemId="alpha"
+    />
+  )
+}`,
+    },
+    {
+      id: "drag-drop",
+      title: "Drag & Drop",
+      description: "Drag enabled items onto droppable targets.",
+      source: `"use client"
+
+import * as React from "react"
+
+import {
+  TreeView,
+  type TreeDataItem,
+} from "${ui}/tree-view"
+
+const data: TreeDataItem[] = [
+  {
+    id: "inbox",
+    name: "Inbox",
+    children: [
+      { id: "msg-1", name: "Welcome email", draggable: true },
+      { id: "msg-2", name: "Weekly digest", draggable: true },
+    ],
+  },
+  {
+    id: "archive",
+    name: "Archive",
+    droppable: true,
+    children: [{ id: "old", name: "Old newsletter", draggable: true }],
+  },
+  { id: "trash", name: "Trash", droppable: true },
+]
+
+export default function TreeViewDragDrop() {
+  const [lastMove, setLastMove] = React.useState(
+    "Drag a message onto Archive or Trash."
+  )
+
+  return (
+    <div className="w-full max-w-sm space-y-3">
+      <TreeView
+        data={data}
+        expandAll
+        onDocumentDrag={(source, target) => {
+          if (!target.id) return
+          setLastMove(\`Moved "\${source.name}" → "\${target.name}"\`)
+        }}
+      />
+      <p className="text-muted-foreground text-sm">{lastMove}</p>
+    </div>
+  )
+}`,
+    },
+  ],
   empty: [
     {
       id: "default",

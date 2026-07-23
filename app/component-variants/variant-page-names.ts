@@ -1,10 +1,12 @@
 export function getVariantPageNames(): string[] {
   return [
   "accordion",
+  "accordion",
   "alert",
   "alert-dialog",
   "application-header",
   "aspect-ratio",
+  "assets-tree",
   "attributions",
   "avatar",
   "badge",
@@ -14,6 +16,7 @@ export function getVariantPageNames(): string[] {
   "calendar",
   "card",
   "carousel",
+  "chart",
   "chart",
   "checkbox",
   "collapsible",
@@ -79,6 +82,7 @@ export function getVariantPageNames(): string[] {
   "toggle",
   "toggle-group",
   "tooltip",
+  "tree-view",
   "typography",
   "utils"
 ]

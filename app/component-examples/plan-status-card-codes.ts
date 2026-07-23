@@ -4,6 +4,11 @@ npx shadcn@latest add tmdc-io/modern-ui-component/plan-status-card`,
 
   breakingCollapsed: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Breaking change (collapsed)
+ * ---------------------------
+ * Compact model row with Breaking and Backfill badges; click to expand diff.
+ */
 export function BreakingPlanStatus() {
   return (
     <PlanStatusCard
@@ -19,6 +24,11 @@ export function BreakingPlanStatus() {
 
   selected: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Selected status card
+ * --------------------
+ * selected applies teal surface and dark-teal border for active list item.
+ */
 export function SelectedPlanStatus() {
   return (
     <PlanStatusCard
@@ -40,6 +50,11 @@ export function SelectedPlanStatus() {
   type PlanStatusDiffLine,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Breaking change (expanded)
+ * --------------------------
+ * defaultExpanded with PlanStatusDiff (SQL lines) and PlanStatusImpacts.
+ */
 const diffLines: PlanStatusDiffLine[] = [
   { value: "--- .../usage_events.sql", kind: "info" },
   { value: "+++ .../usage_events.sql", kind: "info" },
@@ -103,6 +118,11 @@ export function ExpandedBreakingPlanStatus() {
 
   undefinedCollapsed: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Undefined table (collapsed)
+ * ---------------------------
+ * tone="error" with Undefined table badge; expand for diagnostic trace.
+ */
 export function UndefinedTableStatus() {
   return (
     <PlanStatusCard
@@ -119,6 +139,11 @@ export function UndefinedTableStatus() {
   PlanStatusError,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Undefined table (expanded)
+ * --------------------------
+ * defaultExpanded with PlanStatusError — copyable stack trace panel.
+ */
 const errorTrace = \`relation "vulcan__b2b_saas.b2b_saas__users__3157246390" does not exist
   at QueryExecutor.execute (/app/services/query-executor.js:142:18)
   at PlanFeaturesService.getPlanFeatures (/app/services/plan-features.js:87:24)
@@ -140,6 +165,11 @@ export function ExpandedUndefinedTableStatus() {
 
   environmentCollapsed: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Environment changes (collapsed)
+ * -------------------------------
+ * Title-only row for environment-level SQL changes (no model badges).
+ */
 export function EnvironmentChangesStatus() {
   return <PlanStatusCard title="Environment changes" />
 }`,
@@ -150,6 +180,11 @@ export function EnvironmentChangesStatus() {
   type PlanStatusDiffLine,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Environment changes (expanded)
+ * ------------------------------
+ * Environment-level SQL diff without model badges or typeLabel.
+ */
 const diffLines: PlanStatusDiffLine[] = [
   { value: "--- .../usage_events.sql", kind: "info" },
   { value: "+++ .../usage_events.sql", kind: "info" },
@@ -194,6 +229,11 @@ export function ExpandedEnvironmentChangesStatus() {
 
   badges: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Badge tone variants
+ * -------------------
+ * success, info, warning, error, and muted badge tones on status rows.
+ */
 export function BadgeTones() {
   return (
     <div className="flex flex-col gap-3">
@@ -223,6 +263,11 @@ export function BadgeTones() {
   PlanStatusImpacts,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Empty diff and impacts
+ * ----------------------
+ * Localized empty states when diff lines or impacts arrays are empty.
+ */
 export function EmptyPanels() {
   return (
     <PlanStatusCard
@@ -239,6 +284,11 @@ export function EmptyPanels() {
 
   density: `import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Compact density
+ * ---------------
+ * size="sm" for tighter status rows in dense plan detail panels.
+ */
 export function CompactStatus() {
   return (
     <div className="flex flex-col gap-3">
@@ -259,6 +309,11 @@ export function CompactStatus() {
 
   skeleton: `import { PlanStatusCardSkeleton } from "@/components/blocks/plan-status-card"
 
+/**
+ * Loading skeleton
+ * ----------------
+ * PlanStatusCardSkeleton placeholders while plan features load.
+ */
 export function LoadingStatus() {
   return (
     <div className="flex flex-col gap-3">
@@ -278,6 +333,11 @@ import {
   type PlanStatusDiffLine,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Accordion status list
+ * ---------------------
+ * expanded + onExpandedChange so only one status card stays open at a time.
+ */
 const diffLines: PlanStatusDiffLine[] = [
   { value: "@@ -33,6 +33,7 @@", kind: "info" },
   {
@@ -360,6 +420,11 @@ export function StatusAccordion() {
 import * as React from "react"
 import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * Filter chips
+ * ------------
+ * Client-side filter by Breaking, Errors, or Environment category.
+ */
 type FilterKey = "all" | "breaking" | "errors" | "environment"
 
 const items = [
@@ -438,6 +503,11 @@ export function FilteredStatusList() {
 import * as React from "react"
 import { PlanStatusCard } from "@/components/blocks/plan-status-card"
 
+/**
+ * URL-driven filter
+ * -----------------
+ * Mirror the selected chip into ?status= so Back/Forward restores the filter.
+ */
 type FilterKey = "all" | "breaking" | "errors" | "environment"
 
 const items = [
@@ -542,6 +612,11 @@ import {
   type PlanStatusDiffLine,
 } from "@/components/blocks/plan-status-card"
 
+/**
+ * Nested inside Plan Card
+ * -----------------------
+ * Nest PlanStatusCard rows in an expanded PlanCard children slot.
+ */
 const diffLines: PlanStatusDiffLine[] = [
   { value: "@@ -33,6 +33,7 @@", kind: "info" },
   {

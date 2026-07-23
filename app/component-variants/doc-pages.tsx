@@ -16,6 +16,20 @@ import { DirectionDocDemoPreview } from "@/app/component-examples/generated/dire
 import { DirectionDocDemoCode } from "@/app/component-examples/generated/direction/doc-default.code"
 import { DirectionDocLtrPreview } from "@/app/component-examples/generated/direction/doc-ltr"
 import { DirectionDocLtrCode } from "@/app/component-examples/generated/direction/doc-ltr.code"
+import { TreeViewDocDemoPreview } from "@/app/component-examples/generated/tree-view/doc-default"
+import { TreeViewDocDemoCode } from "@/app/component-examples/generated/tree-view/doc-default.code"
+import { TreeViewDocNestedPreview } from "@/app/component-examples/generated/tree-view/doc-nested"
+import { TreeViewDocNestedCode } from "@/app/component-examples/generated/tree-view/doc-nested.code"
+import { TreeViewDocIconsPreview } from "@/app/component-examples/generated/tree-view/doc-icons"
+import { TreeViewDocIconsCode } from "@/app/component-examples/generated/tree-view/doc-icons.code"
+import { TreeViewDocSelectedPreview } from "@/app/component-examples/generated/tree-view/doc-selected"
+import { TreeViewDocSelectedCode } from "@/app/component-examples/generated/tree-view/doc-selected.code"
+import { TreeViewDocActionsPreview } from "@/app/component-examples/generated/tree-view/doc-actions"
+import { TreeViewDocActionsCode } from "@/app/component-examples/generated/tree-view/doc-actions.code"
+import { TreeViewDocDisabledPreview } from "@/app/component-examples/generated/tree-view/doc-disabled"
+import { TreeViewDocDisabledCode } from "@/app/component-examples/generated/tree-view/doc-disabled.code"
+import { TreeViewDocDragDropPreview } from "@/app/component-examples/generated/tree-view/doc-drag-drop"
+import { TreeViewDocDragDropCode } from "@/app/component-examples/generated/tree-view/doc-drag-drop.code"
 import { EmptyDocDemoPreview } from "@/app/component-examples/generated/empty/doc-default"
 import { EmptyDocDemoCode } from "@/app/component-examples/generated/empty/doc-default.code"
 import { EmptyDocWithActionPreview } from "@/app/component-examples/generated/empty/doc-with-action"
@@ -126,6 +140,63 @@ export const docVariantPages: Record<string, ComponentVariantPage> = {
         description: "Left-to-right direction provider.",
         Preview: DirectionDocLtrPreview,
         code: DirectionDocLtrCode,
+      },
+    ],
+  },
+  "tree-view": {
+    name: "tree-view",
+    title: "Tree View",
+    description: "Hierarchical lists with expandable nested levels, selection, icons, and drag-and-drop.",
+    install: "npx shadcn@latest add @modernui/tree-view\nnpx shadcn@latest add tmdc-io/modern-ui-component/tree-view",
+    variants: [
+      {
+        id: "default",
+        title: "Default",
+        description: "Expandable hierarchical list with nested items.",
+        Preview: TreeViewDocDemoPreview,
+        code: TreeViewDocDemoCode,
+      },
+      {
+        id: "nested",
+        title: "Deep Nested",
+        description: "Five levels of nested folders and files, expanded by default.",
+        Preview: TreeViewDocNestedPreview,
+        code: TreeViewDocNestedCode,
+      },
+      {
+        id: "icons",
+        title: "Icons",
+        description: "Default node and leaf icons for the tree.",
+        Preview: TreeViewDocIconsPreview,
+        code: TreeViewDocIconsCode,
+      },
+      {
+        id: "selected",
+        title: "Selected",
+        description: "Open the path to a pre-selected item.",
+        Preview: TreeViewDocSelectedPreview,
+        code: TreeViewDocSelectedCode,
+      },
+      {
+        id: "actions",
+        title: "Actions",
+        description: "Hover or select a row to reveal action buttons.",
+        Preview: TreeViewDocActionsPreview,
+        code: TreeViewDocActionsCode,
+      },
+      {
+        id: "disabled",
+        title: "Disabled",
+        description: "Mix of interactive and disabled tree items.",
+        Preview: TreeViewDocDisabledPreview,
+        code: TreeViewDocDisabledCode,
+      },
+      {
+        id: "drag-drop",
+        title: "Drag & Drop",
+        description: "Drag enabled items onto droppable targets.",
+        Preview: TreeViewDocDragDropPreview,
+        code: TreeViewDocDragDropCode,
       },
     ],
   },

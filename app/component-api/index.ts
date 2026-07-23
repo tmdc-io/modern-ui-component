@@ -26,6 +26,7 @@ import { runCardApi } from "@/app/component-api/run-card"
 import { runDurationApi } from "@/app/component-api/run-duration"
 import { runMetricsApi } from "@/app/component-api/run-metrics"
 import { dataosSidebarApi } from "@/app/component-api/dataos-sidebar"
+import { assetsTreeApi } from "@/app/component-api/assets-tree"
 import { dataProductCardApi } from "@/app/component-api/data-product-card"
 import { dataProductTableApi } from "@/app/component-api/data-product-table"
 import { dataTableApi } from "@/app/component-api/data-table"
@@ -77,6 +78,7 @@ import { toastApi } from "@/app/component-api/toast"
 import { toggleApi } from "@/app/component-api/toggle"
 import { toggleGroupApi } from "@/app/component-api/toggle-group"
 import { tooltipApi } from "@/app/component-api/tooltip"
+import { treeViewApi } from "@/app/component-api/tree-view"
 import { typographyApi } from "@/app/component-api/typography"
 import { utilsApi } from "@/app/component-api/utils"
 import type { ComponentApiDoc } from "@/app/component-variants/types"
@@ -112,6 +114,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   "data-product-card": dataProductCardApi,
   "data-product-table": dataProductTableApi,
   "dataos-sidebar": dataosSidebarApi,
+  "assets-tree": assetsTreeApi,
   "data-table": dataTableApi,
   "date-picker": datePickerApi,
   dialog: dialogApi,
@@ -161,6 +164,7 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   toggle: toggleApi,
   "toggle-group": toggleGroupApi,
   tooltip: tooltipApi,
+  "tree-view": treeViewApi,
   typography: typographyApi,
   utils: utilsApi,
 }

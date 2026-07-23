@@ -24,7 +24,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
           title: "Expanded",
           description:
             "Full sidebar with DataOS wordmark, labeled navigation groups, and footer actions.",
-          body: "Default shell navigation with dividers after Home and Workbench. Home uses the teal active state from the design.",
+          body: "Default shell navigation with dividers after Home and Workbench. Home uses the teal active state. Omit items to use the built-in DataOS nav set. See the drawer for shell layout wiring.",
           Preview: DataOsSidebarExpandedPreview,
           code: dataosSidebarCodes.expanded,
           tall: true,
@@ -36,12 +36,13 @@ export const dataosSidebarPage: ComponentVariantPage = {
       title: "Collapsed rail",
       description:
         "Icon-only sidebar with logo mark and centered nav icons.",
-      body: "Use defaultCollapsed or toggle via the Close panel footer action. Width animates between expanded and rail modes.",
+      body: "Use defaultCollapsed or toggle via the Close panel footer action. Width animates between expanded and rail modes. Tooltips show labels while collapsed.",
       variants: [
         {
           id: "collapsed",
           title: "Collapsed",
           description: "Compact icon rail for focused workspaces.",
+          body: "defaultCollapsed starts icon-only. Expand via the footer control.",
           Preview: DataOsSidebarCollapsedPreview,
           code: dataosSidebarCodes.collapsed,
           docLink: { href: "#api-reference", label: "Props reference" },
@@ -54,13 +55,14 @@ export const dataosSidebarPage: ComponentVariantPage = {
       title: "Pin & reorder",
       description:
         "Hover a nav item to reveal its pin control. Pinned apps move into a dedicated area under Home and can be dragged to reorder.",
-      body: "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows via native HTML5 events.",
+      body: "Data Products is pinned by default and cannot be unpinned (pinLocked). Users can pin two more apps (max 3 total). Once the limit is reached, hovering another item's pin icon shows a tooltip: only 3 allow. Drag-and-drop reorders pinned rows. Drawer shows localStorage persistence.",
       variants: [
         {
           id: "pinned",
           title: "Pin & drag to reorder",
           description:
             "Data Products pinned by default; pin two more, drag to reorder.",
+          body: "Controlled pinnedIds + onPinnedChange with persistence example in the code drawer.",
           Preview: DataOsSidebarPinnedPreview,
           code: dataosSidebarCodes.pinned,
           docLink: { href: "#api-reference", label: "Props reference" },
@@ -77,6 +79,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
           id: "controlled",
           title: "Controlled state",
           description: "Wire activeId and collapsed from your app shell.",
+          body: "Keep activeId and collapsed in the shell so the main region and URL stay in sync with the rail.",
           Preview: DataOsSidebarInteractivePreview,
           code: dataosSidebarCodes.controlled,
           docLink: { href: "#api-reference", label: "Props reference" },
@@ -90,6 +93,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
       id: "expanded",
       title: "Expanded",
       description: "Full sidebar with labels and logo wordmark.",
+      body: "Full wordmark + labeled nav + teal active Home.",
       Preview: DataOsSidebarExpandedPreview,
       code: dataosSidebarCodes.expanded,
     },
@@ -97,6 +101,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
       id: "collapsed",
       title: "Collapsed",
       description: "Icon-only rail with logo mark.",
+      body: "Icon rail via defaultCollapsed.",
       Preview: DataOsSidebarCollapsedPreview,
       code: dataosSidebarCodes.collapsed,
     },
@@ -104,6 +109,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
       id: "pinned",
       title: "Pin & reorder",
       description: "Pin up to three apps and drag to reorder them.",
+      body: "pinLocked Data Products + maxPinned=3.",
       Preview: DataOsSidebarPinnedPreview,
       code: dataosSidebarCodes.pinned,
     },
@@ -111,6 +117,7 @@ export const dataosSidebarPage: ComponentVariantPage = {
       id: "controlled",
       title: "Controlled",
       description: "Active item and collapse driven by parent state.",
+      body: "activeId + collapsed from the shell.",
       Preview: DataOsSidebarInteractivePreview,
       code: dataosSidebarCodes.controlled,
     },

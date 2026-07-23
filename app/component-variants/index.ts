@@ -25,6 +25,7 @@ import { runDurationPage } from "@/app/component-variants/run-duration-page"
 import { runMetricsPage } from "@/app/component-variants/run-metrics-page"
 import { applicationHeaderPage } from "@/app/component-variants/application-header-page"
 import { dataosSidebarPage } from "@/app/component-variants/dataos-sidebar-page"
+import { assetsTreePage } from "@/app/component-variants/assets-tree-page"
 import { layoutPage } from "@/app/component-variants/layout-page"
 import { dataProductCardPage } from "@/app/component-variants/data-product-card-page"
 import { dataProductTablePage } from "@/app/component-variants/data-product-table-page"
@@ -172,6 +173,7 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   "run-metrics": runMetricsPage,
   hero: heroPage,
   "dataos-sidebar": dataosSidebarPage,
+  "assets-tree": assetsTreePage,
   layout: layoutPage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
@@ -205,6 +207,7 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   "run-metrics": "Usage",
   hero: "Usage",
   "dataos-sidebar": "Usage",
+  "assets-tree": "Usage",
   layout: "Usage",
   theme: "Palette",
   utils: "Usage",

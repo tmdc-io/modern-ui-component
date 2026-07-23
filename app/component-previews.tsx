@@ -26,6 +26,7 @@ import { UtilsPreview } from "@/app/utils-preview"
 import { I18nPreview } from "@/app/component-examples/i18n-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
+import { AssetsTree } from "@/registry/default/blocks/assets-tree/assets-tree"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
 import { DataProductCardDefaultPreview } from "@/app/component-examples/data-product-card-usage"
 import { ModelHealthRunsDefaultPreview } from "@/app/component-examples/model-health-runs-usage"
@@ -251,6 +252,7 @@ import {
   TableRow,
 } from "@/registry/default/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/default/ui/tabs"
+import { TreeView, type TreeDataItem } from "@/registry/default/ui/tree-view"
 import { Textarea } from "@/registry/default/ui/textarea"
 import { Toggle } from "@/registry/default/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/registry/default/ui/toggle-group"
@@ -461,6 +463,24 @@ export const componentPreviews: Record<string, React.ReactNode> = {
     <div className="w-full max-w-sm">
       <AccordionBasicPreview />
     </div>
+  ),
+  "tree-view": (
+    <TreeView
+      className="w-full max-w-sm"
+      data={
+        [
+          {
+            id: "1",
+            name: "Item 1",
+            children: [
+              { id: "2", name: "Item 1.1" },
+              { id: "3", name: "Item 1.2" },
+            ],
+          },
+          { id: "4", name: "Item 2" },
+        ] satisfies TreeDataItem[]
+      }
+    />
   ),
   breadcrumb: (
     <Breadcrumb>
@@ -884,6 +904,11 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "dataos-sidebar": (
     <div className="h-64 w-full overflow-hidden">
       <DataOsSidebarExpandedPreview />
+    </div>
+  ),
+  "assets-tree": (
+    <div className="flex h-72 w-full justify-center overflow-hidden border bg-white dark:bg-background">
+      <AssetsTree className="min-h-0 border-0" />
     </div>
   ),
   ...chartPreviewEntries,

@@ -51,6 +51,12 @@ type ModelsTableProps = {
 
 import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
 
+/**
+ * Default models table
+ * --------------------
+ * Mixed fail, warn, and pass rows with sparklines and status counts.
+ * Rows with expansion="error" or "quality" show a chevron to expand detail.
+ */
 const rows: ModelTableRow[] = [
   {
     id: "m3",
@@ -111,6 +117,12 @@ export function PipelineModelsPanel() {
 
 import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
 
+/**
+ * Error row expanded
+ * ------------------
+ * defaultExpandedIds opens the warehouse error log panel on load.
+ * errorDetail supplies errorType, copyable message, and viewMoreHref.
+ */
 const rows: ModelTableRow[] = [
   {
     id: "m1",
@@ -154,6 +166,12 @@ export function PipelineModelsPanel() {
 
 import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
 
+/**
+ * Quality rules expanded
+ * ----------------------
+ * expansion="quality" with qualityRules opens a nested rule table.
+ * defaultExpandedIds={["m3"]} keeps the quality panel open on first paint.
+ */
 const rows: ModelTableRow[] = [
   {
     id: "m3",
@@ -197,6 +215,12 @@ export function PipelineModelsPanel() {
 
 import { ModelsTable, type ModelTableRow } from "@/components/blocks/models-table"
 
+/**
+ * Custom rows from API
+ * --------------------
+ * Map pipeline API fields into ModelTableRow[] and pass defaultExpandedIds
+ * to open error or quality panels for specific model ids.
+ */
 const rows: ModelTableRow[] = [
   {
     id: "m1",

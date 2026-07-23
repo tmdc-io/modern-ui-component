@@ -41,6 +41,13 @@ import {
 import { Hero, type HeroProps } from "@/components/blocks/hero"
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
+/**
+ * Full data product hero
+ * ----------------------
+ * variant="full" with metaColumns (Source / Links / Governance),
+ * quality card (percentage + dimensions), jumpItems tab bar,
+ * and exploreMenu split-button dropdown.
+ */
 const metaColumns: HeroProps["metaColumns"] = [
   {
     title: "Source",
@@ -148,6 +155,12 @@ export function DataProductHero() {
 import { BoxIcon } from "lucide-react"
 import { Hero } from "@/components/blocks/hero"
 
+/**
+ * Sticky scrolled header
+ * ----------------------
+ * variant="sticky" — compact icon + title bar for scroll state.
+ * Wrap in a sticky container (top-0 z-30) in your shell.
+ */
 export function StickyHero() {
   return (
     <div className="sticky top-0 z-30">
@@ -165,6 +178,12 @@ export function StickyHero() {
 import { BoxIcon } from "lucide-react"
 import { Hero } from "@/components/blocks/hero"
 
+/**
+ * Internal page header
+ * --------------------
+ * variant="internal" — title, subtitle, icon, and actions only.
+ * No metaColumns, quality card, or jump navigation.
+ */
 export function InternalHero() {
   return (
     <Hero
@@ -181,6 +200,12 @@ export function InternalHero() {
 import { BoxIcon, GaugeIcon, PlayCircleIcon, BarChart3Icon } from "lucide-react"
 import { Hero, type HeroProps } from "@/components/blocks/hero"
 
+/**
+ * Internal header + jump nav
+ * --------------------------
+ * variant="internal" with jumpItems — Assets, Quality, Runs, Metrics tabs.
+ * Dropdown chevrons render when hasDropdown is true.
+ */
 const jumpItems: HeroProps["jumpItems"] = [
   { label: "Assets", icon: <GaugeIcon className="size-3.5" />, hasDropdown: true },
   { label: "Quality", icon: <GaugeIcon className="size-3.5" /> },
@@ -205,6 +230,12 @@ export function InternalHeroWithNav() {
 import { BoxIcon } from "lucide-react"
 import { Hero, type HeroProps } from "@/components/blocks/hero"
 
+/**
+ * Internal header + description
+ * -----------------------------
+ * variant="internal" with truncated description and descriptionExpandLabel.
+ * jumpItems adds the tab bar below the description.
+ */
 const jumpItems: HeroProps["jumpItems"] = [
   { label: "Assets", hasDropdown: true },
   { label: "Quality" },

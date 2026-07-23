@@ -124,6 +124,7 @@ export const catalog: CatalogCategory[] = [
     items: [
       item("tabs", "Tabs", "Tabbed content navigation."),
       item("accordion", "Accordion", "Expandable sections."),
+      item("tree-view", "Tree View", "Hierarchical expand/collapse navigation."),
       item("breadcrumb", "Breadcrumb", "Hierarchy navigation trail."),
       item("navigation-menu", "Navigation Menu", "Site navigation menu."),
       item("menubar", "Menubar", "Application menu bar."),
@@ -226,6 +227,11 @@ export const catalog: CatalogCategory[] = [
         "dataos-sidebar",
         "Application Sidebar",
         "Application sidebar with brand logo, grouped navigation, active highlight, and expanded or collapsed rail."
+      ),
+      item(
+        "assets-tree",
+        "Assets Tree",
+        "Assets browser with search, category counts, verified status, and deep nested teal selection."
       ),
       item(
         "application-header",

@@ -4,6 +4,11 @@ npx shadcn@latest add tmdc-io/modern-ui-component/plan-card`,
 
   success: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Successful plan
+ * ---------------
+ * status="success" with Changes and Impacts summary metrics.
+ */
 export function SuccessPlanCard() {
   return (
     <PlanCard
@@ -22,6 +27,11 @@ export function SuccessPlanCard() {
 
   hover: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Hover surface
+ * -------------
+ * Default success card — cream-bg-3 hover applies on pointer over.
+ */
 export function HoverablePlanCard() {
   return (
     <PlanCard
@@ -40,6 +50,11 @@ export function HoverablePlanCard() {
 
   selected: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Selected plan
+ * -------------
+ * selected applies teal surface and dark-teal border for active list item.
+ */
 export function SelectedPlanCard() {
   return (
     <PlanCard
@@ -59,6 +74,11 @@ export function SelectedPlanCard() {
 
   error: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Failed plan
+ * -----------
+ * status="error" with an Error metric (status="error") plus Changes/Impacts.
+ */
 export function ErrorPlanCard() {
   return (
     <PlanCard
@@ -78,6 +98,11 @@ export function ErrorPlanCard() {
 
   expanded: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Expanded detail panel
+ * ---------------------
+ * defaultExpanded opens detailMetrics, detailStatuses, and detailsHref link.
+ */
 export function ExpandedPlanCard() {
   return (
     <PlanCard
@@ -109,6 +134,11 @@ export function ExpandedPlanCard() {
 
   stack: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Plan list stack
+ * ---------------
+ * Map plans array and render success + error cards in a vertical list.
+ */
 const plans = [
   {
     planId: "#7",
@@ -147,6 +177,11 @@ export function PlanCardStack() {
 
   statuses: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Extended statuses
+ * -----------------
+ * draft, running (startedAt), warning, and cancelled plan variants.
+ */
 export function PlanStatuses() {
   return (
     <div className="flex flex-col gap-3">
@@ -198,6 +233,11 @@ export function PlanStatuses() {
 import * as React from "react"
 import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Controlled selection
+ * --------------------
+ * selected + onSelect for a plan list; cards expose aria-pressed when selectable.
+ */
 const plans = [
   {
     planId: "#7",
@@ -257,6 +297,11 @@ export function SelectablePlanList() {
 import * as React from "react"
 import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Accordion plan list
+ * -------------------
+ * expanded + onExpandedChange so only one plan detail panel stays open.
+ */
 const plans = [
   {
     planId: "#9",
@@ -324,6 +369,11 @@ export function PlanAccordion() {
 import * as React from "react"
 import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Clickable metrics
+ * -----------------
+ * Per-metric onClick or href on Error, Changes, and Impacts without selecting the card.
+ */
 export function PlanMetricActions() {
   const [message, setMessage] = React.useState("Choose a metric")
 
@@ -357,6 +407,11 @@ export function PlanMetricActions() {
 
   density: `import { PlanCard } from "@/components/blocks/plan-card"
 
+/**
+ * Density and empty details
+ * -------------------------
+ * size="sm" for compact histories; empty detailMetrics show a localized message.
+ */
 export function CompactEmptyPlan() {
   return (
     <div className="flex flex-col gap-3">
@@ -390,6 +445,11 @@ import * as React from "react"
 import { PlanCard } from "@/components/blocks/plan-card"
 import { RunCard } from "@/components/blocks/run-card"
 
+/**
+ * Plan with related runs
+ * ----------------------
+ * Select a plan and show matching RunCard list beside the plan column.
+ */
 const relatedRuns = {
   "#7": [
     { runId: "#10010", status: "success" as const, duration: "4.1s" },
@@ -456,6 +516,11 @@ export function PlanWithRelatedRuns() {
 
   skeleton: `import { PlanCardSkeleton } from "@/components/blocks/plan-card"
 
+/**
+ * Loading skeleton
+ * ----------------
+ * PlanCardSkeleton placeholders (default + size="sm") while plan data loads.
+ */
 export function PlanCardLoading() {
   return (
     <div className="flex flex-col gap-3">

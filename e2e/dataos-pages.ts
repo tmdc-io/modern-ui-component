@@ -4,6 +4,7 @@ export const DATAOS_PAGES = [
   "data-product-card",
   "hero",
   "dataos-sidebar",
+  "assets-tree",
   "application-header",
   "plan-card",
   "plan-status-card",

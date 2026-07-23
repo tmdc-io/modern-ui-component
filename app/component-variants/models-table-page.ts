@@ -41,6 +41,7 @@ export const modelsTablePage: ComponentVariantPage = {
           title: "Error expansion",
           description:
             "Warehouse error badge, copyable log message, and view-more link.",
+          body: "Set expansion=\"error\" and errorDetail on the row; defaultExpandedIds opens the log panel on load.",
           Preview: ModelsTableExpandedErrorPreview,
           code: modelsTableCodes.expandedError,
           docLink: { href: "#api-reference", label: "Props reference" },
@@ -50,6 +51,7 @@ export const modelsTablePage: ComponentVariantPage = {
           id: "expanded-quality",
           title: "Quality expansion",
           description: "Nested table of column rules with pass, warn, and fail icons.",
+          body: "expansion=\"quality\" with qualityRules renders a nested rule table when the row expands.",
           Preview: ModelsTableExpandedQualityPreview,
           code: modelsTableCodes.expandedQuality,
           docLink: { href: "#api-reference", label: "Props reference" },
@@ -66,6 +68,7 @@ export const modelsTablePage: ComponentVariantPage = {
           id: "custom",
           title: "Custom rows",
           description: "Pass models with errorDetail or qualityRules for expansion.",
+          body: "Map pipeline API fields into ModelTableRow[] and control which rows start expanded.",
           Preview: ModelsTableCustomPreview,
           code: modelsTableCodes.custom,
           docLink: { href: "#api-reference", label: "Props reference" },

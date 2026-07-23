@@ -24,6 +24,7 @@ const MANUAL_PAGES = [
   "data-product-card",
   "hero",
   "dataos-sidebar",
+  "assets-tree",
   "application-header",
   "layout",
   "plan-card",

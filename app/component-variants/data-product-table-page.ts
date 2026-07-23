@@ -40,6 +40,7 @@ export const dataProductTablePage: ComponentVariantPage = {
           id: "row-data",
           title: "Row data prop",
           description: "One array from your API or static config.",
+          body: "Map catalog API fields into DataProductRow[] once and reuse across table variants.",
           Preview: TableDataProductDataDrivenPreview,
           code: tableDataProductCodes.rows,
           docLink: { href: "#api-reference", label: "Props reference" },

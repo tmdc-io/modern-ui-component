@@ -32,6 +32,12 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Static catalog table
+ * ----------------------
+ * Pass a typed rows array with sort and glossary filter disabled.
+ * showQuality renders the orange Quality badge on flagged products.
+ */
 const rows: DataProductRow[] = [
   {
     id: "1",
@@ -72,6 +78,12 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Row data prop shape
+ * -------------------
+ * DataProductRow drives product icon, glossary pill, and quality badge cells.
+ * Map your catalog API into rows and pass to DataProductTable.
+ */
 const rows: DataProductRow[] = [
   {
     id: "cust-intel",
@@ -114,6 +126,12 @@ import {
 } from "@/components/blocks/data-product-table"
 import { Skeleton } from "@/components/ui/skeleton"
 
+/**
+ * API-driven catalog
+ * ------------------
+ * Fetch catalog products, mapCatalogApiToRows(), and show Skeleton while loading.
+ * qualityAlert on the API maps to showQuality on each row.
+ */
 type CatalogApiProduct = {
   id: string
   name: string
@@ -160,6 +178,12 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Sort and glossary filter
+ * ------------------------
+ * enableSort adds column sort on Data Product; enableGlossaryFilter
+ * opens a popover to filter rows by glossary term.
+ */
 const rows: DataProductRow[] = [
   {
     id: "1",
@@ -201,6 +225,12 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Row selection and hover
+ * -----------------------
+ * selectable + selectedIds / onSelectionChange for click-to-select.
+ * onRowClick and onRowHover fire independently of selection state.
+ */
 const rows: DataProductRow[] = [
   {
     id: "1",
@@ -255,6 +285,12 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Row cell markup
+ * ---------------
+ * Prefer DataProductDataRow for consistent cells in custom table shells.
+ * Manual markup shows the product tile, glossary pill, and quality badge.
+ */
 const sampleRow: DataProductRow = {
   id: "1",
   title: "Customer Intelligence & Segmentation",
@@ -312,6 +348,11 @@ import {
   type DataProductRow,
 } from "@/components/blocks/data-product-table"
 
+/**
+ * Minimal catalog demo
+ * --------------------
+ * Smallest DataProductTable setup — pass rows with default sort/filter on.
+ */
 const rows: DataProductRow[] = [
   {
     id: "1",

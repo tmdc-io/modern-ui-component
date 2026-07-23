@@ -1205,6 +1205,26 @@
       ]
     },
     {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "title": "Tree View",
+      "description": "Hierarchical lists with expandable nested levels, selection, icons, and drag-and-drop.",
+      "files": [
+        {
+          "path": "registry/default/ui/tree-view.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "login-form",
       "type": "registry:block",
       "title": "Login Form",
@@ -1324,6 +1344,25 @@
         },
         {
           "path": "registry/default/blocks/dataos-sidebar/dataos-sidebar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "assets-tree",
+      "type": "registry:block",
+      "title": "Assets Tree",
+      "description": "DataOS assets browser with search, category counts, verified status, teal selection, and deep nested categories.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/assets-tree/assets-tree.tsx",
           "type": "registry:component"
         }
       ]

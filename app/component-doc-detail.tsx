@@ -82,6 +82,7 @@ const DATAOS_RESPONSIVE_PAGES = new Set([
   "data-product-card",
   "hero",
   "dataos-sidebar",
+  "assets-tree",
   "application-header",
   "plan-card",
   "plan-status-card",
