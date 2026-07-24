@@ -79,7 +79,7 @@ function PreviewShell({
   hint?: string
 }) {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-3 rounded-lg p-5">
+    <div className="flex w-full flex-col items-center gap-3 rounded-lg p-5">
       <div className="w-full max-w-3xl">{children}</div>
       {hint ? (
         <p className="text-muted-foreground text-center text-xs">{hint}</p>

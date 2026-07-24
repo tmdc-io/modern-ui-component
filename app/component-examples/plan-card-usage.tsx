@@ -23,7 +23,7 @@ function PreviewShell({
   hint?: string
 }) {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-3 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-3 rounded-lg p-6">
       {children}
       {hint ? (
         <p className="text-muted-foreground text-center text-xs">{hint}</p>
@@ -74,7 +74,7 @@ export function PlanCardExpandedPreview() {
 
 export function PlanCardStackPreview() {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-4 rounded-lg p-6">
       <PlanCard {...demoSuccessPlan} />
       <PlanCard {...demoHoverPlan} />
       <PlanCard {...demoErrorPlan} />
@@ -154,7 +154,7 @@ export function PlanCardStatusesPreview() {
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
 
   return (
-    <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
+    <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
       <PlanCard
         planId="#11"
         version="v0.1.4"
@@ -189,7 +189,7 @@ export function PlanCardStatusesPreview() {
 
 export function PlanCardDensityPreview() {
   return (
-    <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
+    <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
       <PlanCard {...demoSuccessPlan} />
       <PlanCard {...demoSuccessPlan} planId="#7-sm" size="sm" />
       <PlanCard
@@ -209,7 +209,7 @@ export function PlanCardRunPairingPreview() {
     React.useState<keyof typeof demoRelatedRuns>("#7")
 
   return (
-    <div className="bg-muted/30 w-full rounded-lg p-4">
+    <div className="w-full rounded-lg p-4">
       <div className="mx-auto grid w-full max-w-4xl gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-3">
           {[demoSuccessPlan, demoErrorPlan].map((plan) => (

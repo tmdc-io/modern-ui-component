@@ -22,7 +22,7 @@ function PreviewShell({
   hint?: string
 }) {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-3 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-3 rounded-lg p-6">
       {children}
       {hint ? (
         <p className="text-muted-foreground text-center text-xs">{hint}</p>
@@ -66,7 +66,7 @@ export function RunCardErrorPreview() {
 
 export function RunCardStackPreview() {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-4 rounded-lg p-6">
       <RunCard {...demoSuccessRun} />
       <RunCard {...demoHoverRun} />
       <RunCard {...demoErrorRun} />
@@ -77,7 +77,7 @@ export function RunCardStackPreview() {
 export function RunCardStatusesPreview() {
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
   return (
-    <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
+    <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
       <RunCard
         runId="#10011"
         plan="Plan #03"
@@ -157,7 +157,7 @@ export function RunCardMetricLinksPreview() {
 
 export function RunCardDensityPreview() {
   return (
-    <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
+    <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
       <RunCard {...demoSuccessRun} size="default" />
       <RunCard {...demoSuccessRun} runId="#10010-sm" size="sm" />
     </div>
@@ -188,7 +188,7 @@ export function RunCardOverflowPreview() {
 
 export function RunCardSkeletonPreview() {
   return (
-    <div className="bg-muted/30 flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
+    <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg p-6">
       <RunCardSkeleton />
       <RunCardSkeleton size="sm" />
     </div>
@@ -199,7 +199,7 @@ export function RunCardComposePreview() {
   const [selectedId, setSelectedId] = React.useState(demoSuccessRun.runId)
 
   return (
-    <div className="bg-muted/30 w-full rounded-lg p-4">
+    <div className="w-full rounded-lg p-4">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 lg:flex-row lg:items-start">
         <div className="flex w-full shrink-0 flex-col gap-3 lg:max-w-xs">
           {demoRuns.map((run) => (

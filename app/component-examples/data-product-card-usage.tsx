@@ -22,7 +22,7 @@ const financialRiskCard = {
 
 export function DataProductCardDefaultPreview() {
   return (
-    <div className="bg-muted/30 flex w-full justify-center rounded-lg p-6">
+    <div className="flex w-full justify-center rounded-lg p-6">
       <DataProductCard {...patientJourneyCard} />
     </div>
   )
@@ -30,7 +30,7 @@ export function DataProductCardDefaultPreview() {
 
 export function DataProductCardLastRunPreview() {
   return (
-    <div className="bg-muted/30 flex w-full justify-center rounded-lg p-6">
+    <div className="flex w-full justify-center rounded-lg p-6">
       <DataProductCard {...financialRiskCard} />
     </div>
   )
@@ -38,7 +38,7 @@ export function DataProductCardLastRunPreview() {
 
 export function DataProductCardGridPreview() {
   return (
-    <div className="@container bg-muted/30 grid w-full gap-4 rounded-lg p-6 @md:grid-cols-2">
+    <div className="@container grid w-full gap-4 rounded-lg p-6 @md:grid-cols-2">
       <DataProductCard className="max-w-none" {...patientJourneyCard} />
       <DataProductCard className="max-w-none" {...financialRiskCard} />
     </div>
@@ -47,7 +47,7 @@ export function DataProductCardGridPreview() {
 
 export function DataProductCardInteractivePreview() {
   return (
-    <div className="bg-muted/30 flex w-full justify-center rounded-lg p-6">
+    <div className="flex w-full justify-center rounded-lg p-6">
       <DataProductCard
         {...patientJourneyCard}
         onClick={() => {
@@ -60,7 +60,7 @@ export function DataProductCardInteractivePreview() {
 
 export function DataProductCardDensityPreview() {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-4 rounded-lg p-6">
       <DataProductCard {...patientJourneyCard} />
       <DataProductCard {...patientJourneyCard} size="sm" />
     </div>
@@ -69,7 +69,7 @@ export function DataProductCardDensityPreview() {
 
 export function DataProductCardSkeletonPreview() {
   return (
-    <div className="bg-muted/30 flex w-full flex-col items-center gap-4 rounded-lg p-6">
+    <div className="flex w-full flex-col items-center gap-4 rounded-lg p-6">
       <DataProductCardSkeleton />
       <DataProductCardSkeleton size="sm" />
     </div>
