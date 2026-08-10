@@ -27,8 +27,14 @@ import { I18nPreview } from "@/app/component-examples/i18n-preview"
 import { LoginForm } from "@/registry/default/blocks/login-form/login-form"
 import { QualitySummaryCard } from "@/registry/default/blocks/quality-summary-card/quality-summary-card"
 import { AssetsTree } from "@/registry/default/blocks/assets-tree/assets-tree"
+import { LineageGraph } from "@/registry/default/blocks/lineage-graph/lineage-graph"
+import { FlowDefaultPreview } from "@/app/component-examples/flow-usage"
 import { TableDataProductPreview } from "@/app/component-examples/table-data-product"
 import { DataProductCardDefaultPreview } from "@/app/component-examples/data-product-card-usage"
+import { DataProductContextCardSmallPreview } from "@/app/component-examples/data-product-context-card-usage"
+import { ModelContextCardSmallPreview } from "@/app/component-examples/model-context-card-usage"
+import { PerspectiveContextCardSmallPreview } from "@/app/component-examples/perspective-context-card-usage"
+import { MetricContextCardSmallPreview } from "@/app/component-examples/metric-context-card-usage"
 import { ModelHealthRunsDefaultPreview } from "@/app/component-examples/model-health-runs-usage"
 import { ModelsTableDefaultPreview } from "@/app/component-examples/models-table-usage"
 import { RunDurationDefaultPreview } from "@/app/component-examples/run-duration-usage"
@@ -758,6 +764,16 @@ export const componentPreviews: Record<string, React.ReactNode> = {
     </Table>
   ),
   chart: <ChartCatalogPreview />,
+  flow: (
+    <div className="h-48 w-full overflow-hidden">
+      <FlowDefaultPreview />
+    </div>
+  ),
+  "lineage-graph": (
+    <div className="h-72 w-full overflow-hidden">
+      <LineageGraph className="border-0" height="100%" defaultSelectedId="CUSTOMER_MASTER" />
+    </div>
+  ),
   calendar: (
     <Calendar mode="single" className="rounded-md border" />
   ),
@@ -854,6 +870,26 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   "data-product-card": (
     <div className="w-full overflow-hidden">
       <DataProductCardDefaultPreview />
+    </div>
+  ),
+  "data-product-context-card": (
+    <div className="flex h-80 w-full justify-center overflow-hidden bg-[#f5f5f5] p-3 dark:bg-background">
+      <DataProductContextCardSmallPreview />
+    </div>
+  ),
+  "model-context-card": (
+    <div className="flex h-80 w-full justify-center overflow-hidden bg-[#f5f5f5] p-3 dark:bg-background">
+      <ModelContextCardSmallPreview />
+    </div>
+  ),
+  "perspective-context-card": (
+    <div className="flex h-80 w-full justify-center overflow-hidden bg-[#f5f5f5] p-3 dark:bg-background">
+      <PerspectiveContextCardSmallPreview />
+    </div>
+  ),
+  "metric-context-card": (
+    <div className="flex h-80 w-full justify-center overflow-hidden bg-[#f5f5f5] p-3 dark:bg-background">
+      <MetricContextCardSmallPreview />
     </div>
   ),
   "run-duration": (

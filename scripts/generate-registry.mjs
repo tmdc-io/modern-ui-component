@@ -21,6 +21,7 @@ const NPM_IMPORTS = {
   "react-day-picker": "react-day-picker",
   "embla-carousel-react": "embla-carousel-react",
   recharts: "recharts",
+  "@xyflow/react": "@xyflow/react",
   sonner: "sonner",
   "next-themes": "next-themes",
   vaul: "vaul",

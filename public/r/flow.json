@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flow",
+  "title": "Flow",
+  "description": "Node-based canvas built with xyflow / React Flow — pan, zoom, edges, and themed chrome.",
+  "dependencies": [
+    "@xyflow/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/flow.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport {\n  Background,\n  Controls,\n  MiniMap,\n  ReactFlow,\n  ReactFlowProvider,\n  type BackgroundProps,\n  type ControlProps,\n  type DefaultEdgeOptions,\n  type MiniMapProps,\n  type Node,\n  type ReactFlowProps,\n} from \"@xyflow/react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst DEFAULT_EDGE_OPTIONS: DefaultEdgeOptions = {\n  type: \"smoothstep\",\n  animated: false,\n  style: { strokeWidth: 1.5 },\n}\n\nexport type FlowContainerProps<NodeType extends Node = Node> = Omit<\n  ReactFlowProps<NodeType>,\n  \"height\" | \"children\"\n> & {\n  children?: React.ReactNode\n  className?: string\n  /** Outer frame height. React Flow requires a sized parent. */\n  height?: number | string\n  showBackground?: boolean\n  showControls?: boolean\n  showMiniMap?: boolean\n  backgroundProps?: BackgroundProps\n  controlsProps?: ControlProps\n  miniMapProps?: MiniMapProps\n  /** Wrap in ReactFlowProvider (default true). Set false if a parent already provides one. */\n  withProvider?: boolean\n}\n\nfunction FlowCanvas<NodeType extends Node = Node>({\n  children,\n  className,\n  height = \"24rem\",\n  showBackground = true,\n  showControls = true,\n  showMiniMap = false,\n  backgroundProps,\n  controlsProps,\n  miniMapProps,\n  defaultEdgeOptions,\n  fitView = true,\n  proOptions,\n  ...props\n}: FlowContainerProps<NodeType>) {\n  return (\n    <div\n      data-slot=\"flow\"\n      className={cn(\n        \"relative w-full overflow-hidden rounded-lg border border-border bg-card\",\n        className\n      )}\n      style={{ height }}\n    >\n      <ReactFlow<NodeType>\n        fitView={fitView}\n        defaultEdgeOptions={defaultEdgeOptions ?? DEFAULT_EDGE_OPTIONS}\n        proOptions={proOptions ?? { hideAttribution: true }}\n        className=\"bg-card\"\n        {...props}\n      >\n        {showBackground ? (\n          <Background gap={16} size={1} color=\"var(--border)\" {...backgroundProps} />\n        ) : null}\n        {showControls ? (\n          <Controls showInteractive={false} {...controlsProps} />\n        ) : null}\n        {showMiniMap ? (\n          <MiniMap pannable zoomable {...miniMapProps} />\n        ) : null}\n        {children}\n      </ReactFlow>\n    </div>\n  )\n}\n\nfunction FlowContainer<NodeType extends Node = Node>({\n  withProvider = true,\n  ...props\n}: FlowContainerProps<NodeType>) {\n  if (!withProvider) {\n    return <FlowCanvas<NodeType> {...props} />\n  }\n\n  return (\n    <ReactFlowProvider>\n      <FlowCanvas<NodeType> {...props} />\n    </ReactFlowProvider>\n  )\n}\n\nexport {\n  FlowContainer,\n  // Re-exports for consumer convenience\n  Background,\n  Controls,\n  MiniMap,\n  ReactFlow,\n  ReactFlowProvider,\n}\n\nexport {\n  Handle,\n  Panel,\n  Position,\n  MarkerType,\n  BaseEdge,\n  EdgeLabelRenderer,\n  getBezierPath,\n  getSmoothStepPath,\n  getStraightPath,\n  addEdge,\n  applyEdgeChanges,\n  applyNodeChanges,\n  useEdgesState,\n  useNodesState,\n  useReactFlow,\n  useUpdateNodeInternals,\n} from \"@xyflow/react\"\n\nexport type {\n  Node,\n  Edge,\n  NodeProps,\n  EdgeProps,\n  Connection,\n  OnConnect,\n  OnNodesChange,\n  OnEdgesChange,\n  NodeTypes,\n  EdgeTypes,\n  DefaultEdgeOptions,\n  ReactFlowInstance,\n  BackgroundProps,\n  ControlProps,\n  MiniMapProps,\n} from \"@xyflow/react\"\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

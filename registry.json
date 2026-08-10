@@ -1225,6 +1225,24 @@
       ]
     },
     {
+      "name": "flow",
+      "type": "registry:ui",
+      "title": "Flow",
+      "description": "Node-based canvas built with xyflow / React Flow — pan, zoom, edges, and themed chrome.",
+      "files": [
+        {
+          "path": "registry/default/ui/flow.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@xyflow/react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "login-form",
       "type": "registry:block",
       "title": "Login Form",
@@ -1306,6 +1324,82 @@
       ]
     },
     {
+      "name": "data-product-context-card",
+      "type": "registry:block",
+      "title": "Data Product Context Card",
+      "description": "DataOS product context card with quality metrics, fit guidance, usage, gateway link, and contacts — full drawer and compact views.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/data-product-context-card/data-product-context-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "model-context-card",
+      "type": "registry:block",
+      "title": "Model Context Card",
+      "description": "DataOS model context card with quality, last run, fields, lineage preview, productized list, schedule, and contacts.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/model-context-card/model-context-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "perspective-context-card",
+      "type": "registry:block",
+      "title": "Perspective Context Card",
+      "description": "DataOS perspective context card with freshness, policies, composed-of breakdown (REST fields, GraphQL, source SQL, semantic SQL), usage, and contacts.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/perspective-context-card/perspective-context-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "metric-context-card",
+      "type": "registry:block",
+      "title": "Metric Context Card",
+      "description": "DataOS metric context card with current value and trend, policies, defines, composed fields, formula, and contacts.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/metric-context-card/metric-context-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hero",
       "type": "registry:block",
       "title": "Hero",
@@ -1363,6 +1457,25 @@
       "files": [
         {
           "path": "registry/default/blocks/assets-tree/assets-tree.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "lineage-graph",
+      "type": "registry:block",
+      "title": "Lineage Graph",
+      "description": "DataOS asset lineage canvas with custom nodes, teal selection, and smooth-step edges built on Flow.",
+      "dependencies": [
+        "@xyflow/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "flow"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/lineage-graph/lineage-graph.tsx",
           "type": "registry:component"
         }
       ]

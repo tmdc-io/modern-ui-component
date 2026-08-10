@@ -26,8 +26,14 @@ import { runMetricsPage } from "@/app/component-variants/run-metrics-page"
 import { applicationHeaderPage } from "@/app/component-variants/application-header-page"
 import { dataosSidebarPage } from "@/app/component-variants/dataos-sidebar-page"
 import { assetsTreePage } from "@/app/component-variants/assets-tree-page"
+import { flowPage } from "@/app/component-variants/flow-page"
+import { lineageGraphPage } from "@/app/component-variants/lineage-graph-page"
 import { layoutPage } from "@/app/component-variants/layout-page"
 import { dataProductCardPage } from "@/app/component-variants/data-product-card-page"
+import { dataProductContextCardPage } from "@/app/component-variants/data-product-context-card-page"
+import { modelContextCardPage } from "@/app/component-variants/model-context-card-page"
+import { perspectiveContextCardPage } from "@/app/component-variants/perspective-context-card-page"
+import { metricContextCardPage } from "@/app/component-variants/metric-context-card-page"
 import { dataProductTablePage } from "@/app/component-variants/data-product-table-page"
 import { heroPage } from "@/app/component-variants/hero-page"
 import { qualitySummaryCardPage } from "@/app/component-variants/quality-summary-card-page"
@@ -162,6 +168,10 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   attributions: attributionsVariantPage,
   "quality-summary-card": qualitySummaryCardPage,
   "data-product-card": dataProductCardPage,
+  "data-product-context-card": dataProductContextCardPage,
+  "model-context-card": modelContextCardPage,
+  "perspective-context-card": perspectiveContextCardPage,
+  "metric-context-card": metricContextCardPage,
   "data-product-table": dataProductTablePage,
   "application-header": applicationHeaderPage,
   "plan-card": planCardPage,
@@ -174,6 +184,8 @@ export const componentVariantPages: Record<string, ComponentVariantPage> = {
   hero: heroPage,
   "dataos-sidebar": dataosSidebarPage,
   "assets-tree": assetsTreePage,
+  flow: flowPage,
+  "lineage-graph": lineageGraphPage,
   layout: layoutPage,
   theme: themeVariantPage,
   utils: utilsVariantPage,
@@ -196,6 +208,10 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   attributions: "Credits",
   "quality-summary-card": "Usage",
   "data-product-card": "Usage",
+  "data-product-context-card": "Usage",
+  "model-context-card": "Usage",
+  "perspective-context-card": "Usage",
+  "metric-context-card": "Usage",
   "data-product-table": "Usage",
   "application-header": "Usage",
   "plan-card": "Usage",
@@ -208,6 +224,8 @@ const DETAIL_PAGE_LABELS: Record<string, string> = {
   hero: "Usage",
   "dataos-sidebar": "Usage",
   "assets-tree": "Usage",
+  flow: "Usage",
+  "lineage-graph": "Usage",
   layout: "Usage",
   theme: "Palette",
   utils: "Usage",

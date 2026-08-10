@@ -181,6 +181,11 @@ export const catalog: CatalogCategory[] = [
         "Beautiful charts built with Recharts — interactive demos and composition examples."
       ),
       item(
+        "flow",
+        "Flow",
+        "Node-based canvas built with xyflow / React Flow — pan, zoom, edges, and themed chrome."
+      ),
+      item(
         "calendar",
         "Calendar",
         "React DayPicker calendar with doc examples and 32 block layouts."
@@ -219,6 +224,26 @@ export const catalog: CatalogCategory[] = [
         "Catalog card with product icon, subtitle, truncated description, and quality or last-run badge."
       ),
       item(
+        "data-product-context-card",
+        "Data Product Context Card",
+        "Product context card with quality metrics, fit guidance, usage, gateway link, and contacts."
+      ),
+      item(
+        "model-context-card",
+        "Model Context Card",
+        "Model context card with quality, last run, fields, lineage preview, productized list, schedule, and contacts."
+      ),
+      item(
+        "perspective-context-card",
+        "Perspective Context Card",
+        "Perspective context card with freshness, policies, composed-of REST fields or GraphQL / SQL queries, usage, and contacts."
+      ),
+      item(
+        "metric-context-card",
+        "Metric Context Card",
+        "Metric context card with current value and trend, policies, composed fields, formula, and contacts."
+      ),
+      item(
         "hero",
         "Hero",
         "Data product hero header with quality card, metadata columns, jump nav, and full/internal/sticky variants."
@@ -232,6 +257,11 @@ export const catalog: CatalogCategory[] = [
         "assets-tree",
         "Assets Tree",
         "Assets browser with search, category counts, verified status, and deep nested teal selection."
+      ),
+      item(
+        "lineage-graph",
+        "Lineage Graph",
+        "Asset lineage canvas with custom nodes, teal selection, and smooth-step edges on Flow."
       ),
       item(
         "application-header",

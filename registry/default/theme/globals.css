@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@layer base {
+  @import "@xyflow/react/dist/style.css";
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -332,6 +336,62 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* xyflow / React Flow — ModernUI token overrides */
+  .react-flow {
+    --xy-node-background-color: var(--card);
+    --xy-node-border: 1px solid var(--border);
+    --xy-node-color: var(--card-foreground);
+    --xy-node-boxshadow-default: none;
+    --xy-node-boxshadow-selected: 0 0 0 1px var(--dark-teal);
+    --xy-handle-background-color: var(--background);
+    --xy-handle-border-color: var(--border);
+    --xy-edge-stroke: var(--black-quaternary);
+    --xy-edge-stroke-selected: var(--dark-teal);
+    --xy-connectionline-stroke: var(--dark-teal);
+    --xy-selection-background-color: color-mix(in oklab, var(--dark-teal) 12%, transparent);
+    --xy-selection-border: 1px solid var(--dark-teal);
+    --xy-controls-button-background-color: var(--card);
+    --xy-controls-button-background-color-hover: var(--muted);
+    --xy-controls-button-color: var(--foreground);
+    --xy-controls-button-color-hover: var(--foreground);
+    --xy-controls-button-border-color: var(--border);
+    --xy-controls-box-shadow: none;
+    --xy-minimap-background-color: var(--muted);
+    --xy-minimap-mask-background-color: color-mix(in oklab, var(--foreground) 10%, transparent);
+    --xy-minimap-node-background-color: var(--card);
+    --xy-minimap-node-stroke-color: var(--border);
+    --xy-background-pattern-color: var(--border);
+  }
+
+  .react-flow__node-default,
+  .react-flow__node-input,
+  .react-flow__node-output,
+  .react-flow__node-group {
+    border-radius: var(--radius-lg);
+    font-size: 13px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .react-flow__controls {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .react-flow__minimap {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .react-flow__edge-path {
+    stroke-width: 1.5;
+  }
+
+  .react-flow__attribution {
+    display: none;
   }
 }
 

@@ -27,7 +27,13 @@ import { runDurationApi } from "@/app/component-api/run-duration"
 import { runMetricsApi } from "@/app/component-api/run-metrics"
 import { dataosSidebarApi } from "@/app/component-api/dataos-sidebar"
 import { assetsTreeApi } from "@/app/component-api/assets-tree"
+import { flowApi } from "@/app/component-api/flow"
+import { lineageGraphApi } from "@/app/component-api/lineage-graph"
 import { dataProductCardApi } from "@/app/component-api/data-product-card"
+import { dataProductContextCardApi } from "@/app/component-api/data-product-context-card"
+import { modelContextCardApi } from "@/app/component-api/model-context-card"
+import { perspectiveContextCardApi } from "@/app/component-api/perspective-context-card"
+import { metricContextCardApi } from "@/app/component-api/metric-context-card"
 import { dataProductTableApi } from "@/app/component-api/data-product-table"
 import { dataTableApi } from "@/app/component-api/data-table"
 import { datePickerApi } from "@/app/component-api/date-picker"
@@ -112,9 +118,15 @@ export const componentApiDocs: Record<string, ComponentApiDoc> = {
   "run-duration": runDurationApi,
   "run-metrics": runMetricsApi,
   "data-product-card": dataProductCardApi,
+  "data-product-context-card": dataProductContextCardApi,
+  "model-context-card": modelContextCardApi,
+  "perspective-context-card": perspectiveContextCardApi,
+  "metric-context-card": metricContextCardApi,
   "data-product-table": dataProductTableApi,
   "dataos-sidebar": dataosSidebarApi,
   "assets-tree": assetsTreeApi,
+  flow: flowApi,
+  "lineage-graph": lineageGraphApi,
   "data-table": dataTableApi,
   "date-picker": datePickerApi,
   dialog: dialogApi,
