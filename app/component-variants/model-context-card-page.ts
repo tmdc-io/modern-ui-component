@@ -35,7 +35,7 @@ export const modelContextCardPage: ComponentVariantPage = {
           title: "Small",
           description:
             "Compact card with status chips, productized tags, owner, and Know more.",
-          body: "Pass size=\"sm\" for lineage popovers. Hides fields, lineage, usage, and schedule. Metrics render as chips.",
+          body: "Pass size=\"sm\" for lineage popovers. Hides fields, lineage, usage, and schedule. Metrics render as chips. CTA defaults to Know more.",
           Preview: ModelContextCardSmallPreview,
           code: modelContextCardCodes.small,
           tall: true,

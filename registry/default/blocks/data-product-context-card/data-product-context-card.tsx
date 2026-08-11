@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import {
-  ArrowRightIcon,
   AwardIcon,
   CheckCircle2Icon,
   ChevronDownIcon,
@@ -17,25 +16,32 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/default/ui/avatar"
-import { Button } from "@/registry/default/ui/button"
+import {
+  type ContextCardContact,
+  type ContextCardMetric,
+  type ContextCardSize,
+  type ContextCardUsageStat,
+  ContextCardContactList,
+  ContextCardDescriptionBlock,
+  ContextCardDualFooter,
+  ContextCardMetricCell,
+  ContextCardMetricChip,
+  ContextCardPrimaryFooter,
+  ContextCardSectionHeading,
+  contextCardColumnPadClassName,
+  contextCardSectionPadClassName,
+  contextCardUsageValueClassName,
+} from "@/registry/default/blocks/context-card/context-card-shared"
 
 export type DataProductContextCardMeta = {
   label: string
   icon?: React.ReactNode
 }
 
-export type DataProductContextCardMetric = {
-  label: string
-  value: React.ReactNode
-  hint?: React.ReactNode
-  /** Leading status icon in the full metric strip (e.g. freshness check). */
-  leading?: React.ReactNode
-  /** Icon shown in the small-view status chips. */
-  chipIcon?: React.ReactNode
-  /** Value shown in small-view chips when different from `value`. */
-  compactValue?: React.ReactNode
-}
+export type DataProductContextCardMetric = ContextCardMetric
+export type DataProductContextCardContact = ContextCardContact
+export type DataProductContextCardSize = ContextCardSize
+export type DataProductContextCardUsageStat = ContextCardUsageStat
 
 export type DataProductContextCardTag = {
   label: string
@@ -50,11 +56,6 @@ export type DataProductContextCardFitSection = {
   items: string[]
 }
 
-export type DataProductContextCardUsageStat = {
-  value: string
-  label: string
-}
-
 export type DataProductContextCardResource = {
   label: string
   value: string
@@ -62,18 +63,6 @@ export type DataProductContextCardResource = {
   href?: string
   onClick?: () => void
 }
-
-export type DataProductContextCardContact = {
-  name: string
-  email: string
-  role?: string
-  initials?: string
-  src?: string
-  /** Tailwind classes for avatar fallback background/text. */
-  avatarClassName?: string
-}
-
-export type DataProductContextCardSize = "full" | "sm"
 
 export type DataProductContextCardProps = {
   /** `full` = drawer detail; `sm` = compact card (status chips + Know more). */
@@ -111,22 +100,9 @@ export type DataProductContextCardProps = {
   className?: string
 }
 
-const sectionLabelClassName =
-  "text-[11px] font-medium tracking-[0.08em] text-[#595959] uppercase dark:text-muted-foreground"
-
-const metricLabelClassName =
-  "text-[11px] font-medium tracking-[0.08em] text-[#595959] uppercase dark:text-muted-foreground"
-
-const bodyTextClassName =
-  "text-[13px] leading-[1.5] text-[#595959] dark:text-muted-foreground"
-
-const metricValueClassName =
-  "font-serif text-[22px] leading-none font-medium tracking-tight text-[#242422] tabular-nums dark:text-foreground"
-
+/** Compact usage values omit the baked-in 18px size from the shared class. */
 const usageValueClassName =
   "font-serif font-medium tracking-tight text-[#242422] dark:text-foreground"
-
-const sectionPadClassName = "px-6 py-4"
 
 function GitLogo({ className }: { className?: string }) {
   return (
@@ -233,7 +209,7 @@ export const defaultDataProductContextCardProps: Omit<
     {
       label: "Policies",
       value: "3 applied",
-      compactValue: "4",
+      compactValue: "3",
       hint: "2 masking • 1 filter",
       chipIcon: (
         <ShieldCheckIcon className="size-3.5 text-[#595959]" strokeWidth={1.75} />
@@ -303,92 +279,6 @@ export const defaultDataProductContextCardProps: Omit<
   moreDetailsLabel: "More details",
   exploreLabel: "Explore",
   knowMoreLabel: "Know more",
-}
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className={sectionLabelClassName}>{children}</h3>
-}
-
-function MetricCell({
-  metric,
-  className,
-}: {
-  metric: DataProductContextCardMetric
-  className?: string
-}) {
-  return (
-    <div className={cn("min-w-0 text-center", className)}>
-      <p className={metricLabelClassName}>{metric.label}</p>
-      <div className="mt-2 flex items-center justify-center gap-1.5">
-        {metric.leading}
-        <p className={metricValueClassName}>{metric.value}</p>
-      </div>
-      {metric.hint ? (
-        <p className="mt-1.5 text-[12px] leading-4 text-[#8c8c8c]">{metric.hint}</p>
-      ) : null}
-    </div>
-  )
-}
-
-function MetricChip({ metric }: { metric: DataProductContextCardMetric }) {
-  const value = metric.compactValue ?? metric.value
-  return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-md border border-[#e5e5e5] bg-white px-2.5 py-[5px] text-[12px] leading-4 text-[#595959] dark:border-border dark:bg-card dark:text-muted-foreground">
-      <span className="shrink-0">{metric.chipIcon}</span>
-      <span className="truncate">
-        <span className="text-[#595959]">{metric.label}:</span>{" "}
-        <span className="font-semibold text-[#242422] dark:text-foreground">
-          {value}
-        </span>
-      </span>
-    </span>
-  )
-}
-
-function DescriptionBlock({
-  description,
-  expanded,
-  onToggle,
-  clamp = 160,
-  mutedLink = false,
-}: {
-  description: string
-  expanded: boolean
-  onToggle: () => void
-  clamp?: number
-  /** Small card uses the muted, underlined treatment from the compact mock. */
-  mutedLink?: boolean
-}) {
-  const needsClamp = description.length > clamp
-  const body =
-    expanded || !needsClamp
-      ? description
-      : `${description.slice(0, clamp).trimEnd()}…`
-
-  return (
-    <div className="text-start">
-      <p className={bodyTextClassName}>{body}</p>
-      {needsClamp ? (
-        <button
-          type="button"
-          onClick={onToggle}
-          className={cn(
-            "mt-1.5 inline-block text-[13px] font-medium underline underline-offset-2 hover:opacity-80",
-            mutedLink ? "text-[#8c8c8c]" : "text-dark-teal"
-          )}
-        >
-          {expanded ? "View less" : "View more"}
-        </button>
-      ) : null}
-    </div>
-  )
-}
-
-function columnPadClassName(index: number, total: number) {
-  if (total <= 1) return undefined
-  if (index === 0) return "pe-4"
-  if (index === total - 1) return "ps-4"
-  return "px-4"
 }
 
 function DataProductContextCard({
@@ -477,7 +367,7 @@ function DataProductContextCard({
         "flex w-full flex-col overflow-hidden rounded-xl border border-[#ebebeb] bg-white text-[#242422] dark:border-border dark:bg-card dark:text-foreground",
         compact
           ? "max-w-[22.5rem] shadow-[0_12px_40px_rgba(0,0,0,0.12)]"
-          : "max-w-[26rem] shadow-sm",
+          : "w-[30rem] shadow-sm",
         className
       )}
     >
@@ -549,17 +439,22 @@ function DataProductContextCard({
           compact ? (
             <div className="flex flex-wrap gap-2 px-6 pb-3">
               {metrics.map((metric, index) => (
-                <MetricChip key={`${metric.label}-${index}`} metric={metric} />
+                <ContextCardMetricChip key={`${metric.label}-${index}`} metric={metric} />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-3 border-y border-[#ebebeb] px-6 py-4 dark:border-border">
+            <div
+              className={cn(
+                "grid border-y border-[#ebebeb] px-6 py-4 dark:border-border",
+                metrics.length === 2 ? "grid-cols-2" : "grid-cols-3"
+              )}
+            >
               {metrics.map((metric, index) => (
-                <MetricCell
+                <ContextCardMetricCell
                   key={`${metric.label}-${index}`}
                   metric={metric}
                   className={cn(
-                    columnPadClassName(index, metrics.length),
+                    contextCardColumnPadClassName(index, metrics.length),
                     index > 0 && "border-s border-[#ebebeb] dark:border-border"
                   )}
                 />
@@ -573,14 +468,14 @@ function DataProductContextCard({
           <section
             className={cn(
               "border-b border-[#ebebeb] text-start dark:border-border",
-              compact ? "space-y-0 px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact ? "space-y-0 px-6 pb-4" : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && definesTitle ? (
-              <SectionHeading>{definesTitle}</SectionHeading>
+              <ContextCardSectionHeading>{definesTitle}</ContextCardSectionHeading>
             ) : null}
             {description ? (
-              <DescriptionBlock
+              <ContextCardDescriptionBlock
                 description={description}
                 expanded={descriptionExpanded}
                 onToggle={handleToggleDescription}
@@ -609,8 +504,8 @@ function DataProductContextCard({
 
         {/* Fit tabs — full only */}
         {!compact && fitSections?.length ? (
-          <section className={cn("space-y-3 border-b border-[#ebebeb] dark:border-border", sectionPadClassName)}>
-            {fitTitle ? <SectionHeading>{fitTitle}</SectionHeading> : null}
+          <section className={cn("space-y-3 border-b border-[#ebebeb] dark:border-border", contextCardSectionPadClassName)}>
+            {fitTitle ? <ContextCardSectionHeading>{fitTitle}</ContextCardSectionHeading> : null}
             <div className="flex min-h-[9.5rem] overflow-hidden rounded-lg border border-[#ebebeb] dark:border-border">
               <div
                 role="tablist"
@@ -619,12 +514,17 @@ function DataProductContextCard({
               >
                 {fitSections.map((section) => {
                   const selected = section.id === fitTab
+                  const tabId = `fit-tab-${section.id}`
+                  const panelId = `fit-panel-${section.id}`
                   return (
                     <button
                       key={section.id}
+                      id={tabId}
                       type="button"
                       role="tab"
                       aria-selected={selected}
+                      aria-controls={panelId}
+                      tabIndex={selected ? 0 : -1}
                       onClick={() => handleFitTab(section.id)}
                       className={cn(
                         "rounded-md px-2.5 py-2 text-start text-[13px] transition-colors",
@@ -638,7 +538,12 @@ function DataProductContextCard({
                   )
                 })}
               </div>
-              <div role="tabpanel" className="min-w-0 flex-1 px-3.5 py-3">
+              <div
+                id={activeFit ? `fit-panel-${activeFit.id}` : undefined}
+                role="tabpanel"
+                aria-labelledby={activeFit ? `fit-tab-${activeFit.id}` : undefined}
+                className="min-w-0 flex-1 px-3.5 py-3"
+              >
                 {activeFit ? (
                   <>
                     <p className="text-[13px] font-semibold text-[#242422] dark:text-foreground">
@@ -659,6 +564,7 @@ function DataProductContextCard({
                       <button
                         type="button"
                         onClick={() => setFitExpanded((value) => !value)}
+                        aria-expanded={fitExpanded}
                         className="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-dark-teal hover:underline"
                       >
                         {fitExpanded ? "View less" : "View more"}
@@ -683,11 +589,11 @@ function DataProductContextCard({
           <section
             className={cn(
               "border-b border-[#ebebeb] dark:border-border",
-              compact ? "px-6 py-3.5" : cn("space-y-3", sectionPadClassName)
+              compact ? "px-6 py-3.5" : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && usageTitle ? (
-              <SectionHeading>{usageTitle}</SectionHeading>
+              <ContextCardSectionHeading>{usageTitle}</ContextCardSectionHeading>
             ) : null}
             <div className="grid grid-cols-3 gap-0">
               {usageStats.map((stat, index) => (
@@ -695,7 +601,7 @@ function DataProductContextCard({
                   key={`${stat.label}-${index}`}
                   className={cn(
                     "min-w-0 text-start",
-                    columnPadClassName(index, usageStats.length),
+                    contextCardColumnPadClassName(index, usageStats.length),
                     index > 0 && "border-s border-[#ebebeb] dark:border-border"
                   )}
                 >
@@ -710,9 +616,7 @@ function DataProductContextCard({
                     </div>
                   ) : (
                     <>
-                      <p className={cn(usageValueClassName, "text-[18px] leading-6")}>
-                        {stat.value}
-                      </p>
+                      <p className={contextCardUsageValueClassName}>{stat.value}</p>
                       <p className="mt-0.5 text-[12px] leading-4 text-[#8c8c8c]">
                         {stat.label}
                       </p>
@@ -726,8 +630,8 @@ function DataProductContextCard({
 
         {/* Where it lives — full only */}
         {!compact && (gatewayUrl || resources?.length) ? (
-          <section className={cn("space-y-3 border-b border-[#ebebeb] dark:border-border", sectionPadClassName)}>
-            {livesTitle ? <SectionHeading>{livesTitle}</SectionHeading> : null}
+          <section className={cn("space-y-3 border-b border-[#ebebeb] dark:border-border", contextCardSectionPadClassName)}>
+            {livesTitle ? <ContextCardSectionHeading>{livesTitle}</ContextCardSectionHeading> : null}
             {gatewayUrl ? (
               <div className="flex items-center gap-2 rounded-md border border-[#ebebeb] bg-[#f7f7f7] px-3 py-2.5 dark:border-border dark:bg-muted/40">
                 <LinkIcon
@@ -798,87 +702,27 @@ function DataProductContextCard({
 
         {/* Who to ask — full only */}
         {!compact && contacts?.length ? (
-          <section className={cn("space-y-3", sectionPadClassName)}>
-            {askTitle ? <SectionHeading>{askTitle}</SectionHeading> : null}
-            <ul className="space-y-3.5">
-              {contacts.map((contact) => (
-                <li key={contact.email} className="flex items-center gap-3">
-                  <Avatar className="size-9 shrink-0">
-                    {contact.src ? <AvatarImage src={contact.src} alt="" /> : null}
-                    <AvatarFallback
-                      className={cn(
-                        "text-[12px] font-semibold",
-                        contact.avatarClassName ?? "bg-muted text-foreground"
-                      )}
-                    >
-                      {contact.initials ??
-                        contact.name
-                          .split(" ")
-                          .map((part) => part[0])
-                          .join("")
-                          .slice(0, 2)
-                          .toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="min-w-0">
-                    <p className="truncate text-[13px] leading-5 font-medium text-[#242422] dark:text-foreground">
-                      {contact.name}
-                      {contact.role ? ` (${contact.role})` : null}
-                    </p>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="block truncate text-[12px] leading-4 text-[#8c8c8c] hover:text-dark-teal hover:underline"
-                    >
-                      {contact.email}
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          <section className={cn("space-y-3", contextCardSectionPadClassName)}>
+            {askTitle ? <ContextCardSectionHeading>{askTitle}</ContextCardSectionHeading> : null}
+            <ContextCardContactList contacts={contacts} />
           </section>
         ) : null}
       </div>
 
       {/* Footer */}
-      <div
-        className={cn(
-          "border-t border-[#ebebeb] bg-white dark:border-border dark:bg-card",
-          compact ? "px-6 py-4" : "flex gap-3 px-6 py-4"
-        )}
-      >
-        {compact ? (
-          <Button
-            type="button"
-            size="lg"
-            className="h-9 w-full rounded-md bg-dark-teal text-[13px] font-medium text-white shadow-none hover:bg-dark-teal/90"
-            onClick={onExplore ?? onMoreDetails}
-          >
-            {knowMoreLabel}
-            <ArrowRightIcon className="size-4" strokeWidth={2} />
-          </Button>
-        ) : (
-          <>
-            <Button
-              type="button"
-              variant="outline"
-              size="lg"
-              className="h-9 flex-1 rounded-md border-[#d6d6d6] bg-white text-[13px] font-medium text-[#242422] shadow-none hover:bg-[#fafafa] dark:border-border dark:bg-card dark:text-foreground"
-              onClick={onMoreDetails}
-            >
-              {moreDetailsLabel}
-            </Button>
-            <Button
-              type="button"
-              size="lg"
-              className="h-9 flex-1 rounded-md bg-dark-teal text-[13px] font-medium text-white shadow-none hover:bg-dark-teal/90"
-              onClick={onExplore}
-            >
-              {exploreLabel}
-              <ArrowRightIcon className="size-4" strokeWidth={2} />
-            </Button>
-          </>
-        )}
-      </div>
+      {compact ? (
+        <ContextCardPrimaryFooter
+          label={knowMoreLabel ?? "Know more"}
+          onClick={onExplore ?? onMoreDetails}
+        />
+      ) : (
+        <ContextCardDualFooter
+          moreDetailsLabel={moreDetailsLabel ?? "More details"}
+          exploreLabel={exploreLabel ?? "Explore"}
+          onMoreDetails={onMoreDetails}
+          onExplore={onExplore}
+        />
+      )}
     </aside>
   )
 }

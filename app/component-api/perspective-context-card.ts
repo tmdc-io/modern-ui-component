@@ -76,9 +76,10 @@ export const perspectiveContextCardApi: ComponentApiDoc = {
         description: "Who to ask — avatar, name, role, email.",
       },
       {
-        prop: "onExplore / onClose",
-        type: "() => void",
-        description: "CTA and chrome handlers.",
+        prop: "exploreLabel / onExplore / onClose",
+        type: "string / () => void / () => void",
+        description:
+          'CTA label and handlers. Defaults to Explore, or Know more when size="sm".',
       },
     ],
     footnote:

@@ -3,71 +3,44 @@
 import * as React from "react"
 import {
   ActivityIcon,
-  ArrowDownIcon,
-  ArrowRightIcon,
-  ArrowUpIcon,
-  CalendarIcon,
   CheckCircle2Icon,
   FileTextIcon,
-  HashIcon,
-  Link2Icon,
   PackageIcon,
   ShieldCheckIcon,
   XIcon,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/default/ui/avatar"
-import { Button } from "@/registry/default/ui/button"
+import {
+  type ContextCardContact,
+  type ContextCardDelta,
+  type ContextCardField,
+  type ContextCardFieldGroup,
+  type ContextCardMetric,
+  type ContextCardSize,
+  ContextCardContactList,
+  ContextCardDescriptionBlock,
+  ContextCardFieldChip,
+  ContextCardMetricCell,
+  ContextCardMetricChip,
+  ContextCardPrimaryFooter,
+  ContextCardSectionHeading,
+  contextCardColumnPadClassName,
+  contextCardSectionPadClassName,
+  createContextCardField,
+} from "@/registry/default/blocks/context-card/context-card-shared"
 
-export type MetricContextCardDelta = {
-  direction?: "up" | "down"
-  value: string
-  label?: string
-}
-
-export type MetricContextCardMetric = {
-  label: string
-  value: React.ReactNode
-  hint?: React.ReactNode
-  delta?: MetricContextCardDelta
-  leading?: React.ReactNode
-  chipIcon?: React.ReactNode
-  compactValue?: React.ReactNode
-}
+export type MetricContextCardDelta = ContextCardDelta
+export type MetricContextCardMetric = ContextCardMetric
+export type MetricContextCardField = ContextCardField
+export type MetricContextCardFieldGroup = ContextCardFieldGroup
+export type MetricContextCardContact = ContextCardContact
+export type MetricContextCardSize = ContextCardSize
 
 export type MetricContextCardTag = {
   label: string
   icon?: React.ReactNode
 }
-
-export type MetricContextCardField = {
-  id: string
-  label: string
-  icon?: React.ReactNode
-  /** Trailing marker, e.g. a shared/linked indicator. */
-  trailingIcon?: React.ReactNode
-}
-
-export type MetricContextCardFieldGroup = {
-  id: string
-  label: string
-  fields?: MetricContextCardField[]
-  /** Summary row instead of chips, e.g. "3 filters applied". */
-  summary?: React.ReactNode
-  summaryIcon?: React.ReactNode
-}
-
-export type MetricContextCardContact = {
-  name: string
-  email: string
-  role?: string
-  initials?: string
-  src?: string
-  avatarClassName?: string
-}
-
-export type MetricContextCardSize = "full" | "sm"
 
 export type MetricContextCardProps = {
   size?: MetricContextCardSize
@@ -99,60 +72,27 @@ export type MetricContextCardProps = {
   className?: string
 }
 
-const sectionLabelClassName =
-  "text-[11px] font-medium tracking-[0.08em] text-[#595959] uppercase dark:text-muted-foreground"
+const field = createContextCardField
 
-const metricLabelClassName = sectionLabelClassName
-
-const bodyTextClassName =
-  "text-[13px] leading-[1.5] text-[#595959] dark:text-muted-foreground"
-
-const kpiValueClassName =
-  "font-serif text-[22px] leading-none font-medium tracking-tight text-[#242422] tabular-nums dark:text-foreground"
-
-const sectionPadClassName = "px-6 py-4"
-
-const fieldIconClassName = "size-3 shrink-0 text-[#8c8c8c]"
-
-const sharedFieldIcon = (
-  <Link2Icon className="size-2.5 shrink-0 text-[#bfbfbf]" strokeWidth={2} />
-)
-
-function field(
-  id: string,
-  label: string,
-  options: { calendar?: boolean; shared?: boolean } = {}
-): MetricContextCardField {
-  return {
-    id,
-    label,
-    icon: options.calendar ? (
-      <CalendarIcon className={fieldIconClassName} strokeWidth={1.75} />
-    ) : (
-      <HashIcon className={fieldIconClassName} strokeWidth={2} />
-    ),
-    trailingIcon: options.shared ? sharedFieldIcon : undefined,
-  }
-}
-
-export const defaultMetricContextCardFieldGroups: MetricContextCardFieldGroup[] = [
-  {
-    id: "measure",
-    label: "Measure",
-    fields: [field("m-session", "session_id", { shared: true })],
-  },
-  {
-    id: "dimensions",
-    label: "Dimension(s)",
-    fields: [
-      field("d-event", "event_date", { calendar: true, shared: true }),
-      field("d-funnel", "funnel_step"),
-      field("d-channel", "channel"),
-      field("d-revenue", "attributed_revenue"),
-      field("d-user", "user_id"),
-    ],
-  },
-]
+export const defaultMetricContextCardFieldGroups: MetricContextCardFieldGroup[] =
+  [
+    {
+      id: "measure",
+      label: "Measure",
+      fields: [field("m-session", "session_id", { shared: true })],
+    },
+    {
+      id: "dimensions",
+      label: "Dimension(s)",
+      fields: [
+        field("d-event", "event_date", { calendar: true, shared: true }),
+        field("d-funnel", "funnel_step"),
+        field("d-channel", "channel"),
+        field("d-revenue", "attributed_revenue"),
+        field("d-user", "user_id"),
+      ],
+    },
+  ]
 
 /** Default Medication Adherence Monitoring sample. */
 export const defaultMetricContextCardProps: Omit<
@@ -208,7 +148,7 @@ export const defaultMetricContextCardProps: Omit<
   composedTitle: "What it is composed of",
   fieldGroups: defaultMetricContextCardFieldGroups,
   formulaTitle: "Formula",
-  formula: "Conversion Rate (%) = (Orders / Total Sessions) * 100",
+  formula: "Mean Dose Interval = Monitoring Window / Dose Events",
   poweredByTitle: "Powered by",
   poweredBy: "Patient Journey 360",
   askTitle: "Who to ask",
@@ -221,121 +161,6 @@ export const defaultMetricContextCardProps: Omit<
       avatarClassName: "bg-[#EDE4FF] text-[#6D28D9]",
     },
   ],
-}
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className={sectionLabelClassName}>{children}</h3>
-}
-
-function DeltaLine({ delta }: { delta: MetricContextCardDelta }) {
-  const down = delta.direction === "down"
-  const Arrow = down ? ArrowDownIcon : ArrowUpIcon
-  return (
-    <p className="mt-1.5 flex items-center justify-center gap-1 text-[12px] leading-4">
-      <span
-        className={cn(
-          "inline-flex items-center gap-0.5 font-medium",
-          down ? "text-[#cf1322]" : "text-dark-teal"
-        )}
-      >
-        <Arrow className="size-3" strokeWidth={2.25} />
-        {delta.value}
-      </span>
-      {delta.label ? <span className="text-[#8c8c8c]">{delta.label}</span> : null}
-    </p>
-  )
-}
-
-function MetricCell({
-  metric,
-  className,
-}: {
-  metric: MetricContextCardMetric
-  className?: string
-}) {
-  return (
-    <div className={cn("min-w-0 text-center", className)}>
-      <p className={metricLabelClassName}>{metric.label}</p>
-      <div className="mt-2 flex items-center justify-center gap-1.5">
-        {metric.leading}
-        <p className={kpiValueClassName}>{metric.value}</p>
-      </div>
-      {metric.delta ? <DeltaLine delta={metric.delta} /> : null}
-      {metric.hint ? (
-        <p className="mt-1.5 text-[12px] leading-4 text-[#8c8c8c]">{metric.hint}</p>
-      ) : null}
-    </div>
-  )
-}
-
-function MetricChip({ metric }: { metric: MetricContextCardMetric }) {
-  const value = metric.compactValue ?? metric.value
-  return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-md border border-[#e5e5e5] bg-white px-2.5 py-[5px] text-[12px] leading-4 text-[#595959] dark:border-border dark:bg-card dark:text-muted-foreground">
-      <span className="shrink-0">{metric.chipIcon}</span>
-      <span className="truncate">
-        <span className="text-[#595959]">{metric.label}:</span>{" "}
-        <span className="font-semibold text-[#242422] dark:text-foreground">
-          {value}
-        </span>
-      </span>
-    </span>
-  )
-}
-
-function FieldChip({ item }: { item: MetricContextCardField }) {
-  return (
-    <span className="inline-flex items-center gap-1 rounded border border-[#ebebeb] bg-white px-1.5 py-0.5 font-mono text-[10px] leading-4 text-[#595959] dark:border-border dark:bg-card">
-      {item.icon}
-      {item.label}
-      {item.trailingIcon}
-    </span>
-  )
-}
-
-function DescriptionBlock({
-  description,
-  expanded,
-  onToggle,
-  clamp = 160,
-  mutedLink = false,
-}: {
-  description: string
-  expanded: boolean
-  onToggle: () => void
-  clamp?: number
-  mutedLink?: boolean
-}) {
-  const needsClamp = description.length > clamp
-  const body =
-    expanded || !needsClamp
-      ? description
-      : `${description.slice(0, clamp).trimEnd()}…`
-
-  return (
-    <div className="text-start">
-      <p className={bodyTextClassName}>{body}</p>
-      {needsClamp ? (
-        <button
-          type="button"
-          onClick={onToggle}
-          className={cn(
-            "mt-1.5 inline-block text-[13px] font-medium underline underline-offset-2 hover:opacity-80",
-            mutedLink ? "text-[#8c8c8c]" : "text-dark-teal"
-          )}
-        >
-          {expanded ? "View less" : "View more"}
-        </button>
-      ) : null}
-    </div>
-  )
-}
-
-function columnPadClassName(index: number, total: number) {
-  if (total <= 1) return undefined
-  if (index === 0) return "pe-4"
-  if (index === total - 1) return "ps-4"
-  return "px-4"
 }
 
 function MetricContextCard({
@@ -398,7 +223,6 @@ function MetricContextCard({
       )}
     >
       <div className="min-h-0 flex-1 overflow-y-auto">
-        {/* Header */}
         <div
           className={cn(
             "flex gap-3 px-6 pt-5",
@@ -442,12 +266,14 @@ function MetricContextCard({
           ) : null}
         </div>
 
-        {/* Metrics */}
         {shownMetrics?.length ? (
           compact ? (
             <div className="flex flex-wrap gap-2 px-6 pb-3">
               {shownMetrics.map((metric, index) => (
-                <MetricChip key={`${metric.label}-${index}`} metric={metric} />
+                <ContextCardMetricChip
+                  key={`${metric.label}-${index}`}
+                  metric={metric}
+                />
               ))}
             </div>
           ) : (
@@ -458,11 +284,11 @@ function MetricContextCard({
               )}
             >
               {shownMetrics.map((metric, index) => (
-                <MetricCell
+                <ContextCardMetricCell
                   key={`${metric.label}-${index}`}
                   metric={metric}
                   className={cn(
-                    columnPadClassName(index, shownMetrics.length),
+                    contextCardColumnPadClassName(index, shownMetrics.length),
                     index > 0 && "border-s border-[#ebebeb] dark:border-border"
                   )}
                 />
@@ -471,19 +297,20 @@ function MetricContextCard({
           )
         ) : null}
 
-        {/* Description / defines */}
         {description || (!compact && tags?.length) ? (
           <section
             className={cn(
               "text-start",
-              compact ? "space-y-0 px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact
+                ? "space-y-0 px-6 pb-4"
+                : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && definesTitle ? (
-              <SectionHeading>{definesTitle}</SectionHeading>
+              <ContextCardSectionHeading>{definesTitle}</ContextCardSectionHeading>
             ) : null}
             {description ? (
-              <DescriptionBlock
+              <ContextCardDescriptionBlock
                 description={description}
                 expanded={descriptionExpanded}
                 onToggle={handleToggleDescription}
@@ -512,10 +339,11 @@ function MetricContextCard({
           </section>
         ) : null}
 
-        {/* Composed of — full only */}
         {!compact && fieldGroups?.length ? (
-          <section className={cn("space-y-3 text-start", sectionPadClassName)}>
-            <SectionHeading>{composedTitle}</SectionHeading>
+          <section
+            className={cn("space-y-3 text-start", contextCardSectionPadClassName)}
+          >
+            <ContextCardSectionHeading>{composedTitle}</ContextCardSectionHeading>
             <dl className="space-y-2">
               {fieldGroups.map((group) => (
                 <div
@@ -534,7 +362,7 @@ function MetricContextCard({
                     ) : (
                       <div className="flex flex-wrap gap-1.5">
                         {group.fields?.map((item) => (
-                          <FieldChip key={item.id} item={item} />
+                          <ContextCardFieldChip key={item.id} item={item} />
                         ))}
                       </div>
                     )}
@@ -545,22 +373,26 @@ function MetricContextCard({
           </section>
         ) : null}
 
-        {/* Formula — full only */}
         {!compact && formula ? (
-          <section className={cn("space-y-3 text-start", sectionPadClassName)}>
-            {formulaTitle ? <SectionHeading>{formulaTitle}</SectionHeading> : null}
+          <section
+            className={cn("space-y-3 text-start", contextCardSectionPadClassName)}
+          >
+            {formulaTitle ? (
+              <ContextCardSectionHeading>{formulaTitle}</ContextCardSectionHeading>
+            ) : null}
             <pre className="overflow-x-auto rounded-md bg-[#f5f5f5] px-3 py-2.5 font-mono text-[11px] leading-[1.6] text-[#595959] dark:bg-muted/40 dark:text-muted-foreground">
               <code>{formula}</code>
             </pre>
           </section>
         ) : null}
 
-        {/* Powered by */}
         {poweredBy ? (
           <section
             className={cn(
               "text-start",
-              compact ? "space-y-2 px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact
+                ? "space-y-2 px-6 pb-4"
+                : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {poweredByTitle ? (
@@ -569,7 +401,9 @@ function MetricContextCard({
                   {poweredByTitle}
                 </p>
               ) : (
-                <SectionHeading>{poweredByTitle}</SectionHeading>
+                <ContextCardSectionHeading>
+                  {poweredByTitle}
+                </ContextCardSectionHeading>
               )
             ) : null}
             <div className="flex items-center gap-2.5">
@@ -581,67 +415,24 @@ function MetricContextCard({
           </section>
         ) : null}
 
-        {/* Who to ask */}
         {contacts?.length ? (
           <section
             className={cn(
               "text-start",
-              compact ? "px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact
+                ? "px-6 pb-4"
+                : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && askTitle ? (
-              <SectionHeading>{askTitle}</SectionHeading>
+              <ContextCardSectionHeading>{askTitle}</ContextCardSectionHeading>
             ) : null}
-            <ul className="space-y-3.5">
-              {contacts.map((contact) => (
-                <li key={contact.email} className="flex items-center gap-3">
-                  <Avatar className="size-9 shrink-0">
-                    {contact.src ? <AvatarImage src={contact.src} alt="" /> : null}
-                    <AvatarFallback
-                      className={cn(
-                        "text-[12px] font-semibold",
-                        contact.avatarClassName ?? "bg-muted text-foreground"
-                      )}
-                    >
-                      {contact.initials ??
-                        contact.name
-                          .split(" ")
-                          .map((part) => part[0])
-                          .join("")
-                          .slice(0, 2)
-                          .toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="min-w-0">
-                    <p className="truncate text-[13px] leading-5 font-medium text-[#242422] dark:text-foreground">
-                      {contact.name}
-                      {contact.role ? ` (${contact.role})` : null}
-                    </p>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="block truncate text-[12px] leading-4 text-[#8c8c8c] hover:text-dark-teal hover:underline"
-                    >
-                      {contact.email}
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <ContextCardContactList contacts={contacts} />
           </section>
         ) : null}
       </div>
 
-      <div className="border-t border-[#ebebeb] bg-white px-6 py-4 dark:border-border dark:bg-card">
-        <Button
-          type="button"
-          size="lg"
-          className="h-9 w-full rounded-md bg-dark-teal text-[13px] font-medium text-white shadow-none hover:bg-dark-teal/90"
-          onClick={onExplore}
-        >
-          {ctaLabel}
-          <ArrowRightIcon className="size-4" strokeWidth={2} />
-        </Button>
-      </div>
+      <ContextCardPrimaryFooter label={ctaLabel} onClick={onExplore} />
     </aside>
   )
 }

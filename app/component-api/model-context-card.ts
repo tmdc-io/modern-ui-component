@@ -67,9 +67,16 @@ export const modelContextCardApi: ComponentApiDoc = {
         description: "Who to ask — avatar, name, role, email.",
       },
       {
+        prop: "exploreLabel / knowMoreLabel",
+        type: "string",
+        description:
+          'Primary CTA label. Defaults to Explore (full) or Know more (sm). knowMoreLabel is deprecated but still honored.',
+      },
+      {
         prop: "onExplore / onSeeAllFields / onViewLineage / onClose",
         type: "() => void",
-        description: "CTA and chrome handlers.",
+        description:
+          "CTA and chrome handlers. See-all and View lineage only render when their handlers are passed.",
       },
     ],
     footnote:

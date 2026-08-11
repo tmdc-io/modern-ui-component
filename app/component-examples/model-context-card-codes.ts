@@ -33,7 +33,7 @@ import { ModelContextCard } from "@/components/blocks/model-context-card"
 /**
  * Small view
  * ----------
- * Compact card: chips, description, productized tags, owner, Know more.
+ * Compact card: chips, description, productized tags, owner, Explore / Know more.
  */
 export function ModelPopover() {
   return (

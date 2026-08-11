@@ -10,6 +10,7 @@ export const DATAOS_PAGES = [
   "dataos-sidebar",
   "assets-tree",
   "lineage-graph",
+  "flow",
   "application-header",
   "plan-card",
   "plan-status-card",

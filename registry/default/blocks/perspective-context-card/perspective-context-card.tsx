@@ -2,13 +2,9 @@
 
 import * as React from "react"
 import {
-  ArrowRightIcon,
-  CalendarIcon,
   CheckCircle2Icon,
   FileTextIcon,
   FilterIcon,
-  HashIcon,
-  Link2Icon,
   LockIcon,
   PackageIcon,
   PictureInPicture2Icon,
@@ -17,8 +13,25 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/default/ui/avatar"
-import { Button } from "@/registry/default/ui/button"
+import {
+  type ContextCardContact,
+  type ContextCardField,
+  type ContextCardFieldGroup,
+  type ContextCardMetric,
+  type ContextCardSize,
+  type ContextCardUsageStat,
+  ContextCardContactList,
+  ContextCardDescriptionBlock,
+  ContextCardFieldChip,
+  ContextCardMetricCell,
+  ContextCardMetricChip,
+  ContextCardPrimaryFooter,
+  ContextCardSectionHeading,
+  contextCardColumnPadClassName,
+  contextCardSectionPadClassName,
+  contextCardUsageValueClassName,
+  createContextCardField,
+} from "@/registry/default/blocks/context-card/context-card-shared"
 
 /** Body rendered inside "What it is composed of". */
 export type PerspectiveContextCardView =
@@ -27,52 +40,22 @@ export type PerspectiveContextCardView =
   | "source-sql"
   | "semantic-sql"
 
-export type PerspectiveContextCardMetric = {
-  label: string
-  value: React.ReactNode
-  hint?: React.ReactNode
-  leading?: React.ReactNode
-  chipIcon?: React.ReactNode
-  compactValue?: React.ReactNode
-}
+export type PerspectiveContextCardMetric = ContextCardMetric
 
 export type PerspectiveContextCardTag = {
   label: string
   icon?: React.ReactNode
 }
 
-export type PerspectiveContextCardField = {
-  id: string
-  label: string
-  icon?: React.ReactNode
-  /** Trailing marker, e.g. a shared/linked indicator. */
-  trailingIcon?: React.ReactNode
-}
+export type PerspectiveContextCardField = ContextCardField
 
-export type PerspectiveContextCardFieldGroup = {
-  id: string
-  label: string
-  fields?: PerspectiveContextCardField[]
-  /** Summary row instead of chips, e.g. "3 filters applied". */
-  summary?: React.ReactNode
-  summaryIcon?: React.ReactNode
-}
+export type PerspectiveContextCardFieldGroup = ContextCardFieldGroup
 
-export type PerspectiveContextCardUsageStat = {
-  value: string
-  label: string
-}
+export type PerspectiveContextCardUsageStat = ContextCardUsageStat
 
-export type PerspectiveContextCardContact = {
-  name: string
-  email: string
-  role?: string
-  initials?: string
-  src?: string
-  avatarClassName?: string
-}
+export type PerspectiveContextCardContact = ContextCardContact
 
-export type PerspectiveContextCardSize = "full" | "sm"
+export type PerspectiveContextCardSize = ContextCardSize
 
 export type PerspectiveContextCardProps = {
   size?: PerspectiveContextCardSize
@@ -106,44 +89,7 @@ export type PerspectiveContextCardProps = {
   className?: string
 }
 
-const sectionLabelClassName =
-  "text-[11px] font-medium tracking-[0.08em] text-[#595959] uppercase dark:text-muted-foreground"
-
-const metricLabelClassName = sectionLabelClassName
-
-const bodyTextClassName =
-  "text-[13px] leading-[1.5] text-[#595959] dark:text-muted-foreground"
-
-const kpiValueClassName =
-  "font-serif text-[22px] leading-none font-medium tracking-tight text-[#242422] tabular-nums dark:text-foreground"
-
-const usageValueClassName =
-  "font-serif text-[18px] leading-6 font-medium tracking-tight text-[#242422] dark:text-foreground"
-
-const sectionPadClassName = "px-6 py-4"
-
-const fieldIconClassName = "size-3 shrink-0 text-[#8c8c8c]"
-
-const sharedFieldIcon = (
-  <Link2Icon className="size-2.5 shrink-0 text-[#bfbfbf]" strokeWidth={2} />
-)
-
-function field(
-  id: string,
-  label: string,
-  options: { calendar?: boolean; shared?: boolean } = {}
-): PerspectiveContextCardField {
-  return {
-    id,
-    label,
-    icon: options.calendar ? (
-      <CalendarIcon className={fieldIconClassName} strokeWidth={1.75} />
-    ) : (
-      <HashIcon className={fieldIconClassName} strokeWidth={2} />
-    ),
-    trailingIcon: options.shared ? sharedFieldIcon : undefined,
-  }
-}
+const field = createContextCardField
 
 export const defaultPerspectiveContextCardFieldGroups: PerspectiveContextCardFieldGroup[] =
   [
@@ -294,7 +240,6 @@ export const defaultPerspectiveContextCardProps: Omit<
       avatarClassName: "bg-[#EDE4FF] text-[#6D28D9]",
     },
   ],
-  exploreLabel: "Explore",
 }
 
 type CodeTheme = {
@@ -412,101 +357,6 @@ function CodeBlock({
   )
 }
 
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className={sectionLabelClassName}>{children}</h3>
-}
-
-function MetricCell({
-  metric,
-  className,
-}: {
-  metric: PerspectiveContextCardMetric
-  className?: string
-}) {
-  return (
-    <div className={cn("min-w-0 text-center", className)}>
-      <p className={metricLabelClassName}>{metric.label}</p>
-      <div className="mt-2 flex items-center justify-center gap-1.5">
-        {metric.leading}
-        <p className={kpiValueClassName}>{metric.value}</p>
-      </div>
-      {metric.hint ? (
-        <p className="mt-1.5 text-[12px] leading-4 text-[#8c8c8c]">{metric.hint}</p>
-      ) : null}
-    </div>
-  )
-}
-
-function MetricChip({ metric }: { metric: PerspectiveContextCardMetric }) {
-  const value = metric.compactValue ?? metric.value
-  return (
-    <span className="inline-flex max-w-full items-center gap-1.5 rounded-md border border-[#e5e5e5] bg-white px-2.5 py-[5px] text-[12px] leading-4 text-[#595959] dark:border-border dark:bg-card dark:text-muted-foreground">
-      <span className="shrink-0">{metric.chipIcon}</span>
-      <span className="truncate">
-        <span className="text-[#595959]">{metric.label}:</span>{" "}
-        <span className="font-semibold text-[#242422] dark:text-foreground">
-          {value}
-        </span>
-      </span>
-    </span>
-  )
-}
-
-function FieldChip({ item }: { item: PerspectiveContextCardField }) {
-  return (
-    <span className="inline-flex items-center gap-1 rounded border border-[#ebebeb] bg-white px-1.5 py-0.5 font-mono text-[10px] leading-4 text-[#595959] dark:border-border dark:bg-card">
-      {item.icon}
-      {item.label}
-      {item.trailingIcon}
-    </span>
-  )
-}
-
-function DescriptionBlock({
-  description,
-  expanded,
-  onToggle,
-  clamp = 160,
-  mutedLink = false,
-}: {
-  description: string
-  expanded: boolean
-  onToggle: () => void
-  clamp?: number
-  mutedLink?: boolean
-}) {
-  const needsClamp = description.length > clamp
-  const body =
-    expanded || !needsClamp
-      ? description
-      : `${description.slice(0, clamp).trimEnd()}…`
-
-  return (
-    <div className="text-start">
-      <p className={bodyTextClassName}>{body}</p>
-      {needsClamp ? (
-        <button
-          type="button"
-          onClick={onToggle}
-          className={cn(
-            "mt-1.5 inline-block text-[13px] font-medium underline underline-offset-2 hover:opacity-80",
-            mutedLink ? "text-[#8c8c8c]" : "text-dark-teal"
-          )}
-        >
-          {expanded ? "View less" : "View more"}
-        </button>
-      ) : null}
-    </div>
-  )
-}
-
-function columnPadClassName(index: number, total: number) {
-  if (total <= 1) return undefined
-  if (index === 0) return "pe-4"
-  if (index === total - 1) return "ps-4"
-  return "px-4"
-}
-
 function PerspectiveContextCard({
   size = "full",
   view = "rest",
@@ -536,7 +386,7 @@ function PerspectiveContextCard({
   usageStats = defaultPerspectiveContextCardProps.usageStats,
   askTitle = defaultPerspectiveContextCardProps.askTitle,
   contacts = defaultPerspectiveContextCardProps.contacts,
-  exploreLabel = defaultPerspectiveContextCardProps.exploreLabel,
+  exploreLabel,
   onExplore,
   onClose,
   className,
@@ -544,6 +394,7 @@ function PerspectiveContextCard({
   const compact = size === "sm"
   const [uncontrolledExpanded, setUncontrolledExpanded] = React.useState(false)
   const descriptionExpanded = descriptionExpandedProp ?? uncontrolledExpanded
+  const ctaLabel = exploreLabel ?? (compact ? "Know more" : "Explore")
 
   const handleToggleDescription = () => {
     if (descriptionExpandedProp === undefined) {
@@ -620,7 +471,10 @@ function PerspectiveContextCard({
           compact ? (
             <div className="flex flex-wrap gap-2 px-6 pb-3">
               {metrics.map((metric, index) => (
-                <MetricChip key={`${metric.label}-${index}`} metric={metric} />
+                <ContextCardMetricChip
+                  key={`${metric.label}-${index}`}
+                  metric={metric}
+                />
               ))}
             </div>
           ) : (
@@ -631,11 +485,11 @@ function PerspectiveContextCard({
               )}
             >
               {metrics.map((metric, index) => (
-                <MetricCell
+                <ContextCardMetricCell
                   key={`${metric.label}-${index}`}
                   metric={metric}
                   className={cn(
-                    columnPadClassName(index, metrics.length),
+                    contextCardColumnPadClassName(index, metrics.length),
                     index > 0 && "border-s border-[#ebebeb] dark:border-border"
                   )}
                 />
@@ -649,14 +503,14 @@ function PerspectiveContextCard({
           <section
             className={cn(
               "text-start",
-              compact ? "space-y-0 px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact ? "space-y-0 px-6 pb-4" : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && definesTitle ? (
-              <SectionHeading>{definesTitle}</SectionHeading>
+              <ContextCardSectionHeading>{definesTitle}</ContextCardSectionHeading>
             ) : null}
             {description ? (
-              <DescriptionBlock
+              <ContextCardDescriptionBlock
                 description={description}
                 expanded={descriptionExpanded}
                 onToggle={handleToggleDescription}
@@ -690,10 +544,10 @@ function PerspectiveContextCard({
           <section
             className={cn(
               "space-y-3 text-start",
-              sectionPadClassName
+              contextCardSectionPadClassName
             )}
           >
-            <SectionHeading>{composedTitle}</SectionHeading>
+            <ContextCardSectionHeading>{composedTitle}</ContextCardSectionHeading>
             {view === "rest" ? (
               <dl className="space-y-2">
                 {fieldGroups?.map((group) => (
@@ -713,7 +567,7 @@ function PerspectiveContextCard({
                       ) : (
                         <div className="flex flex-wrap gap-1.5">
                           {group.fields?.map((item) => (
-                            <FieldChip key={item.id} item={item} />
+                            <ContextCardFieldChip key={item.id} item={item} />
                           ))}
                         </div>
                       )}
@@ -737,7 +591,7 @@ function PerspectiveContextCard({
               "text-start",
               compact
                 ? "space-y-2 px-6 pb-4"
-                : cn("space-y-3", sectionPadClassName)
+                : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {poweredByTitle ? (
@@ -746,7 +600,7 @@ function PerspectiveContextCard({
                   {poweredByTitle}
                 </p>
               ) : (
-                <SectionHeading>{poweredByTitle}</SectionHeading>
+                <ContextCardSectionHeading>{poweredByTitle}</ContextCardSectionHeading>
               )
             ) : null}
             <div className="flex items-center gap-2.5">
@@ -763,21 +617,23 @@ function PerspectiveContextCard({
           <section
             className={cn(
               "space-y-3 text-start",
-              sectionPadClassName
+              contextCardSectionPadClassName
             )}
           >
-            {usageTitle ? <SectionHeading>{usageTitle}</SectionHeading> : null}
+            {usageTitle ? (
+              <ContextCardSectionHeading>{usageTitle}</ContextCardSectionHeading>
+            ) : null}
             <div className="grid grid-cols-3">
               {usageStats.map((stat, index) => (
                 <div
                   key={`${stat.label}-${index}`}
                   className={cn(
                     "min-w-0 text-start",
-                    columnPadClassName(index, usageStats.length),
+                    contextCardColumnPadClassName(index, usageStats.length),
                     index > 0 && "border-s border-[#ebebeb] dark:border-border"
                   )}
                 >
-                  <p className={usageValueClassName}>{stat.value}</p>
+                  <p className={contextCardUsageValueClassName}>{stat.value}</p>
                   <p className="mt-0.5 text-[12px] leading-4 text-[#8c8c8c]">
                     {stat.label}
                   </p>
@@ -792,64 +648,18 @@ function PerspectiveContextCard({
           <section
             className={cn(
               "text-start",
-              compact ? "px-6 pb-4" : cn("space-y-3", sectionPadClassName)
+              compact ? "px-6 pb-4" : cn("space-y-3", contextCardSectionPadClassName)
             )}
           >
             {!compact && askTitle ? (
-              <SectionHeading>{askTitle}</SectionHeading>
+              <ContextCardSectionHeading>{askTitle}</ContextCardSectionHeading>
             ) : null}
-            <ul className="space-y-3.5">
-              {contacts.map((contact) => (
-                <li key={contact.email} className="flex items-center gap-3">
-                  <Avatar className="size-9 shrink-0">
-                    {contact.src ? (
-                      <AvatarImage src={contact.src} alt="" />
-                    ) : null}
-                    <AvatarFallback
-                      className={cn(
-                        "text-[12px] font-semibold",
-                        contact.avatarClassName ?? "bg-muted text-foreground"
-                      )}
-                    >
-                      {contact.initials ??
-                        contact.name
-                          .split(" ")
-                          .map((part) => part[0])
-                          .join("")
-                          .slice(0, 2)
-                          .toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="min-w-0">
-                    <p className="truncate text-[13px] leading-5 font-medium text-[#242422] dark:text-foreground">
-                      {contact.name}
-                      {contact.role ? ` (${contact.role})` : null}
-                    </p>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="block truncate text-[12px] leading-4 text-[#8c8c8c] hover:text-dark-teal hover:underline"
-                    >
-                      {contact.email}
-                    </a>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <ContextCardContactList contacts={contacts} />
           </section>
         ) : null}
       </div>
 
-      <div className="border-t border-[#ebebeb] bg-white px-6 py-4 dark:border-border dark:bg-card">
-        <Button
-          type="button"
-          size="lg"
-          className="h-9 w-full rounded-md bg-dark-teal text-[13px] font-medium text-white shadow-none hover:bg-dark-teal/90"
-          onClick={onExplore}
-        >
-          {exploreLabel}
-          <ArrowRightIcon className="size-4" strokeWidth={2} />
-        </Button>
-      </div>
+      <ContextCardPrimaryFooter label={ctaLabel} onClick={onExplore} />
     </aside>
   )
 }

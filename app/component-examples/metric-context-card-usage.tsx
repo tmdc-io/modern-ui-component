@@ -38,8 +38,8 @@ export function MetricContextCardCustomPreview() {
           { label: "Policies", value: "None", hint: "no masking" },
         ]}
         description="Share of checkout sessions that complete an order, used to track funnel health across storefronts."
-        formula="Conversion Rate (%) = (Orders / Checkout Sessions) * 100"
-        poweredBy="Commerce 360"
+      formula="Conversion Rate (%) = (Orders / Checkout Sessions) * 100"
+      poweredBy="Commerce 360"
         onClose={() => undefined}
         onExplore={() => undefined}
       />

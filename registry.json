@@ -1324,6 +1324,25 @@
       ]
     },
     {
+      "name": "context-card",
+      "type": "registry:block",
+      "title": "Context Card Shared",
+      "description": "Shared primitives for DataOS context cards — metrics, description clamp, contacts, field chips, and footers.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/default/blocks/context-card/context-card-shared.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "data-product-context-card",
       "type": "registry:block",
       "title": "Data Product Context Card",
@@ -1333,7 +1352,8 @@
       ],
       "registryDependencies": [
         "avatar",
-        "button"
+        "button",
+        "context-card"
       ],
       "files": [
         {
@@ -1352,7 +1372,8 @@
       ],
       "registryDependencies": [
         "avatar",
-        "button"
+        "button",
+        "context-card"
       ],
       "files": [
         {
@@ -1371,7 +1392,8 @@
       ],
       "registryDependencies": [
         "avatar",
-        "button"
+        "button",
+        "context-card"
       ],
       "files": [
         {
@@ -1390,7 +1412,8 @@
       ],
       "registryDependencies": [
         "avatar",
-        "button"
+        "button",
+        "context-card"
       ],
       "files": [
         {
