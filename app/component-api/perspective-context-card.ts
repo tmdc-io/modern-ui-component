@@ -9,7 +9,7 @@ export const perspectiveContextCardApi: ComponentApiDoc = {
     'Composed-of body switches on view: "rest" field chips, or "graphql" / "source-sql" / "semantic-sql" snippets.',
     "Syntax highlighting for SQL keywords, entities, and string literals.",
     "Powered-by source, usage stats, and owner contact.",
-    "Single Explore CTA.",
+    "Single CTA — Explore in full, Know more in sm.",
   ],
   usage: {
     import:

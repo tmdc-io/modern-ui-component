@@ -294,7 +294,7 @@ export const defaultModelContextCardProps: Omit<
   ],
   definesTitle: "What it defines",
   description:
-    "Web Events Daily is a governed daily aggregation of web and app events for the Postgres example environment. It provides curated session, funnel, and channel fields for analyzing engagement and campaign performance.",
+    "Web Events Daily is a governed daily aggregation of web and app events for the Snowflake analytics environment. It provides curated session, funnel, and channel fields for analyzing engagement and campaign performance.",
   tags: [
     {
       label: "Customer Analytics",

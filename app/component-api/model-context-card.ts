@@ -8,7 +8,7 @@ export const modelContextCardApi: ComponentApiDoc = {
     "Defines copy + tags; composed-of field chips with See all.",
     "Mini lineage preview (upstream → current → downstream).",
     "Productized-in list, usage stats, schedule rows, and owner contact.",
-    "Single Know more CTA.",
+    "Single CTA — Explore in full, Know more in sm.",
   ],
   usage: {
     import:

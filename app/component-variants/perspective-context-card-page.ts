@@ -75,7 +75,7 @@ export const perspectiveContextCardPage: ComponentVariantPage = {
           id: "small",
           title: "Small",
           description:
-            "Status chips, description, powered by, owner, and Explore.",
+            "Status chips, description, powered by, owner, and Know more.",
           body: 'Pass size="sm". Composed-of and usage are hidden; metrics render as chips.',
           Preview: PerspectiveContextCardSmallPreview,
           code: perspectiveContextCardCodes.small,

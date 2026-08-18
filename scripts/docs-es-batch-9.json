@@ -300,6 +300,7 @@
   "startedAt renders relative time for running plans; draft and cancelled omit duration metrics.": "startedAt renderiza el tiempo relativo para los planes en ejecución; draft y cancelled omiten las métricas de duración.",
   "startedAt renders relative time for running runs; queued and cancelled omit metric chips.": "startedAt renderiza el tiempo relativo para las ejecuciones en curso; queued y cancelled omiten los chips de métricas.",
   "Status chips, description, powered by, owner, and Explore.": "Chips de estado, descripción, powered by, propietario y Explore.",
+  "Status chips, description, powered by, owner, and Know more.": "Chips de estado, descripción, powered by, propietario y Know more.",
   "status=\"error\" highlights the Error metric chip in destructive styling.": "status=\"error\" resalta el chip de métrica Error con estilo destructivo.",
   "status=\"success\" with Changes and Impacts summary metrics on the card header.": "status=\"success\" con métricas de resumen Changes e Impacts en el encabezado de la tarjeta.",
   "status=\"success\" with Models and DQ summary metrics on the card header.": "status=\"success\" con métricas de resumen Models y DQ en el encabezado de la tarjeta.",

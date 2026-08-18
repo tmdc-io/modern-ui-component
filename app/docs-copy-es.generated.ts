@@ -1591,6 +1591,7 @@ export const docsCopyEsGenerated: Record<string, string> = {
   "startedAt renders relative time for running plans; draft and cancelled omit duration metrics.": "startedAt renderiza el tiempo relativo para los planes en ejecución; draft y cancelled omiten las métricas de duración.",
   "startedAt renders relative time for running runs; queued and cancelled omit metric chips.": "startedAt renderiza el tiempo relativo para las ejecuciones en curso; queued y cancelled omiten los chips de métricas.",
   "Status chips, description, powered by, owner, and Explore.": "Chips de estado, descripción, powered by, propietario y Explore.",
+  "Status chips, description, powered by, owner, and Know more.": "Chips de estado, descripción, powered by, propietario y Know more.",
   "Status icon, run id emphasis, and screen-reader status label.": "Icono de estado, énfasis en el id de ejecución y etiqueta de estado para lectores de pantalla.",
   "Status pill with label and status: \"pass\" | \"warn\" | \"fail\".": "Pill de estado con label y status: \"pass\" | \"warn\" | \"fail\".",
   "status=\"error\" highlights the Error metric chip in destructive styling.": "status=\"error\" resalta el chip de métrica Error con estilo destructivo.",

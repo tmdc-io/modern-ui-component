@@ -218,7 +218,7 @@ export const defaultDataProductContextCardProps: Omit<
   ],
   definesTitle: "What it defines",
   description:
-    "Orders360 is a governed customer, order, and product analytics data product for the Postgres example environment. It provides curated gold models, semantic models, business metrics, and data quality checks for analyzing customer segments, order patterns, and product performance across channels.",
+    "Orders360 is a governed customer, order, and product analytics data product for the Snowflake analytics environment. It provides curated gold models, semantic models, business metrics, and data quality checks for analyzing customer segments, order patterns, and product performance across channels.",
   tags: [
     { label: "Customer Analytics" },
     { label: "Product Catalog" },
