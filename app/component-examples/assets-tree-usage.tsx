@@ -1,20 +1,22 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
 import {
   AssetsTree,
   deepAssetsTreeData,
   defaultAssetsTreeData,
+  warehouseAssetsTreeData,
   type AssetsTreeItem,
-} from "@/registry/default/blocks/assets-tree/assets-tree"
+  type AssetsTreeItemKind,
+} from "@/registry/default/blocks/assets-tree/assets-tree";
 
 export function AssetsTreeDefaultPreview() {
   return (
     <div className="flex w-full justify-center bg-white dark:bg-background">
       <AssetsTree className="min-h-[32rem] border border-[#ebebeb]" />
     </div>
-  )
+  );
 }
 
 export function AssetsTreeDeepPreview() {
@@ -35,12 +37,12 @@ export function AssetsTreeDeepPreview() {
         ]}
       />
     </div>
-  )
+  );
 }
 
 export function AssetsTreeSearchPreview() {
-  const [query, setQuery] = React.useState("customer")
-  const [selected, setSelected] = React.useState<AssetsTreeItem>()
+  const [query, setQuery] = React.useState("customer");
+  const [selected, setSelected] = React.useState<AssetsTreeItem>();
 
   return (
     <div className="flex w-full flex-col items-center gap-3">
@@ -57,45 +59,74 @@ export function AssetsTreeSearchPreview() {
         Selected: {selected?.name ?? "—"}
       </p>
     </div>
-  )
+  );
+}
+
+export function AssetsTreeIconsPreview() {
+  return (
+    <div className="flex w-full justify-center bg-white dark:bg-background">
+      <AssetsTree
+        title="Datasets"
+        data={warehouseAssetsTreeData}
+        className="min-h-[32rem] border border-[#ebebeb]"
+        defaultSelectedId="mart_v2"
+        defaultExpandedIds={[
+          "custom-database",
+          "spark_local",
+          "abfsslhdepotrr",
+        ]}
+      />
+    </div>
+  );
 }
 
 type AssetApiNode = {
-  key: string
-  label: string
-  assetCount?: number
-  isVerified?: boolean
-  nodes?: AssetApiNode[]
-}
+  key: string;
+  label: string;
+  assetCount?: number;
+  isVerified?: boolean;
+  assetType?: AssetsTreeItemKind;
+  nodes?: AssetApiNode[];
+};
 
 const demoApiResponse: AssetApiNode[] = [
-  { key: "overview", label: "Overview" },
+  { key: "overview", label: "Overview", assetType: "overview" },
   {
     key: "inputs",
     label: "Inputs",
     assetCount: 3,
+    assetType: "input",
     nodes: [
       {
         key: "batch",
         label: "Batch",
+        assetType: "folder",
         nodes: [
           {
             key: "crm",
             label: "CRM",
+            assetType: "folder",
             nodes: [
               {
                 key: "profiles",
                 label: "Profiles",
+                assetType: "folder",
                 nodes: [
                   {
                     key: "CUSTOMER_MASTER",
                     label: "CUSTOMER_MASTER",
+                    assetType: "table",
                     isVerified: true,
                   },
-                  { key: "ACCOUNT_DIM", label: "ACCOUNT_DIM" },
+                  {
+                    key: "ACCOUNT_DIM",
+                    label: "ACCOUNT_DIM",
+                    assetType: "table",
+                  },
                   {
                     key: "UTM_CAMPAIGNS",
                     label: "UTM_CAMPAIGNS",
+                    assetType: "table",
                     isVerified: true,
                   },
                 ],
@@ -110,22 +141,27 @@ const demoApiResponse: AssetApiNode[] = [
     key: "outputs",
     label: "Outputs",
     assetCount: 2,
+    assetType: "output",
     nodes: [
       {
         key: "marts",
         label: "Marts",
+        assetType: "folder",
         nodes: [
           {
             key: "customer",
             label: "Customer",
+            assetType: "folder",
             nodes: [
               {
                 key: "views",
                 label: "Views",
+                assetType: "folder",
                 nodes: [
                   {
                     key: "CUSTOMER_360",
                     label: "CUSTOMER_360",
+                    assetType: "table",
                     isVerified: true,
                   },
                 ],
@@ -136,7 +172,7 @@ const demoApiResponse: AssetApiNode[] = [
       },
     ],
   },
-]
+];
 
 function mapAssets(nodes: AssetApiNode[]): AssetsTreeItem[] {
   return nodes.map((node) => ({
@@ -144,13 +180,14 @@ function mapAssets(nodes: AssetApiNode[]): AssetsTreeItem[] {
     name: node.label,
     count: node.assetCount,
     verified: node.isVerified,
+    kind: node.assetType,
     children: node.nodes?.length ? mapAssets(node.nodes) : undefined,
-  }))
+  }));
 }
 
 export function AssetsTreeDataDrivenPreview() {
-  const [selectedId, setSelectedId] = React.useState("CUSTOMER_MASTER")
-  const data = React.useMemo(() => mapAssets(demoApiResponse), [])
+  const [selectedId, setSelectedId] = React.useState("CUSTOMER_MASTER");
+  const data = React.useMemo(() => mapAssets(demoApiResponse), []);
 
   return (
     <div className="flex w-full justify-center bg-white dark:bg-background">
@@ -159,7 +196,7 @@ export function AssetsTreeDataDrivenPreview() {
         className="min-h-[36rem] max-w-sm border border-[#ebebeb]"
         selectedId={selectedId}
         onSelectChange={(item) => {
-          if (item) setSelectedId(item.id)
+          if (item) setSelectedId(item.id);
         }}
         defaultExpandedIds={[
           "inputs",
@@ -173,19 +210,19 @@ export function AssetsTreeDataDrivenPreview() {
         ]}
       />
     </div>
-  )
+  );
 }
 
 function collectAllIds(items: AssetsTreeItem[]): string[] {
-  const ids: string[] = []
+  const ids: string[] = [];
   const walk = (nodes: AssetsTreeItem[]) => {
     for (const node of nodes) {
       if (node.children?.length) {
-        ids.push(node.id)
-        walk(node.children)
+        ids.push(node.id);
+        walk(node.children);
       }
     }
-  }
-  walk(items)
-  return ids
+  };
+  walk(items);
+  return ids;
 }

@@ -167,6 +167,7 @@ import * as React from "react"
 import {
   AssetsTree,
   type AssetsTreeItem,
+  type AssetsTreeItemKind,
 } from "@/components/blocks/assets-tree"
 
 /**
@@ -180,6 +181,10 @@ import {
  * - count?    number                 Right-aligned "(n)" before chevron
  *                                    (auto = leaf total when omitted on branches)
  * - verified? boolean                Outline ShieldCheck in dark teal
+ * - kind?     AssetsTreeItemKind     Leading icon shorthand (source | database |
+ *                                    schema | table | seed | input | output |
+ *                                    semantic | metric | folder | overview)
+ * - icon?     ComponentType          Custom leading icon (wins over kind)
  * - disabled? boolean                Non-interactive
  * - children? AssetsTreeItem[]       Nested nodes (any depth)
  *
@@ -195,6 +200,7 @@ type AssetApiNode = {
   label: string
   assetCount?: number
   isVerified?: boolean
+  assetType?: AssetsTreeItemKind
   nodes?: AssetApiNode[]
 }
 
@@ -275,6 +281,8 @@ function mapAssets(nodes: AssetApiNode[]): AssetsTreeItem[] {
     name: node.label,
     count: node.assetCount,
     verified: node.isVerified,
+    // assetType → kind resolves the built-in leading icon
+    kind: node.assetType,
     children: node.nodes?.length ? mapAssets(node.nodes) : undefined,
   }))
 }
@@ -352,4 +360,53 @@ export function DataDrivenAssetsPanel() {
     </div>
   )
 }`,
-}
+
+  icons: `"use client"
+
+import {
+  AssetsTree,
+  warehouseAssetsTreeData,
+  type AssetsTreeItem,
+} from "@/components/blocks/assets-tree"
+
+/**
+ * Row icons
+ * ---------
+ * Set \`kind\` on an item to render a built-in leading icon:
+ *
+ *   source   Snowflake     database  Database (cylinder)
+ *   schema   Network       table     Table
+ *   seed     Sprout        input     Download
+ *   output   Upload        semantic  Shapes
+ *   metric   Activity      folder    Folder
+ *   overview LayoutDashboard
+ *
+ * Icons inherit row state: muted grey normally, dark teal when selected.
+ * Omit \`kind\` for plain grouping rows (e.g. \`spark_local\`).
+ *
+ * For a glyph outside the built-in set, pass \`icon\` directly — it wins
+ * over \`kind\`:
+ *
+ *   import { BoxIcon } from "lucide-react"
+ *   { id: "depot", name: "Depot", icon: BoxIcon }
+ *
+ * Hierarchy in this sample: source → database → schema → tables.
+ */
+export function WarehouseAssetsPanel() {
+  return (
+    <AssetsTree
+      title="Datasets"
+      data={warehouseAssetsTreeData}
+      defaultSelectedId="mart_v2"
+      defaultExpandedIds={[
+        "custom-database",
+        "spark_local",
+        "abfsslhdepotrr",
+      ]}
+      onSelectChange={(item: AssetsTreeItem | undefined) => {
+        // item?.kind tells you which asset type was clicked
+      }}
+    />
+  )
+}`,
+};

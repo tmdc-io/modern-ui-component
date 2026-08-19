@@ -1,9 +1,10 @@
-import type { ComponentApiDoc } from "@/app/component-variants/types"
+import type { ComponentApiDoc } from "@/app/component-variants/types";
 
 export const assetsTreeApi: ComponentApiDoc = {
   features: [
     "DataOS Assets panel with search, filter affordance, and collapse control.",
     "Nested categories with right-aligned counts, chevrons, and verified shields.",
+    "Per-row asset icons via the kind shorthand, or a custom icon component.",
     "Rounded teal selected pill with a rounded dark-teal leading accent bar.",
     "Supports five-level (and deeper) hierarchies with expand/collapse state.",
     "Data-driven: pass AssetsTreeItem[] mapped from your API or store.",
@@ -41,7 +42,7 @@ export const assetsTreeApi: ComponentApiDoc = {
         prop: "data",
         type: "AssetsTreeItem[]",
         description:
-          "Tree data. Defaults to defaultAssetsTreeData. Use deepAssetsTreeData for a five-level sample.",
+          "Tree data. Defaults to defaultAssetsTreeData. Use deepAssetsTreeData for a five-level sample, or warehouseAssetsTreeData for the source / database / schema icon sample.",
       },
       {
         prop: "selectedId",
@@ -105,6 +106,6 @@ export const assetsTreeApi: ComponentApiDoc = {
       },
     ],
     footnote:
-      "AssetsTreeItem: id, name, count? (right-aligned), verified? (outline ShieldCheck), disabled?, children?. Selected styling is rounded-lg with bg-teal-bg-2 and a 3px rounded-full dark-teal accent.",
+      "AssetsTreeItem: id, name, count? (right-aligned), verified? (outline ShieldCheck), kind? (icon shorthand: source | database | schema | table | seed | input | output | semantic | metric | folder | overview), icon? (custom component, wins over kind), disabled?, children?. Row icons are muted grey and turn dark teal when selected. Selected styling is rounded-lg with bg-teal-bg-2 and a 3px rounded-full dark-teal accent.",
   },
-}
+};

@@ -2,10 +2,11 @@ import {
   AssetsTreeDataDrivenPreview,
   AssetsTreeDeepPreview,
   AssetsTreeDefaultPreview,
+  AssetsTreeIconsPreview,
   AssetsTreeSearchPreview,
-} from "@/app/component-examples/assets-tree-usage"
-import { assetsTreeCodes } from "@/app/component-examples/assets-tree-codes"
-import type { ComponentVariantPage } from "@/app/component-variants/types"
+} from "@/app/component-examples/assets-tree-usage";
+import { assetsTreeCodes } from "@/app/component-examples/assets-tree-codes";
+import type { ComponentVariantPage } from "@/app/component-variants/types";
 
 export const assetsTreePage: ComponentVariantPage = {
   name: "assets-tree",
@@ -14,7 +15,7 @@ export const assetsTreePage: ComponentVariantPage = {
     "DataOS assets browser with search, filters, verified status, teal selection, and deep nested categories.",
   install: assetsTreeCodes.install,
   intro:
-    "A composed Assets panel for DataOS product shells — right-aligned category counts, chevrons, verified shields, and a rounded teal selected pill with a rounded dark-teal accent bar.",
+    "A composed Assets panel for DataOS product shells — per-row asset icons, right-aligned category counts, chevrons, verified shields, and a rounded teal selected pill with a rounded dark-teal accent bar.",
   variants: [],
   sections: [
     {
@@ -28,6 +29,23 @@ export const assetsTreePage: ComponentVariantPage = {
           body: "Selected leaves use a rounded teal pill (teal-bg-2) with a rounded dark-teal accent bar. Counts sit on the right before the chevron. Open the code drawer for shell wiring, selection callbacks, and optional detail mirroring.",
           Preview: AssetsTreeDefaultPreview,
           code: assetsTreeCodes.default,
+          tall: true,
+        },
+      ],
+    },
+    {
+      id: "icons",
+      title: "Row icons",
+      description: "Asset-type icons via the kind shorthand.",
+      variants: [
+        {
+          id: "icons",
+          title: "Warehouse hierarchy",
+          description:
+            "Source, database, schema, and table icons across a nested warehouse tree.",
+          body: "Set kind on an item to render a built-in leading icon: source, database, schema, table, seed, input, output, semantic, metric, folder, or overview. Icons render muted grey and switch to dark teal on the selected row. Omit kind for plain grouping rows, or pass icon for a custom glyph.",
+          Preview: AssetsTreeIconsPreview,
+          code: assetsTreeCodes.icons,
           tall: true,
         },
       ],
@@ -52,7 +70,8 @@ export const assetsTreePage: ComponentVariantPage = {
     {
       id: "data-driven",
       title: "Data-driven",
-      description: "Map an API payload into AssetsTreeItem[] and drive a detail panel.",
+      description:
+        "Map an API payload into AssetsTreeItem[] and drive a detail panel.",
       variants: [
         {
           id: "data-driven",
@@ -84,4 +103,4 @@ export const assetsTreePage: ComponentVariantPage = {
       ],
     },
   ],
-}
+};
